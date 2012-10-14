@@ -1,5 +1,5 @@
 var express  = require('express')
-  , require('express-resource')
+  , resource = require('express-resource')
   , app = express();
 
 app.resource('pages', require('./app/pages'));
