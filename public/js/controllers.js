@@ -5,18 +5,16 @@ function IndexIndexCtrl() {}
 
 
 //seznam vsech stranek
-function PagesIndexCtrl($scope, $http) {
-    $http.get('/api/pages').success(function(pages){
-        $scope.pages = pages;
-    });
+function PagesIndexCtrl($scope, Page) {
+    $scope.pages = Page.index();
 }
 
 
 //vytvoreni stranky
-function PagesNewCtrl($scope, $http, $location) {
+function PagesNewCtrl($scope, $location, Page) {
     $scope.page = {};
     $scope.create = function() {
-        $http.post('/api/pages', $scope.page).success(function(){
+        Page.create($scope.page, function(){
             $location.path('/pages');
         });
     }
@@ -24,12 +22,10 @@ function PagesNewCtrl($scope, $http, $location) {
 
 
 //detail stranky
-function PagesShowCtrl($scope, $http, $routeParams, $location) {
-    $http.get('/api/pages/' + $routeParams.page).success(function(page){
-        $scope.page = page;
-    });
+function PagesShowCtrl($scope, $routeParams, $location, Page) {
+    $scope.page = Page.show({page: $routeParams.page});
     $scope.remove = function() {
-        $http.delete('/api/pages/' + $routeParams.page).success(function(){
+        Page.remove({page: $routeParams.page}, function(){
             $location.path('/pages');
         });
     }
@@ -37,12 +33,10 @@ function PagesShowCtrl($scope, $http, $routeParams, $location) {
 
 
 //editace stranky
-function PagesEditCtrl($scope, $http, $routeParams, $location) {
-    $http.get('/api/pages/' + $routeParams.page).success(function(page){
-        $scope.page = page;
-    });
+function PagesEditCtrl($scope, $routeParams, $location, Page) {
+    $scope.page = Page.show({page: $routeParams.page});
     $scope.update = function() {
-        $http.put('/api/pages/' + $routeParams.page, $scope.page).success(function(){
+        Page.update({page: $routeParams.page}, function(){
             $location.path('/pages');
         });
     }
