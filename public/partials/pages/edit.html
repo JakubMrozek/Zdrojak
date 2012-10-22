@@ -1,0 +1,18 @@
+<h1>Editace</h1>
+
+<form class="well" ng-submit="update()">
+
+  <fieldset>
+    <label class="control-label" for="title">Nadpis:</label>
+    <input ng-model="page.title" class="input-xxlarge" required>
+    
+    <label class="control-label" for="content">Obsah:</label>
+    <textarea ng-model="page.content" cols="700" rows="10" required></textarea>    
+    
+  </fieldset>
+
+  <div class="form-actions">
+      <input type="submit" value="Uložit" class="btn btn-primary">
+  </div>
+
+</form>

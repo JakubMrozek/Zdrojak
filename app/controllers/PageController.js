@@ -25,9 +25,11 @@ exports.show = function(req, res, next){
 exports.create = function(req, res, next){
     var page = new Page();
     page.title = req.body.title;
+    page.url = req.body.title;
     page.content = req.body.content;
-    page.save(function(err, res) {
-        //todo
+    page.save(function(err, doc) {
+        if (err) return next(err);
+        res.json(doc);
     });
 };
 
@@ -39,8 +41,9 @@ exports.create = function(req, res, next){
 exports.update = function(req, res, next){
     req.page.title = req.body.title;
     req.page.content = req.body.content;
-    req.page.save(function(err, res) {
-        //todo
+    page.save(function(err, doc) {
+        if (err) return next(err);
+        res.json(doc);
     });
 };
 
@@ -50,7 +53,8 @@ exports.update = function(req, res, next){
  * @todo
  */
 exports.destroy = function(req, res, next){
-    req.page.remove(function(err) {
-        //todo
+    req.page.remove(function(err, doc) {
+        if (err) return next(err);
+        res.json(doc);
     });
 };

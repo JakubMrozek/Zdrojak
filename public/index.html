@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en" ng-app="zdrojak">
+<head>
+  <meta charset="utf-8">
+  <title>Zdrojak Eshop</title>
+  <link rel="stylesheet" href="/css/bootstrap.css"/>
+</head>
+<body>
+
+  <div class="container">
+     <div class="navbar">
+      <div class="navbar-inner">
+          <a class="brand" href="/">
+              Zdrojak e-shop
+          </a>
+          <div class="nav-collapse">
+            <ul id="navigation" class="nav">
+              
+              <li id="nav-lists"><a href="/pages">Stránky</a></li>
+            </ul>
+          </div>
+      </div>
+    </div>
+      
+     <div class="body">
+         <div ng-view></div>
+     </div>
+
+  <!-- In production use:
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.2/angular.min.js"></script>
+  -->
+  <script src="/lib/angular/angular.js"></script>
+  <script src="/js/app.js"></script>
+  <script src="/js/services.js"></script>
+  <script src="/js/controllers.js"></script>
+  <script src="/js/filters.js"></script>
+  <script src="/js/directives.js"></script>
+</body>
+</html>

@@ -15,6 +15,6 @@ var PageController = require('./app/controllers/PageController');
 var Page = require('./app/models/Page');
 
 //API stranky
-app.resource('pages', PageController).load(Page.findOneByUrl);
+app.resource('pages', PageController, {base: '/api/', load: Page.findOneByUrl});
    
 app.listen(process.env.PORT || 5000);
