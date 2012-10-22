@@ -36,7 +36,7 @@ function PagesShowCtrl($scope, $routeParams, $location, Page) {
 function PagesEditCtrl($scope, $routeParams, $location, Page) {
     $scope.page = Page.show({page: $routeParams.page});
     $scope.update = function() {
-        Page.update({page: $routeParams.page}, function(){
+        Page.update({page: $routeParams.page}, $scope.page, function(){
             $location.path('/pages');
         });
     }

@@ -41,7 +41,7 @@ exports.create = function(req, res, next){
 exports.update = function(req, res, next){
     req.page.title = req.body.title;
     req.page.content = req.body.content;
-    page.save(function(err, doc) {
+    req.page.save(function(err, doc) {
         if (err) return next(err);
         res.json(doc);
     });

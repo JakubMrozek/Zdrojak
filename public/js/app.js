@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('zdrojak', ['zdrojakServices']).
-    config(['$routeProvider', function($routeProvider) {
+angular.module('zdrojak', ['zdrojakServices'])
+    .config(['$routeProvider', function($routeProvider) {
         $routeProvider.when('/', {templateUrl: '/partials/index/index.html', controller: IndexIndexCtrl});
         $routeProvider.when('/pages', {templateUrl: '/partials/pages/index.html', controller: PagesIndexCtrl});
         $routeProvider.when('/pages/new', {templateUrl: '/partials/pages/new.html', controller: PagesNewCtrl});
