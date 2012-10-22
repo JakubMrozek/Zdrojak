@@ -5,7 +5,7 @@ var pages = {
         'content': 'Lorem ipsum set dolorem'
     },
     'doprava-a-platba': {
-        'title': 'Obchodní podmínky',
+        'title': 'Doprava a platba',
         'content': 'Lorem ipsum set dolorem'
     },
     'kontakt': {
