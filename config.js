@@ -14,10 +14,16 @@ exports.configure = function(app) {
     app.configure('production', function(){
         app.set('db uri', 'mongodb://user:pass@host:port/dbname');
     });
+    app.configure('test', function(){
+        //app.set('db uri', 'mongodb://localhost/zdrojaktest');
+    });
 }
 
 exports.connect = function(app) {
-    mongoose.connect(app.get('db uri'), function(err) {
-        if(err) console.log(err);
-    });
+    var uri = app.get('db uri');
+    if (uri) {
+        mongoose.connect(uri, function(err) {
+            if(err) console.log(err);
+        });        
+    }
 }
