@@ -4,7 +4,9 @@ module.exports = function() {
         req.zdrojak.fields = {};
         if (req.query.fields) {
             req.query.fields.split(',').forEach(function(field){
-                req.zdrojak.fields[field] = 1;
+                if (field.trim() !== '') {
+                    req.zdrojak.fields[field] = 1;    
+                }
             });
         }
         next();
