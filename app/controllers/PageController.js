@@ -1,4 +1,7 @@
-var Page = require('../models/Page');
+var Page = require(process.cwd() + '/app/models/Page')
+  , filters = {};
+  
+filters.url = require(process.cwd() + '/lib/filters/url');
 
 /**
  * GET /pages
@@ -29,7 +32,7 @@ exports.show = function(req, res, next){
 exports.create = function(req, res, next){
     var page = new Page();
     page.title = req.body.title;
-    page.url = req.body.title;
+    page.url = filters.url(req.body.title);
     page.content = req.body.content;
     page.save(function(err, doc) {
         if (err) return next(err);
