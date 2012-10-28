@@ -6,7 +6,9 @@ exports.configure = function(app) {
         app.use(express.bodyParser());
         app.use(express.methodOverride());
         app.use(express.static(process.cwd() + '/public'));
+        app.use(require('./app/middleware/fields')());
         app.use(app.router);
+        app.use(require('./app/middleware/error')());
     });
     app.configure('development', function(){
         app.set('db uri', 'mongodb://localhost/zdrojak');
@@ -15,15 +17,12 @@ exports.configure = function(app) {
         app.set('db uri', 'mongodb://user:pass@host:port/dbname');
     });
     app.configure('test', function(){
-        //app.set('db uri', 'mongodb://localhost/zdrojaktest');
+        app.set('db uri', 'mongodb://localhost/zdrojaktest');
     });
 }
 
 exports.connect = function(app) {
-    var uri = app.get('db uri');
-    if (uri) {
-        mongoose.connect(uri, function(err) {
-            if(err) console.log(err);
-        });        
-    }
+    mongoose.connect(app.get('db uri'), function(err) {
+        if(err) console.log(err);
+    });  
 }

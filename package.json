@@ -15,7 +15,8 @@
     "mocha": "1.6.x",
     "supertest": "0.4.x",
     "should": "1.2.x",
-    "horaa": "0.1.x"
+    "horaa": "0.1.x",
+    "mongodb": "1.1.1"
   },
   "repository": {
     "type": "git",

@@ -1,6 +1,5 @@
 var express = require('express')
   , resource = require('express-resource')
-  , mongoose = require('mongoose')
   , config = require('./config')
   , app = express();
   
@@ -14,13 +13,7 @@ var PageController = require('./app/controllers/PageController');
 //modely
 var Page = require('./app/models/Page');
 
-//middleware
-var error = require('./app/middleware/error');
-
 //API stranky
 app.resource('pages', PageController, {base: '/api/', load: Page.findOneByUrl});
-
-//zpracovani chyby
-app.use(error());
    
 module.exports = app;
