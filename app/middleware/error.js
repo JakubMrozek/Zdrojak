@@ -3,7 +3,7 @@ module.exports = function() {
         if (typeof(err) == 'number') {
             res.send(err);
         } else {
-            next();
+            next(err);
         } 
     }
 };

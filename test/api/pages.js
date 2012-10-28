@@ -78,18 +78,70 @@ describe('API pages', function(){
         });
     });
     
-   
-    
     describe('POST /api/pages', function(){
        
     });
     
     describe('PUT /api/pages/page', function(){
-       
+        afterEach(function(){
+            Page.restore('findOne');
+        });
+        
+        it('upravi obsah stranky', function(done){
+            Page.hijack('findOne', function(cond, cb){
+                var page = testData.all[0];
+                page.save = function(cb) {
+                    page.title.should.eql('titulek ABC');
+                    page.content.should.eql('lorem ipsum set dolorem');
+                    cb(null, testData.all[0]);
+                }
+                cb(null, page);
+            }); 
+            request(app).put('/api/pages/abc')
+                .send({title: 'titulek ABC', content: 'lorem ipsum set dolorem'})
+                .expect(200, done);
+        });
+        
+        it('vrati 400, pokud chybi titulek nebo obsah', function(done){
+            Page.hijack('findOne', function(cond, cb){
+                cb(null, testData.all[0]);
+            }); 
+            request(app).put('/api/pages/abc')
+                .expect(400, done);
+        });
+        
+        it('vrati 404, pokud stranka neexistuje', function(done){
+            Page.hijack('findOne', function(cond, cb){
+                cb();
+            }); 
+            request(app).put('/api/pages/neexistuje').expect(404, done);
+        });
     });
     
     describe('DELETE /api/pages/page', function(){
-       
+        
+        afterEach(function(){
+            Page.restore('findOne');
+        });
+        
+        it('smaze stranku z databaze', function(done){
+            Page.hijack('findOne', function(cond, cb){
+                var page = testData.all[0];
+                page.remove = function(cb) {
+                    cb(null, testData.all[0]);
+                }
+                cb(null, page);
+            }); 
+            request(app).del('/api/pages/abc').expect(200, done);
+        });
+        
+        it('vrati 404, pokud stranka neexistuje', function(done){
+            Page.hijack('findOne', function(cond, cb){
+                cb();
+            }); 
+            request(app).del('/api/pages/neexistuje').expect(404, done);
+        });
+        
     });
     
 });
