@@ -12,10 +12,12 @@ describe('model Page', function(){
     });    
     
     describe('metoda findOneByUrl', function() {
-        PageHoraa.hijack('findOne', function(email) {
-            email.should.eql({url: 'url-stranky'})
-        });
-        Page.findOneByUrl('url-stranky', function(){});
-        PageHoraa.restore('findOne');
+        it('zavola metodu findOne() s podminkou pro vyber dokumentu podle url', function(){
+            PageHoraa.hijack('findOne', function(url) {
+                url.should.eql({url: 'url-stranky'})
+            });
+            Page.findOneByUrl('url-stranky', function(){});
+            PageHoraa.restore('findOne');
+        })
     });
 });
