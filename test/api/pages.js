@@ -69,7 +69,16 @@ describe('API pages', function(){
     });
     
     describe('POST /api/pages', function(){
-       
+        it('vlozi novou stranku do databaze', function(done){
+            request(app)
+                .post('/api/pages')
+                .send({title: 'titulek ABC', content: 'lorem ipsum set dolorem'})
+                .expect(200, done);
+        });
+        it('vrati 400, pokud chybi titulek nebo obsah', function(done){
+            request(app).post('/api/pages')
+                .expect(400, done);
+        });
     });
     
     describe('PUT /api/pages/page', function(){
