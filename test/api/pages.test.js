@@ -1,26 +1,33 @@
 var request = require('supertest')
+  , async = require('async')
   , app = require(process.cwd() + '/app')
   , Page = require(process.cwd() + '/app/models/Page');
   
-var data = {
-    title: 'Stranka 1',
-    url: 'stranka-1',
-    content: 'lorem ipsum'
-};
+//testovaci data
+var data = [
+    {title: 'Stranka 1', url: 'stranka-1', content: 'lorem ipsum'},
+    {title: 'Stranka 2', url: 'stranka-2', content: 'lorem ipsum 2'}
+];
+
+//vlozeni jednoho radku do databaze
+function save(doc) {
+    return function(cb) {
+        var page = new Page();
+        for (var field in doc) {
+            page[field] = doc[field];
+        }
+        page.save(cb);         
+    }        
+}
   
 describe('API pages', function(){
     
     beforeEach(function(done) {
         Page.remove({}, function(err){
-            if (err) throw err;
-            var page = new Page();
-            for (var field in data) {
-                page[field] = data[field];
-            }
-            page.save(function(err) {
-                if (err) throw err;
-                done();
-            });
+            if (err) return done(err);
+            async.parallel([
+                save(data[0]), save(data[1])
+            ], done);
         }); 
     });
     
@@ -29,8 +36,8 @@ describe('API pages', function(){
             request(app)
                 .get('/api/pages')
                 .end(function(err, res) {
-                    res.body.length.should.eql(1);
-                    res.body[0].should.include(data);
+                    res.body.length.should.eql(2);
+                    res.body[0].should.include(data[0]);
                     done();
                 });
         });
@@ -57,7 +64,7 @@ describe('API pages', function(){
             request(app)
                 .get('/api/pages/stranka-1')
                 .end(function(err, res) {
-                    res.body.should.include(data);
+                    res.body.should.include(data[0]);
                     done();
                 });
         });
