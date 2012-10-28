@@ -4,7 +4,21 @@ var Page = require('../models/Page');
  * GET /pages
  */
 exports.index = function(req, res, next){
-    Page.find(function(err, docs) {
+    var fields = {};
+    
+    //povolit jen specifikovana pole
+    if (req.query.fields) {
+        var queryFields = req.query.fields.split(',');
+        queryFields.forEach(function(field) {
+            if (field == 'title' || field == 'url' || field == 'content') {
+                fields[field] = 1;    
+            } else {
+                return next(400);
+            }
+        })
+    }
+    
+    Page.find({}, fields, function(err, docs) {
         if (err) return next(err);
         res.json(docs);
     });

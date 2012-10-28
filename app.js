@@ -16,5 +16,14 @@ var Page = require('./app/models/Page');
 
 //API stranky
 app.resource('pages', PageController, {base: '/api/', load: Page.findOneByUrl});
+
+//zpracovani chyby
+app.use(function(err, req, res, next){
+    if (typeof(err) == 'number') {
+        res.send(err);
+    } else {
+        next();
+    } 
+});
    
 module.exports = app;

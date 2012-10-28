@@ -1,3 +1,4 @@
+--require ./test/mocha.js
 --require should
 --reporter dot
 --ui bdd
