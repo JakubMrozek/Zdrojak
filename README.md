@@ -1,7 +1,7 @@
 [![Build Status](https://travis-ci.org/JakubMrozek/Zdrojak.png)](https://travis-ci.org/JakubMrozek/Zdrojak)
 
-Seriál pro Zdroják: http://www.zdrojak.cz/serialy/node-js-s-javascriptem-na-serveru/
-Homepage seriálu: http://jakubmrozek.github.com/Zdrojak/
+* Seriál pro Zdroják: http://www.zdrojak.cz/serialy/node-js-s-javascriptem-na-serveru/
+* Homepage seriálu: http://jakubmrozek.github.com/Zdrojak/
 
 7. díl
 ======
