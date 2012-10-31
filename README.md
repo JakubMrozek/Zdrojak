@@ -12,3 +12,8 @@ Seriál pro Zdroják: http://www.zdrojak.cz/serialy/node-js-s-javascriptem-na-se
 * Článek: http://www.zdrojak.cz/clanky/javascript-na-serveru-mongodb-mongoose-angularjs/
 * Demo: http://young-lake-7194.herokuapp.com/
 
+7. díl
+======
+* Článek: http://www.zdrojak.cz/clanky/testovani-a-kontinualni-integrace/
+* Demo: http://infinite-ridge-6275.herokuapp.com/
+
