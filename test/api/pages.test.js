@@ -10,14 +10,12 @@ var data = [
 ];
 
 //vlozeni jednoho radku do databaze
-function save(doc) {
-    return function(cb) {
-        var page = new Page();
-        for (var field in doc) {
-            page[field] = doc[field];
-        }
-        page.save(cb);         
-    }        
+function save(doc, cb) {
+    var page = new Page();
+    for (var field in doc) {
+        page[field] = doc[field];
+    }
+    page.save(cb);         
 }
   
 describe('API pages', function(){
@@ -25,9 +23,7 @@ describe('API pages', function(){
     beforeEach(function(done) {
         Page.remove({}, function(err){
             if (err) return done(err);
-            async.parallel([
-                save(data[0]), save(data[1])
-            ], done);
+            async.forEach(data, save, done);
         }); 
     });
     
