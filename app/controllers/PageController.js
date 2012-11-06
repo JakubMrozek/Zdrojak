@@ -4,6 +4,13 @@ var Page = require(process.cwd() + '/app/models/Page')
 filters.url = require(process.cwd() + '/lib/filters/url');
 
 /**
+ * Set the auto-load `fn`.
+ */
+exports.load = function(req, url, cb) {
+    Page.findOneByUrl(url, cb);
+}
+
+/**
  * GET /pages
  */
 exports.index = function(req, res, next){

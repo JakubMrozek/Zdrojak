@@ -7,13 +7,10 @@ var express = require('express')
 config.configure(app);
 config.connect(app);
 
-//controllery 
+//controllery (inicializace modelu je v controllerech)
 var PageController = require('./app/controllers/PageController');
 
-//modely
-var Page = require('./app/models/Page');
-
 //API stranky
-app.resource('pages', PageController, {base: '/api/', load: Page.findOneByUrl});
+app.resource('pages', PageController, {base: '/api/'});
    
 module.exports = app;

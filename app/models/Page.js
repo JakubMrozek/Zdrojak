@@ -1,4 +1,5 @@
-var mongoose = require('mongoose');
+var mongoose = require('mongoose'),
+    Schema = mongoose.Schema;
 
 var fields = {
     title: {type: String, required: true}
@@ -6,13 +7,13 @@ var fields = {
   , content: {type: String, required: true}
 };
 
-var Schema = new mongoose.Schema(fields);
+var PageSchema = new Schema(fields);
 
-Schema.statics.findOneByUrl = function(url, cb) {
-    Model.findOne({url: url}, cb);
+PageSchema.statics.findOneByUrl = function(url, cb) {
+    this.findOne({url: url}, cb);
 };
 
-Schema.statics.inSchema = function(obj) {
+PageSchema.statics.inSchema = function(obj) {
     for (var field in obj) {
         if (typeof fields[field] === 'undefined') {
             return false;
@@ -21,5 +22,5 @@ Schema.statics.inSchema = function(obj) {
     return true;
 };
 
-var Model = module.exports = mongoose.model('Page', Schema);
+module.exports = mongoose.model('Page', PageSchema);
 
