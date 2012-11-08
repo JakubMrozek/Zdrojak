@@ -13,7 +13,7 @@ describe('url filter', function(){
         url('PŘÍLIŠ ŽLUŤOUČKÝ KŮŇ ÚPĚL ĎÁBELSKÉ ÓDY').should.eql('prilis-zlutoucky-kun-upel-dabelske-ody');
     })
 
-		it('z vice mezer udela jednu', function(){
+    it('z vice mezer udela jednu', function(){
         url('velka          propast').should.eql('velka-propast');
     })
 
@@ -23,6 +23,10 @@ describe('url filter', function(){
 
     it('odstrani bile znaky ze zacatku i konce', function(){
         url(' \na eio u\t ').should.eql('a-eio-u');
+    })
+    
+    it('odstrani vsechno mimo alfanumerickych znaku a pomlcky', function(){
+        url('a*>/-<[]a').should.eql('a-a');
     })
 });
 
