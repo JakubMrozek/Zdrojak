@@ -1,7 +1,7 @@
-var express = require('express')
-  , resource = require('express-resource')
-  , config = require('./config')
-  , app = express();
+var express = require('express');
+var resource = require('express-resource');
+var config = require('./config');
+var app = express();
   
 //konfigurace a spojeni s databazi
 config.configure(app);

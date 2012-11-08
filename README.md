@@ -33,3 +33,7 @@
 1. díl
 ======
 * Článek: http://www.zdrojak.cz/clanky/javascript-na-serveru-zaciname-s-node-js/
+
+Coding standards: http://nodeguide.com/style.html
+
+
