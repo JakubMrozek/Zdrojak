@@ -5,7 +5,7 @@ var urlFilter = require(process.cwd() + '/lib/filters/url');
  */
 exports.load = function(req, url, cb) {
   Page.findOneByUrl(url, cb);
-}
+};
 
 /**
  * GET /pages

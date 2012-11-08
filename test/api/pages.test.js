@@ -54,8 +54,8 @@ describe('API pages', function () {
       request(app)
         .get('/api/pages?fields=abc')
         .expect(400, done);
-    })
-  })  
+    });
+  });  
     
   describe('GET /api/pages/:page', function(){
     it('vrati detail jedne stranky', function(done){

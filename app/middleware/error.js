@@ -9,5 +9,5 @@ module.exports = function() {
     }
         
     next(err);
-  }
+  };
 };

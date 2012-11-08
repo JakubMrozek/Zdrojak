@@ -18,11 +18,11 @@ exports.configure = function(app) {
   });
   app.configure('test', function(){
     app.set('db uri', 'mongodb://localhost/zdrojaktest');
-  });
-}
+  }); 
+};
 
 exports.connect = function(app) {
   mongoose.connect(app.get('db uri'), function(err) {
     if(err) console.log(err);
   });  
-}
+};

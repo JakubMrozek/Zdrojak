@@ -10,7 +10,7 @@ describe('middleware fields', function(){
     req.zdrojak.fields.should.eql({
       field1: 1, field2: 1, field3: 1
     });
-  })  
+  });  
     
   it('odstrani z vraceneho pole prazdne elementy', function(){
     var req = { query: { fields: 'field1, ,field2,field3,' } };
@@ -20,6 +20,6 @@ describe('middleware fields', function(){
     req.zdrojak.fields.should.eql({
       field1: 1, field2: 1, field3: 1
     });
-  }) 
+  }); 
     
 });

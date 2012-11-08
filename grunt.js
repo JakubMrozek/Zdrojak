@@ -1,11 +1,23 @@
 module.exports = function (grunt) {
   grunt.initConfig({
     lint: {
-      all: ['app/*/*.js', 'lib/*/*.js', '*.js']
+      all: ['app/*/*.js', 'lib/**/*.js', 'test/**/*.js', '*.js']
     },
     jshint: {
       options: {
-        node: true
+        node: true,
+        camelcase: true,
+        es5: true,
+        newcap: true,
+        quotmark: 'single',
+        eqeqeq: true,
+        strict: false,
+        maxparams: 4,
+        maxstatements: 10,
+        maxdepth: 3,
+        evil: true,
+        regexdash: true
+        //indent: 2
       }
     }
   });
