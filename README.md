@@ -2,14 +2,17 @@
 
 * Seriál pro Zdroják: http://www.zdrojak.cz/serialy/node-js-s-javascriptem-na-serveru/
 * Homepage seriálu: http://jakubmrozek.github.com/Zdrojak/
-
 * Coding Standards: http://nodeguide.com/style.html
 * Kontrola syntaxe: příkaz "grunt" (grunt.cmd na Windows), musí být nainstalován balíček grunt globálně (-g)
 * Spuštění testů: npm test
 
+8. díl
+======
+* Článek: http://www.zdrojak.cz/clanky/javascript-na-serveru-rest-api/
+
 7. díl
 ======
-* Článek: http://www.zdrojak.cz/clanky/testovani-a-kontinualni-integrace/
+* Článek: http://www.zdrojak.cz/clanky/javascript-na-serveru-testovani-a-kontinualni-integrace/
 * Demo: http://infinite-ridge-6275.herokuapp.com/
 
 6. díl
