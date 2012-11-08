@@ -3,6 +3,10 @@
 * Seriál pro Zdroják: http://www.zdrojak.cz/serialy/node-js-s-javascriptem-na-serveru/
 * Homepage seriálu: http://jakubmrozek.github.com/Zdrojak/
 
+* Coding Standards: http://nodeguide.com/style.html
+* Kontrola syntaxe: příkaz "grunt" (grunt.cmd na Windows), musí být nainstalován balíček grunt globálně (-g)
+* Spuštění testů: npm test
+
 7. díl
 ======
 * Článek: http://www.zdrojak.cz/clanky/testovani-a-kontinualni-integrace/
@@ -33,7 +37,5 @@
 1. díl
 ======
 * Článek: http://www.zdrojak.cz/clanky/javascript-na-serveru-zaciname-s-node-js/
-
-Coding standards: http://nodeguide.com/style.html
 
 

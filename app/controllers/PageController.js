@@ -1,6 +1,5 @@
 var Page = require(process.cwd() + '/app/models/Page');
 var urlFilter = require(process.cwd() + '/lib/filters/url');
-
 /**
  * Set the auto-load `fn`.
  */

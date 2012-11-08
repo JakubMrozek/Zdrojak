@@ -18,7 +18,7 @@ function save(doc, cb) {
   page.save(cb);         
 }
   
-describe('API pages', function(){
+describe('API pages', function () {
     
   beforeEach(function(done) {
     Page.remove({}, function(err){
