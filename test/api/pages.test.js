@@ -55,6 +55,12 @@ describe('API pages', function () {
         .get('/api/pages?fields=abc')
         .expect(400, done);
     });
+    it('vrati kod 406 pri pozadavku na jiny format dat nez JSON', function(done){
+      request(app)
+        .get('/api/pages?fields=abc')
+        .set('Accept', 'application/xml')
+        .expect(406, done);
+    });
   });  
     
   describe('GET /api/pages/:page', function(){
@@ -89,8 +95,17 @@ describe('API pages', function () {
         });
     });
     it('vrati 400, pokud chybi titulek nebo obsah', function(done){
-      request(app).post('/api/pages')
+      request(app)
+        .post('/api/pages')
+        .send({})
         .expect(400, done);
+    });
+    it('vrati 415, pokud byla data zaslana v jinem formatu nez JSON', function(done){
+      request(app)
+        .post('/api/pages')
+        .set('Content-Type', 'application/xml')
+        .send('<xml>root</xml>')
+        .expect(415, done);
     });
   });
     
@@ -111,12 +126,21 @@ describe('API pages', function () {
     it('vrati 400, pokud chybi titulek nebo obsah', function(done){
       request(app)
         .put('/api/pages/stranka-1')
+        .send({})
         .expect(400, done);
     });
     it('vrati 404, pokud stranka neexistuje', function(done){
       request(app)
         .put('/api/pages/neexistuje')
+        .send({title: 'titulek ABC', content: 'lorem ipsum set dolorem'})
         .expect(404, done);
+    });
+    it('vrati 415, pokud byla data zaslana v jinem formatu nez JSON', function(done){
+      request(app)
+        .put('/api/pages/stranka-1')
+        .set('Content-Type', 'application/xml')
+        .send('<xml>root</xml>')
+        .expect(415, done);
     });
   });
     

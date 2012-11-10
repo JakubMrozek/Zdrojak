@@ -6,6 +6,8 @@ exports.configure = function(app) {
     app.use(express.bodyParser());
     app.use(express.methodOverride());
     app.use(express.static(process.cwd() + '/public'));
+    app.use(require('./app/middleware/http406')());
+    app.use(require('./app/middleware/http415')());
     app.use(require('./app/middleware/fields')());
     app.use(app.router);
     app.use(require('./app/middleware/error')());
