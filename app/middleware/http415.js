@@ -6,7 +6,7 @@
 module.exports = function() {
   return function(req, res, next){
     var isPostOrPut = req.method === 'POST' || req.method === 'PUT';
-    var isBody = req.body && req.body !== '';
+    var isBody = typeof(req.body) !== 'undefined' && req.body !== '';
     if (isPostOrPut && isBody && !req.is('json')) {
       return next(415);
     }
