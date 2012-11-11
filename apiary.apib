@@ -41,7 +41,7 @@ GET /api/v1/pages/kontakt
 Vložení nové stránky do databáze.
 
 POST /api/v1/pages
-> 
+> Content-Type: application/json
 {"content":"Lorem ipsum set dolorem", "title":"Kontakt 2"}
 < 201
 < Location: //api/v1/pages/test
@@ -50,7 +50,7 @@ POST /api/v1/pages
 Editace jedné stránky v databázi.
 
 PUT /api/v1/pages/kontakt
-> 
+> Content-Type: application/json
 {"content":"Lorem ipsum set dolorem", "title":"Nový kontakt"}
 < 200
 < Content-Type: application/json
