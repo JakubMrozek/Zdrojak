@@ -7,13 +7,60 @@ Demo e-shop pro Zdrojak.cz (http://jakubmrozek.github.com/Zdrojak/)
 --
 Stranky
 --
-Seznam vsech stranek
-GET /api/pages
+Vrácení seznamu všech stránek.
+
+GET /api/v1/pages
 < 200
 < Content-Type: application/json
-[ 
-{"_id":"5098eaef0496600200000001",
-"content":"67777",
-"title":"67","url":"67"}
+[
+{"id":"5098eaef0496600200000001",
+"content":"Lorem ipsum set dolorem",
+"title":"Kontakt",
+"url":"kontakt"},
+{"id":"5098eaef0496600200000002",
+"content":"Lorem ipsum set dolorem",
+"title":"Obchodní podmínky",
+"url":"obchodni-podminky"},
+{"id":"5098eaef0496600200000003",
+"content":"Lorem ipsum set dolorem",
+"title":"Doprava a platba",
+"url":"doprava a platba"}
 ]
+
+Zobrazení detailu jedné stránky.
+
+GET /api/v1/pages/kontakt
+< 200
+< Content-Type: application/json
+{"id":"5098eaef0496600200000001",
+"content":"Lorem ipsum set dolorem",
+"title":"Kontakt",
+"url":"kontakt"}
+
+
+Vložení nové stránky do databáze.
+
+POST /api/v1/pages
+> 
+{"content":"Lorem ipsum set dolorem", "title":"Kontakt 2"}
+< 201
+< Location: //api/v1/pages/test
+
+
+Editace jedné stránky v databázi.
+
+PUT /api/v1/pages/kontakt
+> 
+{"content":"Lorem ipsum set dolorem", "title":"Nový kontakt"}
+< 200
+< Content-Type: application/json
+{"content":"Lorem ipsum set dolorem",
+"title":"Nový kontakt"}
+
+
+Smazání stránky z databáze.
+
+DELETE /api/v1/pages/kontakt
+< 204
+
 
