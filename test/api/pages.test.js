@@ -33,6 +33,7 @@ describe('API pages', function () {
         .get('/api/v1/pages')
         .expect(200)
         .end(function(err, res) {
+          if (err) return done(err);
           res.body.length.should.eql(2);
           res.body[0].should.include(data[0]);
           done();
@@ -43,6 +44,7 @@ describe('API pages', function () {
         .get('/api/v1/pages?fields=url')
         .expect(200)
         .end(function(err, res) {
+          if (err) return done(err);
           res.body.length.should.eql(2);
           res.body[0].should.not.include({
             title: 'Stranka 1', content: 'lorem ipsum'
@@ -69,6 +71,7 @@ describe('API pages', function () {
         .get('/api/v1/pages/stranka-1')
         .expect(200)
         .end(function(err, res) {
+          if (err) return done(err);
           res.body.should.include(data[0]);
           done();
         });
@@ -87,7 +90,9 @@ describe('API pages', function () {
         .send({title: 'titulek ABC', content: 'lorem ipsum set dolorem'})
         .expect(200)
         .end(function(err, res){
+          if (err) return done(err);
           Page.findOne({title: 'titulek ABC'}, function(err, doc) {
+            if (err) return done(err);
             doc.title.should.equal('titulek ABC');
             doc.content.should.equal('lorem ipsum set dolorem');
             done();
@@ -116,7 +121,9 @@ describe('API pages', function () {
         .send({title: 'titulek ABC', content: 'lorem ipsum set dolorem'})
         .expect(200)
         .end(function(err, res){
+          if (err) return done(err);
           Page.findOne({title: 'titulek ABC'}, function(err, doc) {
+            if (err) return done(err);
             doc.title.should.equal('titulek ABC');
             doc.content.should.equal('lorem ipsum set dolorem');
             done();
@@ -148,9 +155,11 @@ describe('API pages', function () {
     it('smaze stranku z databaze', function(done){
       request(app)
         .del('/api/v1/pages/stranka-1')
-        .expect(200)
+        .expect(204)
         .end(function(err, res){
+          if (err) return done(err);
           Page.count({url: 'stranka-1'}, function(err, count) {
+            if (err) return done(err);
             count.should.eql(0);
             done();
           });

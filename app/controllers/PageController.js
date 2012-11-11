@@ -14,7 +14,6 @@ exports.index = function(req, res, next){
   if (!Page.inSchema(req.zdrojak.fields)) {
     return next(400);
   }
-    
   Page.find({}, req.zdrojak.fields, function(err, docs) {
     if (err) return next(err);
     res.json(docs);
@@ -64,6 +63,6 @@ exports.update = function(req, res, next){
 exports.destroy = function(req, res, next){
   req.page.remove(function(err, doc) {
     if (err) return next(err);
-    res.json(doc);
+    res.send(204);
   });
 };
