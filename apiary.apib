@@ -1,4 +1,4 @@
-HOST: http://infinite-ridge-6275.herokuapp.com/
+HOST: http://infinite-ridge-6275.herokuapp.com/api/v1
 
 --- Zdrojak ---
 ---
@@ -9,7 +9,7 @@ Stranky
 --
 Vrácení seznamu všech stránek.
 
-GET /api/v1/pages
+GET /pages
 < 200
 < Content-Type: application/json
 [
@@ -29,7 +29,7 @@ GET /api/v1/pages
 
 Zobrazení detailu jedné stránky.
 
-GET /api/v1/pages/kontakt
+GET /pages/kontakt
 < 200
 < Content-Type: application/json
 {"id":"5098eaef0496600200000001",
@@ -40,7 +40,7 @@ GET /api/v1/pages/kontakt
 
 Vložení nové stránky do databáze.
 
-POST /api/v1/pages
+POST /pages
 > Content-Type: application/json
 {"content":"Lorem ipsum set dolorem", "title":"Nákupní řád"}
 < 201
@@ -49,7 +49,7 @@ POST /api/v1/pages
 
 Editace jedné stránky v databázi.
 
-PUT /api/v1/pages/kontakt
+PUT /pages/kontakt
 > Content-Type: application/json
 {"content":"Lorem ipsum set dolorem", "title":"Nákupní řád e-shopu"}
 < 200
@@ -60,7 +60,7 @@ PUT /api/v1/pages/kontakt
 
 Smazání stránky z databáze.
 
-DELETE /api/v1/pages/kontakt
+DELETE /pages/kontakt
 < 204
 
 
