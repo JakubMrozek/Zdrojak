@@ -11,6 +11,6 @@ config.connect(app);
 var PageController = require('./app/controllers/PageController');
 
 //API stranky
-app.resource('pages', PageController, {base: '/api/'});
+app.resource('pages', PageController, {base: '/api/v1/'});
    
 module.exports = app;
