@@ -39,7 +39,8 @@ exports.create = function(req, res, next){
   page.content = req.body.content;
   page.save(function(err, doc) {
     if (err) return next(err);
-    res.json(doc);
+    res.setHeader('location', '/' + req.path + '/' + doc.url);
+    res.send(201);
   });
 };
 

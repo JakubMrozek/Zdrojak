@@ -88,7 +88,8 @@ describe('API pages', function () {
       request(app)
         .post('/api/v1/pages')
         .send({title: 'titulek ABC', content: 'lorem ipsum set dolorem'})
-        .expect(200)
+        .expect(201)
+        .expect('Location', '//api/v1/pages/titulek-abc')
         .end(function(err, res){
           if (err) return done(err);
           Page.findOne({title: 'titulek ABC'}, function(err, doc) {
