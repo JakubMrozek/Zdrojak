@@ -7,7 +7,7 @@ var app = express();
 config.configure(app);
 config.connect(app);
 
-//controllery (inicializace modelu je v controllerech)
+//controllery
 var PageController = require('./app/controllers/PageController');
 
 //API stranky
