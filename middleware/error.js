@@ -1,4 +1,15 @@
+
+/**
+ * Zavislosti modulu.
+ */
+
 var AppError = require(process.cwd() + '/lib/error').AppError;
+
+/**
+ * Middleware pro zpracovani chyb.
+ * 
+ * @return {Function}
+ */
 
 module.exports = function() {
   return function(err, req, res, next){
