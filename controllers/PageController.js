@@ -5,6 +5,7 @@
 var Page = require(process.cwd() + '/models/Page');
 var url = require(process.cwd() + '/lib/filters/url');
 var error = require(process.cwd() + '/lib/error');
+var util = require(process.cwd() + '/lib/util');
 
 
 /**
@@ -69,7 +70,8 @@ exports.create = function(req, res, next){
   page.content = req.body.content;
   page.save(function(err, doc) {
     if (err) return next(err);
-    res.setHeader('location', '/' + req.path + '/' + doc.url);
+    var location = util.fullUrl('/' + req.path + '/' + doc.url, req);
+    res.setHeader('location', location);
     res.send(201);
   });
 };

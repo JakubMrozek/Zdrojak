@@ -89,9 +89,9 @@ describe('API pages', function () {
         .post('/api/v1/pages')
         .send({title: 'titulek ABC', content: 'lorem ipsum set dolorem'})
         .expect(201)
-        .expect('Location', '//api/v1/pages/titulek-abc')
         .end(function(err, res){
           if (err) return done(err);
+          res.should.have.header('location');
           Page.findOne({title: 'titulek ABC'}, function(err, doc) {
             if (err) return done(err);
             doc.title.should.equal('titulek ABC');
