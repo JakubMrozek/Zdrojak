@@ -1,5 +1,10 @@
 
 /**
+ * Chyby.
+ */
+var NotAcceptable = require(process.cwd() + '/lib/error').NotAcceptable;
+
+/**
  * Kontrola, zda je schopen uzivatel zpracovat HTTP odpoved v JSON.
  * 
  * Jestlize uzivatel nezadal hlavicku Accept, pocitame s tim, 
@@ -12,7 +17,7 @@
 module.exports = function() {
   return function(req, res, next){
     if (!req.accepts('json')) {
-        return next(406);
+        return next(new NotAcceptable());
     }
     next();
   };

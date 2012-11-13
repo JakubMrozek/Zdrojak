@@ -4,6 +4,7 @@
  */
 var Page = require(process.cwd() + '/models/Page');
 var url = require(process.cwd() + '/lib/filters/url');
+var error = require(process.cwd() + '/lib/error');
 
 
 /**
@@ -33,7 +34,7 @@ exports.load = function(req, url, cb) {
 
 exports.index = function(req, res, next){
   if (!Page.inSchema(req.zdrojak.fields)) {
-    return next(400);
+    return next(new error.NotInFields());
   }
   Page.find({}, req.zdrojak.fields, function(err, docs) {
     if (err) return next(err);

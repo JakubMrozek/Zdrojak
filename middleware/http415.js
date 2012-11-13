@@ -1,5 +1,10 @@
 
 /**
+ * Chyby.
+ */
+var UnsupportedMediaType = require(process.cwd() + '/lib/error').UnsupportedMediaType;
+
+/**
  * Kontrola, zda byl HTTP pozadavek zaslan v JSON.
  * 
  * Pokud uzivatel zaslal nejaka data metodou POST ci PUT,
@@ -14,7 +19,7 @@ module.exports = function() {
     var isPostOrPut = req.method === 'POST' || req.method === 'PUT';
     var isBody = typeof req.body !== 'undefined';
     if (isPostOrPut && isBody && !req.is('json')) {
-      return next(415);
+      return next(new UnsupportedMediaType());
     }
     next();
   };
