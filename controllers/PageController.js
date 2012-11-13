@@ -2,8 +2,8 @@
 /**
  * Zavislosti modulu.
  */
-var Page = require(process.cwd() + '/app/models/Page');
-var urlFilter = require(process.cwd() + '/lib/filters/url');
+var Page = require(process.cwd() + '/models/Page');
+var url = require(process.cwd() + '/lib/filters/url');
 
 
 /**
@@ -64,7 +64,7 @@ exports.show = function(req, res, next){
 exports.create = function(req, res, next){
   var page = new Page();
   page.title = req.body.title;
-  page.url = urlFilter(req.body.title);
+  page.url = url(req.body.title);
   page.content = req.body.content;
   page.save(function(err, doc) {
     if (err) return next(err);

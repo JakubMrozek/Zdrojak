@@ -1,4 +1,4 @@
-var fields = require(process.cwd() + '/app/middleware/fields');
+var fields = require(process.cwd() + '/middleware/fields');
 
 describe('middleware fields', function(){
     

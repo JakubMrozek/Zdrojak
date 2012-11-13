@@ -1,4 +1,4 @@
-var url = require(process.cwd() + '/lib/filters/removeDiacritics');
+var url = require(process.cwd() + '/lib/filters/diacritics');
 
 describe('remove diacritics filter', function(){
   it('odstrani diakritiku', function(){

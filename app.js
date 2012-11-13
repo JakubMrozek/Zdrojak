@@ -19,7 +19,7 @@ config.connect(app);
  * Inicializace vsech controlleru.
  */
 
-var PageController = require('./app/controllers/PageController');
+var PageController = require('./controllers/PageController');
 
 /**
  * Konfigurace pro jednotliva API

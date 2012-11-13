@@ -1,5 +1,5 @@
-var Page = require(process.cwd() + '/app/models/Page');
-var PageHoraa = require('horaa')(process.cwd() + '/app/models/Page');
+var Page = require(process.cwd() + '/models/Page');
+var PageHoraa = require('horaa')(process.cwd() + '/models/Page');
 
 describe('model Page', function(){
     

@@ -1,7 +1,7 @@
 var request = require('supertest');
 var async = require('async');
 var app = require(process.cwd() + '/app');
-var Page = require(process.cwd() + '/app/models/Page');
+var Page = require(process.cwd() + '/models/Page');
   
 //testovaci data
 var data = [

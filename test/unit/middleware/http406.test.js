@@ -1,4 +1,4 @@
-var http406 = require(process.cwd() + '/app/middleware/http406');
+var http406 = require(process.cwd() + '/middleware/http406');
 
 describe('middleware http406', function(){
     

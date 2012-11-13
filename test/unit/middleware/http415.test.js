@@ -1,4 +1,4 @@
-var http415 = require(process.cwd() + '/app/middleware/http415');
+var http415 = require(process.cwd() + '/middleware/http415');
 
 describe('middleware http415', function(){
     
