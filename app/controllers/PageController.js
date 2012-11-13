@@ -1,15 +1,36 @@
+
+/**
+ * Zavislosti modulu.
+ */
 var Page = require(process.cwd() + '/app/models/Page');
 var urlFilter = require(process.cwd() + '/lib/filters/url');
+
+
 /**
- * Set the auto-load `fn`.
+ * Nahraje stranku podle URL.
+ * 
+ * Automaticky pred zpracovanim akce controlleru nahraje
+ * konkretni stranku z kolekce. Dokument pak bude dostupny
+ * pres req.page. Pokud stranka v databazi neexistuje, 
+ * preda chybu 404 k dalsimu zpracovani.
+ * 
+ * @param {ServerRequest} req
+ * @param {String} url
+ * @param {Function} cb
  */
+
 exports.load = function(req, url, cb) {
   Page.findOneByUrl(url, cb);
 };
 
 /**
  * GET /pages
+ * 
+ * @param {ServerRequest} req
+ * @param {ServerResponse} res
+ * @param {Function} next
  */
+
 exports.index = function(req, res, next){
   if (!Page.inSchema(req.zdrojak.fields)) {
     return next(400);
@@ -22,7 +43,12 @@ exports.index = function(req, res, next){
 
 /**
  * GET /pages/:page
+ * 
+ * @param {ServerRequest} req
+ * @param {ServerResponse} res
+ * @param {Function} next
  */
+ 
 exports.show = function(req, res, next){
   res.send(req.page);
 };
@@ -30,8 +56,11 @@ exports.show = function(req, res, next){
 /**
  * POST /pages
  * 
- * @todo
+ * @param {ServerRequest} req
+ * @param {ServerResponse} res
+ * @param {Function} next
  */
+
 exports.create = function(req, res, next){
   var page = new Page();
   page.title = req.body.title;
@@ -47,7 +76,11 @@ exports.create = function(req, res, next){
 /**
  * PUT /pages/:page
  * 
+ * @param {ServerRequest} req
+ * @param {ServerResponse} res
+ * @param {Function} next
  */
+ 
 exports.update = function(req, res, next){
   req.page.title = req.body.title;
   req.page.content = req.body.content;
@@ -60,7 +93,11 @@ exports.update = function(req, res, next){
 /**
  * DELETE /pages/:page
  * 
+ * @param {ServerRequest} req
+ * @param {ServerResponse} res
+ * @param {Function} next
  */
+ 
 exports.destroy = function(req, res, next){
   req.page.remove(function(err, doc) {
     if (err) return next(err);

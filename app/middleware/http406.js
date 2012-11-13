@@ -1,8 +1,14 @@
+
 /**
- * Kontrola, zda muzeme vratit data v JSON
+ * Kontrola, zda je schopen uzivatel zpracovat HTTP odpoved v JSON.
  * 
- * Pokud ne, vratit HTTP kod 406.
+ * Jestlize uzivatel nezadal hlavicku Accept, pocitame s tim, 
+ * ze muze zpracovat obsah v JSON. Pokud hlavicku Accept zaslal
+ * a JSON zpracovat nemuze, vratime HTTP kod 406. 
+ * 
+ * @return {Function}
  */
+
 module.exports = function() {
   return function(req, res, next){
     if (!req.accepts('json')) {

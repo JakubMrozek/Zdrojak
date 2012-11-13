@@ -5,7 +5,7 @@
 * Coding Standards: http://nodeguide.com/style.html
 * Kontrola syntaxe: příkaz "grunt" (grunt.cmd na Windows), musí být nainstalován balíček grunt globálně (-g)
 * Spuštění testů: npm test
-* Generování dokumentace: doc-foundation --source ./ --target docs --ignore node_modules,docs,public,test --title "Zdrojak shop"
+* Generování dokumentace: dox-foundation --source ./ --target docs --ignore node_modules,docs,public,test --title "Zdrojak shop"
 
 8. díl
 ======

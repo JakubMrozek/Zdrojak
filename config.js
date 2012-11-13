@@ -6,6 +6,12 @@
 var express = require('express');
 var mongoose = require('mongoose');
 
+/**
+ * Konfigurace pro ruzna prostredi.
+ * 
+ * @param {Object} app
+ */
+
 exports.configure = function(app) {
   app.configure(function(){
     app.use(express.bodyParser());
@@ -28,6 +34,12 @@ exports.configure = function(app) {
     app.set('db uri', 'mongodb://localhost/zdrojaktest');
   }); 
 };
+
+/**
+ * Inicializace spojeni s databazi.
+ * 
+ * @param {Object} app
+ */
 
 exports.connect = function(app) {
   mongoose.connect(app.get('db uri'), function(err) {
