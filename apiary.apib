@@ -29,7 +29,7 @@ GET /pages
 
 Zobrazení detailu jedné stránky.
 
-GET /pages/kontakt
+GET /pages/{id}
 < 200
 < Content-Type: application/json
 {"id":"5098eaef0496600200000001",
@@ -49,9 +49,10 @@ POST /pages
 
 Editace jedné stránky v databázi.
 
-PUT /pages/kontakt
+PUT /pages/{id}
 > Content-Type: application/json
-{"content":"Lorem ipsum set dolorem", "title":"Nákupní řád e-shopu"}
+{"content":"Lorem ipsum set dolorem", 
+"title":"Nákupní řád e-shopu"}
 < 200
 < Content-Type: application/json
 {"content":"Lorem ipsum set dolorem",
@@ -60,7 +61,7 @@ PUT /pages/kontakt
 
 Smazání stránky z databáze.
 
-DELETE /pages/kontakt
+DELETE /pages/{id}
 < 204
 
 
