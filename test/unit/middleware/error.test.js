@@ -1,19 +1,15 @@
 var error = require(process.cwd() + '/middleware/error');
-var AppError = require(process.cwd() + '/lib/error').AppError;
+var NotAcceptable = require(process.cwd() + '/lib/error').NotAcceptable;
 
 describe('middleware error', function(){
     
   it('pri aplikacni chybe odesle do prohlizece kod a zpravu', function(){
-    var err = new AppError();
-    err.status = 400;
-    err.type = 'Chyba';
-    err.message = 'Chyba...';
+    var err = new NotAcceptable();
     var req = {};
     var res = {
       send: function(code, info) {
-        code.should.eql(400);
-        info.type.should.eql(err.type);
-        info.message.should.eql(err.message);
+        info.type.should.eql('NotAcceptable');
+        info.message.should.eql('Pozadavek na format, ktery neni podporovan.');
       }
     };
     var next = function() {};

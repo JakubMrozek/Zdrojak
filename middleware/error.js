@@ -19,7 +19,7 @@ module.exports = function() {
      */
     if (err instanceof AppError) {
       return res.send(err.status, {
-        type: err.type,
+        type: err.name,
         message: err.message
       });
     }    
