@@ -7,8 +7,9 @@ Demo e-shop pro Zdrojak.cz (http://jakubmrozek.github.com/Zdrojak/)
 --
 Stranky
 --
-Vrácení seznamu všech stránek.
 
+
+Vrácení seznamu všech stránek.
 GET /pages
 < 200
 < Content-Type: application/json
@@ -27,8 +28,8 @@ GET /pages
 "url":"doprava a platba"}
 ]
 
-Zobrazení detailu jedné stránky.
 
+Zobrazení detailu jedné stránky.
 GET /pages/{id}
 < 200
 < Content-Type: application/json
@@ -39,7 +40,6 @@ GET /pages/{id}
 
 
 Vložení nové stránky do databáze.
-
 POST /pages
 > Content-Type: application/json
 {"content":"Lorem ipsum set dolorem", "title":"Nákupní řád"}
@@ -48,7 +48,6 @@ POST /pages
 
 
 Editace jedné stránky v databázi.
-
 PUT /pages/{id}
 > Content-Type: application/json
 {"content":"Lorem ipsum set dolorem", 
@@ -60,7 +59,6 @@ PUT /pages/{id}
 
 
 Smazání stránky z databáze.
-
 DELETE /pages/{id}
 < 204
 
