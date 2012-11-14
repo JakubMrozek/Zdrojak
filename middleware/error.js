@@ -28,7 +28,7 @@ module.exports = function() {
      * Chyby reportovane pouzivanymi moduly.
      */
     if (err instanceof Error) {
-      if (err.name && err.name === 'ValidationError') {
+      if (err.name === 'ValidationError') {
         return res.send(400, {
           type: 'ValidationError',
           message: err.message,
