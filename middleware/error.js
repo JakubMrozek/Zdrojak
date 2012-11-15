@@ -3,7 +3,7 @@
  * Zavislosti modulu.
  */
 
-var AppError = require(process.cwd() + '/lib/error').AppError;
+var HttpErrorResponse = require('../lib/error').HttpErrorResponse;
 
 /**
  * Middleware pro zpracovani chyb.
@@ -17,7 +17,7 @@ module.exports = function() {
     /**
      * Chyby z aplikace.
      */
-    if (err instanceof AppError) {
+    if (err instanceof HttpErrorResponse) {
       return res.send(err.status, {
         type: err.name,
         message: err.message
