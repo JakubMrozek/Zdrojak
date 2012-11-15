@@ -95,6 +95,7 @@ describe('API pages', function () {
           Page.findOne({title: 'titulek ABC'}, function(err, doc) {
             if (err) return done(err);
             doc.title.should.equal('titulek ABC');
+            doc.url.should.equal('titulek-abc');
             doc.content.should.equal('lorem ipsum set dolorem');
             done();
           });

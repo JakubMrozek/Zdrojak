@@ -3,7 +3,6 @@
  * Zavislosti modulu.
  */
 var Page = require(process.cwd() + '/models/Page');
-var url = require(process.cwd() + '/lib/filters/url');
 var error = require(process.cwd() + '/lib/error');
 var util = require(process.cwd() + '/lib/util');
 
@@ -66,7 +65,6 @@ exports.show = function(req, res, next){
 exports.create = function(req, res, next){
   var page = new Page();
   page.title = req.body.title;
-  page.url = url(req.body.title);
   page.content = req.body.content;
   page.save(function(err, doc) {
     if (err) return next(err);

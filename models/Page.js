@@ -4,6 +4,7 @@
  */
 
 var mongoose = require('mongoose');
+var url = require(process.cwd() + '/lib/filters/url');
 var Schema = mongoose.Schema;
 
 /**
@@ -26,6 +27,43 @@ var fields = {
 };
 
 var PageSchema = new Schema(fields);
+
+/**
+ * Vygeneruje URL pro stranku z titulku.
+ * 
+ * Pouze pokud URL jiz neexistuje.
+ * Priklad:
+ * 
+ *     var page = new Page();
+ *     page.name = 'Platebni podminky';
+ *     page.content = 'Lorem ipsum set dolorem';
+ *     page.save(); 
+ *     
+ *     //vznikne polozka page.url s hodnotou 'platebni-podminky'
+ *
+ * @param {Page} page
+ */
+
+function addUrl(page) {
+  if (typeof page.url === 'undefined') {
+    page.url = url(page.title);    
+  }
+}
+
+/**
+ * Udalosti pred validaci.
+ * 
+ * Akce:
+ * - pokud neexistuje URL, vygeneruje se z titulku
+ * 
+ * @param {Function} next
+ */
+
+PageSchema.pre('validate', function(next){
+  addUrl(this);
+  next();
+});
+
 
 /**
  * Vybere dokument podle URL.
