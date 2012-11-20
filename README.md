@@ -7,6 +7,10 @@
 * Spuštění testů: npm test
 * Generování dokumentace: dox-foundation --source ./ --target docs --ignore node_modules,docs,public,test --title "Zdrojak shop"
 
+10. díl
+=======
+* Článek: http://www.zdrojak.cz/clanky/javascript-na-serveru-nastroje-a-dokumentace/
+
 9. díl
 ======
 * Článek: http://www.zdrojak.cz/clanky/javascript-na-serveru-implementace-rest-api/
