@@ -1,7 +1,7 @@
 var error = require(process.cwd() + '/middleware/error');
 var NotAcceptable = require(process.cwd() + '/lib/error').NotAcceptable;
 
-describe('middleware error', function(){
+describe('middleware error', function(){   
     
   it('pri aplikacni chybe odesle do prohlizece kod a zpravu', function(){
     var err = new NotAcceptable();
@@ -23,7 +23,7 @@ describe('middleware error', function(){
     var next = function(err) {
         err.should.eql('err');
     };
-    error()(err, req, res, next);
+    error()(err, req, res, next); 
   });
     
 });
