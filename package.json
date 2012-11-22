@@ -16,7 +16,7 @@
     "mocha": "1.6.x",
     "supertest": "0.4.x",
     "should": "1.2.x",
-    "horaa": "0.1.x",
+    "mocco": "1.0.x",
     "jshint": "0.9.x",
     "grunt": "0.3.x",
     "testacular": "0.4.x"

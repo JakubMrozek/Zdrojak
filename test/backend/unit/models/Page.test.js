@@ -1,5 +1,5 @@
+var mocco = require('mocco');
 var Page = require(process.cwd() + '/models/Page');
-var PageHoraa = require('horaa')(process.cwd() + '/models/Page');
 
 describe('model Page', function(){
     
@@ -35,11 +35,11 @@ describe('model Page', function(){
     
   describe('metoda findOneByUrl', function() {
     it('zavola metodu findOne() s podminkou pro vyber dokumentu podle url', function(){
-      PageHoraa.hijack('findOne', function(url) {
-        url.should.eql({url: 'url-stranky'});
+      mocco.mock(Page).hijack(function findOne(url){
+        url.should.eql({url: 'url-stranky'});      
       });
       Page.findOneByUrl('url-stranky', function(){});
-      PageHoraa.restore('findOne');
+      mocco.restore();
     });
   });
 });
