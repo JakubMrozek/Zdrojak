@@ -7,6 +7,11 @@
 * Spuštění testů: npm test
 * Generování dokumentace: dox-foundation --source ./ --target docs --ignore node_modules,docs,public,test --title "Zdrojak shop"
 
+11. díl
+=======
+* Článek: http://www.zdrojak.cz/clanky/angularjs/
+* Demo: http://peaceful-wildwood-1875.herokuapp.com/
+
 10. díl
 =======
 * Článek: http://www.zdrojak.cz/clanky/javascript-na-serveru-nastroje-a-dokumentace/
