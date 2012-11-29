@@ -6,7 +6,7 @@
 var express = require('express');
 var resource = require('express-resource');
 var config = require('./config');
-var app = express();
+var app = express(); 
   
 /**
  * Konfigurace aplikace a spojeni s databazi.

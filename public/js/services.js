@@ -3,7 +3,7 @@
 /* Services */
 
 angular.module('zdrojakServices', ['ngResource'])
-  .factory('Page', function($resource){
+  .factory('page', function($resource){
     return $resource('/api/v1/pages/:page', {}, {
       index: {method:'GET', isArray:true},
       show: {method:'GET'},
