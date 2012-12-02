@@ -12,17 +12,20 @@ zdrojak.directive('inline', function(){
     replace: true,
     scope: {
       action: '=action',
-      value: '=value'
+      value: '=value',
+      input: '=input'
     },
     template: 
       '<div>' +
         '<span ng-hide="mode">{{value}}</span>' +
-        '<input type="text" ng-show="mode" ng-model="value" required>' +
+        '<input type="text" ng-show="mode && input" ng-model="value" required>' +
+        '<textarea ng-show="mode && !input" ng-model="value"></textarea>' +
       '</div>',
     link: function(scope, element) {
       var children = element.children();
       var span  = angular.element(children[0]);
       var input = angular.element(children[1]);
+      var area  = angular.element(children[2]);
       
       //puvodni obsah
       var oldContent;
@@ -38,25 +41,42 @@ zdrojak.directive('inline', function(){
         }    
       }
       
-      //ztrata focusu, ulozit zmenu
-      input.bind('blur', function(e){
-        if (!scope.mode) return;
-        send();
-      });
+      function focusInput() {
+        element.children()[1].focus();    
+      }
       
-      //uzivatel kliknul na enter, ulozit zmenu
-      input.bind('keypress', function(e){
+      function focusArea() {
+        element.children()[2].focus();    
+      }
+      
+      function focus() {
+        scope.input ? focusInput() : focusArea();    
+      }
+      
+      function blur() {
+        if (!scope.mode) return;
+        send();      
+      }
+      
+      function enter(e) {
         if (!scope.mode) return;
         if (e.charCode === KEY_CODE_ENTER) {
           send();       
-        }   
-      });
+        }  
+      }
+      
+      //ztrata focusu, ulozit zmenu
+      input.bind('blur', blur);
+      area.bind('blur', blur);
+      
+      //uzivatel kliknul na enter, ulozit zmenu
+      input.bind('keypress', enter);
       
       //po kliknuti na text zobrazit input pro editaci
       span.bind('click', function(el){
         oldContent = element.text().trim();
         scope.$apply('mode=true');
-        element.children()[1].focus();
+        focus();
       });
     }
   }
