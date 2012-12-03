@@ -20,10 +20,11 @@ mock.run(function($httpBackend) {
     
   var resources = apiary[0].resources;
   resources.forEach(function(res){
-    var url = '/api/v1' + res.url.replace('{id}', ':id');
+    var url = '/api/v1' + res.url.replace('{id}', 'test');
     switch (res.method) {
       case 'GET':
         $httpBackend.whenGET(url).respond(res.responses[0].body);
+        console.log(url);
         break;
       case 'POST':
         $httpBackend.whenPOST(url).respond(res.responses[0].body);
