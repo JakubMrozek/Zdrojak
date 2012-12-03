@@ -13,13 +13,13 @@ zdrojak.directive('inline', function(){
     scope: {
       action: '=action',
       value: '=value',
-      input: '=input'
+      textarea: '=textarea'
     },
     template: 
       '<div>' +
         '<span ng-hide="mode">{{value}}</span>' +
-        '<input type="text" ng-show="mode && input" ng-model="value" required>' +
-        '<textarea ng-show="mode && !input" ng-model="value"></textarea>' +
+        '<input type="text" ng-show="mode && !textarea" ng-model="value" required>' +
+        '<textarea ng-show="mode && textarea" ng-model="value"></textarea>' +
       '</div>',
     link: function(scope, element) {
       var children = element.children();
@@ -50,7 +50,7 @@ zdrojak.directive('inline', function(){
       }
       
       function focus() {
-        scope.input ? focusInput() : focusArea();    
+        scope.textarea ? focusArea(): focusInput();
       }
       
       function blur() {

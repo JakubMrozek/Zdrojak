@@ -1,8 +1,8 @@
-<h1>{{page.title}}</h1>
+<h1><inline value='page.title' action='update'></inline></h1>
+
+
+<p><inline value='page.content' textarea='true' action='update'></inline></p>
 
 <ul>
-  <li><a ng-href="/pages/{{page.url}}/edit">Upravit</a></li>
   <li><a ng-click="remove()">Smazat</a></li>
 </ul>
-
-<p>{{page.content}}</p>

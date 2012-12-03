@@ -7,7 +7,6 @@ zdrojak.config(function($routeProvider) {
   $routeProvider.when('/pages', {templateUrl: '/partials/pages/index.html', controller: PagesIndexCtrl});
   $routeProvider.when('/pages/new/page', {templateUrl: '/partials/pages/new.html', controller: PagesNewCtrl});
   $routeProvider.when('/pages/:page', {templateUrl: '/partials/pages/show.html', controller: PagesShowCtrl});
-  $routeProvider.when('/pages/:page/edit', {templateUrl: '/partials/pages/edit.html', controller: PagesEditCtrl});
   $routeProvider.otherwise({redirectTo: '/'});
 });
     
