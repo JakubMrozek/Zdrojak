@@ -10,8 +10,8 @@ proxies = {
   '/': 'http://localhost:5000/'
 };
 
-autoWatch = true;
+autoWatch = false;
 
 browsers = ['Chrome'];
 
-singleRun = false;
+singleRun = true;

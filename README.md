@@ -5,6 +5,8 @@
 * Coding Standards: http://nodeguide.com/style.html
 * Kontrola syntaxe: příkaz "grunt" (grunt.cmd na Windows), musí být nainstalován balíček grunt globálně (-g)
 * Spuštění testů: npm test
+* Spuštění e2e testů na Windows: node server.js + scripts/e2e-test.bat
+* Spuštění e2e testů na Linuxu: node server.js + scripts/e2e-test.sh
 * Generování dokumentace: dox-foundation --source ./ --target docs --ignore node_modules,docs,public,test --title "Zdrojak shop"
 
 11. díl
