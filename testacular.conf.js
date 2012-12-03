@@ -8,8 +8,10 @@ basePath = '';
 
 // list of files / patterns to load in the browser
 files = [
-  MOCHA,
-  MOCHA_ADAPTER,
+  JASMINE,
+  JASMINE_ADAPTER,
+  
+  'public/lib/jquery-1.8.3.min.js',
   'public/lib/angular/angular.js',
   'public/lib/angular/angular-*.js',
   'test/frontend/lib/angular/angular-mocks.js',
