@@ -1,8 +1,10 @@
 <h1>Stránky</h1>
 
-<ul>
-  <li ng-repeat="page in pages"><a ng-href="/pages/{{page.url}}">{{page.title}}</a></li>
-</ul>
+<div id="pages-list">
+  <ul>
+    <li ng-repeat="page in pages"><a ng-href="/pages/{{page.url}}">{{page.title}}</a></li>
+  </ul>
+</div>
 
 <ul>
   <li><a ng-href="/pages/new/page">Vložit novou stránku</a></li>

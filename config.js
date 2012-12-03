@@ -17,6 +17,8 @@ exports.configure = function(app) {
     app.use(express.bodyParser());
     app.use(express.methodOverride());
     app.use(express.static(process.cwd() + '/public'));
+    //pouze pro demo
+    app.use(express.static(process.cwd() + '/test/frontend'));
     app.use(express.favicon());
     app.use(require('./middleware/http406')());
     app.use(require('./middleware/http415')());

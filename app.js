@@ -26,5 +26,15 @@ var PageController = require('./controllers/PageController');
  */
 
 app.resource('pages', PageController, {base: '/api/v1/'});
+
+
+//TODO docasne reseni pro testy
+app.engine('.html', require('ejs').__express);
+app.set('view engine', 'html');
+app.set('views', __dirname + '/public');
+app.get('/pages*', function (req, res) {
+  res.render('index', {});    
+});
+
    
 module.exports = app;

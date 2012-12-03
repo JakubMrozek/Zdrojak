@@ -16,6 +16,7 @@ files = [
   'public/lib/angular/angular-*.js',
   'test/frontend/lib/angular/angular-mocks.js',
   'public/js/**/*.js',
+  'test/frontend/apiary.js',
   'test/frontend/unit/**/*.js'
 ];
 
@@ -24,6 +25,11 @@ files = [
 exclude = [
   
 ];
+
+// generate js files from apiary
+preprocessors = {
+  'apiary.apib': 'apiary2js'
+};
 
 
 // test results reporter to use

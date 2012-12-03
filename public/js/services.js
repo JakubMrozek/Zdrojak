@@ -12,3 +12,14 @@ angular.module('zdrojakServices', ['ngResource'])
       remove: {method:'DELETE'}
   });
 });
+
+
+/**  Mock http */
+var mock = angular.module('zdrojakMock', ['ngMockE2E']);
+mock.run(function($httpBackend) {
+  var phones = [{name: 'phone1'}, {name: 'phone2'}];
+  $httpBackend.whenGET('/api/v1/pages').respond(phones);
+  
+  //nechat projit pozadavky na sablony
+  $httpBackend.whenGET(/^\/partials\//).passThrough();
+});

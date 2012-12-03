@@ -10,7 +10,8 @@
     "express": "3.0.x",
     "express-resource": "1.0.x",
     "mongoose": "3.3.x",
-    "async": "0.1.x"
+    "async": "0.1.x",
+    "ejs": "0.8.x"
   },
   "devDependencies": {
     "mocha": "1.6.x",
@@ -19,7 +20,8 @@
     "mocco": "1.0.x",
     "jshint": "0.9.x",
     "grunt": "0.3.x",
-    "testacular": "0.4.x"
+    "testacular": "0.4.x",
+    "apiary-blueprint-parser": "0.3.x"
   },
   "repository": {
     "type": "git",

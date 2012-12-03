@@ -1,6 +1,15 @@
 'use strict';
 
-var zdrojak = angular.module('zdrojak', ['zdrojakServices']);
+//aplikace byla spustena pro testy?
+var scenario = parent.scenario || false;
+var services;
+if (scenario) {
+  services = ['zdrojakMock', 'zdrojakServices'];
+} else {
+  services = ['zdrojakServices'];
+}
+
+var zdrojak = angular.module('zdrojak', services); 
 
 zdrojak.config(function($routeProvider) {
   $routeProvider.when('/', {templateUrl: '/partials/index/index.html', controller: IndexIndexCtrl});

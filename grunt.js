@@ -21,6 +21,14 @@ module.exports = function (grunt) {
       }
     }
   });
-
   grunt.registerTask('default', 'lint');
+  
+  grunt.registerTask('apiary2js', 'Generate js version of apiary file.', function() {
+     var parser  = require('apiary-blueprint-parser');
+     var content = grunt.file.read('apiary.apib');
+     var blueprint = parser.parse(content);
+     var json = JSON.stringify(blueprint.sections);
+     grunt.file.write('test/frontend/apiary.js', "var apiary = " + json);
+  });  
+  
 };
