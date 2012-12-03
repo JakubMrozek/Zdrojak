@@ -17,8 +17,25 @@ angular.module('zdrojakServices', ['ngResource'])
 /**  Mock http */
 var mock = angular.module('zdrojakMock', ['ngMockE2E']);
 mock.run(function($httpBackend) {
-  var phones = [{name: 'phone1'}, {name: 'phone2'}];
-  $httpBackend.whenGET('/api/v1/pages').respond(phones);
+    
+  var resources = apiary[0].resources;
+  resources.forEach(function(res){
+    var url = '/api/v1' + res.url.replace('{id}', ':id');
+    switch (res.method) {
+      case 'GET':
+        $httpBackend.whenGET(url).respond(res.responses[0].body);
+        break;
+      case 'POST':
+        $httpBackend.whenPOST(url).respond(res.responses[0].body);
+        break;
+      case 'PUT':
+        $httpBackend.whenPUT(url).respond(res.responses[0].body);
+        break;
+      case 'DELETE':
+        $httpBackend.whenDELETE(url).respond(res.responses[0].body);
+        break;
+    }    
+  });
   
   //nechat projit pozadavky na sablony
   $httpBackend.whenGET(/^\/partials\//).passThrough();

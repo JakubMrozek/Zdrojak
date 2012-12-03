@@ -7,18 +7,14 @@ var scenario = true;
 
 describe('zdrojak', function() {
     
-  beforeEach(function() {
-    browser().navigateTo('/');
-  });
-    
-  describe('seznam vsech stranek', function() {
+  describe('/pages', function() {
 
     beforeEach(function() {
       browser().navigateTo('/pages');
     });
 
     it('zobrazi seznam vsech stranek', function() {
-      var repeater = using('.body').repeater('ul li');
+      var repeater = using('#pages-list').repeater('ul li');
       expect(repeater.count()).toBe(3);
     });
 
