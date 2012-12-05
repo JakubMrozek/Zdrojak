@@ -28,7 +28,7 @@ module.exports = function (grunt) {
      var content = grunt.file.read('apiary.apib');
      var blueprint = parser.parse(content);
      var json = JSON.stringify(blueprint.sections);
-     grunt.file.write('public/js/apiary.js', "var apiary = " + json);
+     grunt.file.write('test/frontend/apiary.js', "var apiary = " + json);
   });  
   
 };

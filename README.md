@@ -9,9 +9,15 @@
 * Spuštění e2e testů na Linuxu: node server.js + scripts/e2e-test.sh
 * Generování dokumentace: dox-foundation --source ./ --target docs --ignore node_modules,docs,public,test --title "Zdrojak shop"
 
+12. díl
+=======
+* Článek: http://www.zdrojak.cz/clanky/angularjs-direktivy-a-testovani/
+* Demo: http://stormy-coast-2090.herokuapp.com/
+* Test runner: http://stormy-coast-2090.herokuapp.com/e2e/runner.html
+
 11. díl
 =======
-* Článek: http://www.zdrojak.cz/clanky/angularjs/
+* Článek: http://www.zdrojak.cz/clanky/zaciname-s-angularjs/
 * Demo: http://peaceful-wildwood-1875.herokuapp.com/
 
 10. díl

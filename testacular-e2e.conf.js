@@ -1,5 +1,3 @@
-basePath = './';
-
 files = [
   ANGULAR_SCENARIO,
   ANGULAR_SCENARIO_ADAPTER,
@@ -9,6 +7,7 @@ files = [
 proxies = {
   '/': 'http://localhost:5000/'
 };
+
 
 autoWatch = false;
 

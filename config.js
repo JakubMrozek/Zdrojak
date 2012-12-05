@@ -14,11 +14,12 @@ var mongoose = require('mongoose');
 
 exports.configure = function(app) {
   app.configure(function(){
+    app.engine('.html', require('ejs').__express);
+    app.set('view engine', 'html');
+    app.set('views', __dirname + '/public/partials');
     app.use(express.bodyParser());
     app.use(express.methodOverride());
     app.use(express.static(process.cwd() + '/public'));
-    //pouze pro demo
-    app.use(express.static(process.cwd() + '/test/frontend'));
     app.use(express.favicon());
     app.use(require('./middleware/http406')());
     app.use(require('./middleware/http415')());
@@ -28,12 +29,14 @@ exports.configure = function(app) {
   });
   app.configure('development', function(){
     app.set('db uri', 'mongodb://localhost/zdrojak');
+    app.use(express.static(process.cwd() + '/test/frontend'));
   });
   app.configure('production', function(){
     app.set('db uri', 'mongodb://user:pass@host:port/dbname');
   });
   app.configure('test', function(){
     app.set('db uri', 'mongodb://localhost/zdrojaktest');
+    app.use(express.static(process.cwd() + '/test/frontend'));
   }); 
 };
 

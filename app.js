@@ -27,14 +27,26 @@ var PageController = require('./controllers/PageController');
 
 app.resource('pages', PageController, {base: '/api/v1/'});
 
+/**
+ * Vyrenderuje layout.
+ * 
+ * @param {ServerRequest} req
+ * @param {ServerResponse} res
+ */
 
-//TODO docasne reseni pro testy
-app.engine('.html', require('ejs').__express);
-app.set('view engine', 'html');
-app.set('views', __dirname + '/public');
-app.get('/pages*', function (req, res) {
-  res.render('index', {});    
-});
+function render(req, res){
+  res.render('layout', {
+    env: app.settings.env
+  });  
+}
+
+/**
+ * Nacteni layoutu a konkretni stranky az u klienta
+ */
+
+app.get('/', render);
+app.get('/pages', render);
+app.get('/pages/*', render);
 
    
 module.exports = app;

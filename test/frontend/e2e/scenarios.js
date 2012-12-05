@@ -42,7 +42,7 @@ describe('zdrojak', function() {
       expect(spanElm.css('display')).toBe('none');
       expect(inputElm.css('display')).not().toBe('none');
       
-      input('value').enter('test');
+      input('model').enter('test');
       
       expect(h1Elm.text()).toBe('test');
       

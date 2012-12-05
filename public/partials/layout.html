@@ -38,8 +38,12 @@
   <script src="/lib/angular/angular-resource.js"></script>
   <!-- todo -->
   
+  <% if (env === 'development' || env === 'test') { %>
+  
   <script src="/lib/angular/angular-mocks.js"></script>
-  <script src="/js/apiary.js"></script>
+  <script src="/apiary.js"></script>
+  
+  <% } %>
   
   <!-- /todo -->
 </body>
