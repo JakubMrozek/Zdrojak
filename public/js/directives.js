@@ -3,7 +3,7 @@
 /* Directives */
 
 /**
- * <inline value='page.text' action='updateDb()'/>
+ * <inline model='page.text' action='updateDb()'/>
  */
 zdrojak.directive('inline', function(){
   var KEY_CODE_ENTER = 13;
@@ -12,14 +12,14 @@ zdrojak.directive('inline', function(){
     replace: true,
     scope: {
       action: '=action',
-      value: '=value',
-      textarea: '=textarea'
+      model: '=model',
+      textarea: '@textarea'
     },
     template: 
       '<div>' +
-        '<span ng-hide="mode">{{value}}</span>' +
-        '<input type="text" ng-show="mode && !textarea" ng-model="value" required>' +
-        '<textarea ng-show="mode && textarea" ng-model="value"></textarea>' +
+        '<span ng-hide="mode">{{model}}</span>' +
+        '<input type="text" ng-show="mode && !textarea" ng-model="model" required>' +
+        '<textarea ng-show="mode && textarea" ng-model="model"></textarea>' +
       '</div>',
     link: function(scope, element) {
       var children = element.children();
@@ -33,7 +33,7 @@ zdrojak.directive('inline', function(){
       //zmenit editaci na text a zavolat akci po editaci
       function send() {
         var newContent = element.text().trim();
-        if (newContent) {
+        if (newContent !== '') {
           scope.$apply('mode=false');    
         }
         if (newContent !== oldContent) {

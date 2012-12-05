@@ -2,7 +2,6 @@
 
 /* http://docs.angularjs.org/guide/dev_guide.e2e-testing */
 
-//rekne aplikaci, aby pracovala s mocky
 var scenario = true;
 
 describe('zdrojak', function() {
