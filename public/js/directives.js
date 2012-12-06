@@ -3,7 +3,7 @@
 /* Directives */
 
 /**
- * <inline model='page.text' action='updateDb()'/>
+ * <inline model='page.text' action='updateDb'/>
  */
 zdrojak.directive('inline', function(){
   var KEY_CODE_ENTER = 13;
@@ -42,11 +42,11 @@ zdrojak.directive('inline', function(){
       }
       
       function focusInput() {
-        element.children()[1].focus();    
+        input[0].focus();    
       }
       
       function focusArea() {
-        element.children()[2].focus();    
+        area[0].focus();    
       }
       
       function focus() {
@@ -73,7 +73,7 @@ zdrojak.directive('inline', function(){
       input.bind('keypress', enter);
       
       //po kliknuti na text zobrazit input pro editaci
-      span.bind('click', function(el){
+      span.bind('click', function(){
         oldContent = element.text().trim();
         scope.$apply('mode=true');
         focus();
