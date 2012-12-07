@@ -31,7 +31,7 @@ describe('zdrojak', function() {
     
     it('edituje nazev stranky', function() {
       var h1Elm = element('h1');
-      var spanElm = element('h1 span');
+      var spanElm = element('h1 span span');
       var inputElm = element('h1 input');
         
       expect(spanElm.css('display')).not().toBe('none');
