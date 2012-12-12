@@ -1,36 +1,34 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8">
+    <meta charset='utf-8'>
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>Zdrojak by JakubMrozek</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
 
-    <link rel="stylesheet" href="stylesheets/styles.css">
-    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
-    <script src="javascripts/scale.fix.js"></script>
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <!--[if lt IE 9]>
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
+
+    <title>Zdrojak by JakubMrozek</title>
   </head>
+
   <body>
-    <div class="wrapper">
-      <header>
-        <h1 class="header">Zdrojak</h1>
-        <p class="header">Seriál pro Zdroják.cz</p>
+    <header>
+      <div class="inner">
+        <h1>Zdrojak</h1>
+        <h2>Seriál pro Zdroják.cz</h2>
+        <a href="https://github.com/JakubMrozek/Zdrojak" class="button"><small>View project on</small>GitHub</a>
+      </div>
+    </header>
 
-        <ul>
-          <li class="download"><a class="buttons" href="https://github.com/JakubMrozek/Zdrojak/zipball/master">Download ZIP</a></li>
-          <li class="download"><a class="buttons" href="https://github.com/JakubMrozek/Zdrojak/tarball/master">Download TAR</a></li>
-          <li><a class="buttons github" href="https://github.com/JakubMrozek/Zdrojak">View On GitHub</a></li>
-        </ul>
-
-        <p class="header">This project is maintained by <a class="header name" href="https://github.com/JakubMrozek">JakubMrozek</a></p>
-
-
-      </header>
-      <section>
-        <p><a href="https://travis-ci.org/JakubMrozek/Zdrojak"><img src="https://travis-ci.org/JakubMrozek/Zdrojak.png" alt="Build Status"></a></p>
+    <div id="content-wrapper">
+      <div class="inner clearfix">
+        <section id="main-content">
+          <p><a href="https://travis-ci.org/JakubMrozek/Zdrojak"><img src="https://travis-ci.org/JakubMrozek/Zdrojak.png" alt="Build Status"></a></p>
 
 <ul>
 <li>Seriál pro Zdroják: <a href="http://www.zdrojak.cz/serialy/node-js-s-javascriptem-na-serveru/">http://www.zdrojak.cz/serialy/node-js-s-javascriptem-na-serveru/</a>
@@ -41,11 +39,27 @@
 </li>
 <li>Kontrola syntaxe: příkaz "grunt" (grunt.cmd na Windows), musí být nainstalován balíček grunt globálně (-g)</li>
 <li>Spuštění testů: npm test</li>
+<li>Spuštění e2e testů na Windows: node server.js + scripts/e2e-test.bat</li>
+<li>Spuštění e2e testů na Linuxu: node server.js + scripts/e2e-test.sh</li>
 <li>Generování dokumentace: dox-foundation --source ./ --target docs --ignore node_modules,docs,public,test --title "Zdrojak shop"</li>
+</ul><h1>13. díl</h1>
+
+<ul>
+<li>Článek: <a href="http://www.zdrojak.cz/clanky/javascript-na-serveru-coffeescript-a-sablonovaci-systemy/">http://www.zdrojak.cz/clanky/javascript-na-serveru-coffeescript-a-sablonovaci-systemy/</a>
+</li>
+</ul><h1>12. díl</h1>
+
+<ul>
+<li>Článek: <a href="http://www.zdrojak.cz/clanky/angularjs-direktivy-a-testovani/">http://www.zdrojak.cz/clanky/angularjs-direktivy-a-testovani/</a>
+</li>
+<li>Demo: <a href="http://stormy-coast-2090.herokuapp.com/">http://stormy-coast-2090.herokuapp.com/</a>
+</li>
+<li>Test runner: <a href="http://stormy-coast-2090.herokuapp.com/e2e/runner.html">http://stormy-coast-2090.herokuapp.com/e2e/runner.html</a>
+</li>
 </ul><h1>11. díl</h1>
 
 <ul>
-<li>Článek: <a href="http://www.zdrojak.cz/clanky/angularjs/">http://www.zdrojak.cz/clanky/angularjs/</a>
+<li>Článek: <a href="http://www.zdrojak.cz/clanky/zaciname-s-angularjs/">http://www.zdrojak.cz/clanky/zaciname-s-angularjs/</a>
 </li>
 <li>Demo: <a href="http://peaceful-wildwood-1875.herokuapp.com/">http://peaceful-wildwood-1875.herokuapp.com/</a>
 </li>
@@ -105,12 +119,25 @@
 <li>Článek: <a href="http://www.zdrojak.cz/clanky/javascript-na-serveru-zaciname-s-node-js/">http://www.zdrojak.cz/clanky/javascript-na-serveru-zaciname-s-node-js/</a>
 </li>
 </ul>
-      </section>
-      <footer>
-        <p><small>Hosted on <a href="https://pages.github.com">GitHub Pages</a> using the Dinky theme</small></p>
-      </footer>
+        </section>
+
+        <aside id="sidebar">
+          <a href="https://github.com/JakubMrozek/Zdrojak/zipball/master" class="button">
+            <small>Download</small>
+            .zip file
+          </a>
+          <a href="https://github.com/JakubMrozek/Zdrojak/tarball/master" class="button">
+            <small>Download</small>
+            .tar.gz file
+          </a>
+
+          <p class="repo-owner"><a href="https://github.com/JakubMrozek/Zdrojak"></a> is maintained by <a href="https://github.com/JakubMrozek">JakubMrozek</a>.</p>
+
+          <p>This page was generated by <a href="pages.github.com">GitHub Pages</a> using the Architect theme by <a href="http://twitter.com/jasonlong">Jason Long</a>.</p>
+        </aside>
+      </div>
     </div>
-    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
-		
+
+  
   </body>
 </html>
