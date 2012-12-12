@@ -9,6 +9,10 @@
 * Spuštění e2e testů na Linuxu: node server.js + scripts/e2e-test.sh
 * Generování dokumentace: dox-foundation --source ./ --target docs --ignore node_modules,docs,public,test --title "Zdrojak shop"
 
+13. díl
+=======
+* Článek: http://www.zdrojak.cz/clanky/javascript-na-serveru-coffeescript-a-sablonovaci-systemy/
+
 12. díl
 =======
 * Článek: http://www.zdrojak.cz/clanky/angularjs-direktivy-a-testovani/
