@@ -2,10 +2,10 @@
 /**
  * Zavislosti modulu.
  */
+
 var Page = require(process.cwd() + '/models/Page');
 var error = require(process.cwd() + '/lib/error');
 var util = require(process.cwd() + '/lib/util');
-
 
 /**
  * Nahraje stranku podle URL.

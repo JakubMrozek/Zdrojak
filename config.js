@@ -16,7 +16,7 @@ exports.configure = function(app) {
   app.configure(function(){
     app.engine('.html', require('ejs').__express);
     app.set('view engine', 'html');
-    app.set('views', __dirname + '/public/partials');
+    app.set('views', __dirname + '/views');
     app.use(express.bodyParser());
     app.use(express.methodOverride());
     app.use(express.static(process.cwd() + '/public'));
