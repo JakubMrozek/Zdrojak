@@ -9,24 +9,24 @@ Stranky
 --
 
 
-Vrácení seznamu všech stránek.
-GET /pages
+Vraceni stranek pro menu layoutu
+GET /pages?fields=name,url
 < 200
 < Content-Type: application/json
-[
-{"id":"5098eaef0496600200000001",
-"content":"Lorem ipsum set dolorem",
-"title":"Kontakt",
-"url":"kontakt"},
-{"id":"5098eaef0496600200000002",
-"content":"Lorem ipsum set dolorem",
-"title":"Obchodní podmínky",
-"url":"obchodni-podminky"},
-{"id":"5098eaef0496600200000003",
-"content":"Lorem ipsum set dolorem",
-"title":"Doprava a platba",
-"url":"doprava a platba"}
-]
+[{"name": "O nás", "url": "o-nas"},
+{"name": "Obchodní podmínky", "url": "obchodni-podminky"},
+{"name": "FAQ", "url": "faq"},
+{"name": "Kontakt", "url": "kontakt"}]
+
+
+Vraceni detailu stranky
+GET /pages?url=o-nas
+< 200
+< Content-Type: application/json
+{"name": "O nás",
+"text": "Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit."}
+
+
 
 
 Zobrazení detailu jedné stránky.

@@ -20,7 +20,12 @@ mock.run(function($httpBackend) {
     
   var resources = apiary[0].resources;
   resources.forEach(function(res){
-    var url = '/api/v1' + res.url.replace('{id}', 'test');
+    var url = '/api/v1' + res.url;
+    url = url.replace(/{[^}]+}/g, 'ZDROJAK_PARAM');
+    //preg_quote pro javascript: http://stackoverflow.com/questions/6828637/escape-regexp-strings
+    url = url.replace(new RegExp('[.\\\\+*?\\[\\^\\]$(){}=!<>|:\\' + '' + '-]', 'g'), '\\$&');
+    url = url.replace(/ZDROJAK_PARAM/g, '([^&]+)');
+    url = new RegExp(url);
     switch (res.method) {
       case 'GET':
         $httpBackend.whenGET(url).respond(res.responses[0].body);

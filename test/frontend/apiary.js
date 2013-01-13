@@ -4,9 +4,9 @@ var apiary = [
     "description": "",
     "resources": [
       {
-        "description": "Vrácení seznamu všech stránek.",
+        "description": "Vraceni stranek pro menu layoutu",
         "method": "GET",
-        "url": "/pages",
+        "url": "/pages?fields={pole}",
         "request": {
           "headers": {},
           "body": ""
@@ -17,7 +17,25 @@ var apiary = [
             "headers": {
               "Content-Type": "application/json"
             },
-            "body": "[\n{\"id\":\"5098eaef0496600200000001\",\n\"content\":\"Lorem ipsum set dolorem\",\n\"title\":\"Kontakt\",\n\"url\":\"kontakt\"},\n{\"id\":\"5098eaef0496600200000002\",\n\"content\":\"Lorem ipsum set dolorem\",\n\"title\":\"Obchodní podmínky\",\n\"url\":\"obchodni-podminky\"},\n{\"id\":\"5098eaef0496600200000003\",\n\"content\":\"Lorem ipsum set dolorem\",\n\"title\":\"Doprava a platba\",\n\"url\":\"doprava a platba\"}\n]"
+            "body": "[{\"name\": \"O nás\", \"url\": \"o-nas\"},\n{\"name\": \"Obchodní podmínky\", \"url\": \"obchodni-podminky\"},\n{\"name\": \"FAQ\", \"url\": \"faq\"},\n{\"name\": \"Kontakt\", \"url\": \"kontakt\"}]"
+          }
+        ]
+      },
+      {
+        "description": "Vraceni detailu stranky",
+        "method": "GET",
+        "url": "/pages?url={url}",
+        "request": {
+          "headers": {},
+          "body": ""
+        },
+        "responses": [
+          {
+            "status": 200,
+            "headers": {
+              "Content-Type": "application/json"
+            },
+            "body": "{\"name\": \"O nás\",\n\"text\": \"Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.\"}"
           }
         ]
       },
