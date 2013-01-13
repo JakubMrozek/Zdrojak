@@ -226,6 +226,57 @@ function CategoryCtrl($scope) {
 }
 
 
+/**
+ * Detail produktu.
+ * 
+ * 
+    Název (name)
+    URL (url)
+    Kód (code)
+    Krátký popisek (perex)
+    Dlouhý popisek (text)
+    Fotografie (photos, pole)
+    Parametry (parameters, pole)
+    Výrobce (producer)
+    Kategorie (category, název a url kategorie, pole)
+    Dostupnost (availability)
+    Cena vč. DPH (price)
+    DPH (vat)
+ */
+
+function ProductCtrl($scope) {
+  $scope.product = {
+     name: 'iPhone 4 32GB',
+     url: 'iphone-4-32gb',
+     code: 'AZ007',
+     perex: 'Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.',     
+     text: '<p>Cras justo odio, dapibus ac facilisis in, egestas eget quam.</p><p>Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>',
+     photos: [
+       {src: '/img/350x300.gif'},
+       {src: '/img/350x300.gif'},
+     ],
+     parameters: [
+       {name: 'Operační systém', values: ['iOS']},
+       {name: 'Barva', values: ['černá', 'bílá']},
+       {name: 'Digitální fotoaparát', values: ['ano']},
+       {name: 'Rozličení fotoaparátu', values: ['8 Mpx']},
+       {name: 'Pohotovostní doba', values: ['225 hodin']},
+       {name: 'MP3', values: ['ano']},
+       {name: 'FM rádio', values: ['ne']},
+       {name: 'HD video', values: ['ano']},
+       {name: 'Rozměry', values: ['115,2 x 58,6 x 9,3 mm']},
+       {name: 'Hmotnost', values: ['137 g']},
+     ],
+     variants: [
+       {name: 'Černá barva'},
+       {name: 'Bílá barva'}
+     ],
+     producer: 'Apple',
+     availability: 'skladem',
+     price: 15000,
+     dph: 20
+  };   
+}
 
 
 

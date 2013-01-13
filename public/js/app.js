@@ -16,6 +16,7 @@ zdrojak.config(function($routeProvider) {
   $routeProvider.when('/vyhledavani/:query', {templateUrl: '/partials/search/index.html', controller: SearchCtrl});
   $routeProvider.when('/stranky/:page', {templateUrl: '/partials/page/index.html', controller: PageCtrl});
   $routeProvider.when('/mobily/:category', {templateUrl: '/partials/category/index.html', controller: CategoryCtrl});
+  $routeProvider.when('/mobil/:product', {templateUrl: '/partials/product/index.html', controller: ProductCtrl});
   $routeProvider.otherwise({redirectTo: '/'});
 });
     
