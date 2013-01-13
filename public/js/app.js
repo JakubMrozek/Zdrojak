@@ -13,9 +13,10 @@ var zdrojak = angular.module('zdrojak', services);
 
 zdrojak.config(function($routeProvider) {
   $routeProvider.when('/', {templateUrl: '/partials/index/index.html', controller: IndexIndexCtrl});
-  $routeProvider.when('/pages', {templateUrl: '/partials/pages/index.html', controller: PagesIndexCtrl});
-  $routeProvider.when('/pages/new/page', {templateUrl: '/partials/pages/new.html', controller: PagesNewCtrl});
-  $routeProvider.when('/pages/:page', {templateUrl: '/partials/pages/show.html', controller: PagesShowCtrl});
+  $routeProvider.when('/search/:query', {templateUrl: '/partials/search/index.html', controller: SearchCtrl});
+  //$routeProvider.when('/pages', {templateUrl: '/partials/pages/index.html', controller: PagesIndexCtrl});
+  //$routeProvider.when('/pages/new/page', {templateUrl: '/partials/pages/new.html', controller: PagesNewCtrl});
+  //$routeProvider.when('/pages/:page', {templateUrl: '/partials/pages/show.html', controller: PagesShowCtrl});
   $routeProvider.otherwise({redirectTo: '/'});
 });
     

@@ -47,6 +47,7 @@ function render(req, res){
 app.get('/', render);
 app.get('/pages', render);
 app.get('/pages/*', render);
+app.get('/search/*', render);
 
    
 module.exports = app;

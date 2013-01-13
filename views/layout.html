@@ -4,47 +4,80 @@
   <meta charset="utf-8">
   <title>Zdrojak Eshop</title>
   <link rel="stylesheet" href="/css/bootstrap.css"/>
+  <link rel="stylesheet" href="/css/app.css"/>
 </head>
 <body>
 
   <div class="container">
-     <div class="navbar">
+     <div class="navbar navbar-inverse">
       <div class="navbar-inner">
+          
+          <!-- logo -->
           <a class="brand" href="/">
               Zdrojak e-shop
           </a>
-          <div class="nav-collapse">
+          
+          <!-- stranky (obchodni podminky, faq ap.) -->
+          <div class="nav-collapse" ng-controller="MenuPagesCtrl">
             <ul id="navigation" class="nav">
-              
-              <li id="pages-nav"><a href="/pages">Stránky</a></li>
+              <li ng-repeat="page in pages"><a ng-href="/pages/{{page.url}}">{{page.name}}</a></li>
             </ul>
           </div>
+          
+          <!-- vyhledavani -->
+          <form class="navbar-form pull-left" ng-submit="search()" ng-controller="SearchFormCtrl">
+            <input ng-model="query" type="text" class="search-query span2">
+            <button type="submit" class="btn">Vyhledat</button>
+          </form>
+          
       </div>
     </div>
       
-     <div class="body">
-         <div ng-view></div>
-     </div>
+      
+    <div class="body">
+      <div class="container-fluid">
+        <div class="row-fluid">
+          <div class="span3">
+              
+            <!-- menu s kategoriemi -->
+            <div ng-controller="MenuCategoriesCtrl">            
+              <ul class="nav nav-list">
+                <li class="nav-header">Mobily</li>
+                <li ng-repeat="page in pages">
+                  <a ng-href="/mobily/{{page.url}}"><i class="icon-chevron-right"></i>{{page.name}}</a>
+                  <ul class="nav nav-list" ng-show="page.children">
+                    <li ng-repeat="child in page.children">
+                      <a ng-href="/mobily/{{child.url}}"><i class="icon-chevron-right"></i>{{child.name}}</a>      
+                    </li>      
+                  </ul>
+                </li>   
+              </ul>
+            </div>
+            
+          </div>
+            
+          <!-- samotny obsah dane stranky -->  
+          <div class="span9">
+            <div ng-view></div>
+          </div>
+        </div>
+      </div>
+      <hr>       
+      
+    </div>
+   </div>
 
   <!-- In production use:
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.2/angular.min.js"></script>
   -->
   <script src="/lib/angular/angular.js"></script>
+  <script src="/lib/angular/i18n/angular-locale_cs-cz.js"></script>
   <script src="/js/app.js"></script>
   <script src="/js/services.js"></script>
   <script src="/js/controllers.js"></script>
   <script src="/js/filters.js"></script>
   <script src="/js/directives.js"></script>
   <script src="/lib/angular/angular-resource.js"></script>
-  <!-- todo -->
-  
-  <% if (env === 'development' || env === 'test') { %>
-  
-  <script src="/lib/angular/angular-mocks.js"></script>
-  <script src="/apiary.js"></script>
-  
-  <% } %>
-  
-  <!-- /todo -->
+
 </body>
 </html>
