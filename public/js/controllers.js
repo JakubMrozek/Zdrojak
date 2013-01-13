@@ -18,7 +18,7 @@ function SearchFormCtrl($scope, $location) {
  */
 
 function MenuPagesCtrl($scope, api) {
-  $scope.pages = api.page.index({fields:['name','url']});
+  $scope.pages = api.page.index({fields: ['name', 'url']});
 }
 
 
@@ -37,63 +37,8 @@ function MenuCategoriesCtrl($scope, api) {
  * 
  */
 
-function IndexIndexCtrl($scope) {
-  $scope.products = [
-    {
-     name: 'iPhone 4 32GB černý',
-     url: 'iphone-4-32gb-cerny',
-     perex: 'Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.',
-     photo: '/img/350x300.gif',
-     producer: 'Apple',
-     availability: 'skladem',
-     price: 15000
-   },
-   {
-     name: 'iPhone 4 32GB černý',
-     url: 'iphone-4-32gb-cerny',
-     perex: 'Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.',
-     photo: '/img/350x300.gif',
-     producer: 'Apple',
-     availability: 'skladem',
-     price: 15000
-   },   
-   {
-     name: 'iPhone 4 32GB černý',
-     url: 'iphone-4-32gb-cerny',
-     perex: 'Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.',
-     photo: '/img/350x300.gif',
-     producer: 'Apple',
-     availability: 'skladem',
-     price: 15000
-   },  
-   {
-     name: 'iPhone 4 32GB černý',
-     url: 'iphone-4-32gb-cerny',
-     perex: 'Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.',
-     photo: '/img/350x300.gif',
-     producer: 'Apple',
-     availability: 'skladem',
-     price: 15000
-   },   
-   {
-     name: 'iPhone 4 32GB černý',
-     url: 'iphone-4-32gb-cerny',
-     perex: 'Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.',
-     photo: '/img/350x300.gif',
-     producer: 'Apple',
-     availability: 'skladem',
-     price: 15000
-   }, 
-   {
-     name: 'iPhone 4 32GB černý',
-     url: 'iphone-4-32gb-cerny',
-     perex: 'Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.',
-     photo: '/img/350x300.gif',
-     producer: 'Apple',
-     availability: 'skladem',
-     price: 15000
-   }, 
-  ]; 
+function IndexIndexCtrl($scope, api) {
+  $scope.products = api.product.index({homepage: true});  
 }
 
 
@@ -102,28 +47,9 @@ function IndexIndexCtrl($scope) {
  * 
  */
 
-function SearchCtrl($scope, $routeParams) {
+function SearchCtrl($scope, $routeParams, api) {
   $scope.query = $routeParams.query;
-  $scope.products = [
-    {
-     name: 'iPhone 4 32GB černý',
-     url: 'iphone-4-32gb-cerny',
-     perex: 'Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.',
-     photo: '/img/350x300.gif',
-     producer: 'Apple',
-     availability: 'skladem',
-     price: 15000
-   },
-   {
-     name: 'iPhone 4 32GB černý',
-     url: 'iphone-4-32gb-cerny',
-     perex: 'Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.',
-     photo: '/img/350x300.gif',
-     producer: 'Apple',
-     availability: 'skladem',
-     price: 15000
-   }
-  ];   
+  $scope.products = api.product.index({query: $scope.query});  
 }
 
 
@@ -142,66 +68,11 @@ function PageCtrl($scope, api) {
  * 
  */
 
-function CategoryCtrl($scope) {
+function CategoryCtrl($scope, api) {
   $scope.category = {
      name: 'iPhone'
   };   
-  $scope.products = [
-    {
-     name: 'iPhone 4 32GB černý',
-     url: 'iphone-4-32gb-cerny',
-     perex: 'Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.',
-     photo: '/img/350x300.gif',
-     producer: 'Apple',
-     availability: 'skladem',
-     price: 15000
-   },
-   {
-     name: 'iPhone 4 32GB černý',
-     url: 'iphone-4-32gb-cerny',
-     perex: 'Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.',
-     photo: '/img/350x300.gif',
-     producer: 'Apple',
-     availability: 'skladem',
-     price: 15000
-   },   
-   {
-     name: 'iPhone 4 32GB černý',
-     url: 'iphone-4-32gb-cerny',
-     perex: 'Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.',
-     photo: '/img/350x300.gif',
-     producer: 'Apple',
-     availability: 'skladem',
-     price: 15000
-   },  
-   {
-     name: 'iPhone 4 32GB černý',
-     url: 'iphone-4-32gb-cerny',
-     perex: 'Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.',
-     photo: '/img/350x300.gif',
-     producer: 'Apple',
-     availability: 'skladem',
-     price: 15000
-   },   
-   {
-     name: 'iPhone 4 32GB černý',
-     url: 'iphone-4-32gb-cerny',
-     perex: 'Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.',
-     photo: '/img/350x300.gif',
-     producer: 'Apple',
-     availability: 'skladem',
-     price: 15000
-   }, 
-   {
-     name: 'iPhone 4 32GB černý',
-     url: 'iphone-4-32gb-cerny',
-     perex: 'Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.',
-     photo: '/img/350x300.gif',
-     producer: 'Apple',
-     availability: 'skladem',
-     price: 15000
-   }, 
-  ]; 
+  $scope.products = api.product.index({category: 'abc'});  
 }
 
 
@@ -210,43 +81,29 @@ function CategoryCtrl($scope) {
  * 
  */
 
-function ProductCtrl($scope, $location) {
+function ProductCtrl($scope, $location, api) {
   $scope.addToBasket = function(){
     $location.path('/kosik');      
   }
-    
-  $scope.product = {
-     name: 'iPhone 4 32GB',
-     url: 'iphone-4-32gb',
-     code: 'AZ007',
-     perex: 'Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.',     
-     text: '<p>Cras justo odio, dapibus ac facilisis in, egestas eget quam.</p><p>Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>',
-     photos: [
-       {src: '/img/350x300.gif'},
-       {src: '/img/350x300.gif'},
-     ],
-     parameters: [
-       {name: 'Operační systém', values: ['iOS']},
-       {name: 'Barva', values: ['černá', 'bílá']},
-       {name: 'Digitální fotoaparát', values: ['ano']},
-       {name: 'Rozličení fotoaparátu', values: ['8 Mpx']},
-       {name: 'Pohotovostní doba', values: ['225 hodin']},
-       {name: 'MP3', values: ['ano']},
-       {name: 'FM rádio', values: ['ne']},
-       {name: 'HD video', values: ['ano']},
-       {name: 'Rozměry', values: ['115,2 x 58,6 x 9,3 mm']},
-       {name: 'Hmotnost', values: ['137 g']},
-     ],
-     variants: [
-       {name: 'Černá barva'},
-       {name: 'Bílá barva'}
-     ],
-     producer: 'Apple',
-     availability: 'skladem',
-     price: 15000,
-     dph: 20
-  };   
+  $scope.product = api.product.show({url: 'abcd'});   
 }
+
+
+//TODO odstranit.
+var basketTestData = [{
+  name: 'iPhone 4 32GB černý',
+  url: 'iphone-4-32gb-cerny',
+  variant: 'Černá barva',
+  count: 1,
+  price: 15000
+},
+{
+  name: 'iPhone 4 32GB bílý',
+  url: 'iphone-4-32gb-bily',
+  variant: 'Bílá barva',
+  count: 2,
+  price: 15000
+}];
 
 
 /**
@@ -258,22 +115,9 @@ function BasketCtrl($scope, $location) {
   $scope.next = function() {
     $location.path('/zakaznicke-udaje');      
   }
-  $scope.products = [
-    {
-     name: 'iPhone 4 32GB černý',
-     url: 'iphone-4-32gb-cerny',
-     variant: 'Černá barva',
-     count: 1,
-     price: 15000
-   },
-   {
-     name: 'iPhone 4 32GB bílý',
-     url: 'iphone-4-32gb-bily',
-     variant: 'Bílá barva',
-     count: 2,
-     price: 15000
-    },
-  ];  
+  
+  //TODO nacist z prohlizece
+  $scope.products = basketTestData;  
 }
 
 
@@ -295,21 +139,7 @@ function CustomerCtrl($scope, $location) {
  */
 
 function SummaryCtrl($scope) {
+  //TODO nacist z prohlizece
   $scope.price = 45000;
-  $scope.products = [
-    {
-     name: 'iPhone 4 32GB černý',
-     url: 'iphone-4-32gb-cerny',
-     variant: 'Černá barva',
-     count: 1,
-     price: 15000
-   },
-   {
-     name: 'iPhone 4 32GB bílý',
-     url: 'iphone-4-32gb-bily',
-     variant: 'Bílá barva',
-     count: 2,
-     price: 15000
-    },
-  ]; 
+  $scope.products = basketTestData; 
 }

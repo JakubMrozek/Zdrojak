@@ -9,7 +9,7 @@ Stranky
 --
 
 
-Vraceni stranek pro menu layoutu
+Vraceni stranek pro menu layoutu.
 GET /pages?fields={pole}
 < 200
 < Content-Type: application/json
@@ -19,7 +19,7 @@ GET /pages?fields={pole}
 {"name": "Kontakt", "url": "kontakt"}]
 
 
-Vraceni detailu stranky
+Vraceni detailu stranky.
 GET /pages?url={url}
 < 200
 < Content-Type: application/json
@@ -32,7 +32,7 @@ Kategorie
 --
 
 
-Seznam všech kategorií
+Seznam všech kategorií.
 GET /categories
 < 200
 < Content-Type: application/json
@@ -50,6 +50,172 @@ GET /categories
 ]}]
 
 
+--
+Produkty
+--
 
 
+Seznam produktů pro úvodní stránku.
+GET /products?homepage=true
+< 200
+< Content-Type: application/json
+[{"name": "iPhone 4 32GB černý",
+"url": "iphone-4-32gb-cerny",
+"perex": "Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.",
+"photo": "/img/350x300.gif",
+"producer": "Apple",
+"availability": "skladem",
+"price": 15000
+},
+{"name": "iPhone 4 32GB černý",
+"url": "iphone-4-32gb-cerny",
+"perex": "Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.",
+"photo": "/img/350x300.gif",
+"producer": "Apple",
+"availability": "skladem",
+"price": 15000
+},
+{"name": "iPhone 4 32GB černý",
+"url": "iphone-4-32gb-cerny",
+"perex": "Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.",
+"photo": "/img/350x300.gif",
+"producer": "Apple",
+"availability": "skladem",
+"price": 15000
+},
+{"name": "iPhone 4 32GB černý",
+"url": "iphone-4-32gb-cerny",
+"perex": "Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.",
+"photo": "/img/350x300.gif",
+"producer": "Apple",
+"availability": "skladem",
+"price": 15000
+},
+{"name": "iPhone 4 32GB černý",
+"url": "iphone-4-32gb-cerny",
+"perex": "Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.",
+"photo": "/img/350x300.gif",
+"producer": "Apple",
+"availability": "skladem",
+"price": 15000
+},
+{"name": "iPhone 4 32GB černý",
+"url": "iphone-4-32gb-cerny",
+"perex": "Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.",
+"photo": "/img/350x300.gif",
+"producer": "Apple",
+"availability": "skladem",
+"price": 15000
+}]
 
+
+Vyhledávání v produktech.
+GET /products?query={dotaz}
+< 200
+< Content-Type: application/json
+[{"name": "iPhone 4 32GB černý",
+"url": "iphone-4-32gb-cerny",
+"perex": "Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.",
+"photo": "/img/350x300.gif",
+"producer": "Apple",
+"availability": "skladem",
+"price": 15000
+},
+{"name": "iPhone 4 32GB černý",
+"url": "iphone-4-32gb-cerny",
+"perex": "Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.",
+"photo": "/img/350x300.gif",
+"producer": "Apple",
+"availability": "skladem",
+"price": 15000
+}]
+
+
+Detail produktu podle URL.
+GET /products?url={url}
+< 200
+< Content-Type: application/json
+{"name": "iPhone 4 32GB",
+"url": "iphone-4-32gb",
+"code": "AZ007",
+"perex": "Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.",     
+"text": "<p>Cras justo odio, dapibus ac facilisis in, egestas eget quam.</p><p>Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>",
+"photos": [
+  {"src": "/img/350x300.gif"},
+  {"src": "/img/350x300.gif"}
+],
+"parameters": [
+  {"name": "Operační systém", "values": ["iOS"]},
+  {"name": "Barva", "values": ["černá", "bílá"]},
+  {"name": "Digitální fotoaparát", "values": ["ano"]},
+  {"name": "Rozličení fotoaparátu", "values": ["8 Mpx"]},
+  {"name": "Pohotovostní doba", "values": ["225 hodin"]},
+  {"name": "MP3", "values": ["ano"]},
+  {"name": "FM rádio", "values": ["ne"]},
+  {"name": "HD video", "values": ["ano"]},
+  {"name": "Rozměry", "values": ["115,2 x 58,6 x 9,3 mm"]},
+  {"name": "Hmotnost", "values": ["137 g"]}
+],
+"variants": [
+  {"name": "Černá barva"},
+  {"name": "Bílá barva"}
+],
+"producer": "Apple",
+"availability": "skladem",
+"price": "15000",
+"dph": "20"
+}
+
+
+Seznam produktů v kategorii.
+GET /products?category={category}
+< 200
+< Content-Type: application/json
+[{"name": "iPhone 4 32GB černý",
+"url": "iphone-4-32gb-cerny",
+"perex": "Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.",
+"photo": "/img/350x300.gif",
+"producer": "Apple",
+"availability": "skladem",
+"price": 15000
+},
+{"name": "iPhone 4 32GB černý",
+"url": "iphone-4-32gb-cerny",
+"perex": "Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.",
+"photo": "/img/350x300.gif",
+"producer": "Apple",
+"availability": "skladem",
+"price": 15000
+},
+{"name": "iPhone 4 32GB černý",
+"url": "iphone-4-32gb-cerny",
+"perex": "Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.",
+"photo": "/img/350x300.gif",
+"producer": "Apple",
+"availability": "skladem",
+"price": 15000
+},
+{"name": "iPhone 4 32GB černý",
+"url": "iphone-4-32gb-cerny",
+"perex": "Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.",
+"photo": "/img/350x300.gif",
+"producer": "Apple",
+"availability": "skladem",
+"price": 15000
+},
+{"name": "iPhone 4 32GB černý",
+"url": "iphone-4-32gb-cerny",
+"perex": "Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.",
+"photo": "/img/350x300.gif",
+"producer": "Apple",
+"availability": "skladem",
+"price": 15000
+},
+{"name": "iPhone 4 32GB černý",
+"url": "iphone-4-32gb-cerny",
+"perex": "Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.",
+"photo": "/img/350x300.gif",
+"producer": "Apple",
+"availability": "skladem",
+"price": 15000
+}]

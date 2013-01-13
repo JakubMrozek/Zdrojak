@@ -16,6 +16,12 @@ angular.module('zdrojakServices', ['ngResource'])
     api.category = $resource('/api/v1/categories', {}, {
       index: {method:'GET', isArray:true} 
     });
+    
+    //API produkty
+    api.product = $resource('/api/v1/products', {}, {
+      index: {method:'GET', isArray: true},
+      show: {method:'GET'}
+    });
       
     return api;
 });
@@ -37,7 +43,7 @@ mock.run(function($httpBackend) {
       switch (res.method) {
         case 'GET':
           $httpBackend.whenGET(url).respond(res.responses[0].body);
-          console.log(url);
+          //console.log(url);
           break;
         case 'POST':
           $httpBackend.whenPOST(url).respond(res.responses[0].body);
