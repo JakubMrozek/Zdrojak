@@ -1,0 +1,53 @@
+<div class="page-header">
+  <h1>Údaje o objednávce</h1>  
+</div>
+
+<form class="well">
+  <fieldset>
+    <legend>Doprava a platba</legend>
+    <label class="radio">
+      <input type="radio" name="payment" id="payment1" value="1" checked>
+        Osobní převzetí a platba hotově či kartou při převzetí (zdarma)
+    </label>
+    <label class="radio">
+      <input type="radio" name="payment" id="payment2" value="2">
+        Dobírka a platba při převzetí (79 Kč)
+    </label>    
+  </fieldset>    
+</form>
+
+
+<form class="well">
+    
+  <fieldset>
+    <legend>Zákaznické údaje</legend>
+    
+    <label>E-mail</label>
+    <input type="email">
+    
+    <label>Jméno</label>
+    <input type="text">
+    
+    <label>Příjmení</label>
+    <input type="text">
+    
+    <label>Ulice a číslo</label>
+    <input type="text">
+    
+    <label>PSČ</label>
+    <input type="text">
+    
+    <label>Město</label>
+    <input type="text">
+    
+  </fieldset>
+</form>
+
+
+<form>
+  <p class="basket-button-next"><button ng-click="next()" class="btn btn-primary" type="button"><i class="icon-arrow-right icon-white"> </i> Pokračovat k přehledu objednávky</button></p>
+</form>
+
+
+
+

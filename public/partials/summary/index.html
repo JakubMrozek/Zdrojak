@@ -1,0 +1,53 @@
+<div class="page-header">
+  <h1>Přehled objednávky</h1>  
+</div>
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Název</th>
+        <th>Počet ks</th>
+        <th>Cena s DPH</th>
+        <th></th>
+      </tr> 
+    </thead>  
+    <tbody>
+      <tr ng-repeat="product in products">
+        <td>
+          <a href="/mobil/{{product.url}}">{{product.name}}</a><br>
+          {{product.variant}}
+        </td>
+        <td>{{product.count}} ks</td>
+        <td>{{product.price | currency}}</td>
+      </tr>
+      <tr>
+        <th>Celkem</th>    
+        <td></td>
+        <th>{{price | currency}}</th>
+      </tr>
+    </tbody>
+  </table>
+
+<div class="page-header">
+  <h2>Doprava a platba</h2>  
+  <p>Osobní odběr a platba v hotovosti či kartou při převzetí.</p>
+</div>
+
+<div class="page-header">
+  <h2>Zákaznické údaje</h2> 
+</div>    
+    
+<address>
+  <strong>Jakub Mrozek</strong><br>
+  Ostravská 56<br>
+  Český Těšín 73701<br>
+  jakub.mrozek@gmail.com
+</address>
+
+    
+<p class="basket-button-next"><button ng-click="next()" class="btn btn-primary" type="button"><i class="icon-arrow-right icon-white"> </i> Odeslat objednávku</button></p>
+
+
+
+
+

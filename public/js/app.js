@@ -18,6 +18,8 @@ zdrojak.config(function($routeProvider) {
   $routeProvider.when('/mobily/:category', {templateUrl: '/partials/category/index.html', controller: CategoryCtrl});
   $routeProvider.when('/mobil/:product', {templateUrl: '/partials/product/index.html', controller: ProductCtrl});
   $routeProvider.when('/kosik', {templateUrl: '/partials/basket/index.html', controller: BasketCtrl});
+  $routeProvider.when('/zakaznicke-udaje', {templateUrl: '/partials/customer/index.html', controller: CustomerCtrl});
+  $routeProvider.when('/potvrzeni', {templateUrl: '/partials/summary/index.html', controller: SummaryCtrl});
   $routeProvider.otherwise({redirectTo: '/'});
 });
     

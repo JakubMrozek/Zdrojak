@@ -275,7 +275,10 @@ function ProductCtrl($scope, $location) {
  * 
  */
 
-function BasketCtrl($scope) {
+function BasketCtrl($scope, $location) {
+  $scope.next = function() {
+    $location.path('/zakaznicke-udaje');      
+  }
   $scope.products = [
     {
      name: 'iPhone 4 32GB černý',
@@ -295,11 +298,42 @@ function BasketCtrl($scope) {
 }
 
 
+/**
+ * Udaje o zakaznikovi.
+ * 
+ */
+
+function CustomerCtrl($scope, $location) {
+  $scope.next = function() {
+    $location.path('/potvrzeni');      
+  }
+}
 
 
+/**
+ * Potvrzeni objednavky.
+ * 
+ */
 
-
-
+function SummaryCtrl($scope) {
+  $scope.price = 45000;
+  $scope.products = [
+    {
+     name: 'iPhone 4 32GB černý',
+     url: 'iphone-4-32gb-cerny',
+     variant: 'Černá barva',
+     count: 1,
+     price: 15000
+   },
+   {
+     name: 'iPhone 4 32GB bílý',
+     url: 'iphone-4-32gb-bily',
+     variant: 'Bílá barva',
+     count: 2,
+     price: 15000
+    },
+  ]; 
+}
 
 
 
