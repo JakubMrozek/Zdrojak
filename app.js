@@ -45,9 +45,8 @@ function render(req, res){
  */
 
 app.get('/', render);
-app.get('/pages', render);
-app.get('/pages/*', render);
-app.get('/search/*', render);
+app.get('/stranky/*', render);
+app.get('/vyhledavani/*', render);
 
    
 module.exports = app;

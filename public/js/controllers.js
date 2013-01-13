@@ -7,7 +7,7 @@
 
 function SearchFormCtrl($scope, $location) {
   $scope.search = function() {
-    $location.path('/search/' + $scope.query);    
+    $location.path('/vyhledavani/' + $scope.query);    
   }
 }
 
@@ -145,6 +145,17 @@ function SearchCtrl($scope, $routeParams) {
 }
 
 
+/**
+ * Detail stranky
+ * 
+ */
+
+function PageCtrl($scope) {
+  $scope.page = {
+     name: 'O nás',
+     text: 'Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.'
+  };   
+}
 
 
 
