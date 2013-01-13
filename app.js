@@ -47,6 +47,7 @@ function render(req, res){
 app.get('/', render);
 app.get('/stranky/*', render);
 app.get('/vyhledavani/*', render);
-
+app.get('/mobily/*', render);
+app.get('/mobil/*', render);
    
 module.exports = app;

@@ -158,6 +158,73 @@ function PageCtrl($scope) {
 }
 
 
+/**
+ * Kategorie.
+ * 
+ */
+
+function CategoryCtrl($scope) {
+  $scope.category = {
+     name: 'iPhone'
+  };   
+  $scope.products = [
+    {
+     name: 'iPhone 4 32GB černý',
+     url: 'iphone-4-32gb-cerny',
+     perex: 'Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.',
+     photo: '/img/350x300.gif',
+     producer: 'Apple',
+     availability: 'skladem',
+     price: 15000
+   },
+   {
+     name: 'iPhone 4 32GB černý',
+     url: 'iphone-4-32gb-cerny',
+     perex: 'Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.',
+     photo: '/img/350x300.gif',
+     producer: 'Apple',
+     availability: 'skladem',
+     price: 15000
+   },   
+   {
+     name: 'iPhone 4 32GB černý',
+     url: 'iphone-4-32gb-cerny',
+     perex: 'Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.',
+     photo: '/img/350x300.gif',
+     producer: 'Apple',
+     availability: 'skladem',
+     price: 15000
+   },  
+   {
+     name: 'iPhone 4 32GB černý',
+     url: 'iphone-4-32gb-cerny',
+     perex: 'Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.',
+     photo: '/img/350x300.gif',
+     producer: 'Apple',
+     availability: 'skladem',
+     price: 15000
+   },   
+   {
+     name: 'iPhone 4 32GB černý',
+     url: 'iphone-4-32gb-cerny',
+     perex: 'Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.',
+     photo: '/img/350x300.gif',
+     producer: 'Apple',
+     availability: 'skladem',
+     price: 15000
+   }, 
+   {
+     name: 'iPhone 4 32GB černý',
+     url: 'iphone-4-32gb-cerny',
+     perex: 'Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.',
+     photo: '/img/350x300.gif',
+     producer: 'Apple',
+     availability: 'skladem',
+     price: 15000
+   }, 
+  ]; 
+}
+
 
 
 
