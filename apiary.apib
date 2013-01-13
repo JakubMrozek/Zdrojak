@@ -10,7 +10,7 @@ Stranky
 
 
 Vraceni stranek pro menu layoutu
-GET /pages?fields=name,url
+GET /pages?fields={pole}
 < 200
 < Content-Type: application/json
 [{"name": "O nás", "url": "o-nas"},
@@ -20,46 +20,36 @@ GET /pages?fields=name,url
 
 
 Vraceni detailu stranky
-GET /pages?url=o-nas
+GET /pages?url={url}
 < 200
 < Content-Type: application/json
 {"name": "O nás",
 "text": "Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit."}
 
 
+--
+Kategorie
+--
 
 
-Zobrazení detailu jedné stránky.
-GET /pages/{id}
+Seznam všech kategorií
+GET /categories
 < 200
 < Content-Type: application/json
-{"id":"5098eaef0496600200000001",
-"content":"Lorem ipsum set dolorem",
-"title":"Kontakt",
-"url":"kontakt"}
+[{"name": "Android", "url": "android"},
+{"name": "iPhone", "url": "iphone"},
+{"name": "BlackBerry", "url": "blackberry"},
+{"name": "Symbian", "url": "symbian"},
+{"name": "Windows Phone", "url": "windows-phone"},
+{"name": "Levné", "url": "levne"},
+{"name": "Příslušenství", "url": "prislusenstvi", "children": [
+{"name": "Baterie", "url": "baterie"},
+{"name": "Držáky", "url": "drzaky"},
+{"name": "Nabíječky", "url": "nabijecky"},
+{"name": "Pouzdra", "url": "pouzdra"}
+]}]
 
 
-Vložení nové stránky do databáze.
-POST /pages
-> Content-Type: application/json
-{"content":"Lorem ipsum set dolorem", "title":"Nákupní řád"}
-< 201
-< Location: //api/v1/pages/nakupni-rad
 
-
-Editace jedné stránky v databázi.
-PUT /pages/{id}
-> Content-Type: application/json
-{"content":"Lorem ipsum set dolorem", 
-"title":"Nákupní řád e-shopu"}
-< 200
-< Content-Type: application/json
-{"content":"Lorem ipsum set dolorem",
-"title":"Nákupní řád e-shopu"}
-
-
-Smazání stránky z databáze.
-DELETE /pages/{id}
-< 204
 
 

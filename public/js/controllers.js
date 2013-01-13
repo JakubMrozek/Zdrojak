@@ -17,8 +17,8 @@ function SearchFormCtrl($scope, $location) {
  * 
  */
 
-function MenuPagesCtrl($scope, page) {
-  $scope.pages = page.index({fields:['name','url']});
+function MenuPagesCtrl($scope, api) {
+  $scope.pages = api.page.index({fields:['name','url']});
 }
 
 
@@ -27,21 +27,8 @@ function MenuPagesCtrl($scope, page) {
  * 
  */
 
-function MenuCategoriesCtrl($scope) {
-  $scope.pages = [
-    {'name': 'Android', 'url': 'android'},
-    {'name': 'iPhone', 'url': 'iphone'},
-    {'name': 'BlackBerry', 'url': 'blackberry'},
-    {'name': 'Symbian', 'url': 'symbian'},
-    {'name': 'Windows Phone', 'url': 'windows-phone'},
-    {'name': 'Levné', 'url': 'levne'},
-    {'name': 'Příslušenství', 'url': 'prislusenstvi', 'children': [
-      {'name': 'Baterie', 'url': 'baterie'},
-      {'name': 'Držáky', 'url': 'drzaky'},
-      {'name': 'Nabíječky', 'url': 'nabijecky'},
-      {'name': 'Pouzdra', 'url': 'pouzdra'}
-    ]}
-  ];  
+function MenuCategoriesCtrl($scope, api) {
+  $scope.categories = api.category.index();    
 }
 
 
@@ -145,8 +132,8 @@ function SearchCtrl($scope, $routeParams) {
  * 
  */
 
-function PageCtrl($scope, page) {
-  $scope.page = page.show({url: 'o-nas'});
+function PageCtrl($scope, api) {
+  $scope.page = api.page.show({url: 'o-nas'});
 }
 
 

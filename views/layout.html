@@ -43,10 +43,10 @@
             <div ng-controller="MenuCategoriesCtrl">            
               <ul class="nav nav-list">
                 <li class="nav-header">Mobily</li>
-                <li ng-repeat="page in pages">
-                  <a ng-href="/mobily/{{page.url}}"><i class="icon-chevron-right"></i>{{page.name}}</a>
-                  <ul class="nav nav-list" ng-show="page.children">
-                    <li ng-repeat="child in page.children">
+                <li ng-repeat="category in categories">
+                  <a ng-href="/mobily/{{category.url}}"><i class="icon-chevron-right"></i>{{category.name}}</a>
+                  <ul class="nav nav-list" ng-show="category.children">
+                    <li ng-repeat="child in category.children">
                       <a ng-href="/mobily/{{child.url}}"><i class="icon-chevron-right"></i>{{child.name}}</a>      
                     </li>      
                   </ul>

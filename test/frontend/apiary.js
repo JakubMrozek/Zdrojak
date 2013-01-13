@@ -38,11 +38,17 @@ var apiary = [
             "body": "{\"name\": \"O nás\",\n\"text\": \"Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.\"}"
           }
         ]
-      },
+      }
+    ]
+  },
+  {
+    "name": "Kategorie",
+    "description": "",
+    "resources": [
       {
-        "description": "Zobrazení detailu jedné stránky.",
+        "description": "Seznam všech kategorií",
         "method": "GET",
-        "url": "/pages/{id}",
+        "url": "/categories",
         "request": {
           "headers": {},
           "body": ""
@@ -53,63 +59,7 @@ var apiary = [
             "headers": {
               "Content-Type": "application/json"
             },
-            "body": "{\"id\":\"5098eaef0496600200000001\",\n\"content\":\"Lorem ipsum set dolorem\",\n\"title\":\"Kontakt\",\n\"url\":\"kontakt\"}"
-          }
-        ]
-      },
-      {
-        "description": "Vložení nové stránky do databáze.",
-        "method": "POST",
-        "url": "/pages",
-        "request": {
-          "headers": {
-            "Content-Type": "application/json"
-          },
-          "body": "{\"content\":\"Lorem ipsum set dolorem\", \"title\":\"Nákupní řád\"}"
-        },
-        "responses": [
-          {
-            "status": 201,
-            "headers": {
-              "Location": "//api/v1/pages/nakupni-rad"
-            },
-            "body": ""
-          }
-        ]
-      },
-      {
-        "description": "Editace jedné stránky v databázi.",
-        "method": "PUT",
-        "url": "/pages/{id}",
-        "request": {
-          "headers": {
-            "Content-Type": "application/json"
-          },
-          "body": "{\"content\":\"Lorem ipsum set dolorem\", \n\"title\":\"Nákupní řád e-shopu\"}"
-        },
-        "responses": [
-          {
-            "status": 200,
-            "headers": {
-              "Content-Type": "application/json"
-            },
-            "body": "{\"content\":\"Lorem ipsum set dolorem\",\n\"title\":\"Nákupní řád e-shopu\"}"
-          }
-        ]
-      },
-      {
-        "description": "Smazání stránky z databáze.",
-        "method": "DELETE",
-        "url": "/pages/{id}",
-        "request": {
-          "headers": {},
-          "body": ""
-        },
-        "responses": [
-          {
-            "status": 204,
-            "headers": {},
-            "body": ""
+            "body": "[{\"name\": \"Android\", \"url\": \"android\"},\n{\"name\": \"iPhone\", \"url\": \"iphone\"},\n{\"name\": \"BlackBerry\", \"url\": \"blackberry\"},\n{\"name\": \"Symbian\", \"url\": \"symbian\"},\n{\"name\": \"Windows Phone\", \"url\": \"windows-phone\"},\n{\"name\": \"Levné\", \"url\": \"levne\"},\n{\"name\": \"Příslušenství\", \"url\": \"prislusenstvi\", \"children\": [\n{\"name\": \"Baterie\", \"url\": \"baterie\"},\n{\"name\": \"Držáky\", \"url\": \"drzaky\"},\n{\"name\": \"Nabíječky\", \"url\": \"nabijecky\"},\n{\"name\": \"Pouzdra\", \"url\": \"pouzdra\"}\n]}]"
           }
         ]
       }
