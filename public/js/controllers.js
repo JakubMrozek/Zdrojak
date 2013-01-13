@@ -229,22 +229,13 @@ function CategoryCtrl($scope) {
 /**
  * Detail produktu.
  * 
- * 
-    Název (name)
-    URL (url)
-    Kód (code)
-    Krátký popisek (perex)
-    Dlouhý popisek (text)
-    Fotografie (photos, pole)
-    Parametry (parameters, pole)
-    Výrobce (producer)
-    Kategorie (category, název a url kategorie, pole)
-    Dostupnost (availability)
-    Cena vč. DPH (price)
-    DPH (vat)
  */
 
-function ProductCtrl($scope) {
+function ProductCtrl($scope, $location) {
+  $scope.addToBasket = function(){
+    $location.path('/kosik');      
+  }
+    
   $scope.product = {
      name: 'iPhone 4 32GB',
      url: 'iphone-4-32gb',
@@ -279,6 +270,29 @@ function ProductCtrl($scope) {
 }
 
 
+/**
+ * Kosik.
+ * 
+ */
+
+function BasketCtrl($scope) {
+  $scope.products = [
+    {
+     name: 'iPhone 4 32GB černý',
+     url: 'iphone-4-32gb-cerny',
+     variant: 'Černá barva',
+     count: 1,
+     price: 15000
+   },
+   {
+     name: 'iPhone 4 32GB bílý',
+     url: 'iphone-4-32gb-bily',
+     variant: 'Bílá barva',
+     count: 2,
+     price: 15000
+    },
+  ];  
+}
 
 
 

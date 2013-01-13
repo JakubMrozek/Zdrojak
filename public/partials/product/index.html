@@ -20,8 +20,8 @@
     <tr ng-repeat="variant in product.variants">
         <td>{{variant.name}}</td>
         <td><span class="label label-success">{{product.availability}}</span></td>
-        <td><strong>Cena: {{product.price | currency}}</strong></td>
-        <td><button class="btn btn-primary" type="button"><i class="icon-shopping-cart icon-white"></i>Vložit do košíku</button></td>
+        <td><strong>Cena s DPH: {{product.price | currency}}</strong></td>
+        <td><button ng-click="addToBasket()" class="btn btn-primary" type="button"><i class="icon-shopping-cart icon-white"></i>Vložit do košíku</button></td>
     </tr>
   </tbody>
 </table>
