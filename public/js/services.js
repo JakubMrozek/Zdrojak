@@ -14,7 +14,8 @@ angular.module('zdrojakServices', ['ngResource'])
     
     //API kategorie
     api.category = $resource('/api/v1/categories', {}, {
-      index: {method:'GET', isArray:true} 
+      index: {method:'GET', isArray:true},
+      show: {method:'GET'}
     });
     
     //API produkty
@@ -24,6 +25,34 @@ angular.module('zdrojakServices', ['ngResource'])
     });
       
     return api;
+    
+}).factory('basket', function(){
+   
+   //TODO testovaci data
+   var basket = {};
+   basket.price = function() {
+     return 45000;    
+   };
+   
+   basket.products = function() {
+     return [{
+       name: 'iPhone 4 32GB černý',
+       url: 'iphone-4-32gb-cerny',
+       variant: 'Černá barva',
+       count: 1,
+       price: 15000
+     },
+     {
+       name: 'iPhone 4 32GB bílý',
+       url: 'iphone-4-32gb-bily',
+       variant: 'Bílá barva',
+       count: 2,
+       price: 15000
+     }];    
+   }
+   
+   return basket;
+
 });
 
 

@@ -46,6 +46,24 @@ var apiary = [
     "description": "",
     "resources": [
       {
+        "description": "Detail kategorie podle URL.",
+        "method": "GET",
+        "url": "/categories?url={url}",
+        "request": {
+          "headers": {},
+          "body": ""
+        },
+        "responses": [
+          {
+            "status": 200,
+            "headers": {
+              "Content-Type": "application/json"
+            },
+            "body": "{\"name\": \"iPhone\", \"url\": \"iphone\", \"children\": []}"
+          }
+        ]
+      },
+      {
         "description": "Seznam všech kategorií.",
         "method": "GET",
         "url": "/categories",

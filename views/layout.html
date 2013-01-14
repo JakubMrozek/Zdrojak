@@ -13,7 +13,7 @@
       <div class="navbar-inner">
           
           <!-- logo -->
-          <a class="brand" href="/">
+          <a class="brand" ng-href="/">
               Zdrojak e-shop
           </a>
           
@@ -25,10 +25,20 @@
           </div>
           
           <!-- vyhledavani -->
-          <form class="navbar-form pull-left" ng-submit="search()" ng-controller="SearchFormCtrl">
-            <input ng-model="query" type="text" class="search-query span2">
-            <button type="submit" class="btn">Vyhledat</button>
+          <form class="navbar-form pull-left" ng-submit="search()" ng-controller="MenuSearchCtrl">
+            <input ng-model="query" type="text" class="span2">
+            <button type="submit" class="btn">Hledat!</button>
           </form>
+          
+          <!-- stranky (obchodni podminky, faq ap.) -->
+          <div class="nav-collapse" ng-controller="MenuBasketCtrl">
+            <ul id="navigation" class="nav">
+              <li>
+                <a ng-href="/kosik"><i class="icon-shopping-cart icon-white"></i> 
+                <strong id="nav-basket-price">{{price | currency}}</strong></a>
+              </li>
+            </ul>
+          </div>
           
       </div>
     </div>
@@ -38,6 +48,7 @@
       <div class="container-fluid">
         <div class="row-fluid">
           <div class="span3">
+
               
             <!-- menu s kategoriemi -->
             <div ng-controller="MenuCategoriesCtrl">            

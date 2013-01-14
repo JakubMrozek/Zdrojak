@@ -5,7 +5,7 @@
  * 
  */
 
-function SearchFormCtrl($scope, $location) {
+function MenuSearchCtrl($scope, $location) {
   $scope.search = function() {
     $location.path('/vyhledavani/' + $scope.query);    
   }
@@ -29,6 +29,16 @@ function MenuPagesCtrl($scope, api) {
 
 function MenuCategoriesCtrl($scope, api) {
   $scope.categories = api.category.index();    
+}
+
+
+/**
+ * Nakupni kosik v hornim menu.
+ * 
+ */
+
+function MenuBasketCtrl($scope, basket) {
+  $scope.price = basket.price();    
 }
 
 
@@ -58,8 +68,8 @@ function SearchCtrl($scope, $routeParams, api) {
  * 
  */
 
-function PageCtrl($scope, api) {
-  $scope.page = api.page.show({url: 'o-nas'});
+function PageCtrl($scope, $routeParams, api) {
+  $scope.page = api.page.show({url: $routeParams.page});
 }
 
 
@@ -68,11 +78,9 @@ function PageCtrl($scope, api) {
  * 
  */
 
-function CategoryCtrl($scope, api) {
-  $scope.category = {
-     name: 'iPhone'
-  };   
-  $scope.products = api.product.index({category: 'abc'});  
+function CategoryCtrl($scope, $routeParams, api) {
+  $scope.category = api.category.show({url: $routeParams.category});  
+  $scope.products = api.product.index({category: $routeParams.category});  
 }
 
 
@@ -81,29 +89,12 @@ function CategoryCtrl($scope, api) {
  * 
  */
 
-function ProductCtrl($scope, $location, api) {
+function ProductCtrl($scope, $routeParams, $location, api) {
   $scope.addToBasket = function(){
     $location.path('/kosik');      
   }
-  $scope.product = api.product.show({url: 'abcd'});   
+  $scope.product = api.product.show({url: $routeParams.product});   
 }
-
-
-//TODO odstranit.
-var basketTestData = [{
-  name: 'iPhone 4 32GB černý',
-  url: 'iphone-4-32gb-cerny',
-  variant: 'Černá barva',
-  count: 1,
-  price: 15000
-},
-{
-  name: 'iPhone 4 32GB bílý',
-  url: 'iphone-4-32gb-bily',
-  variant: 'Bílá barva',
-  count: 2,
-  price: 15000
-}];
 
 
 /**
@@ -111,13 +102,11 @@ var basketTestData = [{
  * 
  */
 
-function BasketCtrl($scope, $location) {
+function BasketCtrl($scope, $location, basket) {
   $scope.next = function() {
     $location.path('/zakaznicke-udaje');      
   }
-  
-  //TODO nacist z prohlizece
-  $scope.products = basketTestData;  
+  $scope.products = basket.products();  
 }
 
 
@@ -138,8 +127,7 @@ function CustomerCtrl($scope, $location) {
  * 
  */
 
-function SummaryCtrl($scope) {
-  //TODO nacist z prohlizece
-  $scope.price = 45000;
-  $scope.products = basketTestData; 
+function SummaryCtrl($scope, basket) {
+  $scope.price = basket.price();
+  $scope.products = basket.products(); 
 }

@@ -50,6 +50,13 @@ GET /categories
 ]}]
 
 
+Detail kategorie podle URL.
+GET /categories?url={url}
+< 200
+< Content-Type: application/json
+{"name": "iPhone", "url": "iphone", "children": []}
+
+
 --
 Produkty
 --
