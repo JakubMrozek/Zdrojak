@@ -1,6 +1,8 @@
 [![Build Status](https://travis-ci.org/JakubMrozek/Zdrojak.png)](https://travis-ci.org/JakubMrozek/Zdrojak)
 
 * Seriál pro Zdroják: http://www.zdrojak.cz/serialy/node-js-s-javascriptem-na-serveru/
+* Navazující seriál pro Zdroják: http://www.zdrojak.cz/serialy/e-shop-pomoci-modernich-technologii/
+
 * Homepage seriálu: http://jakubmrozek.github.com/Zdrojak/
 * Coding Standards: http://nodeguide.com/style.html
 * Kontrola syntaxe: příkaz "grunt" (grunt.cmd na Windows), musí být nainstalován balíček grunt globálně (-g)
@@ -8,6 +10,28 @@
 * Spuštění e2e testů na Windows: node server.js + scripts/e2e-test.bat
 * Spuštění e2e testů na Linuxu: node server.js + scripts/e2e-test.sh
 * Generování dokumentace: dox-foundation --source ./ --target docs --ignore node_modules,docs,public,test --title "Zdrojak shop"
+
+
+Seriál E-shop pomocí moderních technologií
+==========================================
+
+3. díl
+======
+* Článek: http://www.zdrojak.cz/clanky/tvorba-uzivatelske-casti-eshopu/ 
+* Demo: http://secure-spire-1773.herokuapp.com/
+
+2. díl
+======
+* Článek: http://www.zdrojak.cz/clanky/navrh-uzivatelske-casti-e-shopu/
+
+1. díl
+======
+* Článek: http://www.zdrojak.cz/clanky/uvodni-analyza-pro-moderni-e-shop/
+
+
+
+Seriál Node.js: S JavaScriptem na server
+========================================
 
 13. díl
 =======
