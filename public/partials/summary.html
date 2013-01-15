@@ -1,6 +1,5 @@
 <div class="page-header">
    <h1><small><a ng-href="/kosik">1. Košík</a> <a ng-href="/zakaznicke-udaje">2. Zákaznické údaje</a></small> 3. Přehled</h1>
-  </ul>
 </div>
 
   <table class="table table-striped">
@@ -15,7 +14,7 @@
     <tbody>
       <tr ng-repeat="product in products">
         <td>
-          <a href="/mobil/{{product.url}}">{{product.name}}</a><br>
+          <a ng-href="/mobil/{{product.url}}">{{product.name}}</a><br>
           {{product.variant}}
         </td>
         <td>{{product.count}} ks</td>

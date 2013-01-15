@@ -3,34 +3,12 @@
 </div>
 
 
-<ul class="pager">
-  <li class="previous disabled">
-    <a href="#">&larr; Předchozí</a>
-  </li>
-  <li class="next">
-    <a href="#">Další &rarr;</a>
-  </li>
-</ul>
+<div ng-include src="'/partials/_pagination.html'"></div>
 
 <div ng-repeat="product in products">
-  <div class="span6 thumbnail product-card-content">
-    <a href="/mobil/{{product.url}}"><img ng-src="{{product.photo}}" width="350" height="300"></a>
-    <div class="caption">
-      <h3><a href="/mobil/{{product.url}}">{{product.name}}</a></h3>
-      <p>{{product.perex}}</p>
-      <h4>{{product.price | currency}}</h4>
-      <p><a href="/mobil/{{product.url}}" class="btn btn-primary">Zobrazit</a></p>
-    </div>
-  </div>
+  <div ng-include src="'/partials/_product.html'"></div>
 </div>
 
-<ul class="pager">
-  <li class="previous disabled">
-    <a href="#">&larr; Předchozí</a>
-  </li>
-  <li class="next">
-    <a href="#">Další &rarr;</a>
-  </li>
-</ul>
+<div ng-include src="'/partials/_pagination.html'"></div>
 
 
