@@ -4,7 +4,7 @@
 var zdrojak = angular.module('zdrojak', ['zdrojakMock', 'zdrojakServices']); 
 
 zdrojak.config(function($routeProvider) {
-  $routeProvider.when('/', {templateUrl: '/partials/index.html', controller: IndexIndexCtrl});
+  $routeProvider.when('/', {templateUrl: '/partials/index.html', controller: IndexCtrl});
   $routeProvider.when('/vyhledavani/:query', {templateUrl: '/partials/search.html', controller: SearchCtrl});
   $routeProvider.when('/info/:page', {templateUrl: '/partials/page.html', controller: PageCtrl});
   $routeProvider.when('/mobily/:category', {templateUrl: '/partials/category.html', controller: CategoryCtrl});

@@ -47,7 +47,7 @@ function MenuBasketCtrl($scope, basket) {
  * 
  */
 
-function IndexIndexCtrl($scope, api) {
+function IndexCtrl($scope, api) {
   $scope.products = api.product.index({homepage: true});  
 }
 
