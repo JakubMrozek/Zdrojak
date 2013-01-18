@@ -19,7 +19,7 @@
           
           <!-- stranky (obchodni podminky, faq ap.) -->
           <div class="nav-collapse" ng-controller="MenuPagesCtrl">
-            <ul id="navigation" class="nav">
+            <ul id="navigation" class="nav" ng-cloak>
               <li ng-repeat="page in pages"><a ng-href="/info/{{page.url}}">{{page.name}}</a></li>
             </ul>
           </div>
@@ -52,7 +52,7 @@
               
             <!-- menu s kategoriemi -->
             <div ng-controller="MenuCategoriesCtrl">            
-              <ul class="nav nav-list">
+              <ul class="nav nav-list" ng-cloak>
                 <li class="nav-header">Mobily</li>
                 <li ng-repeat="category in categories">
                   <a ng-href="/mobily/{{category.url}}"><i class="icon-chevron-right"></i>{{category.name}}</a>
