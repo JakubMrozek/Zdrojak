@@ -46,24 +46,6 @@ var apiary = [
     "description": "",
     "resources": [
       {
-        "description": "Detail kategorie podle URL.",
-        "method": "GET",
-        "url": "/categories?url={url}",
-        "request": {
-          "headers": {},
-          "body": ""
-        },
-        "responses": [
-          {
-            "status": 200,
-            "headers": {
-              "Content-Type": "application/json"
-            },
-            "body": "{\"name\": \"iPhone\", \"url\": \"iphone\", \"children\": []}"
-          }
-        ]
-      },
-      {
         "description": "Seznam všech kategorií.",
         "method": "GET",
         "url": "/categories",
@@ -78,6 +60,24 @@ var apiary = [
               "Content-Type": "application/json"
             },
             "body": "[{\"name\": \"Android\", \"url\": \"android\"},\n{\"name\": \"iPhone\", \"url\": \"iphone\"},\n{\"name\": \"BlackBerry\", \"url\": \"blackberry\"},\n{\"name\": \"Symbian\", \"url\": \"symbian\"},\n{\"name\": \"Windows Phone\", \"url\": \"windows-phone\"},\n{\"name\": \"Levné\", \"url\": \"levne\"},\n{\"name\": \"Příslušenství\", \"url\": \"prislusenstvi\", \"children\": [\n{\"name\": \"Baterie\", \"url\": \"baterie\"},\n{\"name\": \"Držáky\", \"url\": \"drzaky\"},\n{\"name\": \"Nabíječky\", \"url\": \"nabijecky\"},\n{\"name\": \"Pouzdra\", \"url\": \"pouzdra\"}\n]}]"
+          }
+        ]
+      },
+      {
+        "description": "Detail kategorie podle URL.",
+        "method": "GET",
+        "url": "/categories?url={url}",
+        "request": {
+          "headers": {},
+          "body": ""
+        },
+        "responses": [
+          {
+            "status": 200,
+            "headers": {
+              "Content-Type": "application/json"
+            },
+            "body": "{\"name\": \"iPhone\", \"url\": \"iphone\", \"children\": []}"
           }
         ]
       }
@@ -144,7 +144,7 @@ var apiary = [
       {
         "description": "Seznam produktů v kategorii.",
         "method": "GET",
-        "url": "/products?category={category}",
+        "url": "/products?category={kategorie}",
         "request": {
           "headers": {},
           "body": ""

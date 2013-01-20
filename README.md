@@ -9,6 +9,8 @@
 * Spuštění testů: npm test
 * Spuštění e2e testů na Windows: node server.js + scripts/e2e-test.bat
 * Spuštění e2e testů na Linuxu: node server.js + scripts/e2e-test.sh
+* Spuštění unit testů přes Testacular na Windows: scripts/test.bat
+* Spuštění unit testů přes Testacular na Linux: scripts/test.sh
 * Generování dokumentace: dox-foundation --source ./ --target docs --ignore node_modules,docs,public,test --title "Zdrojak shop"
 
 
