@@ -21,7 +21,7 @@
         <td>{{variant.name}}</td>
         <td><span class="label label-success">{{product.availability}}</span></td>
         <td><strong>Cena s DPH: {{product.price | currency}}</strong></td>
-        <td><button ng-click="addToBasket()" class="btn btn-primary" type="button"><i class="icon-shopping-cart icon-white"></i>Vložit do košíku</button></td>
+        <td><button ng-click="addToBasket(variant)" class="btn btn-primary" type="button"><i class="icon-shopping-cart icon-white"></i>Vložit do košíku</button></td>
     </tr>
   </tbody>
 </table>

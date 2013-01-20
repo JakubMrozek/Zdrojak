@@ -27,31 +27,9 @@ angular.module('zdrojakServices', ['ngResource'])
     return api;
     
 }).factory('basket', function(){
-   
-   //TODO testovaci data
-   var basket = {};
-   basket.price = function() {
-     return 45000;    
-   };
-   
-   basket.products = function() {
-     return [{
-       name: 'iPhone 4 32GB černý',
-       url: 'iphone-4-32gb-cerny',
-       variant: 'Černá barva',
-       count: 1,
-       price: 15000
-     },
-     {
-       name: 'iPhone 4 32GB bílý',
-       url: 'iphone-4-32gb-bily',
-       variant: 'Bílá barva',
-       count: 2,
-       price: 15000
-     }];    
-   }
-   
-   return basket;
+    
+    var basket = new Basket(new BasketStorage());
+    return basket;
 
 });
 
@@ -68,7 +46,7 @@ mock.run(function($httpBackend) {
       //preg_quote pro javascript: http://stackoverflow.com/questions/6828637/escape-regexp-strings
       url = url.replace(new RegExp('[.\\\\+*?\\[\\^\\]$(){}=!<>|:\\' + '' + '-]', 'g'), '\\$&');
       url = url.replace(/ZDROJAK_PARAM/g, '([^&]+)');
-      url = new RegExp(url);
+      url = new RegExp(url + '$');
       switch (res.method) {
         case 'GET':
           $httpBackend.whenGET(url).respond(res.responses[0].body);

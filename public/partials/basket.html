@@ -2,7 +2,11 @@
    <h1>1. Košík <small>2. Zákaznické údaje 3. Přehled</small></h1>
 </div>
 
-<form>
+<p ng-show="isBasketEmpty" class="alert alert-info">
+  V košíku není žádné zboží.
+</p>
+
+<form ng-hide="isBasketEmpty">
   <table class="table table-striped">
     <thead>
       <tr>
@@ -19,8 +23,8 @@
           {{product.variant}}
         </td>
         <td>{{product.price | currency}}</td>
-        <td><input type="number" ng-model="product.count" class="span1"></td>
-        <td><button ng-click="addToBasket()" class="btn" type="button"><i class="icon-remove"></i> Odstranit</button></td>
+        <td><input min="1" type="number" ng-change="updateQuantity(product.id, product.quantity)" ng-model="product.quantity" class="span1"></td>
+        <td><button ng-click="remove(product.id)" class="btn" type="button"><i class="icon-remove"></i> Odstranit</button></td>
       </tr>
     </tbody>
   </table>

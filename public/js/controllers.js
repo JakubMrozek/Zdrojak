@@ -39,6 +39,9 @@ function MenuCategoriesCtrl($scope, api) {
 
 function MenuBasketCtrl($scope, basket) {
   $scope.price = basket.price();    
+  basket.addListener(function(){
+    $scope.price = basket.price();     
+  });
 }
 
 
@@ -78,9 +81,9 @@ function PageCtrl($scope, $routeParams, api) {
  * 
  */
 
-function CategoryCtrl($scope, $routeParams, api) {
-  $scope.category = api.category.show({url: $routeParams.category});  
+function CategoryCtrl($scope, $routeParams, api) { 
   $scope.products = api.product.index({category: $routeParams.category});  
+  $scope.category = api.category.show({url: $routeParams.category}); 
 }
 
 
@@ -89,8 +92,9 @@ function CategoryCtrl($scope, $routeParams, api) {
  * 
  */
 
-function ProductCtrl($scope, $routeParams, $location, api) {
-  $scope.addToBasket = function(){
+function ProductCtrl($scope, $routeParams, $location, api, basket) {
+  $scope.addToBasket = function(variant){
+    basket.add($scope.product.id, $scope.product.name, $scope.product.url, variant.name, $scope.product.price);  
     $location.path('/kosik');      
   }
   $scope.product = api.product.show({url: $routeParams.product});   
@@ -103,10 +107,22 @@ function ProductCtrl($scope, $routeParams, $location, api) {
  */
 
 function BasketCtrl($scope, $location, basket) {
+  $scope.updateQuantity = function(id, quantity) {
+    basket.updateQuantity(id, quantity);   
+  }
+  $scope.remove = function(id) {
+    basket.remove(id);  
+    $scope._setBasketData();
+  }
   $scope.next = function() {
     $location.path('/zakaznicke-udaje');      
   }
-  $scope.products = basket.products();  
+  
+  $scope._setBasketData = function() {
+    $scope.products = basket.products();  
+    $scope.isBasketEmpty  = Object.keys($scope.products).length === 0;  
+  }
+  $scope._setBasketData();
 }
 
 
