@@ -24,6 +24,11 @@ angular.module('zdrojakServices', ['ngResource'])
       show: {method:'GET'}
     });
       
+    //API objednavky
+    api.order = $resource('/api/v1/orders', {}, {
+      create: {method: 'POST'}
+    });
+      
     return api;
     
 }).factory('basket', function(){

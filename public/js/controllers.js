@@ -116,9 +116,7 @@ function BasketHeaderCtrl($scope, basket) {
       $scope.nextStep = 1;  
     }      
   }
-  
   basket.addListener(setNextStep);
-  
   setNextStep();
 }
 
@@ -136,12 +134,12 @@ function BasketCtrl($scope, $location, basket) {
     $scope.price = basket.priceProducts();
     $scope.basketNotEmpty  = basket.hasProducts(); 
   }
-  
   basket.addListener(setBasketData);
     
   $scope.updateQuantity = function(id, quantity) {
     basket.updateQuantity(id, quantity);   
   }
+  
   $scope.remove = function(id) {
     basket.remove(id); 
   }
@@ -162,6 +160,11 @@ function BasketCtrl($scope, $location, basket) {
 function CustomerCtrl($scope, $location, basket, transport) {
   $scope.step = 'customer';  
   
+  if (!basket.hasProducts()) {
+    $location.path('/kosik');    
+    return;
+  }
+  
   $scope.customer  = basket.customer();
   $scope.transport = basket.transport() || {code: 'personal'};
   $scope.transportMethods = transport.methods();
@@ -179,10 +182,30 @@ function CustomerCtrl($scope, $location, basket, transport) {
  * 
  */
 
-function SummaryCtrl($scope, basket) {
+function SummaryCtrl($scope, $location, api, basket) {
+  
+  if (!basket.hasCustomer() || !basket.hasProducts()) {
+    $location.path('/kosik');    
+    return;
+  }
+  
   $scope.step = 'summary';  
-  $scope.price     = basket.priceTotal();
+  
   $scope.products  = basket.products(); 
   $scope.customer  = basket.customer();
   $scope.transport = basket.transport();
+  $scope.price     = basket.priceTotal();
+  
+  $scope.next = function() {
+    var data = {
+      products: $scope.products,
+      customer: $scope.customer,
+      transport: $scope.transport
+    };  
+      
+    api.order.create(data, function(info){
+      $scope.number = info.number;    
+      basket.clear();
+    }); 
+  }
 }

@@ -77,4 +77,9 @@ Basket.prototype.updateQuantity = function(id, quantity) {
 Basket.prototype.remove = function(id) {
   this._storage.remove(id);    
   this.notify();
+};
+
+Basket.prototype.clear = function() {
+  this._storage.clear();    
+  this.notify();
 }

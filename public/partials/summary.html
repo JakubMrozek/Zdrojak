@@ -1,4 +1,9 @@
-<div ng-include src="'/partials/_basket-header.html'"></div>
+<p ng-show="number" class="alert alert-success">
+  Objednávka byla vložena do databáze pod číslem <strong>{{number}}</strong>.  
+</p>   
+
+<div ng-hide="number">
+  <div ng-include src="'/partials/_basket-header.html'"></div>
 
   <table class="table table-striped">
     <thead>
@@ -50,10 +55,9 @@
   {{customer.town}} {{customer.zipcode}}<br>
   {{customer.email}}
 </address>
-
-    
-<p><button ng-click="next()" class="btn btn-large btn-block btn-primary" type="button"><i class="icon-arrow-right icon-white"> </i> Odeslat objednávku</button></p>
-
+  
+  <p><button ng-click="next()" class="btn btn-large btn-block btn-primary" type="button"><i class="icon-arrow-right icon-white"> </i> Odeslat objednávku</button></p>
+</div>
 
 
 

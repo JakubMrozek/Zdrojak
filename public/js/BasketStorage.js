@@ -144,7 +144,10 @@ BasketStorage.prototype.remove = function(id) {
  */
 
 BasketStorage.prototype.clear = function() {
-  this._storage.clear();    
+  this._storage.removeItem(BasketStorage.NS_PRODUCTS);  
+  this._storage.removeItem(BasketStorage.NS_CUSTOMER);  
+  this._storage.removeItem(BasketStorage.NS_TRANSPORT);  
+  this._storage.removeItem(BasketStorage.NS_PAYMENT);  
 }
 
 

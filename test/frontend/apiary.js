@@ -77,7 +77,31 @@ var apiary = [
             "headers": {
               "Content-Type": "application/json"
             },
-            "body": "{\"id\":\"123456\",\n\"name\": \"iPhone 4 32GB\",\n\"url\": \"iphone-4-32gb\",\n\"code\": \"AZ007\",\n\"perex\": \"Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.\",     \n\"text\": \"<p>Cras justo odio, dapibus ac facilisis in, egestas eget quam.</p><p>Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>\",\n\"photos\": [\n  {\"src\": \"/img/350x300.gif\"},\n  {\"src\": \"/img/350x300.gif\"}\n],\n\"parameters\": [\n  {\"name\": \"Operační systém\", \"values\": [\"iOS\"]},\n  {\"name\": \"Barva\", \"values\": [\"černá\", \"bílá\"]},\n  {\"name\": \"Digitální fotoaparát\", \"values\": [\"ano\"]},\n  {\"name\": \"Rozličení fotoaparátu\", \"values\": [\"8 Mpx\"]},\n  {\"name\": \"Pohotovostní doba\", \"values\": [\"225 hodin\"]},\n  {\"name\": \"MP3\", \"values\": [\"ano\"]},\n  {\"name\": \"FM rádio\", \"values\": [\"ne\"]},\n  {\"name\": \"HD video\", \"values\": [\"ano\"]},\n  {\"name\": \"Rozměry\", \"values\": [\"115,2 x 58,6 x 9,3 mm\"]},\n  {\"name\": \"Hmotnost\", \"values\": [\"137 g\"]}\n],\n\"variants\": [\n  {\"name\": \"Černá barva\"},\n  {\"name\": \"Bílá barva\"}\n],\n\"producer\": \"Apple\",\n\"availability\": \"skladem\",\n\"price\": \"15000\",\n\"dph\": \"20\"\n}"
+            "body": "{\"name\": \"iPhone\", \"url\": \"iphone\", \"children\": []}"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Objednávky",
+    "description": "",
+    "resources": [
+      {
+        "description": "Vložení nové objednávky do databáze.",
+        "method": "POST",
+        "url": "/orders",
+        "request": {
+          "headers": {},
+          "body": ""
+        },
+        "responses": [
+          {
+            "status": 200,
+            "headers": {
+              "Content-Type": "application/json"
+            },
+            "body": "{\"number\": \"1234567\"}"
           }
         ]
       }
