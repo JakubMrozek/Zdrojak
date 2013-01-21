@@ -1,0 +1,18 @@
+<div class="page-header" ng-controller="BasketHeaderCtrl" ng-switch on="step">
+  <h1 ng-switch-when="basket">
+    1. Košík 
+    <small ng-hide="nextStep > 1">2. Zákaznické údaje</small> 
+    <small ng-show="nextStep > 1"><a ng-href="/zakaznicke-udaje">2. Zákaznické údaje</a></small> 
+    <small ng-hide="nextStep > 2">3. Přehled</small> 
+    <small ng-show="nextStep > 2"><a ng-href="/potvrzeni">3. Přehled</a></small>
+  </h1>
+  <h1 ng-switch-when="customer">
+    <small><a ng-href="/kosik">1. Košík</a></small> 
+    2. Zákaznické údaje 
+    <small ng-hide="nextStep > 2">3. Přehled</small> 
+    <small ng-show="nextStep > 2"><a ng-href="/potvrzeni">3. Přehled</a></small>
+  </h1>
+  <h1 ng-switch-when="summary">
+    <small><a ng-href="/kosik">1. Košík</a> <a ng-href="/zakaznicke-udaje">2. Zákaznické údaje</a></small> 3. Přehled
+  </h1>
+</div>

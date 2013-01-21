@@ -1,4 +1,5 @@
 
+
 /**
  * Implementace nakupniho kosiku.
  */
@@ -18,7 +19,15 @@ Basket.prototype.notify = function() {
   }    
 };
 
-Basket.prototype.price = function() {
+Basket.prototype.hasProducts = function() {
+  return Object.keys(this.products()).length > 0; 
+};
+
+Basket.prototype.hasCustomer = function() {
+  return Object.keys(this.products()).length > 0; 
+};
+
+Basket.prototype.priceProducts = function() {
   var products = this._storage.getAll();
   var price = 0;
   for (var id in products) {
@@ -26,6 +35,11 @@ Basket.prototype.price = function() {
   }
   return price;
 };
+
+Basket.prototype.priceTotal = function() {
+  return this.priceProducts() + this.transport().price;
+};
+
 
 Basket.prototype.add = function(id, name, url, variant, price) {
   this._storage.add(id, {

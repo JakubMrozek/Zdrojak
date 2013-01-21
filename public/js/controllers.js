@@ -38,9 +38,9 @@ function MenuCategoriesCtrl($scope, api) {
  */
 
 function MenuBasketCtrl($scope, basket) {
-  $scope.price = basket.price();    
+  $scope.price = basket.priceProducts();    
   basket.addListener(function(){
-    $scope.price = basket.price();     
+    $scope.price = basket.priceProducts();     
   });
 }
 
@@ -102,42 +102,73 @@ function ProductCtrl($scope, $routeParams, $location, api, basket) {
 
 
 /**
+ * Hlavicka kosiku.
+ * 
+ * 
+ */
+function BasketHeaderCtrl($scope, basket) {
+  var setNextStep = function() {
+    if (basket.hasCustomer()) {
+      $scope.nextStep = 3;  
+    } else if (basket.hasProducts()) {
+      $scope.nextStep = 2;   
+    } else {
+      $scope.nextStep = 1;  
+    }      
+  }
+  
+  basket.addListener(setNextStep);
+  
+  setNextStep();
+}
+
+
+/**
  * Kosik.
  * 
  */
 
 function BasketCtrl($scope, $location, basket) {
+  $scope.step = 'basket';  
+  
+  var setBasketData = function() {
+    $scope.products = basket.products();   
+    $scope.price = basket.priceProducts();
+    $scope.basketNotEmpty  = basket.hasProducts(); 
+  }
+  
+  basket.addListener(setBasketData);
+    
   $scope.updateQuantity = function(id, quantity) {
     basket.updateQuantity(id, quantity);   
   }
   $scope.remove = function(id) {
-    basket.remove(id);  
-    $scope._setBasketData();
+    basket.remove(id); 
   }
   $scope.next = function() {
     $location.path('/zakaznicke-udaje');      
   }
   
-  $scope._setBasketData = function() {
-    $scope.products = basket.products();  
-    $scope.isBasketEmpty  = Object.keys($scope.products).length === 0;  
-  }
-  $scope._setBasketData();
+  setBasketData();
 }
 
 
 /**
  * Udaje o zakaznikovi.
  * 
+ * radio input v ng-repeat: https://github.com/angular/angular.js/issues/1100
  */
 
-function CustomerCtrl($scope, $location, basket) {
+function CustomerCtrl($scope, $location, basket, transport) {
+  $scope.step = 'customer';  
+  
   $scope.customer  = basket.customer();
-  $scope.transport = basket.transport() || 'personal';
+  $scope.transport = basket.transport() || {code: 'personal'};
+  $scope.transportMethods = transport.methods();
   
   $scope.next = function() {
     basket.updateCustomer($scope.customer);
-    basket.updateTransport($scope.transport);
+    basket.updateTransport(transport.get($scope.transport.code));
     $location.path('/potvrzeni');      
   }
 }
@@ -149,6 +180,9 @@ function CustomerCtrl($scope, $location, basket) {
  */
 
 function SummaryCtrl($scope, basket) {
-  $scope.price = basket.price();
-  $scope.products = basket.products(); 
+  $scope.step = 'summary';  
+  $scope.price     = basket.priceTotal();
+  $scope.products  = basket.products(); 
+  $scope.customer  = basket.customer();
+  $scope.transport = basket.transport();
 }
