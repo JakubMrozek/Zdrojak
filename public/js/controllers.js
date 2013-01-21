@@ -131,8 +131,13 @@ function BasketCtrl($scope, $location, basket) {
  * 
  */
 
-function CustomerCtrl($scope, $location) {
+function CustomerCtrl($scope, $location, basket) {
+  $scope.customer  = basket.customer();
+  $scope.transport = basket.transport() || 'personal';
+  
   $scope.next = function() {
+    basket.updateCustomer($scope.customer);
+    basket.updateTransport($scope.transport);
     $location.path('/potvrzeni');      
   }
 }

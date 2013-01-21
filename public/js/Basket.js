@@ -38,6 +38,23 @@ Basket.prototype.products = function() {
   return this._storage.getAll();    
 };
 
+Basket.prototype.customer = function() {
+  return this._storage.getCustomer();    
+};
+
+Basket.prototype.updateCustomer = function(data) {
+  return this._storage.updateCustomer(data); 
+};
+
+
+Basket.prototype.transport = function() {
+  return this._storage.getTransport();    
+};
+
+Basket.prototype.updateTransport = function(id) {
+  return this._storage.updateTransport(id); 
+};
+
 Basket.prototype.updateQuantity = function(id, quantity) {
   this._storage.updateQuantity(id, quantity);    
   this.notify();

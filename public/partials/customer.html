@@ -2,50 +2,50 @@
    <h1><small><a ng-href="/kosik">1. Košík</a></small> 2. Zákaznické údaje <small>3. Přehled</small></h1>
 </div>
 
-<form class="well">
+<form ng-submit="next()">
+  <div class="well">   
   <fieldset>
     <legend>Doprava a platba</legend>
     <label class="radio">
-      <input type="radio" name="payment" id="payment1" value="1" checked>
+      <input type="radio" ng-model="transport" name="transport" id="transport-personal" value="personal"required>
         Osobní převzetí a platba hotově či kartou při převzetí (zdarma)
     </label>
     <label class="radio">
-      <input type="radio" name="payment" id="payment2" value="2">
+      <input type="radio" ng-model="transport" name="transport" id="transport-post" value="post" required>
         Dobírka a platba při převzetí (79 Kč)
     </label>    
   </fieldset>    
-</form>
+  </div>    
 
-
-<form class="well">
-    
+  <div class="well">   
   <fieldset>
     <legend>Zákaznické údaje</legend>
     
     <label>E-mail</label>
-    <input type="email">
+    <input type="email" name="email" ng-model="customer.email" required>
     
     <label>Jméno</label>
-    <input type="text">
+    <input type="text" name="name" ng-model="customer.name" required>
     
     <label>Příjmení</label>
-    <input type="text">
+    <input type="text" name="surname" ng-model="customer.surname" required>
     
     <label>Ulice a číslo</label>
-    <input type="text">
+    <input type="text" name="street" ng-model="customer.street" required>
     
     <label>PSČ</label>
-    <input type="text">
+    <input type="text" name="zipcode" ng-model="customer.zipcode" pattern="\d{5}" required>
     
     <label>Město</label>
-    <input type="text">
+    <input type="text" name="town" ng-model="customer.town" required>
     
   </fieldset>
-</form>
-
-
-<form>
-  <p><button ng-click="next()" class="btn btn-large btn-block btn-primary" type="button"><i class="icon-arrow-right icon-white"> </i> Pokračovat k přehledu objednávky</button></p>
+  </div>
+    
+  <p>
+    <button type="submit" class="btn btn-large btn-block btn-primary" type="submit">
+    <i class="icon-arrow-right icon-white"> </i> Pokračovat k přehledu objednávky</button>
+  </p>
 </form>
 
 
