@@ -142,14 +142,15 @@ function BasketCtrl($scope, $location, basket) {
     $scope.price = basket.priceProducts();
     $scope.basketNotEmpty  = basket.hasProducts(); 
   }
-  basket.addListener(setBasketData);
     
   $scope.updateQuantity = function(quantity, id, variant) {
     basket.updateQuantity(quantity, id, variant);   
+    setBasketData();
   }
   
   $scope.remove = function(id, variant) {
     basket.remove(id, variant); 
+    setBasketData();
   }
   $scope.next = function() {
     $location.path('/zakaznicke-udaje');      
@@ -191,13 +192,12 @@ function CustomerCtrl($scope, $location, basket, transport) {
  */
 
 function SummaryCtrl($scope, $location, api, basket) {
+  $scope.step = 'summary'; 
   
   if (!basket.hasCustomer() || !basket.hasProducts()) {
     $location.path('/kosik');    
     return;
-  }
-  
-  $scope.step = 'summary';  
+  } 
   
   $scope.products  = basket.products(); 
   $scope.customer  = basket.customer();

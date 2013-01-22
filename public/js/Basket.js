@@ -10,6 +10,11 @@ function Basket(storage) {
 }
 
 Basket.prototype.addListener = function(fc) {
+  for (var i = 0; i < this._listeners.length; ++i) {
+    if (this._listeners[i].toString() === fc.toString()) {
+      return;    
+    }
+  }
   this._listeners.push(fc);  
 };
 
@@ -24,7 +29,11 @@ Basket.prototype.hasProducts = function() {
 };
 
 Basket.prototype.hasCustomer = function() {
-  return Object.keys(this.products()).length > 0; 
+  var customer = this.customer();
+  if (!customer) {
+    return false;
+  }
+  return Object.keys(customer).length > 0; 
 };
 
 Basket.prototype.priceProducts = function() {
