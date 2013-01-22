@@ -112,8 +112,8 @@ function ProductCtrl($scope, $routeParams, $location, api, basket) {
 /**
  * Hlavicka kosiku.
  * 
- * 
  */
+ 
 function BasketHeaderCtrl($scope, basket) {
   var setNextStep = function() {
     if (basket.hasCustomer()) {
@@ -152,6 +152,7 @@ function BasketCtrl($scope, $location, basket) {
     basket.remove(id, variant); 
     setBasketData();
   }
+  
   $scope.next = function() {
     $location.path('/zakaznicke-udaje');      
   }

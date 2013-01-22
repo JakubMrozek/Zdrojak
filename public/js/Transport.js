@@ -1,7 +1,9 @@
+
 /**
- * Implementace informaci o doprave
+ * Informace o doprave.
  * 
  */
+
 function Transport() {
   this._methods = {
     personal: {
@@ -17,9 +19,21 @@ function Transport() {
   }
 }
 
+/**
+ * @return {Object} Seznam vsech dostupnych metod dopravy. 
+ * 
+ */
+
 Transport.prototype.methods = function() {
   return this._methods;    
 };
+
+
+/**
+ * @param {String} code Kod dopravy.
+ * @return {Object} Informace o jedne metode dopravy.
+ * 
+ */
 
 Transport.prototype.get = function(code) {
   return this._methods[code];    
