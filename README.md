@@ -17,6 +17,11 @@
 Seriál E-shop pomocí moderních technologií
 ==========================================
 
+4. díl
+======
+* Článek: http://www.zdrojak.cz/clanky/nakupni-kosik-pomoci-html5-web-storage/
+* Demo: http://aqueous-everglades-5825.herokuapp.com/
+
 3. díl
 ======
 * Článek: http://www.zdrojak.cz/clanky/tvorba-uzivatelske-casti-eshopu/ 
