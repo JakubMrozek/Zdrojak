@@ -21,21 +21,16 @@ BasketStorage.NS_CUSTOMER = 'Customer';
 BasketStorage.NS_TRANSPORT = 'Transport';
 
 
-//data o platbe
-BasketStorage.NS_PAYMENT = 'Payment';
-
-
 /**
  * Vlozi novy produkt do kosiku.
  * 
- * @param {String} id ID produktu
- * @param {Object} data
+ * @param {Object} product
  */
 
-BasketStorage.prototype.add = function(id, data) {
+BasketStorage.prototype.add = function(product) {
   var products = this.getAll();
-  products[id] = data;
-  products[id].quantity = 1;
+  product.quantity = 1;
+  products.push(product);
   this._saveProducts(products);
 };
 
@@ -80,18 +75,41 @@ BasketStorage.prototype._unserialize = function(str) {
  * Vraci jeden produkt podle ID.
  * 
  * @param {String} id ID produktu.
+ * @param {String} variant Varianta produktu.
  * @return {Object}
  */
-BasketStorage.prototype.get = function(id) {
+BasketStorage.prototype.get = function(id, variant) {
   var products = this.getAll();
-  return products[id];
+  for (var i = 0; i < products.length; ++i) {
+    if (products[i].id === id && products[i].variant === variant) {
+      return products[i];    
+    }    
+  }
+};
+
+
+/**
+ * Vraci true, pokud je produkt jiz v kosiku. Jinak false.
+ * 
+ * @param {String} id ID produktu.
+ * @param {String} variant Varianta produktu.
+ * @return {Boolean}
+ */
+BasketStorage.prototype.exist = function(id, variant) {
+  var products = this.getAll();
+  for (var i = 0; i < products.length; ++i) {
+    if (products[i].id === id && products[i].variant === variant) {
+      return true; 
+    }    
+  }
+  return false;
 };
 
 
 /**
  * Vraci vsechny ulozene produkty.
  * 
- * @return {Object}
+ * @return {Array}
  */
 
 BasketStorage.prototype.getAll = function() {
@@ -104,7 +122,7 @@ BasketStorage.prototype.getAll = function() {
   
   //neni ulozen zadny produkt
   if (products === null) {
-    products = {};  
+    products = [];  
   }
   
   return products;
@@ -114,14 +132,22 @@ BasketStorage.prototype.getAll = function() {
 /**
  * Upravi mnozstvi zbozi v kosiku u daneho produktu.
  * 
- * @param {String} id ID produktu
  * @param {Number} quantity Aktualizovane mnozstvi zbozi v kosiku.
+ * @param {String} id ID produktu
+ * @param {String} variant Varianta produktu.
+ * @return {Boolean} 
  */
 
-BasketStorage.prototype.updateQuantity = function(id, quantity) {
+BasketStorage.prototype.updateQuantity = function(quantity, id, variant) {
   var products = this.getAll();
-  products[id].quantity = quantity;
-  this._saveProducts(products);
+  for (var i = 0; i < products.length; ++i) {
+    if (products[i].id === id && products[i].variant === variant) {
+      products[i].quantity = quantity;
+      this._saveProducts(products);
+      return true;
+    }    
+  }
+  return false;
 };
 
 
@@ -129,12 +155,18 @@ BasketStorage.prototype.updateQuantity = function(id, quantity) {
  * Odstraneni jedne polozky z kosiku.
  * 
  * @param {String} id ID produktu
+ * @param {String} variant Varianta produktu.
  */
 
-BasketStorage.prototype.remove = function(id) {
-  var products = this.getAll(); 
-  delete products[id];   
-  this._saveProducts(products);
+BasketStorage.prototype.remove = function(id, variant) {
+  var oldProducts = this.getAll(); 
+  var newProducts = [];
+  for (var i = 0; i < oldProducts.length; ++i) {
+    if (oldProducts[i].id !== id || oldProducts[i].variant !== variant) {
+      newProducts.push(oldProducts[i]);
+    }    
+  }   
+  this._saveProducts(newProducts);
 };
 
 
@@ -147,7 +179,6 @@ BasketStorage.prototype.clear = function() {
   this._storage.removeItem(BasketStorage.NS_PRODUCTS);  
   this._storage.removeItem(BasketStorage.NS_CUSTOMER);  
   this._storage.removeItem(BasketStorage.NS_TRANSPORT);  
-  this._storage.removeItem(BasketStorage.NS_PAYMENT);  
 }
 
 
@@ -196,28 +227,4 @@ BasketStorage.prototype.getTransport = function() {
 BasketStorage.prototype.updateTransport = function(data) {
   data = this._serialize(data);
   this._storage.setItem(BasketStorage.NS_TRANSPORT, data); 
-};
-
-
-/**
- * Vrati informace o vybrane platbe.
- * 
- * @return {Object}
- */
-
-BasketStorage.prototype.getPayment = function() {
-  var data = this._storage.getItem(BasketStorage.NS_PAYMENT);    
-  return this._unserialize(data);
-};
-
-
-/**
- * Uprava zpusobu platby.
- * 
- * @param {Object} data
- */
-
-BasketStorage.prototype.updatePayment = function(data) {
-  data = this._serialize(data);
-  this._storage.setItem(BasketStorage.NS_PAYMENT, data); 
 };

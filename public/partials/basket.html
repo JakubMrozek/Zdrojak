@@ -21,8 +21,8 @@
           {{product.variant}}
         </td>
         <td>{{product.price | currency}}</td>
-        <td><input min="1" type="number" ng-change="updateQuantity(product.id, product.quantity)" ng-model="product.quantity" class="span1"></td>
-        <td><button ng-click="remove(product.id)" class="btn" type="button"><i class="icon-remove"></i> Odstranit</button></td>
+        <td><input min="1" type="number" ng-change="updateQuantity(product.quantity, product.id, product.variant)" ng-model="product.quantity" class="span1"></td>
+        <td><button ng-click="remove(product.id, product.variant)" class="btn" type="button"><i class="icon-remove"></i> Odstranit</button></td>
       </tr>
       <tr>
         <th>Celkem</th>    

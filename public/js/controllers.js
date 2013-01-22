@@ -94,7 +94,15 @@ function CategoryCtrl($scope, $routeParams, api) {
 
 function ProductCtrl($scope, $routeParams, $location, api, basket) {
   $scope.addToBasket = function(variant){
-    basket.add($scope.product.id, $scope.product.name, $scope.product.url, variant.name, $scope.product.price);  
+    if (!basket.exist($scope.product.id, variant.name)) {
+      basket.add(
+        $scope.product.id, 
+        $scope.product.name, 
+        $scope.product.url, 
+        variant.name, 
+        $scope.product.price
+      );  
+    }
     $location.path('/kosik');      
   }
   $scope.product = api.product.show({url: $routeParams.product});   
@@ -136,12 +144,12 @@ function BasketCtrl($scope, $location, basket) {
   }
   basket.addListener(setBasketData);
     
-  $scope.updateQuantity = function(id, quantity) {
-    basket.updateQuantity(id, quantity);   
+  $scope.updateQuantity = function(quantity, id, variant) {
+    basket.updateQuantity(quantity, id, variant);   
   }
   
-  $scope.remove = function(id) {
-    basket.remove(id); 
+  $scope.remove = function(id, variant) {
+    basket.remove(id, variant); 
   }
   $scope.next = function() {
     $location.path('/zakaznicke-udaje');      

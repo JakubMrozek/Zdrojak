@@ -42,10 +42,14 @@ Basket.prototype.priceTotal = function() {
 
 
 Basket.prototype.add = function(id, name, url, variant, price) {
-  this._storage.add(id, {
+  this._storage.add({
     id: id, name: name, url: url, variant: variant, price: price    
   });    
   this.notify();
+};
+
+Basket.prototype.exist = function(id, variant) {
+  return this._storage.exist(id, variant);    
 };
 
 Basket.prototype.products = function() {
@@ -69,13 +73,13 @@ Basket.prototype.updateTransport = function(id) {
   return this._storage.updateTransport(id); 
 };
 
-Basket.prototype.updateQuantity = function(id, quantity) {
-  this._storage.updateQuantity(id, quantity);    
+Basket.prototype.updateQuantity = function(quantity, id, variant) {
+  this._storage.updateQuantity(quantity, id, variant);    
   this.notify();
 };
 
-Basket.prototype.remove = function(id) {
-  this._storage.remove(id);    
+Basket.prototype.remove = function(id, variant) {
+  this._storage.remove(id, variant);    
   this.notify();
 };
 
