@@ -4,8 +4,10 @@
  * 
  */
 
-function BasketStorage() {
+function BasketStorage(window, listener) {
   this._storage = window.localStorage;
+  this._listener = listener;
+  this._setEventStorage(window);
 }
 
 
@@ -19,6 +21,12 @@ BasketStorage.NS_CUSTOMER = 'Customer';
 
 //data o doprave
 BasketStorage.NS_TRANSPORT = 'Transport';
+
+
+BasketStorage.prototype.notify = function() {
+  this._listener.call(this);
+};
+
 
 /**
  * Vlozi novy produkt do kosiku.
@@ -125,10 +133,9 @@ BasketStorage.prototype.updateQuantity = function(quantity, id, variant) {
     if (this._equals(products[i], id, variant)) {
       products[i].quantity = quantity;
       this._saveProducts(products);
-      return true;
+      break;
     }    
   }
-  return false;
 };
 
 
@@ -254,4 +261,12 @@ BasketStorage.prototype._saveProducts = function(products) {
 
 BasketStorage.prototype._equals = function(product, id, variant) {
   return product.id === id && product.variant === variant;  
+};
+
+
+BasketStorage.prototype._setEventStorage = function(window) {
+  var basket = this;
+  window.addEventListener('storage', function(){ 
+    basket.notify.call(basket)
+  }, false);    
 };

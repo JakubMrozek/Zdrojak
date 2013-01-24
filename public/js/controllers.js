@@ -7,6 +7,7 @@
 
 function AppCtrl($scope, storage) {
   $scope.storage = storage;
+  console.log('zavolano');
 }
 
 
@@ -39,16 +40,6 @@ function MenuPagesCtrl($scope, api) {
 
 function MenuCategoriesCtrl($scope, api) {
   $scope.categories = api.category.index();    
-}
-
-
-/**
- * Nakupni kosik v hornim menu.
- * 
- */
-
-function MenuBasketCtrl($scope, storage) {
-  $scope.price = storage.priceProducts();    
 }
 
 
@@ -125,7 +116,6 @@ function ProductCtrl($scope, $routeParams, $location, api, storage) {
 function BasketCtrl($scope, $location, storage) {
   $scope.step = 'basket';  
   $scope.products = storage.getAll();
-  $scope.price = storage.priceProducts();
   $scope.next = function() {
     $location.path('/zakaznicke-udaje');      
   };

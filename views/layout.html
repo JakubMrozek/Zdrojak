@@ -31,11 +31,11 @@
           </form>
           
           <!-- stranky (obchodni podminky, faq ap.) -->
-          <div class="nav-collapse" ng-controller="MenuBasketCtrl">
+          <div class="nav-collapse">
             <ul id="navigation" class="nav">
               <li>
                 <a ng-href="/kosik"><i class="icon-shopping-cart icon-white"></i> 
-                <strong id="nav-basket-price">{{price | currency}}</strong></a>
+                <strong id="nav-basket-price">{{storage.priceProducts() | currency}}</strong></a>
               </li>
             </ul>
           </div>
