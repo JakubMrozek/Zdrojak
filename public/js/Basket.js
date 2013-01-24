@@ -4,7 +4,7 @@
  * 
  */
 
-function BasketStorage(window, listener) {
+function Basket(window, listener) {
   this._storage = window.localStorage;
   this._listener = listener;
   this._setEventStorage(window);
@@ -12,18 +12,23 @@ function BasketStorage(window, listener) {
 
 
 //data o produktech
-BasketStorage.NS_PRODUCTS = 'Products';
+Basket.NS_PRODUCTS = 'products';
 
 
 //data o zakaznikovi
-BasketStorage.NS_CUSTOMER = 'Customer';
+Basket.NS_CUSTOMER = 'customer';
 
 
 //data o doprave
-BasketStorage.NS_TRANSPORT = 'Transport';
+Basket.NS_TRANSPORT = 'transport';
 
 
-BasketStorage.prototype.notify = function() {
+/**
+ * Upozorni dalsi okna na zmenu modelu v jinem okne.
+ * 
+ */
+
+Basket.prototype.notify = function() {
   this._listener.call(this);
 };
 
@@ -34,7 +39,7 @@ BasketStorage.prototype.notify = function() {
  * @param {Object} product
  */
 
-BasketStorage.prototype.add = function(product) {
+Basket.prototype.add = function(product) {
   var products = this.getAll();
   products.push(product);
   this._saveProducts(products);
@@ -49,7 +54,7 @@ BasketStorage.prototype.add = function(product) {
  * @return {Boolean}
  */
 
-BasketStorage.prototype.exist = function(id, variant) {
+Basket.prototype.exist = function(id, variant) {
   return Boolean(this.get(id, variant));
 };
 
@@ -62,7 +67,7 @@ BasketStorage.prototype.exist = function(id, variant) {
  * @return {Object}
  */
 
-BasketStorage.prototype.get = function(id, variant) {
+Basket.prototype.get = function(id, variant) {
   var products = this.getAll();
   for (var i = 0; i < products.length; ++i) {
     if (this._equals(products[i], id, variant)) {
@@ -78,8 +83,8 @@ BasketStorage.prototype.get = function(id, variant) {
  * @return {Array}
  */
 
-BasketStorage.prototype.getAll = function() {
-  var products = this._storage.getItem(BasketStorage.NS_PRODUCTS);
+Basket.prototype.getAll = function() {
+  var products = this._storage.getItem(Basket.NS_PRODUCTS);
   
   //v ulozisti uz drive neco bylo.
   if (typeof products === 'string') {
@@ -101,7 +106,7 @@ BasketStorage.prototype.getAll = function() {
  * @return {Boolean}
  */
 
-BasketStorage.prototype.hasProducts = function() {
+Basket.prototype.hasProducts = function() {
   return Object.keys(this.getAll()).length > 0; 
 };
 
@@ -112,7 +117,7 @@ BasketStorage.prototype.hasProducts = function() {
  * @return {Boolean}
  */
 
-BasketStorage.prototype.hasCustomer = function() {
+Basket.prototype.hasCustomer = function() {
   var customer = this.getCustomer() || {};
   return Object.keys(customer).length > 0; 
 };
@@ -127,7 +132,7 @@ BasketStorage.prototype.hasCustomer = function() {
  * @return {Boolean} 
  */
 
-BasketStorage.prototype.updateQuantity = function(quantity, id, variant) {
+Basket.prototype.updateQuantity = function(quantity, id, variant) {
   var products = this.getAll();
   for (var i = 0; i < products.length; ++i) {
     if (this._equals(products[i], id, variant)) {
@@ -146,7 +151,7 @@ BasketStorage.prototype.updateQuantity = function(quantity, id, variant) {
  * @param {String} variant Varianta produktu.
  */
 
-BasketStorage.prototype.remove = function(id, variant) {
+Basket.prototype.remove = function(id, variant) {
   var oldProducts = this.getAll(); 
   var newProducts = [];
   for (var i = 0; i < oldProducts.length; ++i) {
@@ -163,10 +168,10 @@ BasketStorage.prototype.remove = function(id, variant) {
  * 
  */
 
-BasketStorage.prototype.clear = function() {
-  this._storage.removeItem(BasketStorage.NS_PRODUCTS);  
-  this._storage.removeItem(BasketStorage.NS_CUSTOMER);  
-  this._storage.removeItem(BasketStorage.NS_TRANSPORT);  
+Basket.prototype.clear = function() {
+  this._storage.removeItem(Basket.NS_PRODUCTS);  
+  this._storage.removeItem(Basket.NS_CUSTOMER);  
+  this._storage.removeItem(Basket.NS_TRANSPORT);  
 }
 
 
@@ -176,8 +181,8 @@ BasketStorage.prototype.clear = function() {
  * @return {Object}
  */
 
-BasketStorage.prototype.getCustomer = function() {
-  return JSON.parse(this._storage.getItem(BasketStorage.NS_CUSTOMER));
+Basket.prototype.getCustomer = function() {
+  return JSON.parse(this._storage.getItem(Basket.NS_CUSTOMER));
 };
 
 
@@ -187,8 +192,8 @@ BasketStorage.prototype.getCustomer = function() {
  * @param {Object} data
  */
 
-BasketStorage.prototype.updateCustomer = function(data) {
-  this._storage.setItem(BasketStorage.NS_CUSTOMER, JSON.stringify(data));    
+Basket.prototype.updateCustomer = function(data) {
+  this._storage.setItem(Basket.NS_CUSTOMER, JSON.stringify(data));    
 };
 
 
@@ -198,8 +203,8 @@ BasketStorage.prototype.updateCustomer = function(data) {
  * @return {Object}
  */ 
 
-BasketStorage.prototype.getTransport = function() {
-  return JSON.parse(this._storage.getItem(BasketStorage.NS_TRANSPORT));
+Basket.prototype.getTransport = function() {
+  return JSON.parse(this._storage.getItem(Basket.NS_TRANSPORT));
 };
 
 
@@ -209,8 +214,8 @@ BasketStorage.prototype.getTransport = function() {
  * @param {Object} data
  */
 
-BasketStorage.prototype.updateTransport = function(data) {
-  this._storage.setItem(BasketStorage.NS_TRANSPORT, JSON.stringify(data)); 
+Basket.prototype.updateTransport = function(data) {
+  this._storage.setItem(Basket.NS_TRANSPORT, JSON.stringify(data)); 
 };
 
 
@@ -220,7 +225,7 @@ BasketStorage.prototype.updateTransport = function(data) {
  * @return {Number}
  */
 
-BasketStorage.prototype.priceProducts = function() {
+Basket.prototype.priceProducts = function() {
   var products = this.getAll();
   var price = 0;
   for (var id in products) {
@@ -236,7 +241,7 @@ BasketStorage.prototype.priceProducts = function() {
  * @return {Number}
  */
 
-BasketStorage.prototype.priceTotal = function() {
+Basket.prototype.priceTotal = function() {
   return this.priceProducts() + this.getTransport().price;
 };
 
@@ -248,8 +253,8 @@ BasketStorage.prototype.priceTotal = function() {
  * @param {Object} products
  */
 
-BasketStorage.prototype._saveProducts = function(products) {
-  this._storage.setItem(BasketStorage.NS_PRODUCTS, JSON.stringify(products));
+Basket.prototype._saveProducts = function(products) {
+  this._storage.setItem(Basket.NS_PRODUCTS, JSON.stringify(products));
 };
 
 
@@ -259,12 +264,21 @@ BasketStorage.prototype._saveProducts = function(products) {
  * @param {String} variant Varianta produktu.
  */
 
-BasketStorage.prototype._equals = function(product, id, variant) {
+Basket.prototype._equals = function(product, id, variant) {
   return product.id === id && product.variant === variant;  
 };
 
 
-BasketStorage.prototype._setEventStorage = function(window) {
+/**
+ * Nastavi udalost storage pro zmenu obsahu kosiku.
+ * 
+ * Pri zmene jsou upozorneny vsechny ostatni okna prohlizece mimo to, 
+ * ve kterém změna proběhla.
+ * 
+ * @param {window} window
+ */
+
+Basket.prototype._setEventStorage = function(window) {
   var basket = this;
   window.addEventListener('storage', function(){ 
     basket.notify.call(basket)

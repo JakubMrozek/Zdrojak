@@ -36,11 +36,11 @@ angular.module('zdrojakServices', ['ngResource'])
     var transport = new Transport();
     return transport;
 
-}).factory('storage', function($window, $rootScope){
-    var storage = new BasketStorage($window, function(){
+}).factory('basket', function($window, $rootScope){
+    var basket = new Basket($window, function(){
       $rootScope.$apply();
     });
-    return storage;
+    return basket;
 
 });
 

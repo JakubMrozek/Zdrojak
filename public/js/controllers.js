@@ -5,9 +5,8 @@
  * 
  */
 
-function AppCtrl($scope, storage) {
-  $scope.storage = storage;
-  console.log('zavolano');
+function AppCtrl($scope, basket) {
+  $scope.basket = basket;
 }
 
 
@@ -90,10 +89,10 @@ function CategoryCtrl($scope, $routeParams, api) {
  * 
  */
 
-function ProductCtrl($scope, $routeParams, $location, api, storage) {
+function ProductCtrl($scope, $routeParams, $location, api, basket) {
   $scope.addToBasket = function(variant){
-    if (!storage.exist($scope.product.id, variant.name)) {
-      storage.add({
+    if (!basket.exist($scope.product.id, variant.name)) {
+      basket.add({
         id: $scope.product.id, 
         name: $scope.product.name, 
         url: $scope.product.url, 
@@ -113,9 +112,9 @@ function ProductCtrl($scope, $routeParams, $location, api, storage) {
  * 
  */
 
-function BasketCtrl($scope, $location, storage) {
+function BasketCtrl($scope, $location, basket) {
   $scope.step = 'basket';  
-  $scope.products = storage.getAll();
+  $scope.products = basket.getAll();
   $scope.next = function() {
     $location.path('/zakaznicke-udaje');      
   };
@@ -128,22 +127,22 @@ function BasketCtrl($scope, $location, storage) {
  * radio input v ng-repeat: https://github.com/angular/angular.js/issues/1100
  */
 
-function CustomerCtrl($scope, $location, storage, transport) {
-  if (!storage.hasProducts()) {
+function CustomerCtrl($scope, $location, basket, transport) {
+  if (!basket.hasProducts()) {
     $location.path('/kosik');    
     return;
   }
   
   $scope.step = 'customer';  
-  $scope.storage = storage;
+  $scope.basket = basket;
   
-  $scope.customer  = storage.getCustomer();
-  $scope.transport = storage.getTransport() || {code: 'personal'};
+  $scope.customer  = basket.getCustomer();
+  $scope.transport = basket.getTransport() || {code: 'personal'};
   $scope.transportMethods = transport.methods();
   
   $scope.next = function() {
-    storage.updateCustomer($scope.customer);
-    storage.updateTransport(transport.get($scope.transport.code));
+    basket.updateCustomer($scope.customer);
+    basket.updateTransport(transport.get($scope.transport.code));
     $location.path('/potvrzeni');      
   }
 }
@@ -154,19 +153,19 @@ function CustomerCtrl($scope, $location, storage, transport) {
  * 
  */
 
-function SummaryCtrl($scope, $location, api, storage) {
-  if (!storage.hasCustomer() || !storage.hasProducts()) {
+function SummaryCtrl($scope, $location, api, basket) {
+  if (!basket.hasCustomer() || !basket.hasProducts()) {
     $location.path('/kosik');    
     return;
   } 
   
   $scope.step = 'summary'; 
-  $scope.storage = storage;
+  $scope.basket = basket;
   
-  $scope.products  = storage.getAll(); 
-  $scope.customer  = storage.getCustomer();
-  $scope.transport = storage.getTransport();
-  $scope.price     = storage.priceTotal();
+  $scope.products   = basket.getAll(); 
+  $scope.customer   = basket.getCustomer();
+  $scope.transport  = basket.getTransport();
+  $scope.priceTotal = basket.priceTotal();
   
   $scope.next = function() {
     var data = {
@@ -177,7 +176,7 @@ function SummaryCtrl($scope, $location, api, storage) {
       
     api.order.create(data, function(info){
       $scope.number = info.number;    
-      storage.clear();
+      basket.clear();
     }); 
   }
 }

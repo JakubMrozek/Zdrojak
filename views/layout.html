@@ -35,7 +35,7 @@
             <ul id="navigation" class="nav">
               <li>
                 <a ng-href="/kosik"><i class="icon-shopping-cart icon-white"></i> 
-                <strong id="nav-basket-price">{{storage.priceProducts() | currency}}</strong></a>
+                <strong id="nav-basket-price">{{basket.priceProducts() | currency}}</strong></a>
               </li>
             </ul>
           </div>
@@ -90,7 +90,7 @@
   <script src="/js/directives.js"></script>
   <script src="/lib/angular/angular-resource.js"></script>
   
-  <script src="/js/BasketStorage.js"></script>
+  <script src="/js/Basket.js"></script>
   <script src="/js/Transport.js"></script>
   
   
