@@ -34,12 +34,26 @@ BasketStorage.prototype.add = function(product) {
 
 
 /**
+ * Vraci true, pokud je produkt jiz v kosiku. Jinak false.
+ * 
+ * @param {String} id ID produktu.
+ * @param {String} variant Varianta produktu.
+ * @return {Boolean}
+ */
+
+BasketStorage.prototype.exist = function(id, variant) {
+  return Boolean(this.get(id, variant));
+};
+
+
+/**
  * Vraci jeden produkt podle ID.
  * 
  * @param {String} id ID produktu.
  * @param {String} variant Varianta produktu.
  * @return {Object}
  */
+
 BasketStorage.prototype.get = function(id, variant) {
   var products = this.getAll();
   for (var i = 0; i < products.length; ++i) {
@@ -47,18 +61,6 @@ BasketStorage.prototype.get = function(id, variant) {
       return products[i];    
     }    
   }
-};
-
-
-/**
- * Vraci true, pokud je produkt jiz v kosiku. Jinak false.
- * 
- * @param {String} id ID produktu.
- * @param {String} variant Varianta produktu.
- * @return {Boolean}
- */
-BasketStorage.prototype.exist = function(id, variant) {
-  return Boolean(this.get(id, variant));
 };
 
 
@@ -82,6 +84,29 @@ BasketStorage.prototype.getAll = function() {
   }
   
   return products;
+};
+
+
+/**
+ * Vraci true, pokud jsou v kosiku nejake produkty, jinak false.
+ * 
+ * @return {Boolean}
+ */
+
+BasketStorage.prototype.hasProducts = function() {
+  return Object.keys(this.getAll()).length > 0; 
+};
+
+
+/**
+ * Vraci true, pokud uzivatel jiz vyplnil zakaznicke udaje.
+ * 
+ * @return {Boolean}
+ */
+
+BasketStorage.prototype.hasCustomer = function() {
+  var customer = this.getCustomer() || {};
+  return Object.keys(customer).length > 0; 
 };
 
 

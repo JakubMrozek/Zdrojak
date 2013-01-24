@@ -41,6 +41,11 @@ angular.module('zdrojakServices', ['ngResource'])
     var transport = new Transport();
     return transport;
 
+}).factory('basketStorage', function(){
+    
+    var storage = new BasketStorage();
+    return storage;
+
 });
 
 

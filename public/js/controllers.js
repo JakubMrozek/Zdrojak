@@ -110,32 +110,13 @@ function ProductCtrl($scope, $routeParams, $location, api, basket) {
 
 
 /**
- * Hlavicka kosiku.
- * 
- */
- 
-function BasketHeaderCtrl($scope, basket) {
-  var setNextStep = function() {
-    if (basket.hasCustomer()) {
-      $scope.nextStep = 3;  
-    } else if (basket.hasProducts()) {
-      $scope.nextStep = 2;   
-    } else {
-      $scope.nextStep = 1;  
-    }      
-  }
-  basket.addListener(setNextStep);
-  setNextStep();
-}
-
-
-/**
  * Kosik.
  * 
  */
 
-function BasketCtrl($scope, $location, basket) {
+function BasketCtrl($scope, $location, basket, basketStorage) {
   $scope.step = 'basket';  
+  $scope.storage = basketStorage;
   
   var setBasketData = function() {
     $scope.products = basket.products();   
@@ -167,8 +148,9 @@ function BasketCtrl($scope, $location, basket) {
  * radio input v ng-repeat: https://github.com/angular/angular.js/issues/1100
  */
 
-function CustomerCtrl($scope, $location, basket, transport) {
+function CustomerCtrl($scope, $location, basket, basketStorage, transport) {
   $scope.step = 'customer';  
+  $scope.storage = basketStorage;
   
   if (!basket.hasProducts()) {
     $location.path('/kosik');    
@@ -192,8 +174,9 @@ function CustomerCtrl($scope, $location, basket, transport) {
  * 
  */
 
-function SummaryCtrl($scope, $location, api, basket) {
+function SummaryCtrl($scope, $location, api, basket, basketStorage) {
   $scope.step = 'summary'; 
+  $scope.storage = basketStorage;
   
   if (!basket.hasCustomer() || !basket.hasProducts()) {
     $location.path('/kosik');    
