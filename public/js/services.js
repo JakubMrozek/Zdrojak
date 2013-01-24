@@ -31,17 +31,12 @@ angular.module('zdrojakServices', ['ngResource'])
       
     return api;
     
-}).factory('basket', function(){
-    
-    var basket = new Basket(new BasketStorage());
-    return basket;
-
 }).factory('transport', function(){
     
     var transport = new Transport();
     return transport;
 
-}).factory('basketStorage', function(){
+}).factory('storage', function(){
     
     var storage = new BasketStorage();
     return storage;

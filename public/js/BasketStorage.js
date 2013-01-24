@@ -208,6 +208,34 @@ BasketStorage.prototype.updateTransport = function(data) {
 
 
 /**
+ * Vraci soucet cen vsech produktu a variant v kosiku.
+ * 
+ * @return {Number}
+ */
+
+BasketStorage.prototype.priceProducts = function() {
+  var products = this.getAll();
+  var price = 0;
+  for (var id in products) {
+    price += products[id].price * products[id].quantity;
+  }
+  return price;
+};
+
+
+/**
+ * Vraci celkovou cenu objednavky (cena produktu + cena dopravy a platby).
+ * 
+ * @return {Number}
+ */
+
+BasketStorage.prototype.priceTotal = function() {
+  return this.priceProducts() + this.getTransport().price;
+};
+
+
+
+/**
  * Aktualizuje produkty v ulozisti.
  * 
  * @param {Object} products

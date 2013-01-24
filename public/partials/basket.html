@@ -1,10 +1,10 @@
 <div ng-include src="'/partials/_basket-header.html'"></div>
 
-<p ng-hide="basketNotEmpty" class="alert alert-info">
+<p ng-hide="storage.hasProducts()" class="alert alert-info">
   V košíku není žádné zboží.
 </p>
 
-<form ng-show="basketNotEmpty">
+<form ng-show="storage.hasProducts()">
   <table class="table table-striped">
     <thead>
       <tr>
@@ -21,8 +21,8 @@
           {{product.variant}}
         </td>
         <td>{{product.price | currency}}</td>
-        <td><input min="1" type="number" ng-change="updateQuantity(product.quantity, product.id, product.variant)" ng-model="product.quantity" class="span1"></td>
-        <td><button ng-click="remove(product.id, product.variant)" class="btn" type="button"><i class="icon-remove"></i> Odstranit</button></td>
+        <td><input min="1" type="number" ng-change="storage.updateQuantity(product.quantity, product.id, product.variant)" ng-model="product.quantity" class="span1"></td>
+        <td><button ng-click="storage.remove(product.id, product.variant)" class="btn" type="button"><i class="icon-remove"></i> Odstranit</button></td>
       </tr>
       <tr>
         <th>Celkem</th>    
