@@ -66,10 +66,7 @@ Basket.prototype.hasProducts = function() {
  */
 
 Basket.prototype.hasCustomer = function() {
-  var customer = this.customer();
-  if (!customer) {
-    return false;
-  }
+  var customer = this.customer() || {};
   return Object.keys(customer).length > 0; 
 };
 
@@ -115,7 +112,7 @@ Basket.prototype.priceTotal = function() {
 
 Basket.prototype.add = function(id, name, url, variant, price) {
   this._storage.add({
-    id: id, name: name, url: url, variant: variant, price: price    
+    id: id, name: name, url: url, variant: variant, price: price, quantity: 1   
   });    
   this.notify();
 };

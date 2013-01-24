@@ -10,17 +10,13 @@ describe('BasketStorage', function(){
   it('prida novy produkt s variantou do uloziste', function(){
     storage.add({id: 12345, variant: 'cerny'});
     expect(storage.exist(12345, 'cerny')).toBeTruthy();
-    expect(storage.get(12345, 'cerny')).toEqual(
-      {id: 12345, variant: 'cerny', quantity: 1}
-    );
+    expect(storage.get(12345, 'cerny')).toEqual({id: 12345, variant: 'cerny'});
   });
   
   it('prida novy produkt bez varianty do uloziste', function(){
     storage.add({id: 12345});
     expect(storage.exist(12345)).toBeTruthy();
-    expect(storage.get(12345)).toEqual(
-      {id: 12345, quantity: 1}
-    );
+    expect(storage.get(12345)).toEqual({id: 12345});
   });
   
   it('zmeni mnozstvi produktu s variantou v kosiku', function(){
@@ -54,9 +50,9 @@ describe('BasketStorage', function(){
     storage.add({id: 12457, variant: 'bily'});
     storage.add({id: 12459, variant: 'modry'});
     expect(storage.getAll()).toEqual([
-      {id: 12456, variant: 'cerny', quantity: 1},
-      {id: 12457, variant: 'bily', quantity: 1},
-      {id: 12459, variant: 'modry', quantity: 1}
+      {id: 12456, variant: 'cerny'},
+      {id: 12457, variant: 'bily'},
+      {id: 12459, variant: 'modry'}
     ]);
   });
   

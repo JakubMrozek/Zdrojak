@@ -20,7 +20,6 @@ BasketStorage.NS_CUSTOMER = 'Customer';
 //data o doprave
 BasketStorage.NS_TRANSPORT = 'Transport';
 
-
 /**
  * Vlozi novy produkt do kosiku.
  * 
@@ -29,45 +28,8 @@ BasketStorage.NS_TRANSPORT = 'Transport';
 
 BasketStorage.prototype.add = function(product) {
   var products = this.getAll();
-  product.quantity = 1;
   products.push(product);
   this._saveProducts(products);
-};
-
-
-/**
- * Aktualizuje produkty v ulozisti.
- * 
- * @param {Object} products
- */
-
-BasketStorage.prototype._saveProducts = function(products) {
-  products = this._serialize(products);
-  this._storage.setItem(BasketStorage.NS_PRODUCTS, products);
-};
-
-
-/**
- * Prevede objekt na retezec.
- * 
- * @param {Object} data
- * @return {String}
- */
-
-BasketStorage.prototype._serialize = function(data) {
-  return JSON.stringify(data);      
-};
-
-
-/**
- * Prevede retezec na objekt.
- * 
- * @param {String} str
- * @return {Object}
- */
-
-BasketStorage.prototype._unserialize = function(str) {
-  return JSON.parse(str)      
 };
 
 
@@ -81,7 +43,7 @@ BasketStorage.prototype._unserialize = function(str) {
 BasketStorage.prototype.get = function(id, variant) {
   var products = this.getAll();
   for (var i = 0; i < products.length; ++i) {
-    if (products[i].id === id && products[i].variant === variant) {
+    if (this._equals(products[i], id, variant)) {
       return products[i];    
     }    
   }
@@ -96,13 +58,7 @@ BasketStorage.prototype.get = function(id, variant) {
  * @return {Boolean}
  */
 BasketStorage.prototype.exist = function(id, variant) {
-  var products = this.getAll();
-  for (var i = 0; i < products.length; ++i) {
-    if (products[i].id === id && products[i].variant === variant) {
-      return true; 
-    }    
-  }
-  return false;
+  return Boolean(this.get(id, variant));
 };
 
 
@@ -117,7 +73,7 @@ BasketStorage.prototype.getAll = function() {
   
   //v ulozisti uz drive neco bylo.
   if (typeof products === 'string') {
-    products = this._unserialize(products);   
+    products = JSON.parse(products);   
   }
   
   //neni ulozen zadny produkt
@@ -141,7 +97,7 @@ BasketStorage.prototype.getAll = function() {
 BasketStorage.prototype.updateQuantity = function(quantity, id, variant) {
   var products = this.getAll();
   for (var i = 0; i < products.length; ++i) {
-    if (products[i].id === id && products[i].variant === variant) {
+    if (this._equals(products[i], id, variant)) {
       products[i].quantity = quantity;
       this._saveProducts(products);
       return true;
@@ -162,7 +118,7 @@ BasketStorage.prototype.remove = function(id, variant) {
   var oldProducts = this.getAll(); 
   var newProducts = [];
   for (var i = 0; i < oldProducts.length; ++i) {
-    if (oldProducts[i].id !== id || oldProducts[i].variant !== variant) {
+    if (!this._equals(oldProducts[i], id, variant)) {
       newProducts.push(oldProducts[i]);
     }    
   }   
@@ -189,8 +145,7 @@ BasketStorage.prototype.clear = function() {
  */
 
 BasketStorage.prototype.getCustomer = function() {
-  var data = this._storage.getItem(BasketStorage.NS_CUSTOMER);    
-  return this._unserialize(data);
+  return JSON.parse(this._storage.getItem(BasketStorage.NS_CUSTOMER));
 };
 
 
@@ -201,8 +156,7 @@ BasketStorage.prototype.getCustomer = function() {
  */
 
 BasketStorage.prototype.updateCustomer = function(data) {
-  data = this._serialize(data);
-  this._storage.setItem(BasketStorage.NS_CUSTOMER, data);    
+  this._storage.setItem(BasketStorage.NS_CUSTOMER, JSON.stringify(data));    
 };
 
 
@@ -213,8 +167,7 @@ BasketStorage.prototype.updateCustomer = function(data) {
  */ 
 
 BasketStorage.prototype.getTransport = function() {
-  var data = this._storage.getItem(BasketStorage.NS_TRANSPORT);    
-  return this._unserialize(data);
+  return JSON.parse(this._storage.getItem(BasketStorage.NS_TRANSPORT));
 };
 
 
@@ -225,6 +178,27 @@ BasketStorage.prototype.getTransport = function() {
  */
 
 BasketStorage.prototype.updateTransport = function(data) {
-  data = this._serialize(data);
-  this._storage.setItem(BasketStorage.NS_TRANSPORT, data); 
+  this._storage.setItem(BasketStorage.NS_TRANSPORT, JSON.stringify(data)); 
+};
+
+
+/**
+ * Aktualizuje produkty v ulozisti.
+ * 
+ * @param {Object} products
+ */
+
+BasketStorage.prototype._saveProducts = function(products) {
+  this._storage.setItem(BasketStorage.NS_PRODUCTS, JSON.stringify(products));
+};
+
+
+/**
+ * @param {Object} product
+ * @param {String} id ID produktu.
+ * @param {String} variant Varianta produktu.
+ */
+
+BasketStorage.prototype._equals = function(product, id, variant) {
+  return product.id === id && product.variant === variant;  
 };
