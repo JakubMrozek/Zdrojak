@@ -51,22 +51,22 @@
 
               
             <!-- menu s kategoriemi -->
-            <div ng-controller="MenuCategoriesCtrl">            
+            <div ng-controller="MenuCategoriesCtrl">  
+              <script type="text/ng-template"  id="template-category">
+                <a ng-href="/mobily/{{data.url}}"><i class="icon-chevron-right"></i>{{data.name}}</a>
+                <ul class="nav nav-list">
+                  <li ng-repeat="data in data.children" ng-include="'template-category'"></li>
+                </ul>
+              </script>  
               <ul class="nav nav-list" ng-cloak>
                 <li class="nav-header">Mobily</li>
-                <li ng-repeat="category in categories">
-                  <a ng-href="/mobily/{{category.url}}"><i class="icon-chevron-right"></i>{{category.name}}</a>
-                  <ul class="nav nav-list" ng-show="category.children">
-                    <li ng-repeat="child in category.children">
-                      <a ng-href="/mobily/{{child.url}}"><i class="icon-chevron-right"></i>{{child.name}}</a>      
-                    </li>      
-                  </ul>
-                </li>   
-              </ul>
+                <li ng-repeat="data in categories" ng-include="'template-category'"></li>
+              </ul> 
             </div>
             
-          </div>
             
+            
+          </div>
           <!-- samotny obsah dane stranky -->  
           <div class="span9">
             <div ng-view></div>
