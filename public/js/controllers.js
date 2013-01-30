@@ -80,7 +80,9 @@ function PageCtrl($scope, $routeParams, api) {
 
 function CategoryCtrl($scope, $routeParams, api) { 
   $scope.products = api.product.index({category: $routeParams.category});  
-  $scope.category = api.category.show({url: $routeParams.category}); 
+  $scope.category = api.category.show({url: $routeParams.category});
+  
+  $scope.price = $scope.params.maxPrice;
 }
 
 

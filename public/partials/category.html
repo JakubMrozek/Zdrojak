@@ -2,6 +2,12 @@
   <h1>{{category.name}}</h1>
 </div>
 
+<!-- Filtrovani kategorii -->
+<form class="well form-horizontal">
+  <label>Maximální cena:   
+    <range min="{{params.minPrice}}" max="{{params.maxPrice}}" step="500" model="price"></range> {{price}} Kč
+  </label>
+</form>
 
 <div ng-include src="'/partials/_pagination.html'"></div>
 
@@ -10,5 +16,3 @@
 </div>
 
 <div ng-include src="'/partials/_pagination.html'"></div>
-
-

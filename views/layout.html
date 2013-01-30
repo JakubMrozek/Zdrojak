@@ -53,7 +53,7 @@
             <!-- menu s kategoriemi -->
             <div ng-controller="MenuCategoriesCtrl">  
               <script type="text/ng-template"  id="template-category">
-                <a ng-href="/mobily/{{data.url}}"><i class="icon-chevron-right"></i>{{data.name}}</a>
+                  <a ng-href="/mobily/{{data.url}}"><i class="icon-chevron-right"></i>{{data.name}}</a>
                 <ul class="nav nav-list">
                   <li ng-repeat="data in data.children" ng-include="'template-category'"></li>
                 </ul>

@@ -81,3 +81,22 @@ zdrojak.directive('inline', function(){
     }
   }
 });
+
+/**
+ * <inline model='page.text' action='updateDb'/>
+ */
+zdrojak.directive('range', function(){
+  return {
+    restrict: 'E',
+    replace: true,
+    scope: {
+      max: '@max',
+      min: '@min',
+      model: '=model'
+    },
+    template: '<input type="range" ng-model="model">',
+    link: function(scope, element) {
+      
+    }
+  }
+});
