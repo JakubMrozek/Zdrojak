@@ -95,6 +95,12 @@ zdrojak.directive('range', function(){
       model: '=model',
       change: '=change'
     },
-    template: '<input type="range" ng-model="model" ng-change="change()">'
+    template: '<input type="range" ng-model="model">',
+    link: function(scope, element) {
+      element.bind('change', function(){
+        //TODO: pridat setTimeout, nevolat behem posunovani
+        scope.change();
+      });   
+    }
   }
 });

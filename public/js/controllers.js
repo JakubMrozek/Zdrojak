@@ -78,34 +78,19 @@ function PageCtrl($scope, $routeParams, api) {
  * 
  */
 
-function CategoryCtrl($scope, $routeParams, $location, api) { 
-  var query = { category: $routeParams.category, filter: '', sort: 'price'};
-  var search = $location.search();
+function CategoryCtrl($scope, $routeParams, $location, search, api) { 
+  var query = { category: $routeParams.category, filter: '', sort: ''};
   
   //razeni
-  if (search.sort === 'price') {
-    $scope.asc  = 'btn-primary';
-    $scope.sort = 'asc';
-    $scope.desc = '';
-  }
-  if (search.sort === '-price') {
-    $scope.asc  = '';
-    $scope.desc = 'btn-primary';
-    $scope.sort = 'desc';
-  }
-  if (!$scope.sort) {
-    $scope.asc  = 'btn-primary';
-    $scope.sort = 'asc';
-    $scope.desc = '';
-  }
+  $scope.sort = search.sortFromUrl();
   
   //informace o kategorii
   $scope.category = api.category.show({url: $routeParams.category}, function(){
     $scope.price = $scope.category.maxPrice; 
     
     //rozparsovani polozek
-    if (typeof search.filter === 'string') {
-      search.filter.split('@').forEach(function(rule){
+    if (typeof $location.search().filter === 'string') {
+      $location.search().filter.split('@').forEach(function(rule){
         var parts = rule.split(':');
         var code = parts[0];
         var values = parts[1].split(',');

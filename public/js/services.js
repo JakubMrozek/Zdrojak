@@ -42,6 +42,19 @@ angular.module('zdrojakServices', ['ngResource'])
     });
     return basket;
 
+}).factory('search', function($location){
+    var Search = {};
+    
+    Search.sortFromUrl = function() {
+      var search = $location.search();
+      if (search.sort === 'price' || search.sort === '-price') {
+        return search.sort;
+      } else {
+        return 'sort';  
+      }    
+    };
+    
+    return Search;
 });
 
 
