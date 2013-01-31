@@ -58,6 +58,7 @@ angular.module('zdrojakServices', ['ngResource'])
       }, 
       getParamsFromUrl: function(url) {
         var params = {};
+        if (!url) return params;
         url.split('@').forEach(function(rule){
           var parts = rule.split(':');
           params[parts[0]] = parts[1].split(',');
