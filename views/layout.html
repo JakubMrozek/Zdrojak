@@ -19,8 +19,8 @@
           
           <!-- stranky (obchodni podminky, faq ap.) -->
           <div class="nav-collapse" ng-controller="MenuPagesCtrl">
-            <ul id="navigation" class="nav" ng-cloak>
-              <li ng-repeat="page in pages"><a ng-href="/info/{{page.url}}">{{page.name}}</a></li>
+            <ul id="navigation" class="nav">
+              <li ng-repeat="page in pages"><a ng-href="/info/{{page.url}}" ng-bind="page.name"></a></li>
             </ul>
           </div>
           
@@ -35,7 +35,7 @@
             <ul id="navigation" class="nav">
               <li>
                 <a ng-href="/kosik"><i class="icon-shopping-cart icon-white"></i> 
-                <strong id="nav-basket-price">{{basket.priceProducts() | currency}}</strong></a>
+                <strong id="nav-basket-price" ng-bind="basket.priceProducts() | currency"></strong></a>
               </li>
             </ul>
           </div>
@@ -58,7 +58,7 @@
                   <li ng-repeat="data in data.children" ng-include="'template-category'"></li>
                 </ul>
               </script>  
-              <ul class="nav nav-list" ng-cloak>
+              <ul class="nav nav-list">
                 <li class="nav-header">Mobily</li>
                 <li ng-repeat="data in categories" ng-include="'template-category'"></li>
               </ul> 
