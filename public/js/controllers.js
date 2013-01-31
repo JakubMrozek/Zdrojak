@@ -78,12 +78,59 @@ function PageCtrl($scope, $routeParams, api) {
  * 
  */
 
-function CategoryCtrl($scope, $routeParams, api) { 
+function CategoryCtrl($scope, $routeParams, $location, api) { 
   var query = { category: $routeParams.category, filter: '', sort: 'price'};
+  var search = $location.search();
+  
+  //razeni
+  if (search.sort === 'price') {
+    $scope.asc  = 'btn-primary';
+    $scope.sort = 'asc';
+    $scope.desc = '';
+  }
+  if (search.sort === '-price') {
+    $scope.asc  = '';
+    $scope.desc = 'btn-primary';
+    $scope.sort = 'desc';
+  }
+  if (!$scope.sort) {
+    $scope.asc  = 'btn-primary';
+    $scope.sort = 'asc';
+    $scope.desc = '';
+  }
+  
+  //informace o kategorii
   $scope.category = api.category.show({url: $routeParams.category}, function(){
     $scope.price = $scope.category.maxPrice; 
+    
+    //rozparsovani polozek
+    if (typeof search.filter === 'string') {
+      search.filter.split('@').forEach(function(rule){
+        var parts = rule.split(':');
+        var code = parts[0];
+        var values = parts[1].split(',');
+        
+        if (code === 'price') {
+          $scope.price = parts[1];       
+        }
+        
+        $scope.category.params.forEach(function(param){
+          if (code === param.code) {
+            param.values.forEach(function(value){
+              values.forEach(function(val){
+                if (val === value.code) {
+                  value.val = true;   
+                }    
+              });   
+            });
+          }  
+        });
+      });  
+    }
+    
   });  
   
+  //nacteni vsech produktu
   $scope.products = api.product.index(query);  
   
   //filtrovani polozek
@@ -102,6 +149,7 @@ function CategoryCtrl($scope, $routeParams, api) {
     query.filter = params.join('@');
     query.category = $routeParams.category;
     $scope.products = api.product.index(query); 
+    $location.search('filter', query.filter).search('sort', $scope.sort);
   };
 }
 
