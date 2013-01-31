@@ -42,19 +42,42 @@ angular.module('zdrojakServices', ['ngResource'])
     });
     return basket;
 
-}).factory('search', function($location){
-    var Search = {};
-    
-    Search.sortFromUrl = function() {
-      var search = $location.search();
-      if (search.sort === 'price' || search.sort === '-price') {
-        return search.sort;
-      } else {
-        return 'sort';  
-      }    
-    };
-    
-    return Search;
+}).factory('psearch', function(){
+    return {
+      getSortFromUrl: function(search, def) {
+        if (search.sort === 'price' || search.sort === '-price') {
+          return search.sort;
+        } 
+        return def;  
+      },
+      getPriceFromUrl: function(search, def) {
+        if (search.price) {
+          return search.price.toString();
+        } 
+        return def;  
+      }, 
+      getParamsFromUrl: function(url) {
+        var params = {};
+        url.split('@').forEach(function(rule){
+          var parts = rule.split(':');
+          params[parts[0]] = parts[1].split(',');
+        });
+        return params;   
+      },
+      getValues: function(params) {
+        var values = [];
+        params.forEach(function(param){
+          var vals = [];
+          param.values.forEach(function(value){
+            if (value.checked) vals.push(value.code);
+          });   
+          if (vals.length > 0){
+            values.push(param.code + ':' + vals.join(','));      
+          }
+        });
+        return values;    
+      }
+    }
 });
 
 

@@ -16,7 +16,7 @@
       <ul class="unstyled">
         <li ng-repeat="value in param.values">
           <label class="checkbox">
-            <input ng-model="value.val" ng-change="filter()" type="checkbox">{{value.value}}
+            <input ng-model="value.checked" ng-change="filter()" type="checkbox">{{value.value}}
           </label>
         </li>  
       </ul>

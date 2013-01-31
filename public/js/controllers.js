@@ -78,63 +78,35 @@ function PageCtrl($scope, $routeParams, api) {
  * 
  */
 
-function CategoryCtrl($scope, $routeParams, $location, search, api) { 
+function CategoryCtrl($scope, $routeParams, $location, psearch, api) { 
+  var search = $location.search();
   var query = { category: $routeParams.category, filter: '', sort: ''};
   
-  //razeni
-  $scope.sort = search.sortFromUrl();
-  
-  //informace o kategorii
   $scope.category = api.category.show({url: $routeParams.category}, function(){
-    $scope.price = $scope.category.maxPrice; 
-    
-    //rozparsovani polozek
-    if (typeof $location.search().filter === 'string') {
-      $location.search().filter.split('@').forEach(function(rule){
-        var parts = rule.split(':');
-        var code = parts[0];
-        var values = parts[1].split(',');
-        
-        if (code === 'price') {
-          $scope.price = parts[1];       
-        }
-        
-        $scope.category.params.forEach(function(param){
-          if (code === param.code) {
-            param.values.forEach(function(value){
-              values.forEach(function(val){
-                if (val === value.code) {
-                  value.val = true;   
-                }    
-              });   
-            });
-          }  
-        });
-      });  
-    }
-    
+    var urlParams = psearch.getParamsFromUrl(search.filter);
+    $scope.category.params.forEach(function(param){
+      if (!Array.isArray(urlParams[param.code])) return;
+      param.values.forEach(function(value){
+        if(~urlParams[param.code].indexOf(value.code)) {
+          value.checked = true;     
+        }  
+      });
+    });
+    $scope.sort  = psearch.getSortFromUrl(search, 'price');
+    $scope.price = psearch.getPriceFromUrl(urlParams, $scope.category.maxPrice);
   });  
   
-  //nacteni vsech produktu
   $scope.products = api.product.index(query);  
-  
+ 
   //filtrovani polozek
   $scope.filter = function() {
-    var query = {sort: $scope.sort};  
-    var params = ['price:' + $scope.price];
-    $scope.category.params.forEach(function(param){
-      var vals = [];
-      param.values.forEach(function(value){
-        if (value.val) vals.push(value.code);
-      });   
-      if (vals.length > 0){
-        params.push(param.code + ':' + vals.join(','));      
-      }
-    });
-    query.filter = params.join('@');
-    query.category = $routeParams.category;
+    var values = psearch.getValues($scope.category.params);
+    values.push('price:' + $scope.price);
+    query.filter = values.join('@');
+    query.sort = $scope.sort;
     $scope.products = api.product.index(query); 
-    $location.search('filter', query.filter).search('sort', query.sort);
+    $location.search('filter', query.filter)
+             .search('sort', query.sort);
   };
 }
 
