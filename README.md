@@ -17,6 +17,11 @@
 Seriál E-shop pomocí moderních technologií
 ==========================================
 
+5. díl
+======
+* Článek: http://www.zdrojak.cz/clanky/tvorba-moderniho-eshopu-kategorie-a-parametricke-hledani/
+* Demo: http://desolate-dawn-8390.herokuapp.com/mobily/android
+
 4. díl
 ======
 * Článek: http://www.zdrojak.cz/clanky/nakupni-kosik-pomoci-html5-web-storage/

@@ -134,7 +134,7 @@ function CategoryCtrl($scope, $routeParams, $location, search, api) {
     query.filter = params.join('@');
     query.category = $routeParams.category;
     $scope.products = api.product.index(query); 
-    $location.search('filter', query.filter).search('sort', $scope.sort);
+    $location.search('filter', query.filter).search('sort', query.sort);
   };
 }
 
