@@ -56,7 +56,7 @@ mock.run(function($httpBackend) {
       url = url.replace(/{[^}]+}/g, 'ZDROJAK_PARAM');
       //preg_quote pro javascript: http://stackoverflow.com/questions/6828637/escape-regexp-strings
       url = url.replace(new RegExp('[.\\\\+*?\\[\\^\\]$(){}=!<>|:\\' + '' + '-]', 'g'), '\\$&');
-      url = url.replace(/ZDROJAK_PARAM/g, '([^&]+)');
+      url = url.replace(/ZDROJAK_PARAM/g, '([^&]*)');
       url = new RegExp(url + '$');
       switch (res.method) {
         case 'GET':

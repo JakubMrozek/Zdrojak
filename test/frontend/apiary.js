@@ -77,7 +77,7 @@ var apiary = [
             "headers": {
               "Content-Type": "application/json"
             },
-            "body": "{\"name\": \"iPhone\", \"url\": \"iphone\", \"children\": []}"
+            "body": "{\"name\": \"iPhone\", \n\"url\": \"iphone\", \n\"children\": [], \n\"minPrice\": 1000,\n\"maxPrice\": 23000,\n\"params\": [{\n  \"name\": \"Funkce\", \n  \"code\": \"funkce\", \n  \"values\": [\n    {\"code\": \"wifi\", \"value\": \"WiFi\"}, \n    {\"code\": \"bluetooth\", \"value\": \"BlueTooth\"}, \n    {\"code\": \"dual-sim\", \"value\": \"Dual SIM\"}, \n    {\"code\": \"gps\", \"value\": \"GPS\"}, \n    {\"code\": \"fm-radio\", \"value\": \"FM radio\"}\n  ]},{\n  \"name\": \"Operační paměť\", \n  \"code\": \"operacni-pamet\", \n  \"values\": [\n    {\"code\": \"256\", \"value\": \"256 MB\"}, \n    {\"code\": \"512\", \"value\": \"512 MB\"}, \n    {\"code\": \"1024\", \"value\": \"1024 MB\"}, \n    {\"code\": \"2048\", \"value\": \"2048 MB\"}, \n    {\"code\": \"4096\", \"value\": \"4096 MB\"}\n  ]},{\n  \"name\": \"Uložiště\", \n  \"code\": \"uloziste\", \n  \"values\": [\n    {\"code\": \"0-2\", \"value\": \"0-2 GB\"}, \n    {\"code\": \"2-10\", \"value\": \"2-10 GB\"}, \n    {\"code\": \"10-50\", \"value\": \"10-50 GB\"}, \n    {\"code\": \"50-100\", \"value\": \"50-100 GB\"}, \n    {\"code\": \"100-512\", \"value\": \"100-512 GB\"}\n  ]},{\n  \"name\": \"Paměťová karta\", \n  \"code\": \"pametova-karta\", \n  \"values\": [\n    {\"code\": \"sdhc\", \"value\": \"SDHC\"}, \n    {\"code\": \"micro-sd\", \"value\": \"Micro SD\"}, \n    {\"code\": \"micro-sdxc\", \"value\": \"Micro SDXC\"}, \n    {\"code\": \"sdxc\", \"value\": \"SDXC\"}, \n    {\"code\": \"micro-sdhc\", \"value\": \"Micro SDHC\"}\n  ]}\n]}"
           }
         ]
       }
@@ -168,7 +168,7 @@ var apiary = [
       {
         "description": "Seznam produktů v kategorii.",
         "method": "GET",
-        "url": "/products?category={kategorie}",
+        "url": "/products?category={kategorie}&filter={filter}&sort={sort}",
         "request": {
           "headers": {},
           "body": ""

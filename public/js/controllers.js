@@ -79,10 +79,30 @@ function PageCtrl($scope, $routeParams, api) {
  */
 
 function CategoryCtrl($scope, $routeParams, api) { 
-  $scope.products = api.product.index({category: $routeParams.category});  
-  $scope.category = api.category.show({url: $routeParams.category});
+  var query = { category: $routeParams.category, filter: '', sort: 'price'};
+  $scope.category = api.category.show({url: $routeParams.category}, function(){
+    $scope.price = $scope.category.maxPrice; 
+  });  
   
-  $scope.price = $scope.params.maxPrice;
+  $scope.products = api.product.index(query);  
+  
+  //filtrovani polozek
+  $scope.filter = function() {
+    var query = {sort: $scope.sort};  
+    var params = ['price:' + $scope.price];
+    $scope.category.params.forEach(function(param){
+      var vals = [];
+      param.values.forEach(function(value){
+        if (value.val) vals.push(value.code);
+      });   
+      if (vals.length > 0){
+        params.push(param.code + ':' + vals.join(','));      
+      }
+    });
+    query.filter = params.join('@');
+    query.category = $routeParams.category;
+    $scope.products = api.product.index(query); 
+  };
 }
 
 

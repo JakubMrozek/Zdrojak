@@ -83,7 +83,7 @@ zdrojak.directive('inline', function(){
 });
 
 /**
- * <inline model='page.text' action='updateDb'/>
+ * <range change="filter" min="{{params.minPrice}}" max="{{params.maxPrice}}" step="500" model="price">
  */
 zdrojak.directive('range', function(){
   return {
@@ -92,11 +92,9 @@ zdrojak.directive('range', function(){
     scope: {
       max: '@max',
       min: '@min',
-      model: '=model'
+      model: '=model',
+      change: '=change'
     },
-    template: '<input type="range" ng-model="model">',
-    link: function(scope, element) {
-      
-    }
+    template: '<input type="range" ng-model="model" ng-change="change()">'
   }
 });
