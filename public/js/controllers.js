@@ -17,7 +17,7 @@ function AppCtrl($scope, basket) {
 
 function MenuSearchCtrl($scope, $location) {
   $scope.search = function() {
-    $location.path('/vyhledavani/' + $scope.query);    
+    $location.url('/vyhledavani/' + $scope.query);    
   }
 }
 
