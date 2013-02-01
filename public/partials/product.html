@@ -8,7 +8,7 @@
 <div class="container">
   <div ng-repeat="photo in product.photos">
     <div class="span5"> 
-      <p><img ng-src="{{photo.src}}"></p>
+      <p><img width="{{photo.width}}" height="{{photo.height}}" ng-src="{{photo.src}}"></p>
     </div>
   </div>
 </div>
@@ -30,16 +30,6 @@
 
 <h2>Popis</h2>
 <div ng-bind-html-unsafe="product.text"></div>
-
-<!-- demo text -->
-<h3>Lorem ipsum set dolorem</h3>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque congue, tellus ac porta venenatis, nisi magna luctus elit, non cursus est orci ultricies risus. Sed aliquam ante vitae massa posuere facilisis. Donec leo nulla, pharetra a dapibus in, elementum vel ante. Aenean imperdiet vestibulum ipsum eget cursus. Etiam gravida malesuada nibh. Nullam sed nulla dolor, sed aliquet tellus. Sed mollis accumsan turpis, id aliquet sapien sollicitudin quis. Morbi purus ipsum, ornare nec tincidunt in, fermentum vitae eros.</p>
-<h3>Lorem ipsum set dolorem</h3>
-<p>Quisque adipiscing, nunc in lacinia rhoncus, nibh sapien dignissim nunc, ut aliquet turpis erat sed risus. Fusce sit amet ipsum augue, id auctor purus. Maecenas nec tellus orci. Aliquam dui odio, consequat ac laoreet a, auctor nec nisl. Curabitur tempor, ligula quis euismod convallis, neque dui dapibus urna, vel tincidunt nisl magna eu mi. Mauris sit amet nulla a ipsum aliquam ultrices. Mauris gravida, nisl ac tempor mollis, neque tellus placerat mauris, vitae luctus quam elit sit amet augue. Proin urna metus, consequat et placerat id, suscipit vehicula quam. Duis laoreet nisl in diam pellentesque pretium sit amet eu purus. Donec lobortis imperdiet consequat. Ut id libero tempor erat pulvinar semper. Sed malesuada lacinia congue. Nulla facilisi. Suspendisse id tempor neque. Cras bibendum massa ut nunc tincidunt congue vel eu velit.</p>
-<h3>Lorem ipsum set dolorem</h3>
-<p>Proin a tempor eros. Nulla scelerisque aliquam vulputate. Sed adipiscing rutrum fermentum. Suspendisse scelerisque blandit tempus. Aliquam eleifend metus in dui sollicitudin id sagittis lectus iaculis. Aliquam erat volutpat. Aliquam nec turpis diam, ac sagittis elit. Pellentesque pellentesque posuere urna a consectetur. Vestibulum rutrum, orci eu tempus imperdiet, erat turpis iaculis nulla, non laoreet mauris velit et elit. Nulla elementum lorem id dolor congue quis tristique elit scelerisque. Nullam volutpat sagittis purus, in faucibus mi mollis et. Maecenas luctus dolor in lacus laoreet non pellentesque arcu molestie.</p>
-
-
 
 
 <h2>Parametry</h2>
