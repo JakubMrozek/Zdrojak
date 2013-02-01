@@ -97,9 +97,10 @@ zdrojak.directive('range', function(){
     },
     template: '<input type="range" ng-model="model">',
     link: function(scope, element) {
+      var timer;
       element.bind('change', function(){
-        //TODO: pridat setTimeout, nevolat behem posunovani
-        scope.change();
+        if (timer) clearInterval(timer);
+        timer = setTimeout(scope.change, 200);
       });   
     }
   }
