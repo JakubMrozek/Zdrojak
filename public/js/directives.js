@@ -130,11 +130,14 @@ zdrojak.directive('pagination', function(){
       var prevLi  = angular.element(children[0]);
       var nextLi  = angular.element(children[2]);
       
+      console.log('volani direktivy...' + Math.random());  
+      
       //celkovy pocet stranek
       scope.countPages = Math.ceil(scope.count / scope.limit);
       
       //prechod na predchozi stranku
       prevLi.bind('click', function(){
+        if (scope.current <= 1) return; 
         if (scope.current > 1) {
           nextLi.removeClass('disabled');
           scope.current -= 1;    
@@ -147,6 +150,7 @@ zdrojak.directive('pagination', function(){
       
       //prechod na dalsi stranku
       nextLi.bind('click', function(){
+        if (scope.current >= scope.countPages) return;
         if (scope.current < scope.countPages) {
           prevLi.removeClass('disabled');
           scope.current += 1;    

@@ -80,49 +80,52 @@ function PageCtrl($scope, $routeParams, api) {
 
 function CategoryCtrl($scope, $routeParams, $location, psearch, api) { 
   var search = $location.search();
-  var query = { category: $routeParams.category, filter: '', sort: '', offset: '', limit: ''};
+  var query = {category: $routeParams.category};
   
   $scope.category = api.category.show({url: $routeParams.category}, function(){
     var urlParams = psearch.getParamsFromUrl(search.filter);
     $scope.category.params.forEach(function(param){
       if (!Array.isArray(urlParams[param.code])) return;
       param.values.forEach(function(value){
-        if(~urlParams[param.code].indexOf(value.code)) {
-          value.checked = true;     
-        }  
+        if(~urlParams[param.code].indexOf(value.code)) value.checked = true;   
       });
     });
-    
-    $scope.price  = psearch.getPriceFromUrl(urlParams, $scope.category.maxPrice);
+    $scope.price = psearch.getPriceFromUrl(urlParams, $scope.category.maxPrice);
+    $scope.sort  = psearch.getSortFromUrl(search, 'price');
+    $scope.load();
   });  
   
-  query.sort = psearch.getSortFromUrl(search, 'price');
-  query.offset = search.offset || 1;
-  query.limit  = search.limit || 10;
-  
-  $scope.results = api.product.index(query); 
- 
-  //filtrovani polozek
-  $scope.filter = function(offset, limit) {
+  /**
+   * @param {Number} offset
+   * @param {Number} limit
+   */
+  $scope.load = function(offset, limit) {
     var values = psearch.getValues($scope.category.params);
     values.push('price:' + $scope.price);
-    query.filter = values.join('@');
     
+    query.filter = values.join('@');
     query.sort = $scope.sort;
     query.offset = offset || 1; 
-    query.limit = limit || 10;
+    query.limit = limit || 10;    
     
-    $scope.results = api.product.index(query);
+    if (!limit) $scope.current = 1;  
+    
+    $scope.results = api.product.index(query, function(){
+      console.log('nove vysledky...' +  Math.random());       
+    }); 
+  }
+ 
+  /**
+   * @param {Number} offset
+   * @param {Number} limit
+   */
+  $scope.filter = function(offset, limit) {
+    $scope.load(offset, limit);
     $location.search('filter', query.filter)
              .search('sort', query.sort)
              .search('offset', query.offset)
-             .search('limit', query.limit); 
+             .search('limit', query.limit);     
   }; 
-  
-  
-  //TODO: zoptimalizovat
-  $scope.current = 2;
-  $scope.sort = query.sort;
 }
 
 
