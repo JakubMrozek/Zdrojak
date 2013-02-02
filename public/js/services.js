@@ -20,7 +20,7 @@ angular.module('zdrojakServices', ['ngResource'])
     
     //API produkty
     api.product = $resource('/api/v1/products', {}, {
-      index: {method:'GET', isArray: true},
+      index: {method:'GET'},
       show: {method:'GET'}
     });
       

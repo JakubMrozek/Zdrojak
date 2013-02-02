@@ -80,7 +80,7 @@ function PageCtrl($scope, $routeParams, api) {
 
 function CategoryCtrl($scope, $routeParams, $location, psearch, api) { 
   var search = $location.search();
-  var query = { category: $routeParams.category, filter: '', sort: ''};
+  var query = { category: $routeParams.category, filter: '', sort: '', offset: '', limit: ''};
   
   $scope.category = api.category.show({url: $routeParams.category}, function(){
     var urlParams = psearch.getParamsFromUrl(search.filter);
@@ -92,22 +92,37 @@ function CategoryCtrl($scope, $routeParams, $location, psearch, api) {
         }  
       });
     });
-    $scope.sort  = psearch.getSortFromUrl(search, 'price');
-    $scope.price = psearch.getPriceFromUrl(urlParams, $scope.category.maxPrice);
+    
+    $scope.price  = psearch.getPriceFromUrl(urlParams, $scope.category.maxPrice);
   });  
   
-  $scope.products = api.product.index(query);  
+  query.sort = psearch.getSortFromUrl(search, 'price');
+  query.offset = search.offset || 1;
+  query.limit  = search.limit || 10;
+  
+  $scope.results = api.product.index(query); 
  
   //filtrovani polozek
-  $scope.filter = function() {
+  $scope.filter = function(offset, limit) {
     var values = psearch.getValues($scope.category.params);
     values.push('price:' + $scope.price);
     query.filter = values.join('@');
+    
     query.sort = $scope.sort;
-    $scope.products = api.product.index(query); 
+    query.offset = offset || 1; 
+    query.limit = limit || 10;
+    
+    $scope.results = api.product.index(query);
     $location.search('filter', query.filter)
-             .search('sort', query.sort);
-  };
+             .search('sort', query.sort)
+             .search('offset', query.offset)
+             .search('limit', query.limit); 
+  }; 
+  
+  
+  //TODO: zoptimalizovat
+  $scope.current = 2;
+  $scope.sort = query.sort;
 }
 
 
@@ -155,13 +170,11 @@ function BasketCtrl($scope, $location, basket) {
  */
 
 function CustomerCtrl($scope, $location, basket, transport) {
+  $scope.step = 'customer';
   if (!basket.hasProducts()) {
     $location.path('/kosik');    
     return;
   }
-  
-  $scope.step = 'customer';  
-  $scope.basket = basket;
   
   $scope.customer  = basket.getCustomer();
   $scope.transport = basket.getTransport() || {code: 'personal'};
@@ -181,13 +194,11 @@ function CustomerCtrl($scope, $location, basket, transport) {
  */
 
 function SummaryCtrl($scope, $location, api, basket) {
+  $scope.step = 'summary';
   if (!basket.hasCustomer() || !basket.hasProducts()) {
     $location.path('/kosik');    
     return;
-  } 
-  
-  $scope.step = 'summary'; 
-  $scope.basket = basket;
+  }  
   
   $scope.products   = basket.getAll(); 
   $scope.customer   = basket.getCustomer();

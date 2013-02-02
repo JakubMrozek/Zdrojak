@@ -4,6 +4,8 @@ HOST: http://infinite-ridge-6275.herokuapp.com/api/v1
 ---
 Demo e-shop pro Zdrojak.cz (http://jakubmrozek.github.com/Zdrojak/)
 ---
+
+
 --
 Stranky
 --
@@ -230,10 +232,11 @@ GET /products?url={url}
 
 
 Seznam produktů v kategorii.
-GET /products?category={kategorie}&filter={filter}&sort={sort}
+GET /products?category={kategorie}&filter={filter}&limit={limit}&offset={offset}&sort={sort}
 < 200
 < Content-Type: application/json
-[{"name": "iPhone 4 32GB černý",
+{"count":120,
+"products":[{"name": "iPhone 4 32GB černý",
 "url": "iphone-4-32gb-cerny",
 "perex": "Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.",
 "photo": {"src":"/img/350x300.gif","width":350,"heigth":300},
@@ -280,4 +283,4 @@ GET /products?category={kategorie}&filter={filter}&sort={sort}
 "producer": "Apple",
 "availability": "skladem",
 "price": 15000
-}]
+}]}

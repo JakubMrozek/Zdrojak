@@ -105,3 +105,63 @@ zdrojak.directive('range', function(){
     }
   }
 });
+
+/**
+ * <pagination current="current" count="results.count" itemsOnPage="9" next="next" previous="previous"></pagination>
+ */
+zdrojak.directive('pagination', function(){
+  return {
+    restrict: 'E',
+    replace: true,
+    scope: {
+      count: '=count',
+      limit: '=limit',
+      current: '=current',
+      nextAction: '=next',
+      prevAction: '=prev'
+    },
+    template: '<ul class="pager">' +
+                '<li class="previous"><a>&larr; Předchozí</a></li>' + 
+                '<li>Stránka: {{current}}/{{countPages}}</li>' + 
+                '<li class="next"><a>Další &rarr;</a></li>' +
+              '</ul>',
+   link: function(scope, element) {
+      var children = element.children();
+      var prevLi  = angular.element(children[0]);
+      var nextLi  = angular.element(children[2]);
+      
+      //celkovy pocet stranek
+      scope.countPages = Math.ceil(scope.count / scope.limit);
+      
+      //prechod na predchozi stranku
+      prevLi.bind('click', function(){
+        if (scope.current > 1) {
+          nextLi.removeClass('disabled');
+          scope.current -= 1;    
+        }
+        if (scope.current === 1) {
+          prevLi.addClass('disabled');  
+        } 
+        move(scope.prevAction); 
+      });   
+      
+      //prechod na dalsi stranku
+      nextLi.bind('click', function(){
+        if (scope.current < scope.countPages) {
+          prevLi.removeClass('disabled');
+          scope.current += 1;    
+        }
+        if (scope.current === scope.countPages) {
+          nextLi.addClass('disabled');  
+        } 
+        move(scope.nextAction);  
+      });
+      
+      function move(action) {
+        var offset = scope.current * scope.limit - (scope.limit - 1);
+        action(offset, scope.limit);
+        scope.$apply();
+      }
+    }
+  }
+});
