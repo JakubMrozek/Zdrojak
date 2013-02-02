@@ -117,8 +117,7 @@ zdrojak.directive('pagination', function(){
       count: '=count',
       limit: '=limit',
       current: '=current',
-      nextAction: '=next',
-      prevAction: '=prev'
+      move: '=move'
     },
     template: '<ul class="pager">' +
                 '<li class="previous"><a>&larr; Předchozí</a></li>' + 
@@ -129,8 +128,6 @@ zdrojak.directive('pagination', function(){
       var children = element.children();
       var prevLi  = angular.element(children[0]);
       var nextLi  = angular.element(children[2]);
-      
-      console.log('volani direktivy...' + Math.random());  
       
       //celkovy pocet stranek
       scope.countPages = Math.ceil(scope.count / scope.limit);
@@ -145,7 +142,7 @@ zdrojak.directive('pagination', function(){
         if (scope.current === 1) {
           prevLi.addClass('disabled');  
         } 
-        move(scope.prevAction); 
+        move(); 
       });   
       
       //prechod na dalsi stranku
@@ -158,12 +155,12 @@ zdrojak.directive('pagination', function(){
         if (scope.current === scope.countPages) {
           nextLi.addClass('disabled');  
         } 
-        move(scope.nextAction);  
+        move();  
       });
       
-      function move(action) {
+      function move() {
         var offset = scope.current * scope.limit - (scope.limit - 1);
-        action(offset, scope.limit);
+        scope.move(offset, scope.limit);
         scope.$apply();
       }
     }

@@ -92,7 +92,15 @@ function CategoryCtrl($scope, $routeParams, $location, psearch, api) {
     });
     $scope.price = psearch.getPriceFromUrl(urlParams, $scope.category.maxPrice);
     $scope.sort  = psearch.getSortFromUrl(search, 'price');
-    $scope.load();
+    
+    if (search.offset) {
+      var offset = search.offset;
+      $scope.current = ((offset - 1) / 10) + 1;
+      $scope.load(offset, 10);    
+    } else {
+      $scope.load();    
+    }
+    
   });  
   
   /**
@@ -108,10 +116,8 @@ function CategoryCtrl($scope, $routeParams, $location, psearch, api) {
     query.offset = offset || 1; 
     query.limit = limit || 10;    
     
-    if (!limit) $scope.current = 1;  
-    
     $scope.results = api.product.index(query, function(){
-      console.log('nove vysledky...' +  Math.random());       
+      if (!limit) $scope.current = 1;    
     }); 
   }
  
