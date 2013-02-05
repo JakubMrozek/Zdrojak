@@ -79,6 +79,9 @@ function PageCtrl($scope, $routeParams, api) {
  */
 
 function CategoryCtrl($scope, $routeParams, $location, psearch, api) { 
+  //pocet produktu na stranku v kategorii
+  $scope.limit = 10;
+  
   var search = $location.search();
   var query = {category: $routeParams.category};
   
@@ -93,10 +96,23 @@ function CategoryCtrl($scope, $routeParams, $location, psearch, api) {
     $scope.price = psearch.getPriceFromUrl(urlParams, $scope.category.maxPrice);
     $scope.sort  = psearch.getSortFromUrl(search, 'price');
     
+    //kontrola udaju z URL
     if (search.offset) {
-      var offset = search.offset;
-      $scope.current = ((offset - 1) / 10) + 1;
-      $scope.load(offset, 10);    
+      $scope.current = (search.offset / $scope.limit) + 1;
+      
+      //nesmi to byt zaporne cislo
+      if ($scope.current < 1) {
+        $scope.current = 1;
+        search.offset = 0;
+      }
+      
+      //musi byt delitelne beze zbytku limitem
+      if ((search.offset % $scope.limit) !== 0) {
+        $scope.current = 1;
+        search.offset = 0;
+      }
+      
+      $scope.load(search.offset, $scope.limit);    
     } else {
       $scope.load();    
     }
@@ -113,11 +129,12 @@ function CategoryCtrl($scope, $routeParams, $location, psearch, api) {
     
     query.filter = values.join('@');
     query.sort = $scope.sort;
-    query.offset = offset || 1; 
-    query.limit = limit || 10;    
+    query.offset = offset || 0; 
+    query.limit = limit || $scope.limit;    
     
     $scope.results = api.product.index(query, function(){
-      if (!limit) $scope.current = 1;    
+      if (!limit) $scope.current = 1;
+      
     }); 
   }
  
@@ -127,10 +144,12 @@ function CategoryCtrl($scope, $routeParams, $location, psearch, api) {
    */
   $scope.filter = function(offset, limit) {
     $scope.load(offset, limit);
-    $location.search('filter', query.filter)
-             .search('sort', query.sort)
-             .search('offset', query.offset)
-             .search('limit', query.limit);     
+    $location.search({
+      filter: query.filter, 
+      sort: query.sort, 
+      offset: query.offset, 
+      limit: query.limit     
+    });    
   }; 
 }
 

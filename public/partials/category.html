@@ -36,11 +36,10 @@
     
 </form>
 
-
-<pagination current="current" count="121" limit="10" move="filter"></pagination>
+<pagination current="current" count="results.count" limit="limit" move="filter"></pagination>
 
 <div ng-repeat="product in results.products">
   <div ng-include src="'/partials/_product.html'"></div>
 </div>
 
-<pagination current="current" count="121" limit="10" move="filter"></pagination>
+<pagination current="current" count="results.count" limit="limit" move="filter"></pagination>

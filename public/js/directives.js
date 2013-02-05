@@ -114,12 +114,12 @@ zdrojak.directive('pagination', function(){
     restrict: 'E',
     replace: true,
     scope: {
-      count: '=count',
-      limit: '=limit',
-      current: '=current',
-      move: '=move'
+      count: '=',
+      limit: '=',
+      current: '=',
+      move: '='
     },
-    template: '<ul class="pager">' +
+    template: '<ul class="pager" ng-show="count > limit">' +
                 '<li class="previous"><a>&larr; Předchozí</a></li>' + 
                 '<li>Stránka: {{current}}/{{countPages}}</li>' + 
                 '<li class="next"><a>Další &rarr;</a></li>' +
@@ -129,9 +129,6 @@ zdrojak.directive('pagination', function(){
       var prevLi  = angular.element(children[0]);
       var nextLi  = angular.element(children[2]);
       
-      //celkovy pocet stranek
-      scope.countPages = Math.ceil(scope.count / scope.limit);
-      
       //prechod na predchozi stranku
       prevLi.bind('click', function(){
         if (scope.current <= 1) return; 
@@ -139,11 +136,9 @@ zdrojak.directive('pagination', function(){
           nextLi.removeClass('disabled');
           scope.current -= 1;    
         }
-        if (scope.current === 1) {
-          prevLi.addClass('disabled');  
-        } 
+        disable(prevLi, 1);
         move(); 
-      });   
+      }); 
       
       //prechod na dalsi stranku
       nextLi.bind('click', function(){
@@ -152,14 +147,24 @@ zdrojak.directive('pagination', function(){
           prevLi.removeClass('disabled');
           scope.current += 1;    
         }
-        if (scope.current === scope.countPages) {
-          nextLi.addClass('disabled');  
-        } 
+        disable(nextLi, scope.countPages);
         move();  
       });
+
+      scope.$watch('count', function(){
+        scope.countPages = Math.ceil(scope.count / scope.limit);   
+        disable(prevLi, 1);
+        disable(nextLi, scope.countPages);
+      });
+        
+      function disable(el, page) {
+        if (scope.current === page) {
+          el.addClass('disabled');  
+        }      
+      }
       
       function move() {
-        var offset = scope.current * scope.limit - (scope.limit - 1);
+        var offset = (scope.current - 1) * scope.limit;
         scope.move(offset, scope.limit);
         scope.$apply();
       }
