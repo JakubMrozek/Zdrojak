@@ -42,8 +42,24 @@ angular.module('zdrojakServices', ['ngResource'])
     });
     return basket;
 
-}).factory('psearch', function(){
+});
+
+zdrojak.factory('psearch', function(){
     return {
+      getCurrentFromUrl: function(search, limit) {
+        if (typeof offset === 'undefined') return 1;
+        var current = (search.offset / limit) + 1;    
+        if (current < 1) return 1;
+        if (search.offset % limit !== 0) return 1;
+        return current;
+      }, 
+      getOffsetFromUrl: function(search, limit) {
+        if (this.getCurrentFromUrl(search.offset, limit) === 1) {
+          return 0;    
+        } else {
+          return search.offset;    
+        }
+      }, 
       getSortFromUrl: function(search, def) {
         if (search.sort === 'price' || search.sort === '-price') {
           return search.sort;
@@ -80,6 +96,8 @@ angular.module('zdrojakServices', ['ngResource'])
       }
     }
 });
+
+
 
 
 /**  Mock http */

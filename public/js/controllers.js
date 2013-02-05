@@ -93,29 +93,12 @@ function CategoryCtrl($scope, $routeParams, $location, psearch, api) {
         if(~urlParams[param.code].indexOf(value.code)) value.checked = true;   
       });
     });
-    $scope.price = psearch.getPriceFromUrl(urlParams, $scope.category.maxPrice);
-    $scope.sort  = psearch.getSortFromUrl(search, 'price');
     
-    //kontrola udaju z URL
-    if (search.offset) {
-      $scope.current = (search.offset / $scope.limit) + 1;
-      
-      //nesmi to byt zaporne cislo
-      if ($scope.current < 1) {
-        $scope.current = 1;
-        search.offset = 0;
-      }
-      
-      //musi byt delitelne beze zbytku limitem
-      if ((search.offset % $scope.limit) !== 0) {
-        $scope.current = 1;
-        search.offset = 0;
-      }
-      
-      $scope.load(search.offset, $scope.limit);    
-    } else {
-      $scope.load();    
-    }
+    $scope.price   = psearch.getPriceFromUrl(urlParams, $scope.category.maxPrice);
+    $scope.sort    = psearch.getSortFromUrl(search, 'price');
+    $scope.current = psearch.getCurrentFromUrl(search, $scope.limit);
+    $scope.offset  = psearch.getOffsetFromUrl(search, $scope.limit);
+    $scope.load($scope.offset, $scope.limit); 
     
   });  
   
