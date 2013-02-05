@@ -83,19 +83,20 @@
   -->
   <script src="/lib/angular/angular.js"></script>
   <script src="/lib/angular/i18n/angular-locale_cs-cz.js"></script>
-  <script src="/js/app.js"></script>
-  <script src="/js/services.js"></script>
-  <script src="/js/controllers.js"></script>
-  <script src="/js/filters.js"></script>
-  <script src="/js/directives.js"></script>
   <script src="/lib/angular/angular-resource.js"></script>
   
+  <script src="/js/zdrojak.js"></script>
+  <script src="/js/zdrojak.service.js"></script>
+  <script src="/js/zdrojak.controller.js"></script>
+  <script src="/js/zdrojak.filter.js"></script>
+  <script src="/js/zdrojak.directive.js"></script>
+
   <script src="/js/Basket.js"></script>
   <script src="/js/Transport.js"></script>
   
-  
   <% if (env === 'development' || env === 'test') { %>
   
+  <script src="/js/zdrojak.mock.js"></script>
   <script src="/lib/angular/angular-mocks.js"></script>
   <script src="/apiary.js"></script>
   

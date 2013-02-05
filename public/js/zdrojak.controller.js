@@ -1,13 +1,19 @@
 'use strict';
 
+
+
+(function() {  
+
+var module = angular.module('zdrojak.controller', []);
+
 /**
  * App Controller
  * 
  */
 
-function AppCtrl($scope, basket) {
-  $scope.basket = basket;
-}
+module.controller('AppCtrl', ['$scope', 'basket', function($scope, basket){
+  $scope.basket = basket;        
+}]);
 
 
 /**
@@ -15,11 +21,11 @@ function AppCtrl($scope, basket) {
  * 
  */
 
-function MenuSearchCtrl($scope, $location) {
+module.controller('MenuSearchCtrl', ['$scope', '$location', function($scope, $location) {
   $scope.search = function() {
     $location.url('/vyhledavani/' + $scope.query);    
   }
-}
+}]);
 
 
 /**
@@ -27,9 +33,9 @@ function MenuSearchCtrl($scope, $location) {
  * 
  */
 
-function MenuPagesCtrl($scope, api) {
+module.controller('MenuPagesCtrl', ['$scope', 'api', function($scope, api) {
   $scope.pages = api.page.index({fields: ['name', 'url']});
-}
+}]);
 
 
 /**
@@ -37,9 +43,9 @@ function MenuPagesCtrl($scope, api) {
  * 
  */
 
-function MenuCategoriesCtrl($scope, api) {
+module.controller('MenuCategoriesCtrl', ['$scope', 'api', function($scope, api) {
   $scope.categories = api.category.index();    
-}
+}]);
 
 
 /**
@@ -47,9 +53,9 @@ function MenuCategoriesCtrl($scope, api) {
  * 
  */
 
-function IndexCtrl($scope, api) {
-  $scope.products = api.product.index({homepage: true});  
-}
+module.controller('IndexCtrl', ['$scope', 'api', function($scope, api) {
+  $scope.products = api.product.homepage({homepage: true});  
+}]);
 
 
 /**
@@ -57,10 +63,10 @@ function IndexCtrl($scope, api) {
  * 
  */
 
-function SearchCtrl($scope, $routeParams, api) {
+module.controller('SearchCtrl', ['$scope', '$routeParams', 'api', function ($scope, $routeParams, api) {
   $scope.query = $routeParams.query;
   $scope.products = api.product.index({query: $scope.query});  
-}
+}]);
 
 
 /**
@@ -68,9 +74,9 @@ function SearchCtrl($scope, $routeParams, api) {
  * 
  */
 
-function PageCtrl($scope, $routeParams, api) {
+module.controller('PageCtrl', ['$scope', '$routeParams', 'api', function ($scope, $routeParams, api) {
   $scope.page = api.page.show({url: $routeParams.page});
-}
+}]);
 
 
 /**
@@ -78,7 +84,7 @@ function PageCtrl($scope, $routeParams, api) {
  * 
  */
 
-function CategoryCtrl($scope, $routeParams, $location, psearch, api) { 
+module.controller('CategoryCtrl', ['$scope', '$routeParams', '$location', 'psearch', 'api', function ($scope, $routeParams, $location, psearch, api) { 
   //pocet produktu na stranku v kategorii
   $scope.limit = 10;
   
@@ -134,7 +140,7 @@ function CategoryCtrl($scope, $routeParams, $location, psearch, api) {
       limit: query.limit     
     });    
   }; 
-}
+}]);
 
 
 /**
@@ -142,7 +148,7 @@ function CategoryCtrl($scope, $routeParams, $location, psearch, api) {
  * 
  */
 
-function ProductCtrl($scope, $routeParams, $location, api, basket) {
+module.controller('ProductCtrl', ['$scope', '$routeParams', '$location', 'api', 'basket', function Product($scope, $routeParams, $location, api, basket) {
   $scope.addToBasket = function(variant){
     if (!basket.exist($scope.product.id, variant.name)) {
       basket.add({
@@ -157,7 +163,7 @@ function ProductCtrl($scope, $routeParams, $location, api, basket) {
     $location.path('/kosik');      
   }
   $scope.product = api.product.show({url: $routeParams.product});   
-}
+}]);
 
 
 /**
@@ -165,13 +171,13 @@ function ProductCtrl($scope, $routeParams, $location, api, basket) {
  * 
  */
 
-function BasketCtrl($scope, $location, basket) {
+module.controller('BasketCtrl', ['$scope', '$location', 'basket', function ($scope, $location, basket) {
   $scope.step = 'basket';  
   $scope.products = basket.getAll();
   $scope.next = function() {
     $location.path('/zakaznicke-udaje');      
   };
-}
+}]);
 
 
 /**
@@ -180,7 +186,7 @@ function BasketCtrl($scope, $location, basket) {
  * radio input v ng-repeat: https://github.com/angular/angular.js/issues/1100
  */
 
-function CustomerCtrl($scope, $location, basket, transport) {
+module.controller('CustomerCtrl', ['$scope', '$location', 'basket', 'transport', function ($scope, $location, basket, transport) {
   $scope.step = 'customer';
   if (!basket.hasProducts()) {
     $location.path('/kosik');    
@@ -196,7 +202,7 @@ function CustomerCtrl($scope, $location, basket, transport) {
     basket.updateTransport(transport.get($scope.transport.code));
     $location.path('/potvrzeni');      
   }
-}
+}]);
 
 
 /**
@@ -204,7 +210,7 @@ function CustomerCtrl($scope, $location, basket, transport) {
  * 
  */
 
-function SummaryCtrl($scope, $location, api, basket) {
+module.controller('SummaryCtrl', ['$scope', '$location', 'api', 'basket', function ($scope, $location, api, basket) {
   $scope.step = 'summary';
   if (!basket.hasCustomer() || !basket.hasProducts()) {
     $location.path('/kosik');    
@@ -228,4 +234,6 @@ function SummaryCtrl($scope, $location, api, basket) {
       basket.clear();
     }); 
   }
-}
+}]);
+    
+})();
