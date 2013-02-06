@@ -52,12 +52,12 @@ module.directive('range', function range(){
  * Direktiva zobrazi strankovani.
  * 
  * Pouziti v sablone:
- *   <pagination current="current" count="count" limit="limit" move="filter"></pagination>
+ *   <pagination page="page" count="count" limit="limit" move="filter"></pagination>
  *   
  * Parametry scope:
  *   count - celkovy pocet vysledku
  *   limit - maximalni pocet vysledku na stranku
- *   current - aktualni cislo stranky (nejnizsi je 1)
+ *   page - aktualni cislo stranky (nejnizsi je 1)
  *   move - funkce, ktera bude zavolana pri prechodu na dalsi stranku  
  */
 
@@ -65,37 +65,37 @@ module.directive('pagination', function pagination() {
   var template = 
     '<ul class="pager" ng-show="count > limit">' +
     '<li class="previous"><a>&larr; Předchozí</a></li>' + 
-    '<li>Stránka: {{current}}/{{countPages}}</li>' + 
+    '<li>Stránka: {{page}}/{{countPages}}</li>' + 
     '<li class="next"><a>Další &rarr;</a></li>' +
     '</ul>';
 
   function move(scope) {
-    var offset = (scope.current - 1) * scope.limit;
-    scope.move(offset, scope.limit);
+    var offset = (scope.page - 1) * scope.limit;
+    scope.move(offset, false);
     scope.$apply();
   }
   
   function disable(scope, el, page) {
-    if (scope.current === page) {
+    if (scope.page === page) {
       el.addClass('disabled');  
     }      
   }  
   
   function prev(scope, prevEl, nextEl) {
-    if (scope.current <= 1) return; 
-    if (scope.current > 1) {
+    if (scope.page <= 1) return; 
+    if (scope.page > 1) {
       nextEl.removeClass('disabled');
-      scope.current -= 1;    
+      scope.page -= 1;    
     }
     disable(scope, prevEl, 1);
     move(scope); 
   }
   
   function next(scope, prevEl, nextEl) {
-    if (scope.current >= scope.countPages) return;
-    if (scope.current < scope.countPages) {
+    if (scope.page >= scope.countPages) return;
+    if (scope.page < scope.countPages) {
       prevEl.removeClass('disabled');
-      scope.current += 1;    
+      scope.page += 1;    
     }
     disable(scope, nextEl, scope.countPages);
     move(scope);      
@@ -107,7 +107,7 @@ module.directive('pagination', function pagination() {
     scope: {
       count: '=',
       limit: '=',
-      current: '=',
+      page: '=',
       move: '='
     },
     template: template,

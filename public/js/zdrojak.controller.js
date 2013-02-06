@@ -84,62 +84,71 @@ module.controller('PageCtrl', ['$scope', '$routeParams', 'api', function ($scope
  * 
  */
 
-module.controller('CategoryCtrl', ['$scope', '$routeParams', '$location', 'psearch', 'api', function ($scope, $routeParams, $location, psearch, api) { 
-  //pocet produktu na stranku v kategorii
-  $scope.limit = 10;
-  
-  var search = $location.search();
-  var query = {category: $routeParams.category};
+module.controller('CategoryCtrl', ['$scope', '$routeParams', '$location', 'parametricSearch', 'api', function ($scope, $routeParams, $location, parametricSearch, api) { 
+  var query = {};
+  var ps = parametricSearch({limit: 10, sortColumns: ['price', '-price']});
   
   $scope.category = api.category.show({url: $routeParams.category}, function(){
-    var urlParams = psearch.getParamsFromUrl(search.filter);
     $scope.category.params.forEach(function(param){
-      if (!Array.isArray(urlParams[param.code])) return;
+      var filterParam = ps.getFilterParam(param.code);
+      if (!Array.isArray(filterParam)) return;
       param.values.forEach(function(value){
-        if(~urlParams[param.code].indexOf(value.code)) value.checked = true;   
+        if(~filterParam.indexOf(value.code)) value.checked = true;   
       });
     });
-    
-    $scope.price   = psearch.getPriceFromUrl(urlParams, $scope.category.maxPrice);
-    $scope.sort    = psearch.getSortFromUrl(search, 'price');
-    $scope.current = psearch.getCurrentFromUrl(search, $scope.limit);
-    $scope.offset  = psearch.getOffsetFromUrl(search, $scope.limit);
-    $scope.load($scope.offset, $scope.limit); 
-    
+    $scope.price = ps.getFilterParamString('price', $scope.category.maxPrice);
+    $scope.sort  = ps.getSort();
+    $scope.limit = ps.getLimit();
+    $scope.page  = ps.getPage();
+    $scope.load(ps.getOffset(), false); 
   });  
   
   /**
-   * @param {Number} offset
-   * @param {Number} limit
+   * Nahraje produkty dle nastaveni formulare a 
+   * zmeni URL podle nastaveni formulare.
    */
-  $scope.load = function(offset, limit) {
-    var values = psearch.getValues($scope.category.params);
-    values.push('price:' + $scope.price);
-    
-    query.filter = values.join('@');
-    query.sort = $scope.sort;
-    query.offset = offset || 0; 
-    query.limit = limit || $scope.limit;    
-    
-    $scope.results = api.product.index(query, function(){
-      if (!limit) $scope.current = 1;
-      
-    }); 
-  }
- 
-  /**
-   * @param {Number} offset
-   * @param {Number} limit
-   */
-  $scope.filter = function(offset, limit) {
-    $scope.load(offset, limit);
+  $scope.filter = function(offset, reset) {
+    reset = angular.isDefined(reset) ? reset : true;
+    $scope.load(offset, reset);
     $location.search({
-      filter: query.filter, 
-      sort: query.sort, 
-      offset: query.offset, 
-      limit: query.limit     
+      filter: query.filter, sort: query.sort, 
+      offset: query.offset, limit: query.limit
     });    
   }; 
+  
+  /**
+   * Nahraje produkty podle nastaveni formulare.
+   */
+  $scope.load = function(offset, reset) {
+    query.filter = $scope.serialize();      
+    query.category = $routeParams.category;
+    query.sort   = $scope.sort;
+    query.offset = offset || 0;  
+    query.limit  = $scope.limit;
+    $scope.results = api.product.index(query, function(){
+      if (reset) $scope.page = 1;
+    }); 
+  };
+  
+  /**
+   * Serializuje formular. Projde vsechny hodnoty ve formulare a 
+   * prevede je na retezec, ktery vrati.
+   */
+  $scope.serialize = function() {
+    var values = [];
+    $scope.category.params.forEach(function(param){
+      var vals = [];
+      param.values.forEach(function(value){
+        if (value.checked) vals.push(value.code);
+      });   
+      if (vals.length > 0){
+        values.push(param.code + ':' + vals.join(','));      
+      }
+    });
+    values.push('price:' + $scope.price);
+    return values.join('@'); 
+  };
+  
 }]);
 
 
