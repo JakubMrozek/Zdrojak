@@ -63,9 +63,27 @@ module.controller('IndexCtrl', ['$scope', 'api', function($scope, api) {
  * 
  */
 
-module.controller('SearchCtrl', ['$scope', '$routeParams', 'api', function ($scope, $routeParams, api) {
+module.controller('SearchCtrl', ['$scope', '$routeParams', '$location', 'parametricSearch', 'api', function ($scope, $routeParams, $location, parametricSearch, api) {
+  var query = {};
+  var ps = parametricSearch({limit: 10});
+  
   $scope.query = $routeParams.query;
-  $scope.products = api.product.index({query: $scope.query});  
+  $scope.limit = ps.getLimit();
+  $scope.page  = ps.getPage();
+  
+  $scope.filter = function(offset) {
+    $scope.load(offset);
+    $location.search({offset: query.offset, limit: query.limit});    
+  }; 
+  
+  $scope.load = function(offset) {
+    query.offset = offset || 0;  
+    query.limit  = $scope.limit;
+    query.query  = $scope.query;
+    $scope.results = api.product.index(query); 
+  };
+  
+  $scope.load(ps.getOffset()); 
 }]);
 
 
@@ -103,10 +121,7 @@ module.controller('CategoryCtrl', ['$scope', '$routeParams', '$location', 'param
     $scope.load(ps.getOffset(), false); 
   });  
   
-  /**
-   * Nahraje produkty dle nastaveni formulare a 
-   * zmeni URL podle nastaveni formulare.
-   */
+  //nahraje produkty dle nastaveni formulare a zmeni URL podle nastaveni formulare.
   $scope.filter = function(offset, reset) {
     reset = angular.isDefined(reset) ? reset : true;
     $scope.load(offset, reset);
@@ -116,9 +131,7 @@ module.controller('CategoryCtrl', ['$scope', '$routeParams', '$location', 'param
     });    
   }; 
   
-  /**
-   * Nahraje produkty podle nastaveni formulare.
-   */
+  //nahraje produkty podle nastaveni formulare.
   $scope.load = function(offset, reset) {
     query.filter = $scope.serialize();      
     query.category = $routeParams.category;
@@ -130,10 +143,7 @@ module.controller('CategoryCtrl', ['$scope', '$routeParams', '$location', 'param
     }); 
   };
   
-  /**
-   * Serializuje formular. Projde vsechny hodnoty ve formulare a 
-   * prevede je na retezec, ktery vrati.
-   */
+  //serializuje formular (rojde vsechny hodnoty ve formulare a prevede je na retezec).
   $scope.serialize = function() {
     var values = [];
     $scope.category.params.forEach(function(param){
@@ -148,7 +158,6 @@ module.controller('CategoryCtrl', ['$scope', '$routeParams', '$location', 'param
     values.push('price:' + $scope.price);
     return values.join('@'); 
   };
-  
 }]);
 
 

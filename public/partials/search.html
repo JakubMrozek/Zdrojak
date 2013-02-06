@@ -3,12 +3,10 @@
   <p>Výsledky vyhledávání na frázi &bdquo;{{query}}&ldquo;.</p>
 </div>
 
-<div ng-include src="'/partials/_pagination.html'"></div>
+<pagination page="page" count="results.count" limit="limit" move="filter"></pagination>
 
-<div ng-repeat="product in products">
+<div ng-repeat="product in results.products">
   <div ng-include src="'/partials/_product.html'"></div>
 </div>
 
-<div ng-include src="'/partials/_pagination.html'"></div>
-
-
+<pagination page="page" count="results.count" limit="limit" move="filter"></pagination>

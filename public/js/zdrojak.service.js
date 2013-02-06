@@ -28,8 +28,8 @@ module.factory('api', ['$resource', function($resource) {
     
   //API produkty
   api.product = $resource('/api/v1/products', {}, {
-    index: {method:'GET'},
     homepage: {method:'GET', isArray:true},
+    index: {method:'GET'},
     show: {method:'GET'}
   });
       
@@ -65,7 +65,7 @@ module.factory('basket', ['$window', '$rootScope', function($window, $rootScope)
 
 
 /**
- * TODO
+ * Parametricke vyhledavani
  * 
  */
 

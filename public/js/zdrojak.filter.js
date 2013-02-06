@@ -16,7 +16,7 @@ var module = angular.module('zdrojak.filter', []);
  * @return {String}
  */
 
-module.filter('join', function join(values, delimiter) {
+module.filter('join', function(values, delimiter) {
   if (Array.isArray(values)) {
     return values.join(delimiter);    
   }
