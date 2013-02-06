@@ -82,7 +82,7 @@ ParametricSearch.prototype.getFilterParam = function(name, def) {
  * @return {Object}
  */
 
-ParametricSearch.prototype.getFilterParamString = function(name, def) {
+ParametricSearch.prototype.getFilterParamAsString = function(name, def) {
   return this.getFilterParam(name, def).toString();   
 };
 

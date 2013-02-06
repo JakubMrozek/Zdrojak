@@ -114,7 +114,7 @@ module.controller('CategoryCtrl', ['$scope', '$routeParams', '$location', 'param
         if(~filterParam.indexOf(value.code)) value.checked = true;   
       });
     });
-    $scope.price = ps.getFilterParamString('price', $scope.category.maxPrice);
+    $scope.price = ps.getFilterParamAsString('price', $scope.category.maxPrice);
     $scope.sort  = ps.getSort();
     $scope.limit = ps.getLimit();
     $scope.page  = ps.getPage();
