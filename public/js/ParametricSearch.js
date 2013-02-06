@@ -39,7 +39,7 @@ ParametricSearch.prototype.getParam = function(name, def) {
   if (this._isUndefined(this._params[name])) {
     return def;    
   }
-  return this._params[name] || def;
+  return this._params[name];
 };
 
 
@@ -64,7 +64,10 @@ ParametricSearch.prototype.getFilterParam = function(name, def) {
   if (this._isUndefined(filter)) {
     return def;    
   }
-  return filter[name] || def;
+  if (this._isUndefined(filter[name])) {
+    return def;    
+  }
+  return filter[name];
 };
 
 
