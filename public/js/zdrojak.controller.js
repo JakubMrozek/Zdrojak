@@ -104,7 +104,7 @@ module.controller('PageCtrl', ['$scope', '$routeParams', 'api', function ($scope
 
 module.controller('CategoryCtrl', ['$scope', '$routeParams', '$location', 'parametricSearch', 'api', function ($scope, $routeParams, $location, parametricSearch, api) { 
   var query = {};
-  var ps = parametricSearch({limit: 10, sortColumns: ['price', '-price']});
+  var ps = parametricSearch({limit: 10, orderColumns: ['price', '-price']});
   
   $scope.category = api.category.show({url: $routeParams.category}, function(){
     $scope.category.params.forEach(function(param){
@@ -115,7 +115,7 @@ module.controller('CategoryCtrl', ['$scope', '$routeParams', '$location', 'param
       });
     });
     $scope.price = ps.getFilterParamAsString('price', $scope.category.maxPrice);
-    $scope.sort  = ps.getSort();
+    $scope.order = ps.getOrder();
     $scope.limit = ps.getLimit();
     $scope.page  = ps.getPage();
     $scope.load(ps.getOffset(), false); 
@@ -126,7 +126,7 @@ module.controller('CategoryCtrl', ['$scope', '$routeParams', '$location', 'param
     reset = angular.isDefined(reset) ? reset : true;
     $scope.load(offset, reset);
     $location.search({
-      filter: query.filter, sort: query.sort, 
+      filter: query.filter, order: query.order, 
       offset: query.offset, limit: query.limit
     });    
   }; 
@@ -135,7 +135,7 @@ module.controller('CategoryCtrl', ['$scope', '$routeParams', '$location', 'param
   $scope.load = function(offset, reset) {
     query.filter = $scope.serialize();      
     query.category = $routeParams.category;
-    query.sort   = $scope.sort;
+    query.order   = $scope.order;
     query.offset = offset || 0;  
     query.limit  = $scope.limit;
     $scope.results = api.product.index(query, function(){

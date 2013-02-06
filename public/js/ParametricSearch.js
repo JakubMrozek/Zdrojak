@@ -4,14 +4,14 @@
  * 
  * Konfiguracni parametry:
  *   limit - maximalni pocet objektu na stranku
- *   sortColumns - sloupce, podle kterych je mozne radit
+ *   orderColumns - sloupce, podle kterych je mozne radit
  * 
  * @param {Object} config Konfiguracni objekt.
  */
 
 function ParametricSearch(config) {
   this._limit  = config.limit;
-  this._sortColumns = config.sortColumns;
+  this._orderColumns = config.orderColumns;
 }
 
 
@@ -36,7 +36,7 @@ ParametricSearch.prototype.getParams = function() {
  */
 
 ParametricSearch.prototype.getParam = function(name, def) {
-  if (angular.isUndefined(this._params[name])) {
+  if (this._isUndefined(this._params[name])) {
     return def;    
   }
   return this._params[name] || def;
@@ -61,7 +61,7 @@ ParametricSearch.prototype.getParam = function(name, def) {
 
 ParametricSearch.prototype.getFilterParam = function(name, def) {
   var filter = this.getParam('filter');
-  if (angular.isUndefined(filter)) {
+  if (this._isUndefined(filter)) {
     return def;    
   }
   return filter[name] || def;
@@ -120,7 +120,7 @@ ParametricSearch.prototype.getLimit = function() {
 
 ParametricSearch.prototype.getPage = function() {
   var offset = this._params.offset;
-  if (angular.isUndefined(offset)) return 1;
+  if (this._isUndefined(offset)) return 1;
   var page = (offset / this.getLimit()) + 1; 
   if (page < 1) return 1;
   if (offset % this.getLimit() !== 0) return 1;
@@ -147,12 +147,12 @@ ParametricSearch.prototype.getOffset = function() {
  * @return {String}
  */
 
-ParametricSearch.prototype.getSort =  function() {
-  var key = this._sortColumns.indexOf(this._params.sort);
+ParametricSearch.prototype.getOrder =  function() {
+  var key = this._orderColumns.indexOf(this._params.order);
   if (~key) {
-    return this._sortColumns[key];
+    return this._orderColumns[key];
   } else {
-    return this._sortColumns[0];  
+    return this._orderColumns[0];  
   }
 };
 
@@ -161,15 +161,15 @@ ParametricSearch.prototype.getSort =  function() {
  * Projde vsechny parametry v parametru filter a vytvori z nich objekt.
  * 
  * Priklad URL:
- *   /abc?sort=price&filter=aaa:2@bbb:7,3
+ *   /abc?order=price&filter=aaa:2@bbb:7,3
  * 
- *   ps.getParams() vrati {sort: price, filter: {aaa: ['2'], bbb: ['7', '3']}}
+ *   ps.getParams() vrati {order: price, filter: {aaa: ['2'], bbb: ['7', '3']}}
  */
 
 ParametricSearch.prototype._parseFilter = function() {
   var params = {};
   var filter = this._params.filter;
-  if (angular.isString(filter)) {
+  if (this._isString(filter)) {
     filter.split('@').forEach(function(rule){
       var parts = rule.split(':');
       if (parts.length !== 2) return;
@@ -177,5 +177,14 @@ ParametricSearch.prototype._parseFilter = function() {
     });
   } 
   this._params.filter = params; 
-   
+};
+
+
+ParametricSearch.prototype._isUndefined = function(val) {
+  return typeof val === 'undefined';    
+};
+
+
+ParametricSearch.prototype._isString = function(val) {
+  return typeof val === 'string';    
 };

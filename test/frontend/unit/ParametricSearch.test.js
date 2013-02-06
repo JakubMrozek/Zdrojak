@@ -3,7 +3,7 @@ describe('ParametricSearch', function(){
   var ps;  
   beforeEach(function(){
     ps = new ParametricSearch({
-      limit: 10, sortColumns: ['price', '-price']    
+      limit: 10, orderColumns: ['price', '-price']    
     });  
   });
   
@@ -39,18 +39,18 @@ describe('ParametricSearch', function(){
   
   describe('razeni', function(){
     it('vrati sloupec, podle ktereho se ma strankovat', function(){
-      ps.setParams({sort: '-price'}); 
-      expect(ps.getSort()).toBe('-price');
+      ps.setParams({order: '-price'}); 
+      expect(ps.getOrder()).toBe('-price');
     });
   
     it('vrati vychozi sloupec strankovani, pokud neni zadny zadan', function(){
       ps.setParams({}); 
-      expect(ps.getSort()).toBe('price');
+      expect(ps.getOrder()).toBe('price');
     });      
       
     it('vrati vychozi sloupec strankovani, pokud zadany ve vyctu neexistuje', function(){
-      ps.setParams({sort: 'abc'}); 
-      expect(ps.getSort()).toBe('price');
+      ps.setParams({order: 'abc'}); 
+      expect(ps.getOrder()).toBe('price');
     }); 
   });
   
@@ -68,6 +68,19 @@ describe('ParametricSearch', function(){
       expect(ps.getFilterParam('b')).toEqual(['a','b','c']);
       expect(ps.getFilterParam('c', 42)).toEqual(42);
       expect(ps.getFilterParamAsString('a')).toEqual('123');
+    });
+  });
+  
+  describe('pomocne metody', function(){
+    it('vrati true, pokud je hodnota typu undefined', function(){
+      var abc = {efg: true};
+      expect(ps._isUndefined(abc.abc)).toBeTruthy();
+      expect(ps._isUndefined(abc.efg)).toBeFalsy();
+    });
+    it('vrati true, pokud je hodnota typu retezec', function(){
+      expect(ps._isString('abeceda')).toBeTruthy();
+      expect(ps._isString(1)).toBeFalsy();
+      expect(ps._isString({})).toBeFalsy();
     });
   });
   

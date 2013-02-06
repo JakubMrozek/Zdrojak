@@ -168,7 +168,7 @@ var apiary = [
       {
         "description": "Seznam produktů v kategorii.",
         "method": "GET",
-        "url": "/products?category={kategorie}&filter={filter}&limit={limit}&offset={offset}&sort={sort}",
+        "url": "/products?category={kategorie}&filter={filter}&limit={limit}&offset={offset}&order={order}",
         "request": {
           "headers": {},
           "body": ""

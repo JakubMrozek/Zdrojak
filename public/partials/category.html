@@ -22,13 +22,13 @@
       </ul>
     </fieldset> 
     <div id="category-controls">
-        <span ng-show="sort=='price'">
-          <input ng-click="sort='price';filter()" type="button" class="btn btn-primary" value="Od nejlevnějšího">
-          <input ng-click="sort='-price';filter()" type="button" class="btn" value="Od nejdražšího"> 
+        <span ng-show="order=='price'">
+          <input ng-click="order='price';filter()" type="button" class="btn btn-primary" value="Od nejlevnějšího">
+          <input ng-click="order='-price';filter()" type="button" class="btn" value="Od nejdražšího"> 
         </span>  
-        <span ng-hide="sort=='price'">
-          <input ng-click="sort='price';filter()" type="button" class="btn" value="Od nejlevnějšího">
-          <input ng-click="sort='-price';filter()" type="button" class="btn btn-primary" value="Od nejdražšího"> 
+        <span ng-hide="order=='price'">
+          <input ng-click="order='price';filter()" type="button" class="btn" value="Od nejlevnějšího">
+          <input ng-click="order='-price';filter()" type="button" class="btn btn-primary" value="Od nejdražšího"> 
         </span>  
     </div>
   </div>  
