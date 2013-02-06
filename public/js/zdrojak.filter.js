@@ -16,12 +16,13 @@ var module = angular.module('zdrojak.filter', []);
  * @return {String}
  */
 
-module.filter('join', function(values, delimiter) {
-  if (Array.isArray(values)) {
-    return values.join(delimiter);    
+module.filter('join', function(){
+  return function(values, delimiter) {
+    if (Array.isArray(values)) {
+      return values.join(delimiter);    
+    }
+    return values;  
   }
-  return values;    
 });
-
     
 })();
