@@ -17,6 +17,11 @@
 Seriál E-shop pomocí moderních technologií
 ==========================================
 
+6. díl
+======
+* Článek: http://www.zdrojak.cz/clanky/tvorba-moderniho-eshopu-dokonceni-uzivatelske-casti/
+* Demo: http://shrouded-brook-3499.herokuapp.com/mobily/android
+
 5. díl
 ======
 * Článek: http://www.zdrojak.cz/clanky/tvorba-moderniho-eshopu-kategorie-a-parametricke-hledani/
