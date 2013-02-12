@@ -34,22 +34,26 @@ app.resource('pages', PageController, {base: '/api/v1/'});
  * @param {ServerResponse} res
  */
 
-function render(req, res){
-  res.render('layout', {
-    env: app.settings.env
-  });  
+function render(template) {
+  template = template || 'layout';
+  return function(req, res){
+    res.render(template, {
+      env: app.settings.env
+    });  
+  }
 }
 
 /**
  * Nacteni layoutu a konkretni stranky az u klienta
  */
 
-app.get('/', render);
-app.get('/info/*', render);
-app.get('/vyhledavani/*', render);
-app.get('/mobily/*', render);
-app.get('/mobil/*', render);
-app.get('/kosik', render);
-app.get('/zakaznicke-udaje', render);
-app.get('/potvrzeni', render);   
+app.get('/', render());
+app.get('/info/*', render());
+app.get('/vyhledavani/*', render());
+app.get('/mobily/*', render());
+app.get('/mobil/*', render());
+app.get('/kosik', render());
+app.get('/zakaznicke-udaje', render());
+app.get('/potvrzeni', render());   
+app.get('/admin', render('admin/layout'));   
 module.exports = app;

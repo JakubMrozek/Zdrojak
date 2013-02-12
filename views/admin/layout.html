@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en" ng-app="zdrojak.admin">
+<head>
+  <meta charset="utf-8">
+  <title>Administrace</title>
+  <link rel="stylesheet" href="/css/bootstrap.css"/>
+  <link rel="stylesheet" href="/css/app.css"/>
+</head>
+<body ng-controller="AppCtrl">
+
+  <div class="container">
+     <div class="navbar navbar-inverse">
+      <div class="navbar-inner">
+        <a class="brand" ng-href="/">Administrace</a>
+        <ul id="navigation" class="nav">
+          <li><a ng-href="/admin/">Objednávky</a></li>
+        </ul>
+      </div>
+    </div>
+      
+      
+    <div class="body">
+      <div class="container-fluid">
+        <div class="row-fluid">
+          <div class="span12">
+            <div ng-view></div>
+          </div>
+        </div>
+      </div>
+      <hr>       
+      
+    </div>
+   </div>
+
+  <!-- In production use:
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.2/angular.min.js"></script>
+  -->
+  <script src="/lib/angular/angular.js"></script>
+  <script src="/lib/angular/angular-resource.js"></script>
+  
+  <script src="/js/zdrojak.admin.js"></script>
+  <script src="/js/zdrojak.admin.controller.js"></script>
+  <script src="/js/zdrojak.service.js"></script>
+  <script src="/js/zdrojak.filter.js"></script>
+  <script src="/js/zdrojak.directive.js"></script>
+  
+  <% if (env === 'development' || env === 'test') { %>
+  
+  <script src="/js/zdrojak.mock.js"></script>
+  <script src="/lib/angular/angular-mocks.js"></script>
+  <script src="/apiary.js"></script>
+  
+  <% } %>
+  
+
+</body>
+</html>
