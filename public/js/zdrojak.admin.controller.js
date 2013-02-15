@@ -19,47 +19,22 @@ module.controller('AppCtrl', ['$scope', function($scope){
  * 
  */
 
-module.controller('OrdersCtrl', ['$scope', '$location', 'filter', 'status', 'api', function($scope, $location, filter, status, api) {
-  var query = {};
-  var ps = filter({limit: 10, orderColumns: ['date', '-date']});
+module.controller('OrdersCtrl', ['$scope', 'status', 'form', 'api', function($scope, status, form, api) {
+  var f = $scope.form = form($scope, {
+    limit: 10,
+    orderColumns: ['date', '-date'],
+    filterColumns: ['status', 'date'],
+    querySearch: true
+  });
+  f.init();
   
-  $scope.limit  = ps.getLimit();
-  $scope.page   = ps.getPage();
-  $scope.query  = ps.getParam('query');
-  $scope.date   = ps.getFilterParamAsString('date', '');
-  $scope.status = ps.getFilterParamAsString('status', '');
-  
-  $scope.filter = function(offset, reset) {
-    reset = angular.isDefined(reset) ? reset : true;
-    $scope.load(offset);
-    $location.search({
-      offset: query.offset, 
-      limit: query.limit,
-      filter: query.filter,
-      query: query.query,
-      order: query.order
-    });    
+  $scope.filter = function(offset) {
+    f.setOffset(offset);
+    $scope.results = api.order.index(f.getApiData());
+    f.updateUrl();  
   }; 
   
-  $scope.load = function(offset, reset) {
-    query.offset = offset || 0;  
-    query.query  = $scope.query || '';
-    query.limit  = $scope.limit;
-    query.filter = $scope.serialize();
-    query.order  = ps.getOrder();
-    $scope.results = api.order.index(query, function(){
-      if (reset) $scope.page = 1;
-    }); 
-  };
-  
-  $scope.serialize = function() {
-    var values = [];
-    if ($scope.status) values.push('status:' + $scope.status);
-    if ($scope.date) values.push('date:' + $scope.date);
-    return values.join('@'); 
-  };
-  
-  $scope.load(ps.getOffset());   
+  $scope.results = api.order.index(f.getApiData());
   $scope.statusy = status.all();
 }]);
 
