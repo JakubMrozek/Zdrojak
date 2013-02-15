@@ -1,0 +1,66 @@
+<form class="form-horizontal" ng-submit="filter()">
+  <fieldset class="well">
+    <input type="text" placeholder="Fráze" ng-model="query">
+    <input type="date" class="input-small" placeholder="Datum" ng-model="date">
+    <select ng-model="status" ng-options="s.code as s.name for s in statusy">
+       <option value="">-- stav objednávky --</option>
+    </select>
+    <input class="btn" type="submit" value="Filtrovat">
+  </fieldset>     
+</form>
+
+
+
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Číslo objednávky</th>
+      <th>Datum</th>
+      <th>Zákazník</th>
+      <th>Obsah a cena</th>
+      <th>Stav</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="order in results.orders" class="status-{{order.status.code}}">
+      <td><a ng-href="/admin/orders/{{order.number}}">{{order.number}}</a></td>
+      <td>{{order.date | date:'medium'}}</td>
+      <td ng-init="detail=false">
+        <span ng-click="detail=true" ng-hide="detail">{{order.customer.name}} {{order.customer.surname}}</span>
+        <address ng-click="detail=false" ng-show="detail">
+          {{order.customer.name}} {{order.customer.surname}}<br>
+          {{order.customer.street}}<br>
+          {{order.customer.town}}<br>
+          {{order.customer.zipcode}}
+        </address>
+      </td>
+      <td>
+        <span ng-click="detail=true" ng-hide="detail">{{order.price | currency}}</span>
+        <table ng-click="detail=false" ng-show="detail">
+          <tbody>
+            <tr ng-repeat="product in order.products">
+              <td>{{product.code}} {{product.name}} <br>{{product.variant.name}} </td>
+              <td>{{product.quantity}} ks</td>
+              <td>{{product.price*product.quantity | currency}}</td>
+            </tr>
+            <tr>
+              <td>{{order.transport.name}}</td>
+              <td></td>
+              <td>{{order.transport.price | currency}}</td>
+            </tr>
+            <tr>
+              <th>Celkem</th>
+              <td></td>
+              <th>{{order.price | currency}}</th>
+            </tr>
+          </tbody>
+        </table>
+      </td>
+      <td><a href="#">{{order.status.name}}</a></td>
+    </tr>
+    
+  </tbody>    
+</table>
+
+<pagination page="page" count="results.count" limit="limit" move="filter"></pagination>

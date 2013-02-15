@@ -106,6 +106,66 @@ Objednávky
 --
 
 
+Výběr všech objednávek z databáze.
+GET /orders?filter={filter}&limit={limit}&offset={offset}&order={order}&query={query}
+< 200
+< Content-Type: application/json
+{"count":50,
+"orders":[
+{"number": 123456789,
+"date": "2013-01-30T13:27:00Z",
+"customer":{"name": "Jakub", "surname": "Mrozek", "street": "Ostravská 56", "zipcode": "73701", "town": "Český Těšín"},
+"status": {"code": "pending", "name": "Zpracovává se"},
+"products": [
+  {"code": "AZ007", "name": "iPhone 4 32GB", "variant": {"code": "AZ00701", "name": "Černá barva"}, "price": 15000, "vat": 20, "quantity": 2},
+  {"code": "AZ007", "name": "iPhone 4 32GB", "variant": {"code": "AZ00702", "name": "Bílá barva"}, "price": 15000, "vat": 20, "quantity": 1}
+],
+"transport": {"code": "personal", "name": "Osobní převzetí a platba hotově či kartou", "price": 0},
+"price": 45000},
+{"number": 123456789,
+"date": "2013-01-30T13:27:00Z",
+"customer":{"name": "Jakub", "surname": "Mrozek", "street": "Ostravská 56", "zipcode": "73701", "town": "Český Těšín"},
+"status": {"code": "completed", "name": "Dokončeno"},
+"products": [
+  {"code": "AZ007", "name": "iPhone 4 32GB", "variant": {"code": "AZ00701", "name": "Černá barva"}, "price": 15000, "vat": 20, "quantity": 2},
+  {"code": "AZ007", "name": "iPhone 4 32GB", "variant": {"code": "AZ00702", "name": "Bílá barva"}, "price": 15000, "vat": 20, "quantity": 1}
+],
+"transport": {"code": "personal", "name": "Osobní převzetí a platba hotově či kartou", "price": 0},
+"price": 45000},
+{"number": 123456789,
+"date": "2013-01-30T13:27:00Z",
+"customer":{"name": "Jakub", "surname": "Mrozek", "street": "Ostravská 56", "zipcode": "73701", "town": "Český Těšín"},
+"status": {"code": "completed", "name": "Dokončeno"},
+"products": [
+  {"code": "AZ007", "name": "iPhone 4 32GB", "variant": {"code": "AZ00701", "name": "Černá barva"}, "price": 15000, "vat": 20, "quantity": 2},
+  {"code": "AZ007", "name": "iPhone 4 32GB", "variant": {"code": "AZ00702", "name": "Bílá barva"}, "price": 15000, "vat": 20, "quantity": 1}
+],
+"transport": {"code": "personal", "name": "Osobní převzetí a platba hotově či kartou", "price": 0},
+"price": 45000},
+{"number": 123456789,
+"date": "2013-01-30T13:27:00Z",
+"customer":{"name": "Jakub", "surname": "Mrozek", "street": "Ostravská 56", "zipcode": "73701", "town": "Český Těšín"},
+"status": {"code": "cancelled", "name": "Zrušeno"},
+"products": [
+  {"code": "AZ007", "name": "iPhone 4 32GB", "variant": {"code": "AZ00701", "name": "Černá barva"}, "price": 15000, "vat": 20, "quantity": 2},
+  {"code": "AZ007", "name": "iPhone 4 32GB", "variant": {"code": "AZ00702", "name": "Bílá barva"}, "price": 15000, "vat": 20, "quantity": 1}
+],
+"transport": {"code": "personal", "name": "Osobní převzetí a platba hotově či kartou", "price": 0},
+"price": 45000},
+{"number": 123456789,
+"date": "2013-01-30T13:27:00Z",
+"customer":{"name": "Jakub", "surname": "Mrozek", "street": "Ostravská 56", "zipcode": "73701", "town": "Český Těšín"},
+"status": {"code": "completed", "name": "Dokončeno"},
+"products": [
+  {"code": "AZ007", "name": "iPhone 4 32GB", "variant": {"code": "AZ00701", "name": "Černá barva"}, "price": 15000, "vat": 20, "quantity": 2},
+  {"code": "AZ007", "name": "iPhone 4 32GB", "variant": {"code": "AZ00702", "name": "Bílá barva"}, "price": 15000, "vat": 20, "quantity": 1}
+],
+"transport": {"code": "personal", "name": "Osobní převzetí a platba hotově či kartou", "price": 0},
+"price": 45000}
+]}
+
+
+
 Vložení nové objednávky do databáze.
 POST /orders
 < 200

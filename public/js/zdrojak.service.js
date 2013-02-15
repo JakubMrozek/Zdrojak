@@ -35,6 +35,7 @@ module.factory('api', ['$resource', function($resource) {
       
   //API objednavky
   api.order = $resource('/api/v1/orders', {}, {
+    index: {method:'GET'},
     create: {method: 'POST'}
   });
       
@@ -48,6 +49,15 @@ module.factory('api', ['$resource', function($resource) {
  */
 module.factory('transport', function(){
   return new Transport();
+});
+
+
+/**
+ * Stavy objednavky.
+ * 
+ */
+module.factory('status', function(){
+  return new Status();
 });
 
 

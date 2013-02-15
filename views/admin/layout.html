@@ -11,9 +11,15 @@
   <div class="container">
      <div class="navbar">
       <div class="navbar-inner">
-        <a class="brand" ng-href="/">Administrace</a>
         <ul id="navigation" class="nav">
           <li><a ng-href="/admin/">Objednávky</a></li>
+          <li><a>Produkty</a></li>
+          <li><a>Kategorie</a></li>
+          <li><a>Parametry</a></li>
+          <li><a>Layouty</a></li>
+          <li><a>Výrobci</a></li>
+          <li><a>Záruční doby</a></li>
+          <li><a>Správci</a></li>
         </ul>
       </div>
     </div>
@@ -37,6 +43,7 @@
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.2/angular.min.js"></script>
   -->
   <script src="/lib/angular/angular.js"></script>
+  <script src="/lib/angular/i18n/angular-locale_cs-cz.js"></script>
   <script src="/lib/angular/angular-resource.js"></script>
   
   <script src="/js/zdrojak.admin.js"></script>
@@ -44,6 +51,10 @@
   <script src="/js/zdrojak.service.js"></script>
   <script src="/js/zdrojak.filter.js"></script>
   <script src="/js/zdrojak.directive.js"></script>
+  
+  <script src="/js/Transport.js"></script>
+  <script src="/js/Status.js"></script>
+  <script src="/js/ParametricSearch.js"></script>
   
   <% if (env === 'development' || env === 'test') { %>
   
