@@ -63,9 +63,9 @@ module.controller('IndexCtrl', ['$scope', 'api', function($scope, api) {
  * 
  */
 
-module.controller('SearchCtrl', ['$scope', '$routeParams', '$location', 'parametricSearch', 'api', function ($scope, $routeParams, $location, parametricSearch, api) {
+module.controller('SearchCtrl', ['$scope', '$routeParams', '$location', 'filter', 'api', function ($scope, $routeParams, $location, filter, api) {
   var query = {};
-  var ps = parametricSearch({limit: 10});
+  var ps = filter({limit: 10});
   
   $scope.query = $routeParams.query;
   $scope.limit = ps.getLimit();
@@ -102,9 +102,9 @@ module.controller('PageCtrl', ['$scope', '$routeParams', 'api', function ($scope
  * 
  */
 
-module.controller('CategoryCtrl', ['$scope', '$routeParams', '$location', 'parametricSearch', 'api', function ($scope, $routeParams, $location, parametricSearch, api) { 
+module.controller('CategoryCtrl', ['$scope', '$routeParams', '$location', 'filter', 'api', function ($scope, $routeParams, $location, filter, api) { 
   var query = {};
-  var ps = parametricSearch({limit: 10, orderColumns: ['price', '-price']});
+  var ps = filter({limit: 10, orderColumns: ['price', '-price']});
   
   $scope.category = api.category.show({url: $routeParams.category}, function(){
     $scope.category.params.forEach(function(param){

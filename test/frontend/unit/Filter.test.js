@@ -1,8 +1,8 @@
-describe('ParametricSearch', function(){   
+describe('Filter', function(){   
     
   var ps;  
   beforeEach(function(){
-    ps = new ParametricSearch({
+    ps = new Filter({
       limit: 10, orderColumns: ['price', '-price']    
     });  
   });

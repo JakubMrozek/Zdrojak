@@ -79,9 +79,9 @@ module.factory('basket', ['$window', '$rootScope', function($window, $rootScope)
  * 
  */
 
-module.factory('parametricSearch', ['$location', function($location){
+module.factory('filter', ['$location', function($location){
   return function(config) {
-    var search = new ParametricSearch(config);   
+    var search = new Filter(config);   
     search.setParams($location.search());  
     return search;
   }

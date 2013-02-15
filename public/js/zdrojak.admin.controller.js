@@ -19,15 +19,15 @@ module.controller('AppCtrl', ['$scope', function($scope){
  * 
  */
 
-module.controller('OrdersCtrl', ['$scope', '$location', 'parametricSearch', 'status', 'api', function($scope, $location, parametricSearch, status, api) {
+module.controller('OrdersCtrl', ['$scope', '$location', 'filter', 'status', 'api', function($scope, $location, filter, status, api) {
   var query = {};
-  var ps = parametricSearch({limit: 10, orderColumns: ['date', '-date']});
+  var ps = filter({limit: 10, orderColumns: ['date', '-date']});
   
   $scope.limit  = ps.getLimit();
   $scope.page   = ps.getPage();
   $scope.query  = ps.getParam('query');
-  $scope.date   = ps.getFilterParamAsString('date');
-  $scope.status = ps.getFilterParamAsString('status');
+  $scope.date   = ps.getFilterParamAsString('date', '');
+  $scope.status = ps.getFilterParamAsString('status', '');
   
   $scope.filter = function(offset, reset) {
     reset = angular.isDefined(reset) ? reset : true;
