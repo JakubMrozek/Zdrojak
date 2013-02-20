@@ -303,10 +303,11 @@ module.controller('OrderDetailCtrl', ['$scope', '$routeParams', 'status', 'price
     $scope.update();
   };
   
-  $scope.st = status;  
-  
-  //----
-  
+  $scope.st = status;    
+}]);
+
+
+module.controller('OrderAddProductCtrl', ['$scope', 'api', function($scope, api){
   $scope.openAddDialog = function () {
     $scope.shouldBeOpen = true;
   };
@@ -340,9 +341,7 @@ module.controller('OrderDetailCtrl', ['$scope', '$routeParams', 'status', 'price
     });
     $scope.update();
     $scope.closeAddDialog();
-  };
-  
+  };  
 }]);
-
     
 })();

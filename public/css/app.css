@@ -37,3 +37,7 @@
 #content {
   min-height: 600px;
 }
+
+.button-add-product {
+  text-align: right;
+}
