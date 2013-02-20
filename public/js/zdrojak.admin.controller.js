@@ -48,6 +48,7 @@ module.controller('OrderDetailCtrl', ['$scope', '$routeParams', 'status', 'price
   $scope.order = api.order.show({number: $routeParams.number});
   
   $scope.update = function() {
+    console.log('update');
     $scope.order.price = price.total($scope.order.products, $scope.order.transport.price);
     api.order.update({number: $scope.order.number}, $scope.order);
   };
@@ -57,8 +58,7 @@ module.controller('OrderDetailCtrl', ['$scope', '$routeParams', 'status', 'price
     $scope.update();
   }
   
-  $scope.status = status;
-  
+  $scope.status = status;  
 }]);
 
 
