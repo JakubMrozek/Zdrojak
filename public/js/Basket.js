@@ -4,9 +4,10 @@
  * 
  */
 
-function Basket(window, listener) {
+function Basket(window, listener, price) {
   this._storage = window.localStorage;
   this._listener = listener;
+  this._price = price;
   this._setEventStorage(window);
 }
 
@@ -226,12 +227,7 @@ Basket.prototype.updateTransport = function(data) {
  */
 
 Basket.prototype.priceProducts = function() {
-  var products = this.getAll();
-  var price = 0;
-  for (var id in products) {
-    price += products[id].price * products[id].quantity;
-  }
-  return price;
+  return this._price.products(this.getAll());
 };
 
 
@@ -242,7 +238,7 @@ Basket.prototype.priceProducts = function() {
  */
 
 Basket.prototype.priceTotal = function() {
-  return this.priceProducts() + this.getTransport().price;
+  return this._price.total(this.getAll(), this.getTransport().price);
 };
 
 

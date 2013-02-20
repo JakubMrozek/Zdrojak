@@ -3,7 +3,7 @@ describe('Basket', function(){
   var basket;  
     
   beforeEach(function(){
-    basket = new Basket(window);  
+    basket = new Basket(window, null, new Price());  
     basket.clear();
   });
     
@@ -88,8 +88,11 @@ describe('Basket', function(){
   });
   
   it('spocita celkovou cenu objednavky', function(){
-    basket.priceProducts = function() {
-      return 11000;    
+    basket.getAll = function() {
+      return [
+        {price: 1000, quantity: 10}, 
+        {price: 500, quantity: 2}
+      ];    
     };
     basket.getTransport = function() {
       return {price: 79}; 

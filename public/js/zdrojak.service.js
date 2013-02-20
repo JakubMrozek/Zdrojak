@@ -64,6 +64,15 @@ module.factory('status', function(){
 
 
 /**
+ * Kalkulace objednavky.
+ * 
+ */
+module.factory('price', function(){
+  return new Price();
+});
+
+
+/**
  * Nakupni kosik.
  * 
  */
@@ -71,7 +80,7 @@ module.factory('status', function(){
 module.factory('basket', ['$window', '$rootScope', function($window, $rootScope){
   var basket = new Basket($window, function(){
     $rootScope.$apply();
-  });
+  }, new Price());
   return basket;
 }]);
 

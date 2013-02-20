@@ -44,13 +44,14 @@ module.controller('OrdersCtrl', ['$scope', 'status', 'form', 'api', function($sc
  * 
  */
 
-module.controller('OrderDetailCtrl', ['$scope', '$routeParams', 'status', 'api', function($scope, $routeParams, status, api){
+module.controller('OrderDetailCtrl', ['$scope', '$routeParams', 'status', 'price', 'api', function($scope, $routeParams, status, price, api){
   $scope.order = api.order.show({number: $routeParams.number}, function(){
     $scope.status = $scope.order.status.code;
   });
   
   $scope.update = function() {
     $scope.order.status = status.get($scope.status);
+    $scope.order.price = price.total($scope.order.products, $scope.order.transport.price);
     api.order.update({number: $scope.order.number}, $scope.order);
   };
   
