@@ -22,7 +22,7 @@
   </div>
   <div class="span8">
     
-    <table class="table">
+    <table class="table status-{{order.status.code}}">
       <thead>
         <tr>
           <th>Produkt (varianta)</th>
@@ -49,9 +49,5 @@
           <th>{{order.price | currency}}</th>
         </tr>
       </tbody>
-    </table>    
-    
-    
-  </div>
-  
+    </table>      
 </div>

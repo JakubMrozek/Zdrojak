@@ -40,6 +40,7 @@ module.controller('OrdersCtrl', ['$scope', 'status', 'formFilter', 'api', functi
   
   $scope.results = api.order.index(filter.getApiData());
   $scope.st = status;  
+  
 }]);
 
 
@@ -59,7 +60,7 @@ module.controller('OrderDetailCtrl', ['$scope', '$routeParams', 'status', 'price
   $scope.remove = function(index) {
     $scope.order.products.splice(index, 1);
     $scope.update();
-  }
+  };
   
   $scope.st = status;  
 }]);

@@ -33,3 +33,7 @@
 .order-number {
   font-size: 130%;
 }
+
+#content {
+  min-height: 600px;
+}
