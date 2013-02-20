@@ -17,6 +17,15 @@
 Seriál E-shop pomocí moderních technologií
 ==========================================
 
+8. díl
+======
+* Článek: http://www.zdrojak.cz/clanky/tvorba-moderniho-eshopu-administrace-objednavek/
+* Demo: http://still-refuge-4452.herokuapp.com/admin
+
+7. díl
+======
+* Článek: http://www.zdrojak.cz/clanky/tvorba-moderniho-e-shopu-planovani-administrace/
+
 6. díl
 ======
 * Článek: http://www.zdrojak.cz/clanky/tvorba-moderniho-eshopu-dokonceni-uzivatelske-casti/
