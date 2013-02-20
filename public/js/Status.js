@@ -8,7 +8,7 @@ function Status() {
   this._status = [
     {code: 'pending', name: 'Zpracovává se'},
     {code: 'completed', name: 'Dokončeno'},
-    {code: 'canceled', name: 'Zrušeno'}
+    {code: 'cancelled', name: 'Zrušeno'}
   ]
 }
 

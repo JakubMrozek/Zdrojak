@@ -165,7 +165,6 @@ GET /orders?filter={filter}&limit={limit}&offset={offset}&order={order}&query={q
 ]}
 
 
-
 Vložení nové objednávky do databáze.
 POST /orders
 < 200
@@ -173,12 +172,16 @@ POST /orders
 {"number": "1234567"}
 
 
-
 Editace objednavky v databazi.
 PUT /orders/{number}
 < 204
 < Content-Type: application/json
 
+
+Částečná editace jedné objednávky (např. editace statusu).
+POST /orders/{number}
+< 204
+< Content-Type: application/json
 
 
 Detail objednávky.

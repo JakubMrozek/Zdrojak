@@ -142,6 +142,24 @@ var apiary = [
         ]
       },
       {
+        "description": "Částečná editace jedné objednávky (např. editace statusu).",
+        "method": "POST",
+        "url": "/orders/{number}",
+        "request": {
+          "headers": {},
+          "body": ""
+        },
+        "responses": [
+          {
+            "status": 204,
+            "headers": {
+              "Content-Type": "application/json"
+            },
+            "body": ""
+          }
+        ]
+      },
+      {
         "description": "Detail objednávky.",
         "method": "GET",
         "url": "/orders/{number}",

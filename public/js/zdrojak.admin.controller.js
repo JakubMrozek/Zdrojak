@@ -34,8 +34,13 @@ module.controller('OrdersCtrl', ['$scope', 'status', 'form', 'api', function($sc
     f.updateUrl();  
   }; 
   
+  $scope.updateStatus = function(index) {
+    var order = $scope.results.orders[index];
+    api.order.updateStatus({number: order.number}, order);
+  };
+  
   $scope.results = api.order.index(f.getApiData());
-  $scope.statusy = status.all();
+  $scope.st = status;  
 }]);
 
 
@@ -48,7 +53,6 @@ module.controller('OrderDetailCtrl', ['$scope', '$routeParams', 'status', 'price
   $scope.order = api.order.show({number: $routeParams.number});
   
   $scope.update = function() {
-    console.log('update');
     $scope.order.price = price.total($scope.order.products, $scope.order.transport.price);
     api.order.update({number: $scope.order.number}, $scope.order);
   };
@@ -58,7 +62,7 @@ module.controller('OrderDetailCtrl', ['$scope', '$routeParams', 'status', 'price
     $scope.update();
   }
   
-  $scope.status = status;  
+  $scope.st = status;  
 }]);
 
 

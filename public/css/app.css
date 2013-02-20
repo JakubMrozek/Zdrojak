@@ -29,3 +29,7 @@
 .status-cancelled {
   background-color: rgb(250, 247, 233);  
 }
+
+.order-number {
+  font-size: 130%;
+}
