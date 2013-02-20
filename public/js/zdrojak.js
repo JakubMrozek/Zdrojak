@@ -9,7 +9,8 @@ var module = angular.module('zdrojak', [
   'zdrojak.filter', 
   'zdrojak.directive', 
   'zdrojak.service', 
-  'zdrojak.mock'
+  'zdrojak.mock',
+  'ui.bootstrap'
 ]);
 
 

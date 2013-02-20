@@ -50,4 +50,51 @@
         </tr>
       </tbody>
     </table>      
+    <p><a class="btn" ng-click="openAddDialog()"><i class="icon-plus-sign"></i> Přidat produkt k objednávce</a></p>
+</div>
+  
+  
+  
+<div modal="shouldBeOpen" close="closeAddDialog()" options="addDialogOpts">
+  <div class="modal-header">
+    <h4>Přidání produktu k objednávce</h4>
+  </div>
+  <div class="modal-body">
+    <form class="form-horizontal" ng-submit="filterProducts()">
+      <fieldset class="well">
+        <input type="text" class="input-xlarge" placeholder="Fráze" ng-model="query">
+        <input class="btn" type="submit" value="Hledat">
+      </fieldset>     
+    </form>
+    <table class="table" ng-show="products.products">
+      <thead>
+        <tr>
+          <th>Produkt / cena</th>
+          <th>Varianty</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="product in products.products">
+          <td ng-show="product.variants">
+            {{product.code}} {{product.name}}<br>
+            {{product.price | currency}}
+           </td>
+          <td ng-show="product.variants">
+            <table class="well">
+              <tbody>
+                <tr ng-repeat="variant in product.variants">
+                  <td>{{variant.code}}</td>
+                  <td>{{variant.name}}</td>
+                  <td><input class="btn" type="button" ng-click="add(product, variant)" value="Přidat"></td>
+                </tr>
+              </tbody>
+            </table>        
+          </td>
+        </tr>
+      </tbody>
+    </table>          
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-warning cancel" ng-click="closeAddDialog()">Zrušit</button>
+  </div>
 </div>
