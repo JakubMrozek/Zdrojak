@@ -45,26 +45,19 @@ module.controller('OrdersCtrl', ['$scope', 'status', 'form', 'api', function($sc
  */
 
 module.controller('OrderDetailCtrl', ['$scope', '$routeParams', 'status', 'price', 'api', function($scope, $routeParams, status, price, api){
-  $scope.order = api.order.show({number: $routeParams.number}, function(){
-    $scope.status = $scope.order.status.code;
-  });
+  $scope.order = api.order.show({number: $routeParams.number});
   
   $scope.update = function() {
-    $scope.order.status = status.get($scope.status);
     $scope.order.price = price.total($scope.order.products, $scope.order.transport.price);
     api.order.update({number: $scope.order.number}, $scope.order);
   };
   
   $scope.remove = function(index) {
-    var products = [];
-    $scope.order.products.forEach(function(product, i) {
-      if (index !== i) products.push(product);
-    });
-    $scope.order.products = products;
+    $scope.order.products.splice(index, 1);
     $scope.update();
   }
   
-  $scope.statusy = status.all();
+  $scope.status = status;
   
 }]);
 
