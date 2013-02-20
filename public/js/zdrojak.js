@@ -19,6 +19,7 @@ var module = angular.module('zdrojak', [
  */
 
 module.config(function routes($routeProvider) {
+  //frontend
   $routeProvider.when('/', {templateUrl: '/partials/index.html', controller: 'IndexCtrl'});
   $routeProvider.when('/vyhledavani/:query', {templateUrl: '/partials/search.html', controller: 'SearchCtrl'});
   $routeProvider.when('/info/:page', {templateUrl: '/partials/page.html', controller: 'PageCtrl'});
@@ -27,6 +28,10 @@ module.config(function routes($routeProvider) {
   $routeProvider.when('/kosik', {templateUrl: '/partials/basket.html', controller: 'BasketCtrl'});
   $routeProvider.when('/zakaznicke-udaje', {templateUrl: '/partials/customer.html', controller: 'CustomerCtrl'});
   $routeProvider.when('/potvrzeni', {templateUrl: '/partials/summary.html', controller: 'SummaryCtrl'});
+  
+  //admin
+  $routeProvider.when('/admin', {templateUrl: '/partials/admin/orders.html', controller: 'OrdersCtrl'});
+  $routeProvider.when('/admin/orders/:number', {templateUrl: '/partials/admin/order-detail.html', controller: 'OrderDetailCtrl'});
   $routeProvider.otherwise({redirectTo: '/'});    
 });
 
