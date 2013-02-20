@@ -20,3 +20,18 @@ function Status() {
 Status.prototype.all = function() {
   return this._status;    
 };
+
+
+/**
+ * @param {String} code
+ * @return {Object} 
+ * 
+ */
+
+Status.prototype.get = function(code) {
+  for (var i = 0; i < this._status.length; ++i) {
+    if (this._status[i].code === code) {
+      return this._status[i];
+    }
+  } 
+};

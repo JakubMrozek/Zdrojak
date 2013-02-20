@@ -1,19 +1,21 @@
 <h1>Objednávka číslo {{order.number}}</h1>
 <p>{{order.date | date:'medium'}}</p>
-<p>Stav objednávky: <a>{{order.status.name}}</a></p> 
+<p>Stav objednávky: 
+  <select ng-change="update()" ng-model="status" ng-options="s.code as s.name for s in statusy"></select>
+</p> 
 
 <div class="row">
   <div class="span4">
   
   <address class="well">
     <strong>
-      <span inline model='order.customer.name' action='update'></span> 
-      <span inline model='order.customer.surname' action='update'></span>
+      <inline model='order.customer.name' action='update'></inline> 
+      <inline model='order.customer.surname' action='update'></inline>
     </strong>
     <br>
-    <span inline model='order.customer.street' action='update'></span><br>
-    <span inline model='order.customer.town' action='update'></span><br>
-    <span inline model='order.customer.zipcode' action='update'></span>
+    <inline model='order.customer.street' action='update'></inline><br>
+    <inline model='order.customer.town' action='update'></inline><br>
+    <inline model='order.customer.zipcode' action='update'></inline>
   </address>
   
   </div>
@@ -25,13 +27,15 @@
           <th>Produkt (varianta)</th>
           <th>Množství</th>
           <th>Cena</th>
+          <th></th>
         </tr>
       </thead>
       <tbody>
         <tr ng-repeat="product in order.products">
           <td>{{product.code}} {{product.name}} <br>{{product.variant.name}} </td>
-          <td><span inline model='product.quantity' action='update' type="number" min="1"></span> ks</td>
+          <td><inline model='product.quantity' action='update' type="number" min="1"></inline> ks</td>
           <td>{{product.price*product.quantity | currency}}</td>
+          <td><a ng-click="remove($index)"><i class="icon-trash"></i></a></td>
         </tr>
         <tr>
           <td>{{order.transport.name}}</td>

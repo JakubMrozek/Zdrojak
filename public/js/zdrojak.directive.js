@@ -154,7 +154,7 @@ function inlineFactory(template) {
   }
   
   var config = {
-    restrict: 'EA',
+    restrict: 'E',
     replace: true,
     scope: {
       action: '=',
@@ -197,7 +197,7 @@ function inlineFactory(template) {
 
 
 /**
- * <div inline model='page.text' action='updateDb()'/>
+ * <inline model='page.text' action='updateDb()'/>
  */
 module.directive('inline', inlineFactory(
   '<span>' +

@@ -124,6 +124,24 @@ var apiary = [
         ]
       },
       {
+        "description": "Editace objednavky v databazi.",
+        "method": "PUT",
+        "url": "/orders/{number}",
+        "request": {
+          "headers": {},
+          "body": ""
+        },
+        "responses": [
+          {
+            "status": 204,
+            "headers": {
+              "Content-Type": "application/json"
+            },
+            "body": ""
+          }
+        ]
+      },
+      {
         "description": "Detail objednávky.",
         "method": "GET",
         "url": "/orders/{number}",

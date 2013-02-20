@@ -37,6 +37,7 @@ module.factory('api', ['$resource', function($resource) {
   api.order = $resource('/api/v1/orders/:number', {}, {
     index: {method:'GET'},
     create: {method: 'POST'},
+    update: {method: 'PUT'},
     show: {method: 'GET'}
   });
       
