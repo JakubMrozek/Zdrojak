@@ -91,9 +91,9 @@ module.factory('basket', ['$window', '$rootScope', function($window, $rootScope)
  * 
  */
 
-module.factory('filter', ['$location', function($location){
+module.factory('urlFilter', ['$location', function($location){
   return function(config) {
-    var search = new Filter(config);   
+    var search = new UrlFilter(config);   
     search.setParams($location.search());  
     return search;
   }
@@ -105,76 +105,10 @@ module.factory('filter', ['$location', function($location){
  * 
  */
 
-module.factory('form', ['$location', 'filter', function($location, filter){  
-  
-function Form($scope, config, filter) {
-  this._$scope = $scope;
-  this._filter = filter;
-  this._limit = config.limit || 10;
-  this._orderColumns  = config.orderColumns || [];
-  this._filterColumns = config.filterColumns || [];
-  this._querySearch  = config.querySearch || false;
-  this._offset = this.filter().getOffset();
-}
-
-Form.prototype.serialize = function() {
-  var values = [];
-  for (var i = 0; i < this._filterColumns.length; ++i) {
-    if (this._$scope[this._filterColumns[i]]) {
-      values.push(this._filterColumns[i] + ':' + this._$scope[this._filterColumns[i]]);   
-    }  
+module.factory('formFilter', ['$location', 'urlFilter', function($location, urlFilter){  
+  return function($scope, config) {
+    return new FormFilter($scope, config, urlFilter(config), $location);
   }
-  return values.join('@');  
-};
-
-Form.prototype.updateUrl = function() {
-  var query = this.getApiData();
-  $location.search({
-    offset: query.offset, 
-    limit: query.limit,
-    filter: query.filter,
-    query: query.query,
-    order: query.order
-  });    
-};
-
-Form.prototype.init = function() {
-  this._$scope.limit  = this._filter.getLimit();
-  this._$scope.page   = this._filter.getPage();
-  if (this._querySearch) {
-    this._$scope.query  = this._filter.getParam('query');  
-  }
-  for (var i = 0; i < this._filterColumns.length; ++i) {
-    this._$scope[this._filterColumns[i]] = this._filter.getFilterParamAsString(this._filterColumns[i], '');   
-  }
-};
-
-Form.prototype.getApiData = function() {
-  var query = {};
-  query.offset = this.getOffset();  
-  query.query  = this._$scope.query || '';
-  query.limit  = this._$scope.limit;
-  query.filter = this._$scope.form.serialize();
-  query.order  = this._$scope.form.filter().getOrder();
-  return query;
-};
-
-Form.prototype.getOffset = function() {
-  return this._offset || 0;  
-};
-
-Form.prototype.setOffset = function(offset) {
-  this._offset = offset;  
-};
-
-Form.prototype.filter = function() {
-  return this._filter;
-};
-
-return function($scope, config) {
-  return new Form($scope, config, filter(config));
-}
-
 }]);
 
     

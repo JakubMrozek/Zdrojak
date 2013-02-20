@@ -1,8 +1,8 @@
-describe('Filter', function(){   
+describe('UrlFilter', function(){   
     
   var ps;  
   beforeEach(function(){
-    ps = new Filter({
+    ps = new UrlFilter({
       limit: 10, orderColumns: ['price', '-price']    
     });  
   });

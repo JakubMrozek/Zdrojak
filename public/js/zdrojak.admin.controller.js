@@ -19,19 +19,18 @@ module.controller('AppCtrl', ['$scope', function($scope){
  * 
  */
 
-module.controller('OrdersCtrl', ['$scope', 'status', 'form', 'api', function($scope, status, form, api) {
-  var f = $scope.form = form($scope, {
+module.controller('OrdersCtrl', ['$scope', 'status', 'formFilter', 'api', function($scope, status, formFilter, api) {
+  var filter = $scope.form = formFilter($scope, {
     limit: 10,
     orderColumns: ['date', '-date'],
     filterColumns: ['status', 'date'],
     querySearch: true
   });
-  f.init();
   
   $scope.filter = function(offset) {
-    f.setOffset(offset);
-    $scope.results = api.order.index(f.getApiData());
-    f.updateUrl();  
+    filter.setOffset(offset);
+    $scope.results = api.order.index(filter.getApiData());
+    filter.updateUrl();  
   }; 
   
   $scope.updateStatus = function(index) {
@@ -39,7 +38,7 @@ module.controller('OrdersCtrl', ['$scope', 'status', 'form', 'api', function($sc
     api.order.updateStatus({number: order.number}, order);
   };
   
-  $scope.results = api.order.index(f.getApiData());
+  $scope.results = api.order.index(filter.getApiData());
   $scope.st = status;  
 }]);
 

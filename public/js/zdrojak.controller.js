@@ -63,9 +63,9 @@ module.controller('IndexCtrl', ['$scope', 'api', function($scope, api) {
  * 
  */
 
-module.controller('SearchCtrl', ['$scope', '$routeParams', '$location', 'filter', 'api', function ($scope, $routeParams, $location, filter, api) {
+module.controller('SearchCtrl', ['$scope', '$routeParams', '$location', 'urlFilter', 'api', function ($scope, $routeParams, $location, urlFilter, api) {
   var query = {};
-  var ps = filter({limit: 10});
+  var ps = urlFilter({limit: 10});
   
   $scope.query = $routeParams.query;
   $scope.limit = ps.getLimit();
@@ -102,9 +102,9 @@ module.controller('PageCtrl', ['$scope', '$routeParams', 'api', function ($scope
  * 
  */
 
-module.controller('CategoryCtrl', ['$scope', '$routeParams', '$location', 'filter', 'api', function ($scope, $routeParams, $location, filter, api) { 
+module.controller('CategoryCtrl', ['$scope', '$routeParams', '$location', 'urlFilter', 'api', function ($scope, $routeParams, $location, urlFilter, api) { 
   var query = {};
-  var ps = filter({limit: 10, orderColumns: ['price', '-price']});
+  var ps = urlFilter({limit: 10, orderColumns: ['price', '-price']});
   
   $scope.category = api.category.show({url: $routeParams.category}, function(){
     $scope.category.params.forEach(function(param){

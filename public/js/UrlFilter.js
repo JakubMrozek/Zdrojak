@@ -9,7 +9,7 @@
  * @param {Object} config Konfiguracni objekt.
  */
 
-function Filter(config) {
+function UrlFilter(config) {
   this._limit  = config.limit;
   this._orderColumns = config.orderColumns;
 }
@@ -21,7 +21,7 @@ function Filter(config) {
  * @return {Object}
  */
 
-Filter.prototype.getParams = function() {
+UrlFilter.prototype.getParams = function() {
   return this._params;
 };
 
@@ -35,7 +35,7 @@ Filter.prototype.getParams = function() {
  * @return {Object}
  */
 
-Filter.prototype.getParam = function(name, def) {
+UrlFilter.prototype.getParam = function(name, def) {
   if (this._isUndefined(this._params[name])) {
     return def;    
   }
@@ -59,7 +59,7 @@ Filter.prototype.getParam = function(name, def) {
  * @return {Object}
  */
 
-Filter.prototype.getFilterParam = function(name, def) {
+UrlFilter.prototype.getFilterParam = function(name, def) {
   var filter = this.getParam('filter');
   if (this._isUndefined(filter)) {
     return def;    
@@ -85,7 +85,7 @@ Filter.prototype.getFilterParam = function(name, def) {
  * @return {Object}
  */
 
-Filter.prototype.getFilterParamAsString = function(name, def) {
+UrlFilter.prototype.getFilterParamAsString = function(name, def) {
   return this.getFilterParam(name, def).toString();   
 };
 
@@ -96,7 +96,7 @@ Filter.prototype.getFilterParamAsString = function(name, def) {
  * @param {Object} params 
  */
 
-Filter.prototype.setParams = function(params) {
+UrlFilter.prototype.setParams = function(params) {
   this._params = params;
   this._parseFilter();
 };
@@ -108,7 +108,7 @@ Filter.prototype.setParams = function(params) {
  * @return {Number}
  */
 
-Filter.prototype.getLimit = function() {
+UrlFilter.prototype.getLimit = function() {
   return this._limit;    
 };
 
@@ -121,7 +121,7 @@ Filter.prototype.getLimit = function() {
  * @return {Number}
  */
 
-Filter.prototype.getPage = function() {
+UrlFilter.prototype.getPage = function() {
   var offset = this._params.offset;
   if (this._isUndefined(offset)) return 1;
   var page = (offset / this.getLimit()) + 1; 
@@ -137,7 +137,7 @@ Filter.prototype.getPage = function() {
  * @return {Number}
  */
 
-Filter.prototype.getOffset = function() {
+UrlFilter.prototype.getOffset = function() {
   if (this.getPage() === 1) return 0;
   return this._params.offset;
 };
@@ -150,7 +150,7 @@ Filter.prototype.getOffset = function() {
  * @return {String}
  */
 
-Filter.prototype.getOrder =  function() {
+UrlFilter.prototype.getOrder =  function() {
   var key = this._orderColumns.indexOf(this._params.order);
   if (~key) {
     return this._orderColumns[key];
@@ -169,7 +169,7 @@ Filter.prototype.getOrder =  function() {
  *   ps.getParams() vrati {order: price, filter: {aaa: ['2'], bbb: ['7', '3']}}
  */
 
-Filter.prototype._parseFilter = function() {
+UrlFilter.prototype._parseFilter = function() {
   var params = {};
   var filter = this._params.filter;
   if (this._isString(filter)) {
@@ -183,11 +183,11 @@ Filter.prototype._parseFilter = function() {
 };
 
 
-Filter.prototype._isUndefined = function(val) {
+UrlFilter.prototype._isUndefined = function(val) {
   return typeof val === 'undefined';    
 };
 
 
-Filter.prototype._isString = function(val) {
+UrlFilter.prototype._isString = function(val) {
   return typeof val === 'string';    
 };
