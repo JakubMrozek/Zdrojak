@@ -34,9 +34,10 @@ module.factory('api', ['$resource', function($resource) {
   });
       
   //API objednavky
-  api.order = $resource('/api/v1/orders', {}, {
+  api.order = $resource('/api/v1/orders/:number', {}, {
     index: {method:'GET'},
-    create: {method: 'POST'}
+    create: {method: 'POST'},
+    show: {method: 'GET'}
   });
       
   return api;

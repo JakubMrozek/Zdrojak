@@ -38,5 +38,19 @@ module.controller('OrdersCtrl', ['$scope', 'status', 'form', 'api', function($sc
   $scope.statusy = status.all();
 }]);
 
+
+/**
+ * Detail jedne objednavky.
+ * 
+ */
+
+module.controller('OrderDetailCtrl', ['$scope', '$routeParams', 'api', function($scope, $routeParams, api){
+  $scope.order = api.order.show({number: $routeParams.number});
+  $scope.update = function() {
+    console.log('update');
+  }
+}]);
+
+
     
 })();

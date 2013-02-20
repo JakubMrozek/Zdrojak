@@ -1,0 +1,52 @@
+<h1>Objednávka číslo {{order.number}}</h1>
+<p>{{order.date | date:'medium'}}</p>
+<p>Stav objednávky: <a>{{order.status.name}}</a></p> 
+
+<div class="row">
+  <div class="span4">
+  
+  <address class="well">
+    <strong>
+      <span inline model='order.customer.name' action='update'></span> 
+      <span inline model='order.customer.surname' action='update'></span>
+    </strong>
+    <br>
+    <span inline model='order.customer.street' action='update'></span><br>
+    <span inline model='order.customer.town' action='update'></span><br>
+    <span inline model='order.customer.zipcode' action='update'></span>
+  </address>
+  
+  </div>
+  <div class="span8">
+    
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Produkt (varianta)</th>
+          <th>Množství</th>
+          <th>Cena</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="product in order.products">
+          <td>{{product.code}} {{product.name}} <br>{{product.variant.name}} </td>
+          <td><span inline model='product.quantity' action='update' type="number" min="1"></span> ks</td>
+          <td>{{product.price*product.quantity | currency}}</td>
+        </tr>
+        <tr>
+          <td>{{order.transport.name}}</td>
+          <td></td>
+          <td>{{order.transport.price | currency}}</td>
+        </tr>
+        <tr>
+          <th>Celkem</th>
+          <td></td>
+          <th>{{order.price | currency}}</th>
+        </tr>
+      </tbody>
+    </table>    
+    
+    
+  </div>
+  
+</div>

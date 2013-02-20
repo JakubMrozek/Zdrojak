@@ -122,6 +122,24 @@ var apiary = [
             "body": "{\"number\": \"1234567\"}"
           }
         ]
+      },
+      {
+        "description": "Detail objednávky.",
+        "method": "GET",
+        "url": "/orders/{number}",
+        "request": {
+          "headers": {},
+          "body": ""
+        },
+        "responses": [
+          {
+            "status": 200,
+            "headers": {
+              "Content-Type": "application/json"
+            },
+            "body": "{\"number\": 123456789,\n\"date\": \"2013-01-30T13:27:00Z\",\n\"customer\":{\"name\": \"Jakub\", \"surname\": \"Mrozek\", \"street\": \"Ostravská 56\", \"zipcode\": \"73701\", \"town\": \"Český Těšín\"},\n\"status\": {\"code\": \"completed\", \"name\": \"Dokončeno\"},\n\"products\": [\n  {\"code\": \"AZ007\", \"name\": \"iPhone 4 32GB\", \"variant\": {\"code\": \"AZ00701\", \"name\": \"Černá barva\"}, \"price\": 15000, \"vat\": 20, \"quantity\": 2},\n  {\"code\": \"AZ007\", \"name\": \"iPhone 4 32GB\", \"variant\": {\"code\": \"AZ00702\", \"name\": \"Bílá barva\"}, \"price\": 15000, \"vat\": 20, \"quantity\": 1}\n],\n\"transport\": {\"code\": \"personal\", \"name\": \"Osobní převzetí a platba hotově či kartou\", \"price\": 0},\n\"price\": 45000}"
+          }
+        ]
       }
     ]
   },

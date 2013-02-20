@@ -20,6 +20,7 @@ var module = angular.module('zdrojak.admin', [
 
 module.config(function routes($routeProvider) {
   $routeProvider.when('/admin', {templateUrl: '/partials/admin/orders.html', controller: 'OrdersCtrl'});
+  $routeProvider.when('/admin/orders/:number', {templateUrl: '/partials/admin/order-detail.html', controller: 'OrderDetailCtrl'});
   $routeProvider.otherwise({redirectTo: '/'});    
 });
 

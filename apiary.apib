@@ -173,6 +173,24 @@ POST /orders
 {"number": "1234567"}
 
 
+
+Detail objednávky.
+GET /orders/{number}
+< 200
+< Content-Type: application/json
+{"number": 123456789,
+"date": "2013-01-30T13:27:00Z",
+"customer":{"name": "Jakub", "surname": "Mrozek", "street": "Ostravská 56", "zipcode": "73701", "town": "Český Těšín"},
+"status": {"code": "completed", "name": "Dokončeno"},
+"products": [
+  {"code": "AZ007", "name": "iPhone 4 32GB", "variant": {"code": "AZ00701", "name": "Černá barva"}, "price": 15000, "vat": 20, "quantity": 2},
+  {"code": "AZ007", "name": "iPhone 4 32GB", "variant": {"code": "AZ00702", "name": "Bílá barva"}, "price": 15000, "vat": 20, "quantity": 1}
+],
+"transport": {"code": "personal", "name": "Osobní převzetí a platba hotově či kartou", "price": 0},
+"price": 45000}
+
+
+
 --
 Produkty
 --

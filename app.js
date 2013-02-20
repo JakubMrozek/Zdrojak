@@ -56,4 +56,5 @@ app.get('/kosik', render());
 app.get('/zakaznicke-udaje', render());
 app.get('/potvrzeni', render());   
 app.get('/admin', render('admin/layout'));   
+app.get('/admin/orders/*', render('admin/layout'));  
 module.exports = app;

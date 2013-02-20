@@ -133,6 +133,79 @@ module.directive('pagination', function pagination() {
   }
   return config;
 });
+
+
+
+
+
+
+function inlineFactory(template) {
+  
+  var KEY_CODE_ENTER = 13;
+  
+  function send(scope, el, content) {
+    var newContent = el.text().trim();
+    if (newContent !== '') {
+      scope.$apply('mode=false');
+    }
+    if (newContent !== content) {
+      scope.action();
+    }
+  }
+  
+  var config = {
+    restrict: 'EA',
+    replace: true,
+    scope: {
+      action: '=',
+      model: '=',
+      type: '@',
+      min: '@'
+    },
+    template: template,
+    link: function(scope, element) {
+      var children = element.children();
+      var span  = angular.element(children[0]);
+      var input = angular.element(children[1]);
+
+      //puvodni obsah
+      var content;
+
+      //ztrata focusu, ulozit zmenu
+      input.bind('blur', function(){
+        send(scope, element, content);
+      });
+
+      //uzivatel kliknul na enter, ulozit zmenu
+      input.bind('keypress', function(e){
+        if (e.charCode === KEY_CODE_ENTER) send(scope, element, content);
+      });
+
+      //po kliknuti na text zobrazit input pro editaci
+      span.bind('click', function() {
+        content = element.text().trim();
+        scope.$apply('mode=true');
+        input[0].focus();
+      });
+    }
+  }
+  
+  return function(){
+    return config;
+  }
+}
+
+
+/**
+ * <div inline model='page.text' action='updateDb()'/>
+ */
+module.directive('inline', inlineFactory(
+  '<span>' +
+  '<span ng-hide="mode">{{model}}</span>' +
+  '<input class="input-small" type="{{type}}" min="{{min}}" ng-show="mode" ng-model="model" required>' +
+  '</span>'
+));
+
     
 })();
 
