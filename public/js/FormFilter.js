@@ -93,8 +93,8 @@ FormFilter.prototype.getApiData = function() {
   query.offset = this.getOffset();  
   query.query  = this._$scope.query || '';
   query.limit  = this._$scope.limit;
-  query.filter = this._$scope.form.serialize();
-  query.order  = this._$scope.form.filter().getOrder();
+  query.filter = this.serialize();
+  query.order  = this.filter().getOrder();
   return query;
 };
 

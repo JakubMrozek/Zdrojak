@@ -12,6 +12,7 @@
 function UrlFilter(config) {
   this._limit  = config.limit;
   this._orderColumns = config.orderColumns;
+  this._params = {};
 }
 
 
