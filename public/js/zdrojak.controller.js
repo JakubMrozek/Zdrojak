@@ -354,7 +354,7 @@ module.controller('OrderAddProductCtrl', ['$scope', 'api', function($scope, api)
         name: variant.name
       },
       quantity: 1,
-      vat: 20
+      vat: product.vat
     });
     $scope.update();
     $scope.closeAddDialog();
