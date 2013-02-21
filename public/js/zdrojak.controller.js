@@ -260,7 +260,7 @@ module.controller('SummaryCtrl', ['$scope', '$location', 'api', 'basket', functi
  * 
  */
 
-module.controller('AppAdminCtrl', ['$scope', function($scope){
+module.controller('MenuAdminCtrl', ['$scope', function($scope){
   $scope.$on('$routeChangeSuccess', function ($event, current) {
     $scope.menuItem = current.menuItem;
   });        
