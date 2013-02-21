@@ -6,13 +6,14 @@
   <link rel="stylesheet" href="/css/bootstrap.css"/>
   <link rel="stylesheet" href="/css/app.css"/>
 </head>
-<body>
+<body ng-controller="AppAdminCtrl">
 
   <div class="container">
      <div class="navbar">
       <div class="navbar-inner">
         <ul id="navigation" class="nav">
-          <li><a ng-href="/admin/">Objednávky</a></li>
+          <li ng-show="menuItem == 'orders'" class="active"><a ng-href="/admin/">Objednávky</a></li>
+          <li ng-hide="menuItem == 'orders'"><a ng-href="/admin/">Objednávky</a></li>
           <li><a>Produkty</a></li>
           <li><a>Kategorie</a></li>
           <li><a>Parametry</a></li>

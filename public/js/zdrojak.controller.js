@@ -256,6 +256,18 @@ module.controller('SummaryCtrl', ['$scope', '$location', 'api', 'basket', functi
 
 
 /**
+ * App Admin Controller
+ * 
+ */
+
+module.controller('AppAdminCtrl', ['$scope', function($scope){
+  $scope.$on('$routeChangeSuccess', function ($event, current) {
+    $scope.menuItem = current.menuItem;
+  });        
+}]);
+
+
+/**
  * Administrace - Seznam objednavek.
  * 
  */
@@ -306,6 +318,11 @@ module.controller('OrderDetailCtrl', ['$scope', '$routeParams', 'status', 'price
   $scope.st = status;    
 }]);
 
+
+/**
+ * Administrace - Pridani produktu k objednavce.
+ * 
+ */
 
 module.controller('OrderAddProductCtrl', ['$scope', 'api', function($scope, api){
   $scope.openAddDialog = function () {
