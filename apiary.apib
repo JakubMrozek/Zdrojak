@@ -381,3 +381,59 @@ GET /products?category={kategorie}&filter={filter}&limit={limit}&offset={offset}
 "availability": "skladem",
 "price": 15000
 }]}
+
+
+Seznam produktů v administraci.
+GET /products?filter={filter}&limit={limit}&offset={offset}&order={order}&query={query}
+< 200
+< Content-Type: application/json
+{"count":120,
+"products":[
+{"id": 12345,
+"name": "iPhone 4 32GB bílý",
+"code": "AZ007",
+"photo": {"src":"/img/100x100.gif","width":100,"heigth":100},
+"availability": "skladem",
+"price": 15000,
+"status": 0
+},
+{"id": 12345,
+"name": "iPhone 4 32GB černý",
+"code": "AZ007",
+"photo": {"src":"/img/100x100.gif","width":100,"heigth":100},
+"availability": "skladem",
+"price": 17000,
+"status": 1
+},
+{"id": 12345,
+"name": "iPhone 4 32GB modrý",
+"code": "AZ007",
+"photo": {"src":"/img/100x100.gif","width":100,"heigth":100},
+"availability": "skladem",
+"price": 16000,
+"status": 1
+},
+{"id": 12345,
+"name": "iPhone 4 32GB bílý",
+"code": "AZ007",
+"photo": {"src":"/img/100x100.gif","width":100,"heigth":100},
+"availability": "skladem",
+"price": 15000,
+"status": 0
+},
+{"id": 12345,
+"name": "iPhone 4 32GB bílý",
+"code": "AZ007",
+"photo": {"src":"/img/100x100.gif","width":100,"heigth":100},
+"availability": "skladem",
+"price": 15000,
+"status": 1
+},
+{"id": 12345,
+"name": "iPhone 4 32GB bílý",
+"code": "AZ007",
+"photo": {"src":"/img/100x100.gif","width":100,"heigth":100},
+"availability": "skladem",
+"price": 15000,
+"status": 1
+}]}

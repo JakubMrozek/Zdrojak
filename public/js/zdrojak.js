@@ -31,9 +31,9 @@ module.config(function routes($routeProvider) {
   $routeProvider.when('/potvrzeni', {templateUrl: '/partials/summary.html', controller: 'SummaryCtrl'});
   
   //admin
-  $routeProvider.when('/admin', {templateUrl: '/partials/admin/orders.html', controller: 'OrdersCtrl', menuItem: 'orders'});
+  $routeProvider.when('/admin', {templateUrl: '/partials/admin/orders.html', controller: 'OrdersCtrl', menuItem: 'orders', reloadOnSearch: false});
   $routeProvider.when('/admin/orders/:number', {templateUrl: '/partials/admin/order-detail.html', controller: 'OrderDetailCtrl', menuItem: 'orders'});
-  $routeProvider.when('/admin/products', {templateUrl: '/partials/admin/products.html', controller: 'ProductsCtrl', menuItem: 'products'});
+  $routeProvider.when('/admin/products', {templateUrl: '/partials/admin/products.html', controller: 'ProductsCtrl', menuItem: 'products', reloadOnSearch: false});
   $routeProvider.when('/admin/products/:id', {templateUrl: '/partials/admin/product-detail.html', controller: 'ProductDetailCtrl', menuItem: 'products'});
   $routeProvider.otherwise({redirectTo: '/'});    
 });

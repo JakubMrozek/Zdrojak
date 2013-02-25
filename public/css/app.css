@@ -30,6 +30,10 @@
   background-color: rgb(250, 247, 233);  
 }
 
+.status-1 {
+  background-color: rgb(240, 250, 236); 
+}
+
 .order-number {
   font-size: 130%;
 }
@@ -40,4 +44,18 @@
 
 .button-add-product {
   text-align: right;
+}
+
+#admin-products {
+  margin: 0 0 20px 5px !important;
+  margin-left: 10px;
+}
+
+.admin-h2 {
+  font-size: 130%;
+  padding-left: 10px;
+}
+
+.admin-photo {
+  padding-left: 25px;
 }

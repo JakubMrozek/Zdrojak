@@ -377,18 +377,18 @@ module.controller('ProductsCtrl', ['$scope', 'formFilter', 'availability', 'api'
   
   $scope.filter = function(offset) {
     filter.setOffset(offset);
-    $scope.results = api.order.index(filter.getApiData());
+    $scope.results = api.product.index(filter.getApiData());
     filter.updateUrl();  
   }; 
-  
+   
+  /*
   $scope.updateStatus = function(index) {
     //api.order.updateStatus({number: product.number}, product);
   };
-  
-  //$scope.results = api.product.index(filter.getApiData());
+  */
+
+  $scope.results = api.product.index(filter.getApiData());
   $scope.av = availability; 
-  
-  
 }]);
     
     

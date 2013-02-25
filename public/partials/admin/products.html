@@ -19,3 +19,37 @@
 </form>
 
 <hr />
+
+<div class="row product-card-content">
+  <div ng-repeat="product in results.products">
+    <div class="span6">
+      <h2 class="admin-h2"><a ng-href="/admin/products/{{product.id}}">{{product.name}}</a> <small>(kód: {{product.code}})</small></h2>
+      <div class="row">
+        <div class="span4 admin-photo">
+          <p><a ng-href="/admin/products/{{product.id}}"><img ng-src="{{product.photo.src}}" width="{{product.photo.width}}" height="{{product.photo.height}}"></a></p>
+        </div>
+        <div class="span8">
+          <table class="table status-{{product.status}}">
+            <tbody>
+              <tr>
+                <th>Cena:</th>
+                <td>{{product.price | currency}}</td>
+              </tr>
+              <tr>
+                <th>Dostupnost:</th>
+                <td>{{product.availability}}</td>
+              </tr>
+              <tr>
+                <th>Stav:</th>
+                <td ng-show="product.status">Aktivní</td>
+                <td ng-hide="product.status">Deaktivován</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<pagination page="page" count="results.count" limit="limit" move="filter"></pagination>
