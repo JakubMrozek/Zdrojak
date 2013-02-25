@@ -437,3 +437,9 @@ GET /products?filter={filter}&limit={limit}&offset={offset}&order={order}&query=
 "price": 15000,
 "status": 1
 }]}
+
+
+Částečná editace jednoho produktu (např. editace stavu).
+POST /products/{id}
+< 204
+< Content-Type: application/json

@@ -272,6 +272,24 @@ var apiary = [
             "body": "{\"count\":120,\n\"products\":[\n{\"id\": 12345,\n\"name\": \"iPhone 4 32GB bílý\",\n\"code\": \"AZ007\",\n\"photo\": {\"src\":\"/img/100x100.gif\",\"width\":100,\"heigth\":100},\n\"availability\": \"skladem\",\n\"price\": 15000,\n\"status\": 0\n},\n{\"id\": 12345,\n\"name\": \"iPhone 4 32GB černý\",\n\"code\": \"AZ007\",\n\"photo\": {\"src\":\"/img/100x100.gif\",\"width\":100,\"heigth\":100},\n\"availability\": \"skladem\",\n\"price\": 17000,\n\"status\": 1\n},\n{\"id\": 12345,\n\"name\": \"iPhone 4 32GB modrý\",\n\"code\": \"AZ007\",\n\"photo\": {\"src\":\"/img/100x100.gif\",\"width\":100,\"heigth\":100},\n\"availability\": \"skladem\",\n\"price\": 16000,\n\"status\": 1\n},\n{\"id\": 12345,\n\"name\": \"iPhone 4 32GB bílý\",\n\"code\": \"AZ007\",\n\"photo\": {\"src\":\"/img/100x100.gif\",\"width\":100,\"heigth\":100},\n\"availability\": \"skladem\",\n\"price\": 15000,\n\"status\": 0\n},\n{\"id\": 12345,\n\"name\": \"iPhone 4 32GB bílý\",\n\"code\": \"AZ007\",\n\"photo\": {\"src\":\"/img/100x100.gif\",\"width\":100,\"heigth\":100},\n\"availability\": \"skladem\",\n\"price\": 15000,\n\"status\": 1\n},\n{\"id\": 12345,\n\"name\": \"iPhone 4 32GB bílý\",\n\"code\": \"AZ007\",\n\"photo\": {\"src\":\"/img/100x100.gif\",\"width\":100,\"heigth\":100},\n\"availability\": \"skladem\",\n\"price\": 15000,\n\"status\": 1\n}]}"
           }
         ]
+      },
+      {
+        "description": "Částečná editace jednoho produktu (např. editace stavu).",
+        "method": "POST",
+        "url": "/products/{id}",
+        "request": {
+          "headers": {},
+          "body": ""
+        },
+        "responses": [
+          {
+            "status": 204,
+            "headers": {
+              "Content-Type": "application/json"
+            },
+            "body": ""
+          }
+        ]
       }
     ]
   }

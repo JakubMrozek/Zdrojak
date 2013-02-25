@@ -59,3 +59,7 @@
 .admin-photo {
   padding-left: 25px;
 }
+
+#admin-products-imgs img {
+  padding: 5px;
+}

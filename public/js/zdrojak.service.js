@@ -11,30 +11,45 @@ var module = angular.module('zdrojak.service', ['ngResource']);
  * Definice API.
  */
 
-module.factory('api', ['$resource', function($resource) {
+module.factory('api', ['$resource', '$http', function($resource, $http) {
   var api = {};
+  
+  var url = '/api/v1/';
     
   //API stranek
-  api.page = $resource('/api/v1/pages/:page', {}, {
+  api.page = $resource(url + 'pages/:page', {}, {
     index: {method:'GET', isArray:true},
     show: {method:'GET'}
   });
     
   //API kategorie
-  api.category = $resource('/api/v1/categories', {}, {
+  api.category = $resource(url + 'categories', {}, {
     index: {method:'GET', isArray:true},
     show: {method:'GET'}
   });
     
   //API produkty
-  api.product = $resource('/api/v1/products', {}, {
+  api.product = $resource(url + 'products/:id', {}, {
     homepage: {method:'GET', isArray:true},
     index: {method:'GET'},
-    show: {method:'GET'}
+    show: {method:'GET'},
+    update: {method: 'POST'}
   });
+  
+  //posilani souboru
+  api.product.upload = function(params, data) {
+    return $http.post(url + 'products/' + params.id, data, {
+      headers: { 
+        'Content-Type': false 
+      },
+      transformRequest: function(data) { 
+        return data; 
+      }
+    });
+  }
       
   //API objednavky
-  api.order = $resource('/api/v1/orders/:number', {}, {
+  api.order = $resource(url + 'orders/:number', {}, {
     index: {method:'GET'},
     show: {method: 'GET'},
     create: {method: 'POST'},

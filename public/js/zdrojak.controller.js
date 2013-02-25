@@ -363,7 +363,7 @@ module.controller('OrderAddProductCtrl', ['$scope', 'api', function($scope, api)
 
 
 /**
- * Administrace - Detail jedne objednavky.
+ * Administrace - Seznam produktu.
  * 
  */
 
@@ -381,14 +381,35 @@ module.controller('ProductsCtrl', ['$scope', 'formFilter', 'availability', 'api'
     filter.updateUrl();  
   }; 
    
-  /*
-  $scope.updateStatus = function(index) {
-    //api.order.updateStatus({number: product.number}, product);
-  };
-  */
-
   $scope.results = api.product.index(filter.getApiData());
   $scope.av = availability; 
+}]);
+
+
+/**
+ * Administrace - Detail jednoho produktu.
+ * 
+ */
+
+module.controller('ProductDetailCtrl', ['$scope', '$routeParams', '$window', 'api', function($scope, $routeParams, $window, api) {
+  var file = $window.document.getElementById('file');
+  var data = new $window.FormData();
+
+  $scope.upload = function() {
+    for (var i = 0; i < file.files.length; ++i) {
+      createImg(i, file.files[i]);
+    }
+    api.product.upload({id: $routeParams.id}, data);
+    file.value = '';
+  };
+  
+  function createImg (id, url) {
+    var img = $window.document.createElement('img');
+    img.src = $window.URL.createObjectURL(url);
+    img.width = 100;
+    $window.document.getElementById('admin-products-imgs').appendChild(img);
+    data.append('file_' + id, url);
+  };
 }]);
     
     

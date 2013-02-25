@@ -22,7 +22,7 @@ exports.configure = function(app) {
     app.use(express.static(process.cwd() + '/public'));
     app.use(express.favicon());
     app.use(require('./middleware/http406')());
-    app.use(require('./middleware/http415')());
+   // app.use(require('./middleware/http415')());
     app.use(require('./middleware/fields')());
     app.use(app.router);
     app.use(require('./middleware/error')());
