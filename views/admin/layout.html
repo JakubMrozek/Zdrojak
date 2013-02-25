@@ -14,7 +14,8 @@
         <ul id="navigation" class="nav" ng-controller="MenuAdminCtrl">
           <li ng-show="menuItem == 'orders'" class="active"><a ng-href="/admin/">Objednávky</a></li>
           <li ng-hide="menuItem == 'orders'"><a ng-href="/admin/">Objednávky</a></li>
-          <li><a>Produkty</a></li>
+          <li ng-show="menuItem == 'products'" class="active"><a ng-href="/admin/products">Produkty</a></li>
+          <li ng-hide="menuItem == 'products'"><a ng-href="/admin/products">Produkty</a></li>
           <li><a>Kategorie</a></li>
           <li><a>Parametry</a></li>
           <li><a>Layouty</a></li>
@@ -57,6 +58,7 @@
   <script src="/js/Price.js"></script>
   <script src="/js/Transport.js"></script>
   <script src="/js/Status.js"></script>
+  <script src="/js/Availability.js"></script>
   <script src="/js/UrlFilter.js"></script>
   <script src="/js/FormFilter.js"></script>
   

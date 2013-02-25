@@ -359,6 +359,37 @@ module.controller('OrderAddProductCtrl', ['$scope', 'api', function($scope, api)
     $scope.update();
     $scope.closeAddDialog();
   };  
+}]);   
+
+
+/**
+ * Administrace - Detail jedne objednavky.
+ * 
+ */
+
+module.controller('ProductsCtrl', ['$scope', 'formFilter', 'availability', 'api', function($scope, formFilter, availability, api) {
+  var filter = $scope.form = formFilter($scope, {
+    limit: 10,
+    orderColumns: ['date', '-date'],
+    filterColumns: ['status', 'availability', 'homepage'],
+    querySearch: true
+  });
+  
+  $scope.filter = function(offset) {
+    filter.setOffset(offset);
+    $scope.results = api.order.index(filter.getApiData());
+    filter.updateUrl();  
+  }; 
+  
+  $scope.updateStatus = function(index) {
+    //api.order.updateStatus({number: product.number}, product);
+  };
+  
+  //$scope.results = api.product.index(filter.getApiData());
+  $scope.av = availability; 
+  
+  
 }]);
+    
     
 })();

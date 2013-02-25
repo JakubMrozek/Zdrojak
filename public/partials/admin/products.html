@@ -1,0 +1,21 @@
+<h1>Produkty</h1>
+
+<form class="form-inline" ng-submit="filter()">
+  <fieldset class="well">
+    <input type="text" placeholder="Fráze" ng-model="query">
+    <select ng-model="availability" ng-options="a.code as a.name for a in av.all()">
+       <option value="">-- dostupnost --</option>
+    </select>
+    <select class="span2" ng-model="status">
+       <option value="">-- stav --</option>
+       <option value="1">Aktivní</option>
+       <option value="0">Deaktivován</option>
+    </select>
+    <label class="checkbox">
+      <input ng-true-value="1" ng-false-value="0" type="checkbox" ng-model="homepage"> Úvodní stránka
+    </label>
+    <input class="btn" type="submit" value="Filtrovat">
+  </fieldset>     
+</form>
+
+<hr />

@@ -65,6 +65,15 @@ module.factory('status', function(){
 
 
 /**
+ * Dostupnost produktu.
+ * 
+ */
+module.factory('availability', function(){
+  return new Availability();
+});
+
+
+/**
  * Kalkulace objednavky.
  * 
  */
