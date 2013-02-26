@@ -393,18 +393,25 @@ module.controller('ProductsCtrl', ['$scope', 'formFilter', 'availability', 'api'
 
 module.controller('ProductDetailCtrl', ['$scope', '$routeParams', '$window', 'api', 'uploadFile', function($scope, $routeParams, $window, api, uploadFile) {
   $scope.imgs = [];
+  $scope.progress = 0;
   
   var error = function() {
-    $scope.progressVisible = false;
+    $scope.$apply(function(){
+      $scope.pbar = false;  
+    });
   }
   
   var cancel = function() {
-    $scope.progressVisible = false;
+    $scope.$apply(function(){
+      $scope.pbar = false;  
+    });
   }
   
   var complete = function() {
-    $scope.file.value = '';
-    $scope.progressVisible = false;
+    $scope.$apply(function(){
+      $scope.file.value = '';
+      $scope.pbar = false;  
+    });
   }
   
   var progress = function(evt) {
@@ -424,23 +431,9 @@ module.controller('ProductDetailCtrl', ['$scope', '$routeParams', '$window', 'ap
       $scope.imgs.push(src);
     }
     
-    $scope.progressVisible = true;
+    $scope.pbar = true;
     api.product.upload({id: $routeParams.id, upload: upload}, complete, error, cancel, progress);
   }
-  
-  /*
-  var file = $window.document.getElementById('file');
-  $scope.upload = function() {
-    var upload = uploadFile();
-    upload.setFiles(file.files);
-    for (var i = 0; i < file.files.length; ++i) {
-      var src = $window.URL.createObjectURL(file.files[i]);
-      $scope.imgs.push(src);
-    }
-    api.product.upload({id: $routeParams.id, upload: upload});
-    file.value = '';
-  };
-  */
   
 }]);
     

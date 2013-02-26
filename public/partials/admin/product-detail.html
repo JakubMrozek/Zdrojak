@@ -8,12 +8,7 @@
     <form ng-submit="upload()" enctype="multipart/form-data">
       <input id="file" type="file" ng-model="file" upload="upload" multiple> 
     </form>
-    <div ng-show="progressVisible">
-      <div class="percent">{{progress}}%</div>
-      <div class="progress-bar">
-        <div class="uploaded" ng-style="{'width': progress+'%'}"></div>
-      </div>
-    </div>    
+    <p ng-show="pbar"><progress value="{{progress}}" max="100"></progress> {{progress}}%</p>
     <div id="admin-products-imgs">
       <img ng-repeat="img in imgs" ng-src="{{img}}" width="100">
     </div>
