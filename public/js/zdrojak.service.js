@@ -11,7 +11,7 @@ var module = angular.module('zdrojak.service', ['ngResource']);
  * Definice API.
  */
 
-module.factory('api', ['$resource', '$http', function($resource, $http) {
+module.factory('api', ['$resource', function($resource) {
   var api = {};
   
   var url = '/api/v1/';
@@ -37,15 +37,15 @@ module.factory('api', ['$resource', '$http', function($resource, $http) {
   });
   
   //posilani souboru
-  api.product.upload = function(params, data) {
-    return $http.post(url + 'products/' + params.id, data, {
-      headers: { 
-        'Content-Type': false 
-      },
-      transformRequest: function(data) { 
-        return data; 
-      }
-    });
+  api.product.upload = function(params, completeFn, errorFn, cancelFn, progressFn) {
+    params.upload.upload(
+      'POST', 
+      url + 'products/' + params.id, 
+      completeFn, 
+      errorFn, 
+      cancelFn, 
+      progressFn
+    );
   }
       
   //API objednavky
@@ -134,6 +134,17 @@ module.factory('formFilter', ['$location', 'urlFilter', function($location, urlF
     return new FormFilter($scope, config, urlFilter(config), $location);
   }
 }]);
+
+
+/**
+ * Nahravani souboru. 
+ * 
+ */
+module.factory('uploadFile', function(){  
+  return function() {
+    return new Upload(new XMLHttpRequest(), new FormData());
+  }
+});
 
     
 })();

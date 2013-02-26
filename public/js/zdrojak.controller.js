@@ -391,25 +391,57 @@ module.controller('ProductsCtrl', ['$scope', 'formFilter', 'availability', 'api'
  * 
  */
 
-module.controller('ProductDetailCtrl', ['$scope', '$routeParams', '$window', 'api', function($scope, $routeParams, $window, api) {
-  var file = $window.document.getElementById('file');
-  var data = new $window.FormData();
-
-  $scope.upload = function() {
-    for (var i = 0; i < file.files.length; ++i) {
-      createImg(i, file.files[i]);
+module.controller('ProductDetailCtrl', ['$scope', '$routeParams', '$window', 'api', 'uploadFile', function($scope, $routeParams, $window, api, uploadFile) {
+  $scope.imgs = [];
+  
+  var error = function() {
+    $scope.progressVisible = false;
+  }
+  
+  var cancel = function() {
+    $scope.progressVisible = false;
+  }
+  
+  var complete = function() {
+    $scope.file.value = '';
+    $scope.progressVisible = false;
+  }
+  
+  var progress = function(evt) {
+    $scope.$apply(function(){
+      if (evt.lengthComputable) {
+        $scope.progress = Math.round(evt.loaded * 100 / evt.total)
+      } 
+    })
+  }
+  
+  $scope.upload = function(element) {
+    $scope.file = element;
+    var upload = uploadFile();
+    upload.setFiles($scope.file.files);
+    for (var i = 0; i < $scope.file.files.length; ++i) {
+      var src = $window.URL.createObjectURL($scope.file.files[i]);
+      $scope.imgs.push(src);
     }
-    api.product.upload({id: $routeParams.id}, data);
+    
+    $scope.progressVisible = true;
+    api.product.upload({id: $routeParams.id, upload: upload}, complete, error, cancel, progress);
+  }
+  
+  /*
+  var file = $window.document.getElementById('file');
+  $scope.upload = function() {
+    var upload = uploadFile();
+    upload.setFiles(file.files);
+    for (var i = 0; i < file.files.length; ++i) {
+      var src = $window.URL.createObjectURL(file.files[i]);
+      $scope.imgs.push(src);
+    }
+    api.product.upload({id: $routeParams.id, upload: upload});
     file.value = '';
   };
+  */
   
-  function createImg (id, url) {
-    var img = $window.document.createElement('img');
-    img.src = $window.URL.createObjectURL(url);
-    img.width = 100;
-    $window.document.getElementById('admin-products-imgs').appendChild(img);
-    data.append('file_' + id, url);
-  };
 }]);
     
     
