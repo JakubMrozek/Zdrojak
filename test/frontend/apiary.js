@@ -238,6 +238,24 @@ var apiary = [
         ]
       },
       {
+        "description": "Detail produktu podle ID.",
+        "method": "GET",
+        "url": "/products/{id}",
+        "request": {
+          "headers": {},
+          "body": ""
+        },
+        "responses": [
+          {
+            "status": 200,
+            "headers": {
+              "Content-Type": "application/json"
+            },
+            "body": "{\"id\":\"123456\",\n\"name\": \"iPhone 4 32GB\",\n\"url\": \"iphone-4-32gb\",\n\"code\": \"AZ007\",\n\"perex\": \"Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.\",     \n\"text\": \"<p>Cras justo odio, dapibus ac facilisis in, egestas eget quam.</p><p>Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>\",\n\"photos\": [\n  {\"src\":\"/img/350x300.gif\",\"width\":350,\"heigth\":300},\n  {\"src\":\"/img/350x300.gif\",\"width\":350,\"heigth\":300}\n],\n\"parameters\": [\n  {\"name\": \"Operační systém\", \"values\": [\"iOS\"]},\n  {\"name\": \"Barva\", \"values\": [\"černá\", \"bílá\"]},\n  {\"name\": \"Digitální fotoaparát\", \"values\": [\"ano\"]},\n  {\"name\": \"Rozličení fotoaparátu\", \"values\": [\"8 Mpx\"]},\n  {\"name\": \"Pohotovostní doba\", \"values\": [\"225 hodin\"]},\n  {\"name\": \"MP3\", \"values\": [\"ano\"]},\n  {\"name\": \"FM rádio\", \"values\": [\"ne\"]},\n  {\"name\": \"HD video\", \"values\": [\"ano\"]},\n  {\"name\": \"Rozměry\", \"values\": [\"115,2 x 58,6 x 9,3 mm\"]},\n  {\"name\": \"Hmotnost\", \"values\": [\"137 g\"]}\n],\n\"variants\": [\n  {\"name\": \"Černá barva\"},\n  {\"name\": \"Bílá barva\"}\n],\n\"producer\": \"Apple\",\n\"availability\": \"skladem\",\n\"price\": \"15000\",\n\"dph\": \"20\"\n}"
+          }
+        ]
+      },
+      {
         "description": "Seznam produktů v kategorii.",
         "method": "GET",
         "url": "/products?category={kategorie}&filter={filter}&limit={limit}&offset={offset}&order={order}",
@@ -269,25 +287,7 @@ var apiary = [
             "headers": {
               "Content-Type": "application/json"
             },
-            "body": "{\"count\":120,\n\"products\":[\n{\"id\": 12345,\n\"name\": \"iPhone 4 32GB bílý\",\n\"code\": \"AZ007\",\n\"photo\": {\"src\":\"/img/100x100.gif\",\"width\":100,\"heigth\":100},\n\"availability\": \"skladem\",\n\"price\": 15000,\n\"status\": 0\n},\n{\"id\": 12345,\n\"name\": \"iPhone 4 32GB černý\",\n\"code\": \"AZ007\",\n\"photo\": {\"src\":\"/img/100x100.gif\",\"width\":100,\"heigth\":100},\n\"availability\": \"skladem\",\n\"price\": 17000,\n\"status\": 1\n},\n{\"id\": 12345,\n\"name\": \"iPhone 4 32GB modrý\",\n\"code\": \"AZ007\",\n\"photo\": {\"src\":\"/img/100x100.gif\",\"width\":100,\"heigth\":100},\n\"availability\": \"skladem\",\n\"price\": 16000,\n\"status\": 1\n},\n{\"id\": 12345,\n\"name\": \"iPhone 4 32GB bílý\",\n\"code\": \"AZ007\",\n\"photo\": {\"src\":\"/img/100x100.gif\",\"width\":100,\"heigth\":100},\n\"availability\": \"skladem\",\n\"price\": 15000,\n\"status\": 0\n},\n{\"id\": 12345,\n\"name\": \"iPhone 4 32GB bílý\",\n\"code\": \"AZ007\",\n\"photo\": {\"src\":\"/img/100x100.gif\",\"width\":100,\"heigth\":100},\n\"availability\": \"skladem\",\n\"price\": 15000,\n\"status\": 1\n},\n{\"id\": 12345,\n\"name\": \"iPhone 4 32GB bílý\",\n\"code\": \"AZ007\",\n\"photo\": {\"src\":\"/img/100x100.gif\",\"width\":100,\"heigth\":100},\n\"availability\": \"skladem\",\n\"price\": 15000,\n\"status\": 1\n}]}"
-          }
-        ]
-      },
-      {
-        "description": "Částečná editace jednoho produktu (např. editace stavu).",
-        "method": "POST",
-        "url": "/products/{id}",
-        "request": {
-          "headers": {},
-          "body": ""
-        },
-        "responses": [
-          {
-            "status": 204,
-            "headers": {
-              "Content-Type": "application/json"
-            },
-            "body": ""
+            "body": "{\"count\":120,\n\"products\":[{\"name\": \"iPhone 4 32GB černý\",\n\"id\": \"12345\",\n\"code\": \"AB008\",\n\"url\": \"iphone-4-32gb-cerny\",\n\"perex\": \"Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.\",\n\"photo\": {\"src\":\"/img/100x100.gif\",\"width\":100,\"heigth\":100},\n\"producer\": \"Apple\",\n\"availability\": \"skladem\",\n\"price\": 15000\n},\n{\"name\": \"iPhone 4 32GB černý\",\n\"id\": \"12345\",\n\"code\": \"AB008\",\n\"url\": \"iphone-4-32gb-cerny\",\n\"perex\": \"Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.\",\n\"photo\": {\"src\":\"/img/100x100.gif\",\"width\":100,\"heigth\":100},\n\"producer\": \"Apple\",\n\"availability\": \"skladem\",\n\"price\": 15000\n},\n{\"name\": \"iPhone 4 32GB černý\",\n\"id\": \"12345\",\n\"code\": \"AB008\",\n\"url\": \"iphone-4-32gb-cerny\",\n\"perex\": \"Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.\",\n\"photo\": {\"src\":\"/img/100x100.gif\",\"width\":100,\"heigth\":100},\n\"producer\": \"Apple\",\n\"availability\": \"skladem\",\n\"price\": 15000\n},\n{\"name\": \"iPhone 4 32GB černý\",\n\"id\": \"12345\",\n\"code\": \"AB008\",\n\"url\": \"iphone-4-32gb-cerny\",\n\"perex\": \"Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.\",\n\"photo\": {\"src\":\"/img/100x100.gif\",\"width\":100,\"heigth\":100},\n\"producer\": \"Apple\",\n\"availability\": \"skladem\",\n\"price\": 15000\n},\n{\"name\": \"iPhone 4 32GB černý\",\n\"id\": \"12345\",\n\"code\": \"AB008\",\n\"url\": \"iphone-4-32gb-cerny\",\n\"perex\": \"Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.\",\n\"photo\": {\"src\":\"/img/100x100.gif\",\"width\":100,\"heigth\":100},\n\"producer\": \"Apple\",\n\"availability\": \"skladem\",\n\"price\": 15000\n},\n{\"name\": \"iPhone 4 32GB černý\",\n\"id\": \"12345\",\n\"code\": \"AB008\",\n\"url\": \"iphone-4-32gb-cerny\",\n\"perex\": \"Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.\",\n\"photo\": {\"src\":\"/img/100x100.gif\",\"width\":100,\"heigth\":100},\n\"producer\": \"Apple\",\n\"availability\": \"skladem\",\n\"price\": 15000\n}]}"
           }
         ]
       }

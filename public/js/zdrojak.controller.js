@@ -394,6 +394,7 @@ module.controller('ProductsCtrl', ['$scope', 'formFilter', 'availability', 'api'
 module.controller('ProductDetailCtrl', ['$scope', '$routeParams', '$window', 'api', 'uploadFile', function($scope, $routeParams, $window, api, uploadFile) {
   $scope.imgs = [];
   $scope.progress = 0;
+  $scope.product = api.product.show({id: $routeParams.id});
   
   var error = function() {
     $scope.$apply(function(){

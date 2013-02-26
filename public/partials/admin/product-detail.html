@@ -1,16 +1,50 @@
+<h1>{{product.name}}</h1>
 <div class="row">
-  <div class="span7">
-    
+  <div class="span8">
+    <table class="table table-striped">
+      <tbody>
+        <tr>
+          <th>Kód</th>
+          <td>{{product.code}}</td>
+        </tr>
+        <tr>
+          <th>URL</th>
+          <td>{{product.url}}</td>
+        </tr>
+        <tr>
+          <th>Perex</th>
+          <td>{{product.perex}}</td>
+        </tr>
+        <tr>
+          <th>Text</th>
+          <td ng-bind-html-unsafe="product.text"></td>
+        </tr>
+        <tr>
+          <th>Cena</th>
+          <td>{{product.price | currency}}</td>
+        </tr>
+        <tr>
+          <th>DPH</th>
+          <td>{{product.dph}}%</td>
+        </tr>
+      </tbody>
+    </table>
     
   </div>
-  <div class="span5 well">
+  <div class="span4 well">
     <h3>Obrázky</h3>
     <form ng-submit="upload()" enctype="multipart/form-data">
       <input id="file" type="file" ng-model="file" upload="upload" multiple> 
     </form>
     <p ng-show="pbar"><progress value="{{progress}}" max="100"></progress> {{progress}}%</p>
     <div id="admin-products-imgs">
-      <img ng-repeat="img in imgs" ng-src="{{img}}" width="100">
+      <div ng-repeat="img in imgs">
+        <img ng-src="{{img}}" width="100">  
+        <ul>
+          <li><label class="radio"><input type="radio" ng-model="main" value="">Hlavní</label></li>
+          <li><a ng-click="removeImg(img)">Odstranit</a></li>
+        </ul>
+      </div>
     </div>
   </div>
 </div>
