@@ -39,8 +39,8 @@ module.factory('api', ['$resource', function($resource) {
   //posilani souboru
   api.product.upload = function(params, completeFn, errorFn, cancelFn, progressFn) {
     params.upload.upload(
-      'POST', 
-      url + 'products/' + params.id, 
+      'PUT', 
+      url + 'products/' + params.id + '/images', 
       completeFn, 
       errorFn, 
       cancelFn, 

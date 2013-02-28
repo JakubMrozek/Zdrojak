@@ -56,4 +56,10 @@ app.get('/kosik', render());
 app.get('/zakaznicke-udaje', render());
 app.get('/potvrzeni', render());   
 app.get('/admin*', render('admin/layout'));   
+
+//TODO nahravani obrazku, pouze docasne reseni
+app.put('/api/v1/products/*/images', function(req, res) {
+  res.send(204);
+})
+
 module.exports = app;
