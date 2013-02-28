@@ -17,6 +17,11 @@
 Seriál E-shop pomocí moderních technologií
 ==========================================
 
+9. díl
+======
+* Článek: http://www.zdrojak.cz/clanky/tvorba-moderniho-e-shopu-nahravani-obrazku-k-produktu/
+* Demo: http://fast-journey-9480.herokuapp.com/admin/products/12345
+
 8. díl
 ======
 * Článek: http://www.zdrojak.cz/clanky/tvorba-moderniho-eshopu-administrace-objednavek/
