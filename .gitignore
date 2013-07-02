@@ -1,5 +1,6 @@
 nbproject
 node_modules
+public/components
 .idea
 
 lib-cov
