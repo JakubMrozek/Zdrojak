@@ -6,7 +6,9 @@
 * Instalace:
 
 npm install
+
 npm install bower -g
+
 bower install
 
 * Homepage seriálu: http://jakubmrozek.github.com/Zdrojak/
