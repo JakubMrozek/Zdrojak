@@ -43,10 +43,10 @@
   <!-- In production use:
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.2/angular.min.js"></script>
   -->
-  <script src="/lib/angular/angular.js"></script>
-  <script src="/lib/angular/i18n/angular-locale_cs-cz.js"></script>
-  <script src="/lib/angular/angular-resource.js"></script>
-  <script src="/lib/ui-bootstrap-custom-0.1.0.js"></script>
+  <script src="/components/angular/angular.min.js"></script>
+  <script src="/components/angular-i18n/angular-locale_cs-cz.js"></script>
+  <script src="/components/angular-resource/angular-resource.min.js"></script>
+  <script src="/components/angular-bootstrap/ui-bootstrap.min.js"></script>
   
   <script src="/js/zdrojak.controller.js"></script>
   <script src="/js/zdrojak.service.js"></script>
@@ -65,7 +65,7 @@
   <% if (env === 'development' || env === 'test') { %>
   
   <script src="/js/zdrojak.mock.js"></script>
-  <script src="/lib/angular/angular-mocks.js"></script>
+  <script src="/components/angular-mocks/angular-mocks.js"></script>
   <script src="/apiary.js"></script>
   
   <% } %>
