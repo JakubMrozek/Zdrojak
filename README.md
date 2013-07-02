@@ -7,7 +7,7 @@
 
 npm install
 
-npm install bower -g
+npm install bower yo generator-angular -g
 
 bower install
 
