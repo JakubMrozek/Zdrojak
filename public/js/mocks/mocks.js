@@ -5,12 +5,8 @@
  * http://www.zdrojak.cz/clanky/angularjs-direktivy-a-testovani/
  */
 
-(function() {      
-    
-var module = angular.module('zdrojak.mock', ['ngMockE2E']);
+angular.module('zdrojak.mock').run(function($httpBackend) {
 
-module.run(function($httpBackend) {
-    
   apiary.forEach(function(section){
     var resources = section.resources;
     resources.forEach(function(res){
@@ -33,12 +29,10 @@ module.run(function($httpBackend) {
         case 'DELETE':
           $httpBackend.whenDELETE(url).respond(res.responses[0].body);
           break;
-      }    
-    });      
-  }); 
-  
+      }
+    });
+  });
+
   //nechat projit pozadavky na sablony
   $httpBackend.whenGET(/^\/partials\//).passThrough();
 });
-
-})();

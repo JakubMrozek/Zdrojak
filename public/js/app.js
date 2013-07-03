@@ -2,7 +2,13 @@
 
 /* Aplikace */
 
-(function() {    
+(function() {
+
+angular.module('zdrojak.filter', []);
+angular.module('zdrojak.directive', []);
+angular.module('zdrojak.controller', [])
+angular.module('zdrojak.service', ['ngResource']);
+angular.module('zdrojak.mock', ['ngMockE2E'])
     
 var module = angular.module('zdrojak', [
   'zdrojak.controller',
