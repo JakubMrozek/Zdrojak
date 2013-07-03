@@ -3,10 +3,10 @@
   <p>Na frázi &bdquo;<strong>{{query}}</strong>&ldquo; bylo nalezeno <strong>{{results.count}}</strong> výsledků.</p>
 </div>
 
-<pagination page="page" count="results.count" limit="limit" move="filter"></pagination>
+<paging page="page" count="results.count" limit="limit" move="filter"></paging>
 
 <div ng-repeat="product in results.products">
   <div ng-include src="'/partials/_product.html'"></div>
 </div>
 
-<pagination page="page" count="results.count" limit="limit" move="filter"></pagination>
+<paging page="page" count="results.count" limit="limit" move="filter"></paging>

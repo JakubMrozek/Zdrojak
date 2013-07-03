@@ -2,7 +2,7 @@
  * Direktiva zobrazi strankovani.
  *
  * Pouziti v sablone:
- *   <pagination page="page" count="count" limit="limit" move="filter"></pagination>
+ *   <paging page="page" count="count" limit="limit" move="filter"></paging>
  *
  * Parametry scope:
  *   count - celkovy pocet vysledku
@@ -11,7 +11,7 @@
  *   move - funkce, ktera bude zavolana pri prechodu na dalsi stranku
  */
 
-angular.module('zdrojak.directive').directive('pagination', function pagination() {
+angular.module('zdrojak.directive').directive('paging', function pagination() {
   var template =
     '<ul class="pager" ng-show="count > limit">' +
       '<li class="previous"><a>&larr; Předchozí</a></li>' +
