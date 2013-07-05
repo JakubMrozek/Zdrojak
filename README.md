@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/JakubMrozek/Zdrojak.png)](https://travis-ci.org/JakubMrozek/Zdrojak)
+[![Dependency Status](https://gemnasium.com/JakubMrozek/Zdrojak.png)](https://gemnasium.com/JakubMrozek/Zdrojak)
 
 * Seriál pro Zdroják: http://www.zdrojak.cz/serialy/node-js-s-javascriptem-na-serveru/
 * Navazující seriál pro Zdroják: http://www.zdrojak.cz/serialy/e-shop-pomoci-modernich-technologii/
