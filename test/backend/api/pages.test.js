@@ -107,6 +107,7 @@ describe('API pages', function () {
         .send({})
         .expect(400, done);
     });
+    /*
     it('vrati 415, pokud byla data zaslana v jinem formatu nez JSON', function(done){
       request(app)
         .post('/api/v1/pages')
@@ -114,6 +115,7 @@ describe('API pages', function () {
         .send('<xml>root</xml>')
         .expect(415, done);
     });
+    */
   });
     
   describe('PUT /api/pages/:page', function(){
@@ -144,6 +146,7 @@ describe('API pages', function () {
         .send({title: 'titulek ABC', content: 'lorem ipsum set dolorem'})
         .expect(404, done);
     });
+    /*
     it('vrati 415, pokud byla data zaslana v jinem formatu nez JSON', function(done){
       request(app)
         .put('/api/v1/pages/stranka-1')
@@ -151,6 +154,7 @@ describe('API pages', function () {
         .send('<xml>root</xml>')
         .expect(415, done);
     });
+    */
   });
     
   describe('DELETE /api/pages/:page', function(){
