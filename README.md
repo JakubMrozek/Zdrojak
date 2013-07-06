@@ -8,7 +8,7 @@
 
 npm install
 
-npm install bower yo generator-angular -g
+npm install bower yo -g
 
 bower install
 
@@ -25,6 +25,10 @@ bower install
 
 Seriál E-shop pomocí moderních technologií
 ==========================================
+
+10. díl
+=======
+* Článek: http://www.zdrojak.cz/clanky/tvorba-moderniho-e-shopu-bower-yeoman-a-gemnasium/
 
 9. díl
 ======
