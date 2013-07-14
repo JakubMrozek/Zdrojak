@@ -48,5 +48,13 @@ angular.module('zdrojak.service').factory('api', ['$resource', function($resourc
     updateStatus: {method: 'POST'}
   });
 
+  //API vyrobci
+  api.user = $resource(url + 'users/:id', {}, {
+    index: {method:'GET', isArray: true},
+    create: {method: 'POST'},
+    update: {method: 'PUT'},
+    remove: {method: 'DELETE'}
+  });
+
   return api;
 }]);

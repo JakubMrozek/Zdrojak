@@ -102,6 +102,51 @@ GET /categories?url={url}
 
 
 --
+Správci
+--
+
+
+Seznam všech správců.
+GET /users
+< 200
+< Content-Type: application/json
+[
+    {"id": 123, "name": "Jakub", "email": "jakub.mrozek@gmail.com"},
+    {"id": 234, "name": "Kuba", "email": "jakub.mrozek@test.cz"},
+    {"id": 345, "name": "Superman", "email": "superman@test.cz"}
+]
+
+
+Vrací kompletní informace o spravci s ID {id}.
+GET /users/{id}
+< 200
+< Content-Type: application/json
+{
+    "id": 12345,
+    "name": "Jakub Mrozek", 
+    "email": "jakub.mrozek@gmail.com"
+}
+
+
+Vytvoření nového správce.
+POST /users
+< 201
+{
+    "id": 789
+}
+
+
+Editace údajů správce.
+PUT /users/{id}
+< 204
+
+
+Smazání správce.
+DELETE /users/{id}
+< 204
+
+
+--
 Objednávky
 --
 

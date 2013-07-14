@@ -84,6 +84,96 @@ var apiary = [
     ]
   },
   {
+    "name": "Správci",
+    "description": "",
+    "resources": [
+      {
+        "description": "Seznam všech správců.",
+        "method": "GET",
+        "url": "/users",
+        "request": {
+          "headers": {},
+          "body": ""
+        },
+        "responses": [
+          {
+            "status": 200,
+            "headers": {
+              "Content-Type": "application/json"
+            },
+            "body": "[\n    {\"id\": 123, \"name\": \"Jakub\", \"email\": \"jakub.mrozek@gmail.com\"},\n    {\"id\": 234, \"name\": \"Kuba\", \"email\": \"jakub.mrozek@test.cz\"},\n    {\"id\": 345, \"name\": \"Superman\", \"email\": \"superman@test.cz\"}\n]"
+          }
+        ]
+      },
+      {
+        "description": "Vrací kompletní informace o spravci s ID {id}.",
+        "method": "GET",
+        "url": "/users/{id}",
+        "request": {
+          "headers": {},
+          "body": ""
+        },
+        "responses": [
+          {
+            "status": 200,
+            "headers": {
+              "Content-Type": "application/json"
+            },
+            "body": "{\n    \"id\": 12345,\n    \"name\": \"Jakub Mrozek\", \n    \"email\": \"jakub.mrozek@gmail.com\"\n}"
+          }
+        ]
+      },
+      {
+        "description": "Vytvoření nového správce.",
+        "method": "POST",
+        "url": "/users",
+        "request": {
+          "headers": {},
+          "body": ""
+        },
+        "responses": [
+          {
+            "status": 201,
+            "headers": {},
+            "body": "{\n    \"id\": 789\n}"
+          }
+        ]
+      },
+      {
+        "description": "Editace údajů správce.",
+        "method": "PUT",
+        "url": "/users/{id}",
+        "request": {
+          "headers": {},
+          "body": ""
+        },
+        "responses": [
+          {
+            "status": 204,
+            "headers": {},
+            "body": ""
+          }
+        ]
+      },
+      {
+        "description": "Smazání správce.",
+        "method": "DELETE",
+        "url": "/users/{id}",
+        "request": {
+          "headers": {},
+          "body": ""
+        },
+        "responses": [
+          {
+            "status": 204,
+            "headers": {},
+            "body": ""
+          }
+        ]
+      }
+    ]
+  },
+  {
     "name": "Objednávky",
     "description": "",
     "resources": [

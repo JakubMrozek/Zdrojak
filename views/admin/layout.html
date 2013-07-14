@@ -19,8 +19,8 @@
           <li><a>Kategorie</a></li>
           <li><a>Parametry</a></li>
           <li><a>Layouty</a></li>
-          <li><a>Výrobci</a></li>
-          <li><a>Správci</a></li>
+          <li ng-show="menuItem == 'users'" class="active"><a ng-href="/admin/users">Správci</a></li>
+          <li ng-hide="menuItem == 'users'"><a ng-href="/admin/users">Správci</a></li>
         </ul>
       </div>
     </div>
@@ -69,6 +69,7 @@
   <script src="/js/controllers/Products.js"></script>
   <script src="/js/controllers/Search.js"></script>
   <script src="/js/controllers/Summary.js"></script>
+  <script src="/js/controllers/Users.js"></script>
 
   <!-- filters -->
   <script src="/js/filters/join.js"></script>
@@ -89,6 +90,7 @@
   <script src="/js/services/transport.js"></script>
   <script src="/js/services/upload-file.js"></script>
   <script src="/js/services/url-filter.js"></script>
+  <script src="/js/services/dialog.js"></script>
 
   <!-- libs -->
   <script src="/js/lib/Basket.js"></script>

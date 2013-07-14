@@ -1,0 +1,29 @@
+<div modal="updateDialogIsOpen" close="close('updateDialog')">
+
+  <div class="modal-header">
+    <h4> Úprava údajů správce</h4>
+  </div>
+
+  <form ng-submit="update()">
+    <div class="modal-body">
+
+      <messages></messages>
+      <div class="well">
+        <fieldset>
+          <p><label>Jméno <span>(povinné)</span></label>
+          <input type="name" name="name" ng-model="user.name" required class="input-xlarge"></p>
+
+          <p><label>E-mail <span>(povinné)</span></label>
+          <input type="email" name="email" ng-model="user.email" required class="input-xlarge"></p>
+
+        </fieldset>
+      </div>
+    
+  </div>
+  <div class="modal-footer">
+    <p class="modal-submit-button"><input type="submit" value="Upravit údaje" class="btn btn-primary btn-block"></p>
+    <p><a class="btn cancel" ng-click="close('updateDialog')">Zrušit</a></p>
+  </div>
+</form>
+
+</div>

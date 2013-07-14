@@ -1,0 +1,32 @@
+<div ng-include src="'/partials/admin/user-add.html'"></div>
+<div ng-include src="'/partials/admin/user-update.html'"></div>
+<div ng-include src="'/partials/admin/user-update-password.html'"></div>
+
+<h1>Správci</h1>
+
+<a class="btn" ng-click="open('addDialog')"><i class="icon-plus-sign"></i> Vložit nového správce</a>
+
+<hr />
+
+<p class="alert" ng-hide="users.length">V databázi není žádný správce.</p>
+
+<table class="table table-striped" ng-show="users.length > 0">
+  <thead>
+    <tr>
+      <th>Jméno</th>
+      <th>E-mail</th>
+      <th>Akce</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="user in users">
+      <td>{{user.name}}</td>
+      <td>{{user.email}}</td>
+      <td>
+        <a class="btn" ng-click="open('updateDialog', $index)"><i class="icon-wrench"></i> Upravit</a>
+        <a class="btn" ng-click="open('updatePasswordDialog', $index)"><i class="icon-eye-open"></i> Změnit heslo</a>
+        <a class="btn" ng-click="remove($index)"><i class="icon-trash"></i> Smazat</a>
+      </td>
+    </tr>
+  </tbody>
+</table>
