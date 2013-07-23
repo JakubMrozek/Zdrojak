@@ -4,7 +4,8 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "test": "mocha test/backend"
+    "test": "mocha test/backend",
+    "postinstall": "./node_modules/bower/bin/bower install"
   },
   "dependencies": {
     "express": "3.3.x",
@@ -12,7 +13,8 @@
     "mongoose": "3.6.x",
     "async": "0.2.x",
     "ejs": "0.8.x",
-    "grunt-karma": "~0.4.5"
+    "grunt-karma": "~0.4.5",
+    "bower": "0.9.x"
   },
   "devDependencies": {
     "mocha": "1.6.x",
@@ -53,6 +55,6 @@
   "author": "Jakub Mrozek",
   "engines": {
     "node": "0.10.x",
-    "npm": "1.1.x"
+    "npm": "1.2.x"
   }
 }
