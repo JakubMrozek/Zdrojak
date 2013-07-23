@@ -14,9 +14,11 @@ angular.module('zdrojak.service').factory('api', ['$resource', function($resourc
   });
 
   //API kategorie
-  api.category = $resource(url + 'categories', {}, {
+  api.category = $resource(url + 'categories/:id', {}, {
     index: {method:'GET', isArray:true},
-    show: {method:'GET'}
+    show: {method:'GET'},
+    create: {method: 'POST'},
+    update: {method: 'PUT'}
   });
 
   //API produkty
@@ -46,6 +48,14 @@ angular.module('zdrojak.service').factory('api', ['$resource', function($resourc
     create: {method: 'POST'},
     update: {method: 'PUT'},
     updateStatus: {method: 'POST'}
+  });
+
+  //API vyrobci
+  api.user = $resource(url + 'users/:id', {}, {
+    index: {method:'GET', isArray: true},
+    create: {method: 'POST'},
+    update: {method: 'PUT'},
+    remove: {method: 'DELETE'}
   });
 
   return api;

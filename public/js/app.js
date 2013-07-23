@@ -16,7 +16,9 @@ var module = angular.module('zdrojak', [
   'zdrojak.directive', 
   'zdrojak.service', 
   'zdrojak.mock',
-  'ui.bootstrap'
+  'ui.bootstrap.alert', 
+  'ui.bootstrap.dialog',
+  'ui.bootstrap.modal'
 ]);
 
 
@@ -41,7 +43,8 @@ module.config(function routes($routeProvider) {
   $routeProvider.when('/admin/orders/:number', {templateUrl: '/partials/admin/order-detail.html', controller: 'OrderDetailCtrl', menuItem: 'orders'});
   $routeProvider.when('/admin/products', {templateUrl: '/partials/admin/products.html', controller: 'ProductsCtrl', menuItem: 'products', reloadOnSearch: false});
   $routeProvider.when('/admin/products/:id', {templateUrl: '/partials/admin/product-detail.html', controller: 'ProductDetailCtrl', menuItem: 'products'});
-  $routeProvider.when('/test', { templateUrl: 'views/test.html', controller: 'TestCtrl'})
+  $routeProvider.when('/admin/users', {templateUrl: '/partials/admin/users.html', controller: 'UsersCtrl', menuItem: 'users'});
+  $routeProvider.when('/admin/categories', {templateUrl: '/partials/admin/categories.html', controller: 'CategoriesCtrl', menuItem: 'categories'});
   $routeProvider.otherwise({redirectTo: '/'});
 });
 
