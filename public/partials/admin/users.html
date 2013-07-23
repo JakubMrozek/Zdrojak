@@ -1,5 +1,4 @@
 <div ng-include src="'/partials/admin/user-add.html'"></div>
-<div ng-include src="'/partials/admin/user-update.html'"></div>
 <div ng-include src="'/partials/admin/user-update-password.html'"></div>
 
 <h1>Správci</h1>
@@ -20,10 +19,10 @@
   </thead>
   <tbody>
     <tr ng-repeat="user in users">
-      <td>{{user.name}}</td>
-      <td>{{user.email}}</td>
+      <td><inline model='user.name' action='update' ident="user"></inline></td>
+      <td><inline model='user.email' action='update' ident="user"></inline></td>
       <td>
-        <a class="btn" ng-click="open('updateDialog', $index)"><i class="icon-wrench"></i> Upravit</a>
+        <!--<a class="btn" ng-click="open('updateDialog', $index)"><i class="icon-wrench"></i> Upravit</a>-->
         <a class="btn" ng-click="open('updatePasswordDialog', $index)"><i class="icon-eye-open"></i> Změnit heslo</a>
         <a class="btn" ng-click="remove($index)"><i class="icon-trash"></i> Smazat</a>
       </td>

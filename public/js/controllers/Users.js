@@ -10,10 +10,6 @@ angular.module('zdrojak.controller').controller('UsersCtrl', ['$scope', 'dialog'
     }
   });
 
-  /**
-   * Vlozeni noveho spravce.
-   * 
-   */
   $scope.add = function() {
     api.user.create($scope.user, function(res){
       $scope.user._id = res._id;
@@ -22,30 +18,17 @@ angular.module('zdrojak.controller').controller('UsersCtrl', ['$scope', 'dialog'
     });
   };
 
-  /**
-   * Aktualizace hesla.
-   * 
-   */
   $scope.updatePassword = function() {
     api.user.update({id: $scope.user.id}, $scope.user, function(){
       $scope.close('updatePasswordDialog');  
     });
   };
 
-  /**
-   * Aktualizace vsech udaju.
-   * 
-   */
-  $scope.update = function() {
-    api.user.update({id: $scope.user.id}, $scope.user, function(){
-      for (var col in $scope.user) $scope.copy[col] = $scope.user[col];
-      $scope.close('updateDialog');
-    });
+
+  $scope.update = function(ev, data) {
+    api.user.update({id: data.id}, data);
   };
 
-  /**
-   * Odstraneni spravce z databaze.
-   */
   $scope.remove = function(index) {
   	api.user.remove({id: $scope.users[index].id}, function(){
       $scope.users.splice(index, 1);

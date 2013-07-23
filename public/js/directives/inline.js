@@ -9,10 +9,11 @@ function inlineFactory(template) {
       action: '=',
       model: '=',
       type: '@',
-      min: '@'
+      min: '@',
+      ident: '='
     },
     template: template,
-    link: function(scope, element) {
+    link: function(scope, element, attrbs) {
       var children = element.children();
       var span  = angular.element(children[0]);
       var input = angular.element(children[1]);
@@ -27,7 +28,7 @@ function inlineFactory(template) {
           scope.$apply('mode=false');
         }
         if (newContent !== content && !updated) {
-          scope.action(e);
+          scope.action(e, scope.ident);
           updated = true;
         }
       }
