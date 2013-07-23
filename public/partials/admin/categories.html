@@ -1,0 +1,30 @@
+<h1>Kategorie</h1>
+
+<hr>
+
+<script type="text/ng-template"  id="template-category">
+  <i class="icon-chevron-right"></i>{{data.name}}
+  <ul class="nav nav-list">
+    <li ng-repeat="data in data.children" 
+        ng-include="'template-category'" 
+        draggable="true" 
+        ondrop="drop(event)" 
+        ondragstart="drag(event)" 
+        ondragover="allowDrop(event)"
+        id="{{data.name}}"
+        class="category-item">
+    </li>
+  </ul>
+</script>  
+  
+<ul class="nav nav-list">
+  <li ng-repeat="data in categories" 
+      id="{{data.name}}"
+      class="category-item"
+      ng-include="'template-category'" 
+      draggable="true" 
+      ondrop="drop(event)" 
+      ondragstart="drag(event)" 
+      ondragover="allowDrop(event)">
+  </li>
+</ul> 

@@ -15,5 +15,5 @@ angular.module('zdrojak.service').factory('dialog', [function(){
       scope[dialogFullName(dialog)] = false;
       closeDialogCallback();
     };
-  }
+  };
 }]);

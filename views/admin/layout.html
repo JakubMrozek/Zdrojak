@@ -16,7 +16,8 @@
           <li ng-hide="menuItem == 'orders'"><a ng-href="/admin/">Objednávky</a></li>
           <li ng-show="menuItem == 'products'" class="active"><a ng-href="/admin/products">Produkty</a></li>
           <li ng-hide="menuItem == 'products'"><a ng-href="/admin/products">Produkty</a></li>
-          <li><a>Kategorie</a></li>
+          <li ng-show="menuItem == 'categories'" class="active"><a ng-href="/admin/categories">Kategorie</a></li>
+          <li ng-hide="menuItem == 'categories'"><a ng-href="/admin/categories">Kategorie</a></li>
           <li><a>Parametry</a></li>
           <li><a>Layouty</a></li>
           <li ng-show="menuItem == 'users'" class="active"><a ng-href="/admin/users">Správci</a></li>
@@ -54,6 +55,7 @@
   <script src="/js/controllers/App.js"></script>
   <script src="/js/controllers/Basket.js"></script>
   <script src="/js/controllers/Category.js"></script>
+  <script src="/js/controllers/Categories.js"></script>
   <script src="/js/controllers/Customer.js"></script>
   <script src="/js/controllers/Index.js"></script>
   <script src="/js/controllers/MenuAdmin.js"></script>
