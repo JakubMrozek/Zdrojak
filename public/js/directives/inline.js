@@ -21,25 +21,25 @@ function inlineFactory(template) {
       var content;
       var updated;
 
-      function send() {
+      function send(e) {
         var newContent = element.text().trim();
         if (newContent !== '') {
           scope.$apply('mode=false');
         }
         if (newContent !== content && !updated) {
-          scope.action();
+          scope.action(e);
           updated = true;
         }
       }
 
       //ztrata focusu, ulozit zmenu
-      input.bind('blur', function(){
-        send();
+      input.bind('blur', function(e){
+        send(e);
       });
 
       //uzivatel kliknul na enter, ulozit zmenu
       input.bind('keypress', function(e){
-        if (e.charCode === KEY_CODE_ENTER) send();
+        if (e.charCode === KEY_CODE_ENTER) send(e);
       });
 
       //po kliknuti na text zobrazit input pro editaci
@@ -64,7 +64,7 @@ function inlineFactory(template) {
 
 angular.module('zdrojak.directive').directive('inline', inlineFactory(
   '<span>' +
-    '<span ng-hide="mode">{{model}}</span>' +
-    '<input class="input-small" type="{{type}}" min="{{min}}" ng-show="mode" ng-model="model" required>' +
-    '</span>'
+  '<span ng-hide="mode">{{model}}</span>' +
+  '<input class="input-small" type="{{type}}" min="{{min}}" ng-show="mode" ng-model="model" required>' +
+  '</span>'
 ));

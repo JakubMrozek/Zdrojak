@@ -1,6 +1,6 @@
 var apiary = [
   {
-    "name": "Stranky",
+    "name": "Stranky ",
     "description": "",
     "resources": [
       {
@@ -17,7 +17,7 @@ var apiary = [
             "headers": {
               "Content-Type": "application/json"
             },
-            "body": "[{\"name\": \"O nás\", \"url\": \"o-nas\"},\n{\"name\": \"Obchodní podmínky\", \"url\": \"obchodni-podminky\"},\n{\"name\": \"FAQ\", \"url\": \"faq\"},\n{\"name\": \"Kontakt\", \"url\": \"kontakt\"}]"
+            "body": "[\n    {\"name\": \"O nás\", \"url\": \"o-nas\"},\n    {\"name\": \"Obchodní podmínky\", \"url\": \"obchodni-podminky\"},\n    {\"name\": \"FAQ\", \"url\": \"faq\"},\n    {\"name\": \"Kontakt\", \"url\": \"kontakt\"}\n]"
           }
         ]
       },
@@ -35,7 +35,7 @@ var apiary = [
             "headers": {
               "Content-Type": "application/json"
             },
-            "body": "{\"name\": \"O nás\",\n\"text\": \"Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.\"}"
+            "body": "{\n    \"name\": \"O nás\",\n    \"text\": \"Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.\"\n}"
           }
         ]
       }
@@ -59,7 +59,7 @@ var apiary = [
             "headers": {
               "Content-Type": "application/json"
             },
-            "body": "[{\"name\": \"Android\", \"url\": \"android\"},\n{\"name\": \"iPhone\", \"url\": \"iphone\"},\n{\"name\": \"BlackBerry\", \"url\": \"blackberry\"},\n{\"name\": \"Symbian\", \"url\": \"symbian\"},\n{\"name\": \"Windows Phone\", \"url\": \"windows-phone\"},\n{\"name\": \"Levné\", \"url\": \"levne\"},\n{\"name\": \"Příslušenství\", \"url\": \"prislusenstvi\", \"children\": [\n{\"name\": \"Baterie\", \"url\": \"baterie\"},\n{\"name\": \"Držáky\", \"url\": \"drzaky\"},\n{\"name\": \"Nabíječky\", \"url\": \"nabijecky\"},\n{\"name\": \"Pouzdra\", \"url\": \"pouzdra\"}\n]}]"
+            "body": "[\n    {\"id\": 123, \"name\": \"Android\", \"url\": \"android\"},\n    {\"id\": 234, \"name\": \"iPhone\", \"url\": \"iphone\"},\n    {\"id\": 334, \"name\": \"BlackBerry\", \"url\": \"blackberry\"},\n    {\"id\": 434, \"name\": \"Symbian\", \"url\": \"symbian\"},\n    {\"id\": 534, \"name\": \"Windows Phone\", \"url\": \"windows-phone\"},\n    {\"id\": 634, \"name\": \"Levné\", \"url\": \"levne\"},\n    {\"id\": 734, \"name\": \"Příslušenství\", \"url\": \"prislusenstvi\", \"children\": [\n        {\"id\": 834, \"name\": \"Baterie\", \"url\": \"baterie\"},\n        {\"id\": 934, \"name\": \"Držáky\", \"url\": \"drzaky\"},\n        {\"id\": 144, \"name\": \"Nabíječky\", \"url\": \"nabijecky\"},\n        {\"id\": 894, \"name\": \"Pouzdra\", \"url\": \"pouzdra\"}\n    ]}\n]"
           }
         ]
       },
@@ -77,7 +77,55 @@ var apiary = [
             "headers": {
               "Content-Type": "application/json"
             },
-            "body": "{\"name\": \"iPhone\", \n\"url\": \"iphone\", \n\"children\": [], \n\"minPrice\": 1000,\n\"maxPrice\": 23000,\n\"params\": [{\n  \"name\": \"Funkce\", \n  \"code\": \"funkce\", \n  \"values\": [\n    {\"code\": \"wifi\", \"value\": \"WiFi\"}, \n    {\"code\": \"bluetooth\", \"value\": \"BlueTooth\"}, \n    {\"code\": \"dual-sim\", \"value\": \"Dual SIM\"}, \n    {\"code\": \"gps\", \"value\": \"GPS\"}, \n    {\"code\": \"fm-radio\", \"value\": \"FM radio\"}\n  ]},{\n  \"name\": \"Operační paměť\", \n  \"code\": \"operacni-pamet\", \n  \"values\": [\n    {\"code\": \"256\", \"value\": \"256 MB\"}, \n    {\"code\": \"512\", \"value\": \"512 MB\"}, \n    {\"code\": \"1024\", \"value\": \"1024 MB\"}, \n    {\"code\": \"2048\", \"value\": \"2048 MB\"}, \n    {\"code\": \"4096\", \"value\": \"4096 MB\"}\n  ]},{\n  \"name\": \"Uložiště\", \n  \"code\": \"uloziste\", \n  \"values\": [\n    {\"code\": \"0-2\", \"value\": \"0-2 GB\"}, \n    {\"code\": \"2-10\", \"value\": \"2-10 GB\"}, \n    {\"code\": \"10-50\", \"value\": \"10-50 GB\"}, \n    {\"code\": \"50-100\", \"value\": \"50-100 GB\"}, \n    {\"code\": \"100-512\", \"value\": \"100-512 GB\"}\n  ]},{\n  \"name\": \"Paměťová karta\", \n  \"code\": \"pametova-karta\", \n  \"values\": [\n    {\"code\": \"sdhc\", \"value\": \"SDHC\"}, \n    {\"code\": \"micro-sd\", \"value\": \"Micro SD\"}, \n    {\"code\": \"micro-sdxc\", \"value\": \"Micro SDXC\"}, \n    {\"code\": \"sdxc\", \"value\": \"SDXC\"}, \n    {\"code\": \"micro-sdhc\", \"value\": \"Micro SDHC\"}\n  ]}\n]}"
+            "body": "{\n    \"name\": \"iPhone\", \n    \"url\": \"iphone\", \n    \"children\": [], \n    \"minPrice\": 1000,\n    \"maxPrice\": 23000,\n    \"params\": [\n        {\n            \"name\": \"Funkce\", \n            \"code\": \"funkce\", \n            \"values\": [\n                {\"code\": \"wifi\", \"value\": \"WiFi\"}, \n                {\"code\": \"bluetooth\", \"value\": \"BlueTooth\"}, \n                {\"code\": \"dual-sim\", \"value\": \"Dual SIM\"}, \n                {\"code\": \"gps\", \"value\": \"GPS\"}, \n                {\"code\": \"fm-radio\", \"value\": \"FM radio\"}\n            ]\n        },\n        {\n            \"name\": \"Operační paměť\", \n            \"code\": \"operacni-pamet\", \n            \"values\": [\n                {\"code\": \"256\", \"value\": \"256 MB\"}, \n                {\"code\": \"512\", \"value\": \"512 MB\"}, \n                {\"code\": \"1024\", \"value\": \"1024 MB\"}, \n                {\"code\": \"2048\", \"value\": \"2048 MB\"}, \n                {\"code\": \"4096\", \"value\": \"4096 MB\"}\n            ]\n         },\n         {\n            \"name\": \"Uložiště\", \n            \"code\": \"uloziste\", \n            \"values\": [\n                {\"code\": \"0-2\", \"value\": \"0-2 GB\"}, \n                {\"code\": \"2-10\", \"value\": \"2-10 GB\"}, \n                {\"code\": \"10-50\", \"value\": \"10-50 GB\"}, \n                {\"code\": \"50-100\", \"value\": \"50-100 GB\"}, \n                {\"code\": \"100-512\", \"value\": \"100-512 GB\"}\n            ]\n        },\n        {\n            \"name\": \"Paměťová karta\", \n            \"code\": \"pametova-karta\", \n            \"values\": [\n                {\"code\": \"sdhc\", \"value\": \"SDHC\"}, \n                {\"code\": \"micro-sd\", \"value\": \"Micro SD\"}, \n                {\"code\": \"micro-sdxc\", \"value\": \"Micro SDXC\"}, \n                {\"code\": \"sdxc\", \"value\": \"SDXC\"}, \n                {\"code\": \"micro-sdhc\", \"value\": \"Micro SDHC\"}\n            ]\n        }\n    ]\n}"
+          }
+        ]
+      },
+      {
+        "description": "Vytvoření nového kategorie.",
+        "method": "POST",
+        "url": "/categories",
+        "request": {
+          "headers": {},
+          "body": ""
+        },
+        "responses": [
+          {
+            "status": 201,
+            "headers": {},
+            "body": "{\n    \"id\": 999\n}"
+          }
+        ]
+      },
+      {
+        "description": "Editace kategorie s id {id}",
+        "method": "PUT",
+        "url": "/categories/{id}",
+        "request": {
+          "headers": {},
+          "body": ""
+        },
+        "responses": [
+          {
+            "status": 200,
+            "headers": {},
+            "body": ""
+          }
+        ]
+      },
+      {
+        "description": "Smazání kategorie s id {id}",
+        "method": "DELETE",
+        "url": "/categories/{id}",
+        "request": {
+          "headers": {},
+          "body": ""
+        },
+        "responses": [
+          {
+            "status": 200,
+            "headers": {},
+            "body": ""
           }
         ]
       }

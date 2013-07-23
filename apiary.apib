@@ -7,7 +7,7 @@ Demo e-shop pro Zdrojak.cz (http://jakubmrozek.github.com/Zdrojak/)
 
 
 --
-Stranky
+Stranky 
 --
 
 
@@ -15,18 +15,22 @@ Vraceni stranek pro menu layoutu.
 GET /pages?fields={pole}
 < 200
 < Content-Type: application/json
-[{"name": "O nás", "url": "o-nas"},
-{"name": "Obchodní podmínky", "url": "obchodni-podminky"},
-{"name": "FAQ", "url": "faq"},
-{"name": "Kontakt", "url": "kontakt"}]
+[
+    {"name": "O nás", "url": "o-nas"},
+    {"name": "Obchodní podmínky", "url": "obchodni-podminky"},
+    {"name": "FAQ", "url": "faq"},
+    {"name": "Kontakt", "url": "kontakt"}
+]
 
 
 Vraceni detailu stranky.
 GET /pages?url={url}
 < 200
 < Content-Type: application/json
-{"name": "O nás",
-"text": "Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit."}
+{
+    "name": "O nás",
+    "text": "Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit."
+}
 
 
 --
@@ -38,67 +42,97 @@ Seznam všech kategorií.
 GET /categories
 < 200
 < Content-Type: application/json
-[{"name": "Android", "url": "android"},
-{"name": "iPhone", "url": "iphone"},
-{"name": "BlackBerry", "url": "blackberry"},
-{"name": "Symbian", "url": "symbian"},
-{"name": "Windows Phone", "url": "windows-phone"},
-{"name": "Levné", "url": "levne"},
-{"name": "Příslušenství", "url": "prislusenstvi", "children": [
-{"name": "Baterie", "url": "baterie"},
-{"name": "Držáky", "url": "drzaky"},
-{"name": "Nabíječky", "url": "nabijecky"},
-{"name": "Pouzdra", "url": "pouzdra"}
-]}]
+[
+    {"id": 123, "name": "Android", "url": "android"},
+    {"id": 234, "name": "iPhone", "url": "iphone"},
+    {"id": 334, "name": "BlackBerry", "url": "blackberry"},
+    {"id": 434, "name": "Symbian", "url": "symbian"},
+    {"id": 534, "name": "Windows Phone", "url": "windows-phone"},
+    {"id": 634, "name": "Levné", "url": "levne"},
+    {"id": 734, "name": "Příslušenství", "url": "prislusenstvi", "children": [
+        {"id": 834, "name": "Baterie", "url": "baterie"},
+        {"id": 934, "name": "Držáky", "url": "drzaky"},
+        {"id": 144, "name": "Nabíječky", "url": "nabijecky"},
+        {"id": 894, "name": "Pouzdra", "url": "pouzdra"}
+    ]}
+]
 
 
 Detail kategorie podle URL.
 GET /categories?url={url}
 < 200
 < Content-Type: application/json
-{"name": "iPhone", 
-"url": "iphone", 
-"children": [], 
-"minPrice": 1000,
-"maxPrice": 23000,
-"params": [{
-  "name": "Funkce", 
-  "code": "funkce", 
-  "values": [
-    {"code": "wifi", "value": "WiFi"}, 
-    {"code": "bluetooth", "value": "BlueTooth"}, 
-    {"code": "dual-sim", "value": "Dual SIM"}, 
-    {"code": "gps", "value": "GPS"}, 
-    {"code": "fm-radio", "value": "FM radio"}
-  ]},{
-  "name": "Operační paměť", 
-  "code": "operacni-pamet", 
-  "values": [
-    {"code": "256", "value": "256 MB"}, 
-    {"code": "512", "value": "512 MB"}, 
-    {"code": "1024", "value": "1024 MB"}, 
-    {"code": "2048", "value": "2048 MB"}, 
-    {"code": "4096", "value": "4096 MB"}
-  ]},{
-  "name": "Uložiště", 
-  "code": "uloziste", 
-  "values": [
-    {"code": "0-2", "value": "0-2 GB"}, 
-    {"code": "2-10", "value": "2-10 GB"}, 
-    {"code": "10-50", "value": "10-50 GB"}, 
-    {"code": "50-100", "value": "50-100 GB"}, 
-    {"code": "100-512", "value": "100-512 GB"}
-  ]},{
-  "name": "Paměťová karta", 
-  "code": "pametova-karta", 
-  "values": [
-    {"code": "sdhc", "value": "SDHC"}, 
-    {"code": "micro-sd", "value": "Micro SD"}, 
-    {"code": "micro-sdxc", "value": "Micro SDXC"}, 
-    {"code": "sdxc", "value": "SDXC"}, 
-    {"code": "micro-sdhc", "value": "Micro SDHC"}
-  ]}
-]}
+{
+    "name": "iPhone", 
+    "url": "iphone", 
+    "children": [], 
+    "minPrice": 1000,
+    "maxPrice": 23000,
+    "params": [
+        {
+            "name": "Funkce", 
+            "code": "funkce", 
+            "values": [
+                {"code": "wifi", "value": "WiFi"}, 
+                {"code": "bluetooth", "value": "BlueTooth"}, 
+                {"code": "dual-sim", "value": "Dual SIM"}, 
+                {"code": "gps", "value": "GPS"}, 
+                {"code": "fm-radio", "value": "FM radio"}
+            ]
+        },
+        {
+            "name": "Operační paměť", 
+            "code": "operacni-pamet", 
+            "values": [
+                {"code": "256", "value": "256 MB"}, 
+                {"code": "512", "value": "512 MB"}, 
+                {"code": "1024", "value": "1024 MB"}, 
+                {"code": "2048", "value": "2048 MB"}, 
+                {"code": "4096", "value": "4096 MB"}
+            ]
+         },
+         {
+            "name": "Uložiště", 
+            "code": "uloziste", 
+            "values": [
+                {"code": "0-2", "value": "0-2 GB"}, 
+                {"code": "2-10", "value": "2-10 GB"}, 
+                {"code": "10-50", "value": "10-50 GB"}, 
+                {"code": "50-100", "value": "50-100 GB"}, 
+                {"code": "100-512", "value": "100-512 GB"}
+            ]
+        },
+        {
+            "name": "Paměťová karta", 
+            "code": "pametova-karta", 
+            "values": [
+                {"code": "sdhc", "value": "SDHC"}, 
+                {"code": "micro-sd", "value": "Micro SD"}, 
+                {"code": "micro-sdxc", "value": "Micro SDXC"}, 
+                {"code": "sdxc", "value": "SDXC"}, 
+                {"code": "micro-sdhc", "value": "Micro SDHC"}
+            ]
+        }
+    ]
+}
+
+
+Vytvoření nového kategorie.
+POST /categories
+< 201
+{
+    "id": 999
+}
+
+
+Editace kategorie s id {id}
+PUT /categories/{id}
+< 200
+
+
+Smazání kategorie s id {id}
+DELETE /categories/{id}
+< 200
 
 
 --
