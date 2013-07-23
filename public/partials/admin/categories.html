@@ -4,6 +4,8 @@
 
 <hr>
 
+<p class="alert" ng-hide="categories.length">V databázi není žádná kategorie.</p>
+
 <script type="text/ng-template"  id="template-category">
   <i class="icon-chevron-right"></i>
   <inline model='data.name' action='updateCategory'></inline>

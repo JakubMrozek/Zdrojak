@@ -12,16 +12,12 @@
      <div class="navbar">
       <div class="navbar-inner">
         <ul id="navigation" class="nav" ng-controller="MenuAdminCtrl">
-          <li ng-show="menuItem == 'orders'" class="active"><a ng-href="/admin/">Objednávky</a></li>
-          <li ng-hide="menuItem == 'orders'"><a ng-href="/admin/">Objednávky</a></li>
-          <li ng-show="menuItem == 'products'" class="active"><a ng-href="/admin/products">Produkty</a></li>
-          <li ng-hide="menuItem == 'products'"><a ng-href="/admin/products">Produkty</a></li>
-          <li ng-show="menuItem == 'categories'" class="active"><a ng-href="/admin/categories">Kategorie</a></li>
-          <li ng-hide="menuItem == 'categories'"><a ng-href="/admin/categories">Kategorie</a></li>
+          <li ng-class="menuItem != 'orders' || 'active'"><a ng-href="/admin/">Objednávky</a></li>
+          <li ng-class="menuItem != 'products' || 'active'"><a ng-href="/admin/products">Produkty</a></li>
+          <li ng-class="menuItem != 'categories' || 'active'"><a ng-href="/admin/categories">Kategorie</a></li>
           <li><a>Parametry</a></li>
           <li><a>Layouty</a></li>
-          <li ng-show="menuItem == 'users'" class="active"><a ng-href="/admin/users">Správci</a></li>
-          <li ng-hide="menuItem == 'users'"><a ng-href="/admin/users">Správci</a></li>
+          <li ng-class="menuItem != 'users' || 'active'"><a ng-href="/admin/users">Správci</a></li>
         </ul>
       </div>
     </div>
