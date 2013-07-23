@@ -9,13 +9,13 @@
   <inline model='data.name' action='updateCategory'></inline>
   <ul class="nav nav-list">
     <li ng-repeat="data in data.children" 
+        id="{{data.name}}"
+        class="category-item"
         ng-include="'template-category'" 
         draggable="true" 
-        ondrop="drop(event)" 
-        ondragstart="drag(event)" 
-        ondragover="allowDrop(event)"
-        id="{{data.name}}"
-        class="category-item">
+        drop="drop" 
+        dragover="dragover"
+        dragstart="dragstart">
     </li>
   </ul>
 </script>  
@@ -26,10 +26,10 @@
       class="category-item"
       ng-include="'template-category'" 
       draggable="true" 
-      ondrop="drop(event)" 
-      ondragstart="drag(event)" 
-      ondragover="allowDrop(event)">
+      dragstart="dragstart"
+      drop="drop" 
+      dragover="dragover">
   </li>
 </ul> 
 
-<p style="display:none" class="btn" id="trash" ondrop="removeCategory(event)" ondragover="allowDrop(event)">Koš </p>
+<p class="btn" ng-show="trashVisible" drop="removeCategory" dragover="dragover">Koš </p>

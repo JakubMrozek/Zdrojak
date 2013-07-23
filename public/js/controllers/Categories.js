@@ -1,57 +1,41 @@
-var trash;
-
-var hideTrash = function() {
-  trash.style.display = 'none';	
-}
-
-function getTarget(ev) {
-	var el = ev.target;
-  do {
-    if (el.classList.contains('category-item')) {
-    	return el.lastElementChild;
-    }
-    el = el.parentNode;
-
-  } while (el);
-};
-
-function allowDrop(ev) {
-  ev.preventDefault();
-}
-
-function drag(ev) {
-	ev.dataTransfer.setData('text', ev.target.id);
-	trash.style.display = '';
-}
-
-function drop(ev) {
-  ev.preventDefault();
-  var element = document.getElementById(ev.dataTransfer.getData('text'));
-  var target = getTarget(ev);
-
-  if (target.compareDocumentPosition(element) & Node.DOCUMENT_POSITION_CONTAINS) {
-    //rodic se nemuze stat potomkem sveho potomka
-  } else {
-    target.appendChild(element);
-  }
-
-  hideTrash();
-}
-
-function removeCategory(ev) {
-  if (!window.confirm('Skutečně smazat?')) {
-  	hideTrash();
-    return false;
-  }
-  var element = document.getElementById(ev.dataTransfer.getData('text'));
-  element.parentNode.removeChild(element);
-  hideTrash();
-};
-
-
-
-angular.module('zdrojak.controller').controller('CategoriesCtrl', ['$scope', 'api', function ($scope, api) {
+angular.module('zdrojak.controller').controller('CategoriesCtrl', ['$scope', '$window', 'api', function ($scope, $window, api) {
   $scope.categories = api.category.index();
+
+  var getTarget = function(ev) {
+  	var el = ev.target;
+	  do {
+	  	if (el.classList.contains('category-item')) {
+	    	return el.lastElementChild;
+	    }
+	    el = el.parentNode;
+	  } while (el);
+  };
+
+  var getElement = function(ev) {
+    return $window.document.getElementById(ev.dataTransfer.getData('text'));
+  };
+
+  
+  $scope.dragstart = function(ev) {
+	  ev.dataTransfer.setData('text', ev.target.id);
+	  $scope.trashVisible = true;
+  };
+
+  $scope.dragover = function(ev) {
+    ev.preventDefault();
+  };
+
+  $scope.drop = function(ev) {
+	  ev.preventDefault();
+	  var element = getElement(ev);
+	  var target = getTarget(ev);
+	  if (target.compareDocumentPosition(element) & Node.DOCUMENT_POSITION_CONTAINS) {
+	    //rodic se nemuze stat potomkem sveho potomka
+	  } else {
+	    target.appendChild(element);
+	  }
+	  $scope.trashVisible = false;
+  };
 
 
   $scope.addCategory = function() {
@@ -66,5 +50,12 @@ angular.module('zdrojak.controller').controller('CategoriesCtrl', ['$scope', 'ap
     //...implementace aktualizace kategorie
   };
 
-  trash = document.getElementById('trash');
+  $scope.removeCategory = function(ev) {
+  	if (!window.confirm('Chcete skutečně kategorii smazat?')) {
+	  	return $scope.trashVisible = false;
+	  }
+	  var element = getElement(ev);
+	  element.parentNode.removeChild(element);
+	  $scope.trashVisible = false;
+  };
 }]);
