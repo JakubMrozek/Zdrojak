@@ -1,0 +1,35 @@
+<div modal="addDialogIsOpen" close="close('addDialog')">
+
+    <div class="modal-header">
+      <h4> Vložit nového správce</h4>
+    </div>
+
+    <form ng-submit="add()">
+    <div class="modal-body">
+      
+
+      <div class="well">
+        <fieldset>
+          <p><label>Jméno <span>(povinné)</span></label>
+          <input type="name" name="name" ng-model="user.name" required class="input-xlarge"></p>
+
+          <p><label>E-mail <span>(povinné)</span></label>
+          <input type="email" name="email" ng-model="user.email" required class="input-xlarge"></p>
+
+        </fieldset>
+        <fieldset>
+          <label>Heslo <span>(povinné)</span></label>
+          <input type="password" name="password" ng-model="user.password" class="input-xlarge" required pattern=".{6,}" title="Heslo musí být minimálně 6 znaků dlouhé">
+
+          <label>Opakujte heslo <span>(povinné)</span></label>
+          <input type="password" name="password" ng-model="user.retypePassword" class="input-xlarge" required pattern=".{6,}" title="Heslo musí být minimálně 6 znaků dlouhé">
+        </fieldset>
+      </div>
+    </div>
+      
+    <div class="modal-footer">
+      <p class="modal-submit-button"><input type="submit" value="Vložit správce" class="btn btn-primary btn-block"></p>
+    </div>
+  </form>
+
+  </div>

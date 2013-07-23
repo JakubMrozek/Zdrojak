@@ -42,7 +42,7 @@
   min-height: 600px;
 }
 
-.button-add-product {
+.button-add {
   text-align: right;
 }
 
@@ -58,4 +58,15 @@
 
 .admin-photo {
   padding-left: 25px;
+}
+
+.category-item {
+  margin: 5px;
+}
+
+#trash {
+  padding: 5px; 
+  border: 1px solid gray; 
+  width: 100px; 
+  text-align: center;
 }

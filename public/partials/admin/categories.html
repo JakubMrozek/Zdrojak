@@ -1,0 +1,38 @@
+<h1>Kategorie</h1>
+
+<p class="button-add"><a ng-click="addCategory()" class="btn"><i class="icon-plus-sign"></i> Vložit novou kategorii</a></p> 
+
+<hr>
+
+<p class="alert" ng-hide="categories.length">V databázi není žádná kategorie.</p>
+
+<script type="text/ng-template"  id="template-category">
+  <i class="icon-chevron-right"></i>
+  <inline model='data.name' action='updateCategory'></inline>
+  <ul class="nav nav-list">
+    <li ng-repeat="data in data.children" 
+        id="{{data.id}}"
+        class="category-item"
+        ng-include="'template-category'" 
+        draggable="true" 
+        drop="drop" 
+        dragover="dragover"
+        dragstart="dragstart">
+    </li>
+  </ul>
+</script>  
+  
+<ul class="nav nav-list">
+  <li ng-repeat="data in categories" 
+      id="{{data.id}}"
+      class="category-item"
+      ng-include="'template-category'" 
+      draggable="true" 
+      dragstart="dragstart"
+      drop="drop" 
+      dragover="dragover">
+  </li>
+</ul> 
+
+<hr>
+<p id="trash" ng-show="trashVisible" drop="removeCategory" dragover="dragover"><i class="icon-trash"></i> Koš </p>

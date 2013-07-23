@@ -12,19 +12,15 @@
      <div class="navbar">
       <div class="navbar-inner">
         <ul id="navigation" class="nav" ng-controller="MenuAdminCtrl">
-          <li ng-show="menuItem == 'orders'" class="active"><a ng-href="/admin/">Objednávky</a></li>
-          <li ng-hide="menuItem == 'orders'"><a ng-href="/admin/">Objednávky</a></li>
-          <li ng-show="menuItem == 'products'" class="active"><a ng-href="/admin/products">Produkty</a></li>
-          <li ng-hide="menuItem == 'products'"><a ng-href="/admin/products">Produkty</a></li>
-          <li><a>Kategorie</a></li>
-          <li><a>Parametry</a></li>
-          <li><a>Layouty</a></li>
-          <li><a>Výrobci</a></li>
-          <li><a>Správci</a></li>
+          <li menu-item="orders"><a ng-href="/admin/">Objednávky</a></li>
+          <li menu-item="products"><a ng-href="/admin/products">Produkty</a></li>
+          <li menu-item="categories"><a ng-href="/admin/categories">Kategorie</a></li>
+          <li><a style="color: #C0C0C0">Parametry</a></li>
+          <li><a style="color: #C0C0C0">Layouty</a></li>
+          <li menu-item="users"><a ng-href="/admin/users">Správci</a></li>
         </ul>
       </div>
     </div>
-      
       
     <div class="body">
       <div class="container-fluid">
@@ -54,6 +50,7 @@
   <script src="/js/controllers/App.js"></script>
   <script src="/js/controllers/Basket.js"></script>
   <script src="/js/controllers/Category.js"></script>
+  <script src="/js/controllers/Categories.js"></script>
   <script src="/js/controllers/Customer.js"></script>
   <script src="/js/controllers/Index.js"></script>
   <script src="/js/controllers/MenuAdmin.js"></script>
@@ -69,6 +66,7 @@
   <script src="/js/controllers/Products.js"></script>
   <script src="/js/controllers/Search.js"></script>
   <script src="/js/controllers/Summary.js"></script>
+  <script src="/js/controllers/Users.js"></script>
 
   <!-- filters -->
   <script src="/js/filters/join.js"></script>
@@ -78,6 +76,8 @@
   <script src="/js/directives/paging.js"></script>
   <script src="/js/directives/range.js"></script>
   <script src="/js/directives/upload.js"></script>
+  <script src="/js/directives/drag-drop.js"></script>
+  <script src="/js/directives/menu-item.js"></script>
 
   <!-- services -->
   <script src="/js/services/api.js"></script>
@@ -89,6 +89,7 @@
   <script src="/js/services/transport.js"></script>
   <script src="/js/services/upload-file.js"></script>
   <script src="/js/services/url-filter.js"></script>
+  <script src="/js/services/dialog.js"></script>
 
   <!-- libs -->
   <script src="/js/lib/Basket.js"></script>
