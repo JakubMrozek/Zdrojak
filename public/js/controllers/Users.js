@@ -3,16 +3,14 @@ angular.module('zdrojak.controller').controller('UsersCtrl', ['$scope', 'dialog'
 
   dialog($scope, function(index){
     $scope.user = {};
-    $scope.copy = {};
-    if (angular.isDefined(index)) {
-      angular.copy($scope.users[index], $scope.user);
-      $scope.copy = $scope.users[index];
-    }
+    if (angular.isDefined(index)){
+      $scope.user.id = getId(index);
+    } 
   });
 
   $scope.add = function() {
     api.user.create($scope.user, function(res){
-      $scope.user._id = res._id;
+      $scope.user.id = res.id;
       $scope.users.push($scope.user);
       $scope.close('addDialog');
     });
@@ -30,9 +28,14 @@ angular.module('zdrojak.controller').controller('UsersCtrl', ['$scope', 'dialog'
   };
 
   $scope.remove = function(index) {
-  	api.user.remove({id: $scope.users[index].id}, function(){
+    if (!window.confirm('Chcete skutečně uživatele smazat?')) return;
+  	api.user.remove({id: getId(index)}, function(){
       $scope.users.splice(index, 1);
     });
+  };
+
+  var getId = function(index) {
+    return $scope.users[index].id;
   };
 
 }]);
