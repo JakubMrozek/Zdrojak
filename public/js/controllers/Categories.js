@@ -1,16 +1,18 @@
+var trash;
+
+var hideTrash = function() {
+  trash.style.display = 'none';	
+}
+
 function getTarget(ev) {
-  switch (ev.target.nodeName) {
-  	case 'LI':
-  	  var target = ev.target;
-  	  break;
-  	case 'SPAN':
-  		var target = ev.target.nextSibling;
-  		break;
-  	case 'I':
-  		var target = ev.target.nextSibling.nextSibling;
-  		break;
-  }
-  return target;
+	var el = ev.target;
+  do {
+    if (el.classList.contains('category-item')) {
+    	return el.lastElementChild;
+    }
+    el = el.parentNode;
+
+  } while (el);
 };
 
 function allowDrop(ev) {
@@ -19,6 +21,7 @@ function allowDrop(ev) {
 
 function drag(ev) {
 	ev.dataTransfer.setData('text', ev.target.id);
+	trash.style.display = '';
 }
 
 function drop(ev) {
@@ -31,14 +34,37 @@ function drop(ev) {
   } else {
     target.appendChild(element);
   }
+
+  hideTrash();
 }
 
+function removeCategory(ev) {
+  if (!window.confirm('Skutečně smazat?')) {
+  	hideTrash();
+    return false;
+  }
+  var element = document.getElementById(ev.dataTransfer.getData('text'));
+  element.parentNode.removeChild(element);
+  hideTrash();
+};
 
 
 
 angular.module('zdrojak.controller').controller('CategoriesCtrl', ['$scope', 'api', function ($scope, api) {
-  $scope.categories = api.category.index(function(){
-  	
-  });
+  $scope.categories = api.category.index();
 
+
+  $scope.addCategory = function() {
+  	var name = window.prompt('Jak se bude nová kategorie jmenovat?');
+  	if (!name) return;
+  	$scope.categories.push({
+  		name: name
+  	});
+  };
+
+  $scope.updateCategory = function() {
+    //...implementace aktualizace kategorie
+  };
+
+  trash = document.getElementById('trash');
 }]);

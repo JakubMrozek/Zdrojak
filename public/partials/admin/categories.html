@@ -1,9 +1,12 @@
 <h1>Kategorie</h1>
 
+<a class="btn" ng-click="addCategory()"><i class="icon-plus-sign"></i> Vložit novou kategorii</a>
+
 <hr>
 
 <script type="text/ng-template"  id="template-category">
-  <i class="icon-chevron-right"></i>{{data.name}}
+  <i class="icon-chevron-right"></i>
+  <inline model='data.name' action='updateCategory'></inline>
   <ul class="nav nav-list">
     <li ng-repeat="data in data.children" 
         ng-include="'template-category'" 
@@ -28,3 +31,5 @@
       ondragover="allowDrop(event)">
   </li>
 </ul> 
+
+<p style="display:none" class="btn" id="trash" ondrop="removeCategory(event)" ondragover="allowDrop(event)">Koš </p>
