@@ -28,7 +28,7 @@ angular.module('zdrojak.controller').controller('CategoriesCtrl', ['$scope', '$w
   $scope.dragover = function(ev) {
     ev.preventDefault();
   };
-
+  
   $scope.drop = function(ev) {
 	  ev.preventDefault();
 	  var element = getElement(ev);
@@ -37,7 +37,9 @@ angular.module('zdrojak.controller').controller('CategoriesCtrl', ['$scope', '$w
 	  if (target.compareDocumentPosition(element) & Node.DOCUMENT_POSITION_CONTAINS) {
 	    //rodic se nemuze stat potomkem sveho potomka
 	  } else {
-	    target.appendChild(element);
+      api.category.update({id: element.id}, {parent: target.parentNode.id}, function(){
+        target.appendChild(element);
+      });
 	  }
 	  $scope.trashVisible = false;
   };
