@@ -10,7 +10,8 @@ function inlineFactory(template) {
       model: '=',
       type: '@',
       min: '@',
-      ident: '='
+      ident: '=',
+      options: '='
     },
     template: template,
     link: function(scope, element, attrbs) {
@@ -67,5 +68,16 @@ angular.module('zdrojak.directive').directive('inline', inlineFactory(
   '<span>' +
   '<span ng-hide="mode">{{model}}</span>' +
   '<input class="input-small" type="{{type}}" min="{{min}}" ng-show="mode" ng-model="model" required>' +
+  '</span>'
+));
+
+/**
+ * <inline model='page.text' action='update'/>
+ */
+
+angular.module('zdrojak.directive').directive('inlineSelect', inlineFactory(
+  '<span>' +
+  '<span ng-hide="mode">{{options[model]}}</span>' +
+  '<select ng-model="model" ng-show="mode" ng-options="k as v for (k,v) in options" required></select>' +
   '</span>'
 ));

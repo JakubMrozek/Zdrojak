@@ -573,52 +573,6 @@ PUT /products/{id}/images
 
 
 --
-Layouty
---
-
-
-Seznam všech layoutů v administraci.
-GET /layouts
-< 200
-[
-    {
-        "id": 12345,
-        "name": "Mobilní telefony - obecné",
-        "parameters": [
-            {"name": "Operační systém", "type": "codebook", "values": ["iOS", "Android", "Windows"]},
-            {"name": "Barva", "type": "codebook", "values": ["černá", "bílá", "červená", "hnědá"]},
-            {"name": "Digitální fotoaparát", "type": "codebook", "values": ["ano", "ne"]},
-            {"name": "Rozlišení fotoaparátu", "type": "value"},
-            {"name": "Pohotovostní doba", "type": "value"},
-            {"name": "MP3", "type": "codebook", "values": ["ano", "ne"]},
-            {"name": "FM rádio", "type": "codebook", "values": ["ano", "ne"]},
-            {"name": "HD video", "type": "codebook", "values": ["ano", "ne"]},
-            {"name": "Rozměry", "type": "value"},
-            {"name": "Hmotnost", "type": "value"}
-        ]
-    }
-]
-
-
-Vložení layoutu.
-POST /layouts
-< 201
-{
-    "id": 42
-}
-
-
-Uprava layoutu
-PUT /layouts/{id}
-< 204
-
-
-Smazání layoutu.
-DELETE /layouts/{id}
-< 204
-
-
---
 Parametry
 --
 
@@ -639,6 +593,17 @@ GET /parameters
         "type": "value"
     }
 ]
+
+
+Detail parametru.
+GET /parameters/{id}
+< 200
+{
+    "id": 12345,
+    "name": "Operační systém",
+    "type": "codebook",
+    "values": ["iOS", "Android", "Windows"]
+}
 
 
 Vložení parametru.

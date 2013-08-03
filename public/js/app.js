@@ -46,9 +46,9 @@ module.config(function routes($routeProvider) {
   $routeProvider.when('/admin/products/:id', {templateUrl: '/partials/admin/product-detail.html', controller: 'ProductDetailCtrl', menuItem: 'products'});
   $routeProvider.when('/admin/users', {templateUrl: '/partials/admin/users.html', controller: 'UsersCtrl', menuItem: 'users'});
   $routeProvider.when('/admin/categories', {templateUrl: '/partials/admin/categories.html', controller: 'CategoriesCtrl', menuItem: 'categories'});
-  $routeProvider.when('/admin/layouts', {templateUrl: '/partials/admin/layouts.html', controller: 'LayoutsCtrl', menuItem: 'layouts'});
   $routeProvider.when('/admin/parameters', {templateUrl: '/partials/admin/parameters.html', controller: 'ParametersCtrl', menuItem: 'parameters'});
   $routeProvider.when('/admin/add-parameter', {templateUrl: '/partials/admin/parameter-add.html', controller: 'ParameterAddCtrl', menuItem: 'parameters'});
+  $routeProvider.when('/admin/parameters/:id', {templateUrl: '/partials/admin/parameter.html', controller: 'ParameterDetailCtrl', menuItem: 'parameters'});
   $routeProvider.otherwise({redirectTo: '/'});
 });
 
