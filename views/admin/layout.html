@@ -16,7 +16,7 @@
           <li menu-item="products"><a ng-href="/admin/products">Produkty</a></li>
           <li menu-item="categories"><a ng-href="/admin/categories">Kategorie</a></li>
           <li menu-item="layouts"><a ng-href="/admin/layouts">Layouty</a></li>
-          <li><a style="color: #C0C0C0">Parametry</a></li>
+          <li menu-item="parameters"><a ng-href="/admin/parameters">Parametry</a></li>
           <li menu-item="users"><a ng-href="/admin/users">Správci</a></li>
         </ul>
       </div>
@@ -43,6 +43,7 @@
   <script src="/components/angular-i18n/angular-locale_cs-cz.js"></script>
   <script src="/components/angular-resource/angular-resource.min.js"></script>
   <script src="/components/angular-bootstrap/ui-bootstrap.min.js"></script>
+  <script src="/components/angular-ui-utils/modules/event/event.js"></script>
 
   <script src="/js/app.js"></script>
 
@@ -62,6 +63,8 @@
   <script src="/js/controllers/OrderDetail.js"></script>
   <script src="/js/controllers/Orders.js"></script>
   <script src="/js/controllers/Page.js"></script>
+  <script src="/js/controllers/Parameters.js"></script>
+  <script src="/js/controllers/ParameterAdd.js"></script>
   <script src="/js/controllers/Product.js"></script>
   <script src="/js/controllers/ProductDetail.js"></script>
   <script src="/js/controllers/Products.js"></script>

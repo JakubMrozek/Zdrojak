@@ -1,0 +1,21 @@
+<h1>Parametry</h1>
+
+<p class="button-add"><a href="/admin/add-parameter" class="btn"><i class="icon-plus-sign"></i> Vložit nový parametr</a></p> 
+
+<hr>
+
+<table class="table table-striped">
+  <tbody>
+  	<tr ng-repeat="parameter in parameters">
+  	  <th><a ng-href="/admin/parameters/{{parameter.id}}">{{parameter.name}}</a></th>
+  	  <td>
+  	  	<span ng-show="parameter.values.length">{{parameter.values | join:' / '}}</span>
+  	  	<em ng-hide="parameter.values.length"> (číselná hodnota) </em>
+  	  </td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+<p class="alert" ng-hide="parameters.length">V databázi není žádný parametr.</p>

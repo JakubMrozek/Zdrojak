@@ -1,0 +1,36 @@
+<h1>Vložení nového parametru</h1>
+
+<hr>
+
+<form ng-submit="add()">
+  <fieldset class="well">
+  	<legend>Základní údaje</legend>
+    <p><label>Jméno <span>(povinné)</span></label></p>
+    <p><input type="name" name="name" ng-model="name" required class="input-xlarge"></p>
+
+    <p><label>Typ <span>(povinné)</span></label></p>
+    <div class="radio">
+		  <label>
+		    <input ng-model="type" type="radio" id="type-codebook" value="codebook" ng-init="type='codebook'">
+		    Číselník - několik předdefinovaných hodnot (např. výběr operačního systému)
+		  </label>
+		</div>
+		<div class="radio">
+		  <label>
+		    <input ng-model="type" type="radio" id="type-value" value="value">
+		    Hodnota - unikátní hodnota pro každý produkt (např. váha)
+		  </label>
+		</div>
+
+  </fieldset>
+
+  <fieldset class="well" ng-show="type=='codebook'">
+  	<legend>Hodnoty číselníku</legend>
+
+  	<p ng-repeat="value in codebook">
+  		{{$index + 1}}. <input type="text" ng-model="value.value" ui-event="{ keyup : 'check()' }">
+  	</p>
+  </fieldset>
+
+  <p><input type="submit" value="Vložit parametr" class="btn btn-primary"></p>
+</form>

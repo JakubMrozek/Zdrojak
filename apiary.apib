@@ -617,3 +617,43 @@ Smazání layoutu.
 DELETE /layouts/{id}
 < 204
 
+
+--
+Parametry
+--
+
+
+Seznam všech parametrů v administraci.
+GET /parameters
+< 200
+[
+    {
+        "id": 12345,
+        "name": "Operační systém",
+        "type": "codebook",
+        "values": ["iOS", "Android", "Windows"]
+    },
+    {
+        "id": 12346,
+        "name": "Hmotnost",
+        "type": "value"
+    }
+]
+
+
+Vložení parametru.
+POST /parameters
+< 201
+{
+    "id": 42
+}
+
+
+Uprava parametru
+PUT /parameters/{id}
+< 204
+
+
+Smazání parametru.
+DELETE /parameters/{id}
+< 204

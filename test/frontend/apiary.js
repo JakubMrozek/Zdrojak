@@ -518,5 +518,75 @@ var apiary = [
         ]
       }
     ]
+  },
+  {
+    "name": "Parametry",
+    "description": "",
+    "resources": [
+      {
+        "description": "Seznam všech parametrů v administraci.",
+        "method": "GET",
+        "url": "/parameters",
+        "request": {
+          "headers": {},
+          "body": ""
+        },
+        "responses": [
+          {
+            "status": 200,
+            "headers": {},
+            "body": "[\n    {\n        \"id\": 12345,\n        \"name\": \"Operační systém\",\n        \"type\": \"codebook\",\n        \"values\": [\"iOS\", \"Android\", \"Windows\"]\n    },\n    {\n        \"id\": 12346,\n        \"name\": \"Hmotnost\",\n        \"type\": \"value\"\n    }\n]"
+          }
+        ]
+      },
+      {
+        "description": "Vložení parametru.",
+        "method": "POST",
+        "url": "/parameters",
+        "request": {
+          "headers": {},
+          "body": ""
+        },
+        "responses": [
+          {
+            "status": 201,
+            "headers": {},
+            "body": "{\n    \"id\": 42\n}"
+          }
+        ]
+      },
+      {
+        "description": "Uprava parametru",
+        "method": "PUT",
+        "url": "/parameters/{id}",
+        "request": {
+          "headers": {},
+          "body": ""
+        },
+        "responses": [
+          {
+            "status": 204,
+            "headers": {},
+            "body": ""
+          }
+        ]
+      },
+      {
+        "description": "Smazání parametru.",
+        "method": "DELETE",
+        "url": "/parameters/{id}",
+        "request": {
+          "headers": {},
+          "body": ""
+        },
+        "responses": [
+          {
+            "status": 204,
+            "headers": {},
+            "body": ""
+          }
+        ]
+      }
+    ]
   }
 ]
