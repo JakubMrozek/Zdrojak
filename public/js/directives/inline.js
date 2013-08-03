@@ -23,6 +23,10 @@ function inlineFactory(template) {
       var content;
       var updated;
 
+      scope.command = function(command, text) {
+        document.execCommand (command, false, text);
+      };
+
       function send(e) {
         var newContent = element.text().trim();
         if (newContent !== '') {
@@ -60,9 +64,6 @@ function inlineFactory(template) {
 }
 
 
-/**
- * <inline model='page.text' action='update'/>
- */
 
 angular.module('zdrojak.directive').directive('inline', inlineFactory(
   '<span>' +
@@ -71,13 +72,37 @@ angular.module('zdrojak.directive').directive('inline', inlineFactory(
   '</span>'
 ));
 
-/**
- * <inline model='page.text' action='update'/>
- */
+
 
 angular.module('zdrojak.directive').directive('inlineSelect', inlineFactory(
   '<span>' +
   '<span ng-hide="mode">{{options[model]}}</span>' +
   '<select ng-model="model" ng-show="mode" ng-options="k as v for (k,v) in options" required></select>' +
+  '</span>'
+));
+
+/**
+ * <inline model='page.text' action='update'/>
+ */
+
+angular.module('zdrojak.directive').directive('inlineTextarea', inlineFactory(
+  '<span>' +
+  '<span ng-hide="mode">{{model}}</span>' +
+  '<textarea ng-show="mode" ng-model="model" required></textarea>' +
+  '</span>'
+));
+
+
+
+angular.module('zdrojak.directive').directive('inlineWysiwyg', inlineFactory(
+  '<span>' +
+  '<span ng-hide="mode" ng-bind-html-unsafe="model"></span>' +
+  '<div ng-show="mode">' + 
+    '<p>' + 
+      '<button ng-click="command(\'bold\')" style="font-weight:bold">B</button>' +
+      '<button ng-click="command(\'italic\')" style="font-style: italic">I</button>' +
+    '</p>' +
+    '<div contenteditable="true" ng-bind-html-unsafe="model"></div>' + 
+  '</div>' +
   '</span>'
 ));

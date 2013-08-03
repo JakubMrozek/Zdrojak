@@ -5,31 +5,38 @@
       <tbody>
         <tr>
           <th>Kód</th>
-          <td>{{product.code}}</td>
-        </tr>
-        <tr>
-          <th>URL</th>
-          <td>{{product.url}}</td>
+          <td><inline model='product.code' action='update'></inline></td>
         </tr>
         <tr>
           <th>Perex</th>
-          <td>{{product.perex}}</td>
+          <td><inline-textarea model='product.perex' action='update'></inline-textarea></td>
         </tr>
         <tr>
           <th>Text</th>
-          <td ng-bind-html-unsafe="product.text"></td>
+          <td><inline-wysiwyg model='product.text' action='update'></inline-wysiwyg>
+          </td>
         </tr>
         <tr>
           <th>Cena</th>
-          <td>{{product.price | currency}}</td>
+          <td><inline model='product.price' action='update'></inline></td>
         </tr>
         <tr>
           <th>DPH</th>
-          <td>{{product.dph}}%</td>
+          <td><inline model='product.dph' action='update'></inline>%</td>
         </tr>
       </tbody>
     </table>
+
+    <hr>
     
+    <table class="table table-striped">
+      <tr ng-repeat="parameter in product.parameters">
+        <th> {{parameter.name}} </th>
+        <td> {{parameter.values | join: ' / '}} </td>
+      </tr>
+    </table>
+
+
   </div>
   <div class="span4 well">
     <h3>Obrázky</h3>
@@ -48,3 +55,5 @@
     </div>
   </div>
 </div>
+
+<p><a class="btn" ng-click="remove()">Smazat</a></p>

@@ -446,6 +446,22 @@ var apiary = [
             "body": ""
           }
         ]
+      },
+      {
+        "description": "Odstranění produktu s ID {id}",
+        "method": "DELETE",
+        "url": "/products/{id}",
+        "request": {
+          "headers": {},
+          "body": ""
+        },
+        "responses": [
+          {
+            "status": 204,
+            "headers": {},
+            "body": ""
+          }
+        ]
       }
     ]
   },

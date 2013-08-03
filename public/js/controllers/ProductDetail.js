@@ -1,4 +1,4 @@
-angular.module('zdrojak.controller').controller('ProductDetailCtrl', ['$scope', '$routeParams', '$window', 'api', 'uploadFile', function($scope, $routeParams, $window, api, uploadFile) {
+angular.module('zdrojak.controller').controller('ProductDetailCtrl', ['$scope', '$routeParams', '$location', '$window', 'api', 'uploadFile', function($scope, $routeParams, $location, $window, api, uploadFile) {
   $scope.imgs = [];
   $scope.progress = 0;
   $scope.product = api.product.show({id: $routeParams.id});
@@ -41,6 +41,17 @@ angular.module('zdrojak.controller').controller('ProductDetailCtrl', ['$scope', 
 
     $scope.pbar = true;
     api.product.upload({id: $routeParams.id, upload: upload}, complete, error, cancel, progress);
-  }
+  };
+
+  $scope.update = function() {
+    api.product.update({id: $routeParams.id}, $scope.product);
+  };
+
+  $scope.remove = function() {
+    if (!window.confirm('Chcete skutečně produkt smazat?')) return;
+    api.product.remove({id: $routeParams.id}, function(){
+      $location.url('/admin/products');
+    });
+  };
 
 }]);
