@@ -5,5 +5,26 @@
       <th>Typ</th>
       <td><inline-select model='parameter.type' action='update' options="options"></inline-select></td>
     </tr>
+     <tr ng-show="parameter.type == 'codebook'">
+      <th>Hodnoty</th>
+      <td>
+
+        <form ng-show="updateCodebook">
+          <fieldset class="well">
+            <p ng-repeat="value in codebook">
+              {{$index + 1}}. <input type="text" ng-model="value.value" ui-event="{ keyup : 'check()' }">
+            </p>
+          </fieldset>
+          <p><input value="Upravit" class="btn btn-primary" ng-click="updateCodebook=false;update()"></p>
+        </form>
+
+        <ul ng-hide="updateCodebook" ng-click="updateCodebook=true">
+          <li ng-repeat="value in parameter.values">{{value}}</li>
+        </ul>
+
+      </td>
+    </tr>
   </tbody>
 </table>
+
+<p><a class="btn" ng-click="remove()">Smazat</a></p>
