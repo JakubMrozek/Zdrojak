@@ -448,5 +448,75 @@ var apiary = [
         ]
       }
     ]
+  },
+  {
+    "name": "Layouty",
+    "description": "",
+    "resources": [
+      {
+        "description": "Seznam všech layoutů v administraci.",
+        "method": "GET",
+        "url": "/layouts",
+        "request": {
+          "headers": {},
+          "body": ""
+        },
+        "responses": [
+          {
+            "status": 200,
+            "headers": {},
+            "body": "[\n    {\n        \"id\": 12345,\n        \"name\": \"Mobilní telefony - obecné\",\n        \"parameters\": [\n            {\"name\": \"Operační systém\", \"type\": \"codebook\", \"values\": [\"iOS\", \"Android\", \"Windows\"]},\n            {\"name\": \"Barva\", \"type\": \"codebook\", \"values\": [\"černá\", \"bílá\", \"červená\", \"hnědá\"]},\n            {\"name\": \"Digitální fotoaparát\", \"type\": \"codebook\", \"values\": [\"ano\", \"ne\"]},\n            {\"name\": \"Rozlišení fotoaparátu\", \"type\": \"value\"},\n            {\"name\": \"Pohotovostní doba\", \"type\": \"value\"},\n            {\"name\": \"MP3\", \"type\": \"codebook\", \"values\": [\"ano\", \"ne\"]},\n            {\"name\": \"FM rádio\", \"type\": \"codebook\", \"values\": [\"ano\", \"ne\"]},\n            {\"name\": \"HD video\", \"type\": \"codebook\", \"values\": [\"ano\", \"ne\"]},\n            {\"name\": \"Rozměry\", \"type\": \"value\"},\n            {\"name\": \"Hmotnost\", \"type\": \"value\"}\n        ]\n    }\n]"
+          }
+        ]
+      },
+      {
+        "description": "Vložení layoutu.",
+        "method": "POST",
+        "url": "/layouts",
+        "request": {
+          "headers": {},
+          "body": ""
+        },
+        "responses": [
+          {
+            "status": 201,
+            "headers": {},
+            "body": "{\n    \"id\": 42\n}"
+          }
+        ]
+      },
+      {
+        "description": "Uprava layoutu",
+        "method": "PUT",
+        "url": "/layouts/{id}",
+        "request": {
+          "headers": {},
+          "body": ""
+        },
+        "responses": [
+          {
+            "status": 204,
+            "headers": {},
+            "body": ""
+          }
+        ]
+      },
+      {
+        "description": "Smazání layoutu.",
+        "method": "DELETE",
+        "url": "/layouts/{id}",
+        "request": {
+          "headers": {},
+          "body": ""
+        },
+        "responses": [
+          {
+            "status": 204,
+            "headers": {},
+            "body": ""
+          }
+        ]
+      }
+    ]
   }
 ]
