@@ -28,7 +28,7 @@ var module = angular.module('zdrojak', [
  * 
  */
 
-module.config(function routes($routeProvider) {
+module.config(['$routeProvider', function($routeProvider) {
   //frontend
   $routeProvider.when('/', {templateUrl: '/partials/index.html', controller: 'IndexCtrl'});
   $routeProvider.when('/vyhledavani/:query', {templateUrl: '/partials/search.html', controller: 'SearchCtrl'});
@@ -50,7 +50,7 @@ module.config(function routes($routeProvider) {
   $routeProvider.when('/admin/add-parameter', {templateUrl: '/partials/admin/parameter-add.html', controller: 'ParameterAddCtrl', menuItem: 'parameters'});
   $routeProvider.when('/admin/parameters/:id', {templateUrl: '/partials/admin/parameter.html', controller: 'ParameterDetailCtrl', menuItem: 'parameters'});
   $routeProvider.otherwise({redirectTo: '/'});
-});
+}]);
 
 
 /**
@@ -65,9 +65,17 @@ module.config(function routes($routeProvider) {
  * Napr. example.com/#/mobily/android  
  */
 
-module.config(function url($locationProvider) {
+module.config(['$locationProvider', function($locationProvider) {
   $locationProvider.html5Mode(true);   
-});
+}]);
+
+/**
+ * Zpracovani chyb.
+ * 
+ */
+module.config(['$httpProvider', function($httpProvider){
+  $httpProvider.responseInterceptors.push('errors');
+}]);
 
     
 })();

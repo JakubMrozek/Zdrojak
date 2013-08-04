@@ -1,4 +1,7 @@
 <h1>Objednávka číslo {{order.number}}</h1>
+
+<messages></messages>  
+
 <p>{{order.date | date:'medium'}}</p>
 <p>Stav objednávky: 
   <select ng-change="order.status.name = st.get(order.status.code).name;update()" ng-model="order.status.code" ng-options="s.code as s.name for s in st.all()"></select>

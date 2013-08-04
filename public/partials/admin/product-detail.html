@@ -1,15 +1,18 @@
 <h1>{{product.name}}</h1>
+
+<messages></messages>  
+
 <div class="row">
   <div class="span8">
     <table class="table table-striped">
       <tbody>
         <tr>
           <th>Kód</th>
-          <td><inline model='product.code' action='update'></inline></td>
+          <td><inline-temp model='product.code' action='update'></inline-temp></td>
         </tr>
         <tr>
           <th>Perex</th>
-          <td><inline-textarea model='product.perex' action='update'></inline-textarea></td>
+          <td><inline-temp model='product.perex' action='update'></inline-temp></td>
         </tr>
         <tr>
           <th>Text</th>
