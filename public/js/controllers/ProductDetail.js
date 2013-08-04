@@ -43,8 +43,8 @@ angular.module('zdrojak.controller').controller('ProductDetailCtrl', ['$scope', 
     api.product.upload({id: $routeParams.id, upload: upload}, complete, error, cancel, progress);
   };
 
-  $scope.update = function() {
-    api.product.update({id: $routeParams.id}, $scope.product);
+  $scope.update = function(el, inline, success, error) {
+    success();
   };
 
   $scope.remove = function() {

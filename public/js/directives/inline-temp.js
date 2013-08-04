@@ -1,4 +1,4 @@
-function Inline(template) {
+function Inline(template, Cls) {
   this.config = {
     restrict: 'E',
     replace: true,
@@ -6,10 +6,11 @@ function Inline(template) {
     scope: {
       action: '=',
       model: '=',
-      ident: '='
+      ident: '=',
+      attrs: '@'
     },
     link: function(scope, element, attrs) {
-      var link = new InlineLink(this, scope, element, attrs);
+      var link = new Cls(this, scope, element, attrs);
       link.process();
     }.bind(this)
   };
@@ -18,6 +19,8 @@ function Inline(template) {
 Inline.CLASS_WRAPPER = 'inline-wrapper';
 Inline.CLASS_PLAIN = 'inline-plain';
 Inline.CLASS_EDIT = 'inline-edit';
+Inline.CLASS_EMPTY = 'inline-empty';
+Inline.CLASS_FOCUSED = 'inline-focused';
 
 Inline.prototype.addConfigScopeOption = function(name, value) {
   this.config.scope[name] = value;
@@ -41,11 +44,15 @@ function InlineLink(inline, scope, element, attrs) {
   this.inline = inline;
   this.scope = scope;
   this.attrs = attrs;
+  this.element = element[0];
   this.plainElements = this.getPlainElements(element[0]);
   this.editElements = this.getEditElements(element[0]);
-  this.content = '';
-  this.updated = false;
+  this.content = [];
+  this.updated = true;
+  this.required = false;
 };
+
+InlineLink.KEY_CODE_ENTER = 13;
 
 InlineLink.prototype.getPlainElements = function(element) {
   return element.querySelectorAll('.' + Inline.CLASS_PLAIN);
@@ -61,14 +68,31 @@ InlineLink.prototype.setPlainElementsActivedEvent = function() {
   }
 };
 
-InlineLink.prototype.initContent = function() {
+InlineLink.prototype.getContent = function() {
+  var content = [];
   for (var i = 0; i < this.plainElements.length; ++i) {
-    this.content += this.plainElements[i].innerText;
+    if (this.plainElements[i].classList.contains(Inline.CLASS_EMPTY)) {
+      continue;
+    }
+    content.push(this.plainElements[i].innerText);
   }
+  return content;
 };
 
 InlineLink.prototype.showEditElements = function() {
   this.scope.$apply('mode=true');
+};
+
+InlineLink.prototype.hideEditElements = function() {
+  this.scope.$apply('mode=false');
+};
+
+InlineLink.prototype.showLoader = function() {
+  this.scope.$apply('loader=true');
+};
+
+InlineLink.prototype.hideLoader = function() {
+  this.scope.$apply('loader=false');
 };
 
 InlineLink.prototype.focusFirstditElement = function() {
@@ -76,66 +100,106 @@ InlineLink.prototype.focusFirstditElement = function() {
 };
 
 InlineLink.prototype.setPlainElementActivedEvent = function(e) {
-  this.initContent();
+  this.content = this.getContent();
   this.showEditElements();
   this.focusFirstditElement();
   this.updated = false;
 };
 
-InlineLink.prototype.process = function() {
-  this.setPlainElementsActivedEvent();
+InlineLink.prototype.setEditElementsUpdatedEvent = function() {
+  this.setEditElementsBlurEvent();
+  this.setEditElementsEnterEvent();
 };
 
+InlineLink.prototype.setEditElementsFocusEvent = function() {
+  for (var i = 0; i < this.editElements.length; ++i) {
+    this.editElements[i].addEventListener('focus', function(e){
+      e.target.classList.add(Inline.CLASS_FOCUSED);
+    }.bind(this));  
+  }
+};
 
+InlineLink.prototype.setEditElementsBlurEvent = function() {
+  for (var i = 0; i < this.editElements.length; ++i) {
+    this.editElements[i].addEventListener('blur', function(e){
+      e.target.classList.remove(Inline.CLASS_FOCUSED);
+      setTimeout(function(){
+        this.blurSetEditEvent(e);
+      }.bind(this) , 10);
+    }.bind(this));  
+  }
+};
 
-
-
-
-
-
-/*
-
-Inline.prototype.link = function(scope, element, attrbs) {
-  var children = element.children();
-  var span  = angular.element(children[0]);
-  var input = angular.element(children[1]);
-
-  //puvodni obsah
-  var content;
-  var updated;
-
-
-  function send(e) {
-    var newContent = element.text().trim();
-    if (newContent !== '') {
-      scope.$apply('mode=false');
-    }
-    if (newContent !== content && !updated) {
-      scope.action(e, scope.ident);
-      updated = true;
+InlineLink.prototype.blurSetEditEvent = function() {
+  for (var i = 0; i < this.editElements.length; ++i) {
+    if (this.editElements[i].classList.contains(Inline.CLASS_FOCUSED)) {
+      return true;
     }
   }
+  this.setUpdateEvent();
+};
 
-  //ztrata focusu, ulozit zmenu
-  input.bind('blur', function(e){
-    send(e);
-  });
+InlineLink.prototype.setEditElementsEnterEvent = function() {
+  for (var i = 0; i < this.editElements.length; ++i) {
+    this.editElements[i].addEventListener('keypress', function(e){
+      if (e.charCode === InlineLink.KEY_CODE_ENTER) {
+        this.setUpdateEvent(e);
+      }
+    }.bind(this));  
+  }
+};
+  
+InlineLink.prototype.setUpdateEvent = function(e) {
+  var contentNew = this.getContent().toString().trim();
+  var contentOld = this.content.toString().trim();
 
-  //uzivatel kliknul na enter, ulozit zmenu
-  input.bind('keypress', function(e){
-    if (e.charCode === KEY_CODE_ENTER) send(e);
-  });
+  if (this.updated) {
+    return false;
+  }
 
-  //po kliknuti na text zobrazit input pro editaci
-  span.bind('click', function() {
-    content = element.text().trim();
-    scope.$apply('mode=true');
-    input[0].focus();
-    updated = false;
-  });
-}
+  if (contentNew === '' && this.required) {
+    return false;
+  }
 
-*/
+  if (contentNew === contentOld) {
+    return false;
+  }
+
+  var success = function() {
+    this.updated = true;
+    this.hideLoader();
+    this.hideEditElements();
+  }.bind(this);
+
+  var error = function() {
+    this.hideLoader();
+  }.bind(this);
+
+  this.showLoader();
+  this.scope.action(e, this, success, error);
+};
+
+InlineLink.prototype.setAttributes = function() {
+  var attrs = this.scope.$eval(this.attrs.attrs) || {};
+  for (var i = 0; i < this.editElements.length; ++i) {
+    for (var a in attrs) {
+      if (a === 'class') {
+        this.editElements[i].classList.add(attrs[a]);
+      } else {
+        this.editElements[i][a] = attrs[a];
+      }
+    }
+  }
+  this.required = attrs.required;
+};
+
+InlineLink.prototype.process = function() {
+  this.setAttributes();
+  this.setPlainElementsActivedEvent();
+  this.setEditElementsFocusEvent();
+  this.setEditElementsUpdatedEvent();
+};
+
 
 
 
@@ -144,9 +208,11 @@ angular.module('zdrojak.directive').directive('inlineTemp', function(){
   var template = 
     '<div class="inline-wrapper">' +
       '<span class="inline-plain" ng-hide="mode">{{model}}</span>' +
-      '<input class="inline-edit" type="text" ng-show="mode" ng-model="model">' +
+      '<input class="inline-edit" ng-show="mode" ng-model="model">' +
+      '<em class="inline-plain inline-empty" ng-hide="model || mode">(upravit)</em>' +
+      '<img src="/img/loader.gif" ng-show="loader">' +
     '</div>';
-  var inline = new Inline(template);
+  var inline = new Inline(template, InlineLink);
   return inline.getConfig();
 });
 
@@ -163,70 +229,7 @@ angular.module('zdrojak.directive').directive('inlineTemp', function(){
 
 /*
 
-function inlineFactory(template) {
 
-  var KEY_CODE_ENTER = 13;
-
-  var config = {
-    restrict: 'E',
-    replace: true,
-    scope: {
-      action: '=',
-      model: '=',
-      type: '@',
-      min: '@',
-      ident: '=',
-      options: '='
-    },
-    template: template,
-    link: function(scope, element, attrbs) {
-      var children = element.children();
-      var span  = angular.element(children[0]);
-      var input = angular.element(children[1]);
-
-      //puvodni obsah
-      var content;
-      var updated;
-
-      scope.command = function(command, text) {
-        document.execCommand (command, false, text);
-      };
-
-      function send(e) {
-        var newContent = element.text().trim();
-        if (newContent !== '') {
-          scope.$apply('mode=false');
-        }
-        if (newContent !== content && !updated) {
-          scope.action(e, scope.ident);
-          updated = true;
-        }
-      }
-
-      //ztrata focusu, ulozit zmenu
-      input.bind('blur', function(e){
-        send(e);
-      });
-
-      //uzivatel kliknul na enter, ulozit zmenu
-      input.bind('keypress', function(e){
-        if (e.charCode === KEY_CODE_ENTER) send(e);
-      });
-
-      //po kliknuti na text zobrazit input pro editaci
-      span.bind('click', function() {
-        content = element.text().trim();
-        scope.$apply('mode=true');
-        input[0].focus();
-        updated = false;
-      });
-    }
-  }
-
-  return function(){
-    return config;
-  }
-}
 
 
 
