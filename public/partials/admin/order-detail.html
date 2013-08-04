@@ -12,14 +12,14 @@
   
   <address class="well">
     <strong>
-      <inline model='order.customer.name' action='update'></inline> 
-      <inline model='order.customer.surname' action='update'></inline>
+      <inline model='order.customer.name' action='update' attrs="{placeholder: 'Jméno'}"></inline> 
+      <inline model='order.customer.surname' action='update' attrs="{placeholder: 'Příjmení'}"></inline>
     </strong>
     <br>
-    <inline model='order.customer.email' action='update'></inline><br>
-    <inline model='order.customer.street' action='update'></inline><br>
-    <inline model='order.customer.town' action='update'></inline><br>
-    <inline model='order.customer.zipcode' action='update'></inline>
+    <inline model='order.customer.email' action='update' attrs="{placeholder: 'E-mail', type: 'email'}"></inline><br>
+    <inline model='order.customer.street' action='update' attrs="{placeholder: 'Ulice'}"></inline><br>
+    <inline model='order.customer.town' action='update' attrs="{placeholder: 'Město'}"></inline><br>
+    <inline model='order.customer.zipcode' action='update' attrs="{placeholder: 'PSČ'}"></inline>
   </address>
   
   </div>
@@ -37,12 +37,12 @@
       <tbody>
         <tr ng-repeat="product in order.products">
           <td>{{product.code}} {{product.name}} <br>{{product.variant.name}} </td>
-          <td><inline model='product.quantity' action='update' type="number" min="1"></inline> ks</td>
+          <td><inline model='product.quantity' action='update' attrs="{type: 'number', min: 1, class: 'input-mini'}"></inline> ks</td>
           <td>{{product.price*product.quantity | currency}}</td>
           <td><a ng-click="remove($index)"><i class="icon-trash"></i></a></td>
         </tr>
         <tr>
-          <td>{{order.transport.name}}</td>
+          <td><inline-select model='order.transport.code' action='update' options="options" attrs="{class: 'input-xlarge'}"></inline-select></td>
           <td></td>
           <td>{{order.transport.price | currency}}</td>
         </tr>

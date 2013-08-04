@@ -79,20 +79,30 @@ InlineLink.prototype.getContent = function() {
   return content;
 };
 
+InlineLink.prototype.digest = function(str) {
+  if (!this.scope.$root.$$phase) {
+    this.scope.$digest();
+  }
+};
+
 InlineLink.prototype.showEditElements = function() {
-  this.scope.$apply('mode=true');
+  this.scope.mode = true;
+  this.digest();
 };
 
 InlineLink.prototype.hideEditElements = function() {
-  this.scope.$apply('mode=false');
+  this.scope.mode = false;
+  this.digest();
 };
 
 InlineLink.prototype.showLoader = function() {
-  this.scope.$apply('loader=true');
+  this.scope.loader = true;
+  this.digest();
 };
 
 InlineLink.prototype.hideLoader = function() {
-  this.scope.$apply('loader=false');
+  this.scope.loader = false;
+  this.digest();
 };
 
 InlineLink.prototype.focusFirstditElement = function() {
@@ -148,20 +158,31 @@ InlineLink.prototype.setEditElementsEnterEvent = function() {
     }.bind(this));  
   }
 };
+
+InlineLink.prototype.isValid = function() {
+  for (var i = 0; i < this.editElements.length; ++i) {
+    if (!this.editElements[i].validity.valid) {
+      return false;
+    }
+  }
+  return true;
+};
   
 InlineLink.prototype.setUpdateEvent = function(e) {
   var contentNew = this.getContent().toString().trim();
   var contentOld = this.content.toString().trim();
 
   if (this.updated) {
+    this.hideEditElements();
     return false;
   }
 
-  if (contentNew === '' && this.required) {
+  if (!this.isValid()) {
     return false;
   }
 
   if (contentNew === contentOld) {
+    this.hideEditElements();
     return false;
   }
 
@@ -176,11 +197,19 @@ InlineLink.prototype.setUpdateEvent = function(e) {
   }.bind(this);
 
   this.showLoader();
-  this.scope.action(e, this, success, error);
+  this.event = e;
+  this.scope.action(this, success, error);
 };
 
 InlineLink.prototype.setAttributes = function() {
+  var set = function(attr, def) {
+    attrs[attr] = typeof attrs[attr] === 'undefined' ? def : attrs[attr];
+  };
+
   var attrs = this.scope.$eval(this.attrs.attrs) || {};
+  set('required', true);
+  set('type', 'text');
+
   for (var i = 0; i < this.editElements.length; ++i) {
     for (var a in attrs) {
       if (a === 'class') {
@@ -190,7 +219,6 @@ InlineLink.prototype.setAttributes = function() {
       }
     }
   }
-  this.required = attrs.required;
 };
 
 InlineLink.prototype.process = function() {
@@ -204,7 +232,7 @@ InlineLink.prototype.process = function() {
 
 
 
-angular.module('zdrojak.directive').directive('inlineTemp', function(){
+angular.module('zdrojak.directive').directive('inline', function(){
   var template = 
     '<div class="inline-wrapper">' +
       '<span class="inline-plain" ng-hide="mode">{{model}}</span>' +
@@ -216,9 +244,38 @@ angular.module('zdrojak.directive').directive('inlineTemp', function(){
   return inline.getConfig();
 });
 
+angular.module('zdrojak.directive').directive('inlineSelect', function(){
+  var template = 
+    '<div class="inline-wrapper">' +
+      '<span class="inline-plain" ng-hide="mode">{{options[model]}}</span>' +
+      '<select class="inline-edit" ng-show="mode" ng-model="model" ng-options="k as v for (k,v) in options"></select>'
+      '<em class="inline-plain inline-empty" ng-hide="model || mode">(upravit)</em>' +
+      '<img src="/img/loader.gif" ng-show="loader">' +
+    '</div>';
+  var inline = new Inline(template, InlineLink);
+  inline.addConfigScopeOption('options', '=');
+  return inline.getConfig();
+});
 
 
 
+
+/*
+angular.module('zdrojak.directive').directive('inlineTextarea', function(){
+  var template = 
+    '<div class="inline-wrapper">' +
+      '<span class="inline-plain" ng-hide="mode">{{model}}</span>' +
+      '<textarea class="inline-edit" ng-show="mode" ng-model="model"></textarea>' +
+      '<em class="inline-plain inline-empty" ng-hide="model || mode">(upravit)</em>' +
+      '<img src="/img/loader.gif" ng-show="loader">' +
+    '</div>';
+  var inline = new Inline(template, InlineLink);
+  inline.addConfigScopeOption('rows', '@');
+  inline.addConfigScopeOption('cols', '@');
+  return inline.getConfig();
+});
+
+*/
 
 
 
@@ -233,30 +290,7 @@ angular.module('zdrojak.directive').directive('inlineTemp', function(){
 
 
 
-angular.module('zdrojak.directive').directive('inline', inlineFactory(
-  '<span>' +
-  '<span ng-hide="mode">{{model}}</span>' +
-  '<input class="input-small" type="{{type}}" min="{{min}}" ng-show="mode" ng-model="model" required>' +
-  '</span>'
-));
 
-
-
-angular.module('zdrojak.directive').directive('inlineSelect', inlineFactory(
-  '<span>' +
-  '<span ng-hide="mode">{{options[model]}}</span>' +
-  '<select ng-model="model" ng-show="mode" ng-options="k as v for (k,v) in options" required></select>' +
-  '</span>'
-));
-
-
-
-angular.module('zdrojak.directive').directive('inlineTextarea', inlineFactory(
-  '<span>' +
-  '<span ng-hide="mode">{{model}}</span>' +
-  '<textarea ng-show="mode" ng-model="model" required></textarea>' +
-  '</span>'
-));
 
 
 
