@@ -66,5 +66,13 @@ module.config(function url($locationProvider) {
   $locationProvider.html5Mode(true);   
 });
 
+
+/**
+ * Zpracovani chyb 4xx
+ * 
+ */
+module.config(function error($httpProvider){
+  $httpProvider.responseInterceptors.push('error4xx');
+});
     
 })();
