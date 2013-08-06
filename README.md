@@ -26,9 +26,13 @@ bower install
 Seriál E-shop pomocí moderních technologií
 ==========================================
 
+12. dil
+=======
+* Článek: http://www.zdrojak.cz/clanky/tvorba-moderniho-e-shopu-zpracovani-chyb/
+
 11. dil
 =======
-* Článek: http://www.zdrojak.cz/clanky/tvorba-moderniho-e-shopu-html5-drag-drop-kategorie-a-spravci/
+* Článek: http://www.zdrojak.cz/clanky/tvorba-moderniho-e-shopu-html5-drag-drop-a-kategorie/
 * Demo: http://polar-harbor-7605.herokuapp.com/admin/categories
 
 10. díl
