@@ -18,7 +18,8 @@ var module = angular.module('zdrojak', [
   'zdrojak.mock',
   'ui.bootstrap.alert', 
   'ui.bootstrap.dialog',
-  'ui.bootstrap.modal'
+  'ui.bootstrap.modal',
+  'ui.event'
 ]);
 
 
@@ -27,7 +28,7 @@ var module = angular.module('zdrojak', [
  * 
  */
 
-module.config(function routes($routeProvider) {
+module.config(['$routeProvider', function($routeProvider) {
   //frontend
   $routeProvider.when('/', {templateUrl: '/partials/index.html', controller: 'IndexCtrl'});
   $routeProvider.when('/vyhledavani/:query', {templateUrl: '/partials/search.html', controller: 'SearchCtrl'});
@@ -45,9 +46,11 @@ module.config(function routes($routeProvider) {
   $routeProvider.when('/admin/products/:id', {templateUrl: '/partials/admin/product-detail.html', controller: 'ProductDetailCtrl', menuItem: 'products'});
   $routeProvider.when('/admin/users', {templateUrl: '/partials/admin/users.html', controller: 'UsersCtrl', menuItem: 'users'});
   $routeProvider.when('/admin/categories', {templateUrl: '/partials/admin/categories.html', controller: 'CategoriesCtrl', menuItem: 'categories'});
-  $routeProvider.when('/admin/layouts', {templateUrl: '/partials/admin/layouts.html', controller: 'LayoutsCtrl', menuItem: 'categories'});
+  $routeProvider.when('/admin/parameters', {templateUrl: '/partials/admin/parameters.html', controller: 'ParametersCtrl', menuItem: 'parameters'});
+  $routeProvider.when('/admin/add-parameter', {templateUrl: '/partials/admin/parameter-add.html', controller: 'ParameterAddCtrl', menuItem: 'parameters'});
+  $routeProvider.when('/admin/parameters/:id', {templateUrl: '/partials/admin/parameter.html', controller: 'ParameterDetailCtrl', menuItem: 'parameters'});
   $routeProvider.otherwise({redirectTo: '/'});
-});
+}]);
 
 
 /**
@@ -62,9 +65,17 @@ module.config(function routes($routeProvider) {
  * Napr. example.com/#/mobily/android  
  */
 
-module.config(function url($locationProvider) {
+module.config(['$locationProvider', function($locationProvider) {
   $locationProvider.html5Mode(true);   
-});
+}]);
+
+/**
+ * Zpracovani chyb.
+ * 
+ */
+module.config(['$httpProvider', function($httpProvider){
+  $httpProvider.responseInterceptors.push('errors');
+}]);
 
 
 /**
