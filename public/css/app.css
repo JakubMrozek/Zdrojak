@@ -70,3 +70,17 @@
   width: 100px; 
   text-align: center;
 }
+
+.inline-wrapper {
+  display: inline;
+}
+
+.inline-plain {
+  cursor: pointer;
+  border-bottom:1px dotted #999;
+}
+
+.editor-window {
+  background: white; 
+  border: 1px solid black;
+}
