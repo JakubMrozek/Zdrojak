@@ -1,4 +1,5 @@
 angular.module('zdrojak.controller').controller('ProductDetailCtrl', ['$scope', '$routeParams', '$location', '$window', 'api', 'uploadFile', function($scope, $routeParams, $location, $window, api, uploadFile) {
+  
   $scope.imgs = [];
   $scope.progress = 0;
   $scope.product = api.product.show({id: $routeParams.id});
@@ -44,7 +45,7 @@ angular.module('zdrojak.controller').controller('ProductDetailCtrl', ['$scope', 
   };
 
   $scope.update = function(el, inline, success, error) {
-    success();
+    if (success) success();
   };
 
   $scope.remove = function() {
