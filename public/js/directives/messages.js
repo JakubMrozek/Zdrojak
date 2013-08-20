@@ -1,13 +1,9 @@
-
-/**
- * Zobrazeni chybovych a oznamovacich hlasek.
- */
-
-angular.module('zdrojak.directive').directive('messages', ['$rootScope', 'flash', function($rootScope, flash){
+angular.module('zdrojak.directive').directive('messages', function(){
   var template = [
-    '<p class="alert alert-{{messages.type}}" ng-repeat="message in messages.message">',
-    '{{message}}',
-    '</p>'
+    '<div ng-show="messages" class="alert alert-{{messages.type}}">',
+    '<button class="close" ng-click="closeAlertMessage($index)">×</button>',
+    '<span ng-repeat="message in messages.message">{{message}}</span>',
+    '</div>'
   ].join("\n");
 
   var config = {
@@ -16,15 +12,19 @@ angular.module('zdrojak.directive').directive('messages', ['$rootScope', 'flash'
     template: template,
     replace: true,
     link: function(scope, element) {
-      $rootScope.$on('flashMessages:add', function(event, messages){
+      scope.$on('messages:add', function(event, messages){
         scope.messages = messages;
       });
       
-      $rootScope.$on('flashMessages:reset', function(){
+      scope.$on('messages:reset', function(){
         scope.messages = [];
       });
+
+      scope.closeAlertMessage = function(index) {
+        scope.messages = [];
+      }
     }
   };
 
   return config;
-}]);
+});

@@ -77,5 +77,13 @@ module.config(['$httpProvider', function($httpProvider){
   $httpProvider.responseInterceptors.push('errors');
 }]);
 
+
+/**
+ * Zpracovani chyb 4xx
+ * 
+ */
+module.config(function error($httpProvider){
+  $httpProvider.responseInterceptors.push('error4xx');
+});
     
 })();

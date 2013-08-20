@@ -18,16 +18,16 @@ angular.module('zdrojak.mock').run(function($httpBackend) {
       url = new RegExp(url + '$');
       switch (res.method) {
         case 'GET':
-          $httpBackend.whenGET(url).respond(res.responses[0].body);
+          $httpBackend.whenGET(url).respond(res.responses[0].status, res.responses[0].body);
           break;
         case 'POST':
-          $httpBackend.whenPOST(url).respond(res.responses[0].body);
+          $httpBackend.whenPOST(url).respond(res.responses[0].status, res.responses[0].body);
           break;
         case 'PUT':
-          $httpBackend.whenPUT(url).respond(res.responses[0].body);
+          $httpBackend.whenPUT(url).respond(res.responses[0].status, res.responses[0].body);
           break;
         case 'DELETE':
-          $httpBackend.whenDELETE(url).respond(res.responses[0].body);
+          $httpBackend.whenDELETE(url).respond(res.responses[0].status, res.responses[0].body);
           break;
       }
     });

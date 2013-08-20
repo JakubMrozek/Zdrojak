@@ -1,12 +1,8 @@
-/**
- *  Flash messanger
- */
-
 angular.module('zdrojak.service').factory('flash', ['$rootScope', function($rootScope){
   
   function Flash() {}
   
-  Flash.prototype.message = function(message) {
+  Flash.prototype.info = function(message) {
     this.add('info', message);
   };
   
@@ -15,16 +11,15 @@ angular.module('zdrojak.service').factory('flash', ['$rootScope', function($root
   };
   
   Flash.prototype.add = function(type, message) {
-    $rootScope.$broadcast('flashMessages:add', {
+    $rootScope.$broadcast('messages:add', {
       message: Array.isArray(message) ? message : [message],
       type: type
     });  
   };
   
   Flash.prototype.reset = function() {
-    $rootScope.$broadcast('flashMessages:reset');  
+    $rootScope.$broadcast('messages:reset');  
   };
   
   return new Flash();
-  
 }]);
