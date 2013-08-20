@@ -74,16 +74,8 @@ module.config(['$locationProvider', function($locationProvider) {
  * 
  */
 module.config(['$httpProvider', function($httpProvider){
-  $httpProvider.responseInterceptors.push('errors');
+  $httpProvider.responseInterceptors.push('error4xx');
 }]);
 
-
-/**
- * Zpracovani chyb 4xx
- * 
- */
-module.config(function error($httpProvider){
-  $httpProvider.responseInterceptors.push('error4xx');
-});
     
 })();
