@@ -1,0 +1,25 @@
+<h1>Vložení nového produktu</h1>
+
+<messages></messages>  
+
+<hr>
+
+<form ng-submit="add()">
+  <fieldset class="well">
+  	<legend>Základní údaje</legend>
+    <p><label>Název <span>(povinné):</span></label></p>
+    <p><input type="text" ng-model="data.name" required class="input-xxlarge"></p>
+
+    <p><label>Kód <span>(povinné):</span></label></p>
+    <p><input type="text" ng-model="data.code" required class="input-medium"></p>
+
+    <p><label>Cena <span>(povinné):</span></label></p>
+    <p><input type="text" ng-model="data.price" required class="input-medium" pattern="\d+"> Kč</p>
+
+    <p><label>DPH <span>(povinné):</span></label></p>
+    <p><input type="number" ng-model="data.vat" required class="input-small" min="0" max="100" ng-init="data.vat = 20"> %</p>
+
+  </fieldset>
+
+  <p><input type="submit" value="Vložit produkt a upravit další parametry" class="btn btn-primary"></p>
+</form>

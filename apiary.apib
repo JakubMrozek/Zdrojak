@@ -285,6 +285,15 @@ Produkty
 --
 
 
+Vložení nového produktu do databáze.
+POST /products
+< 201
+< Content-Type: application/json
+{
+    "id": "1234567"
+}
+
+
 Seznam produktů pro úvodní stránku.
 GET /products?homepage=true
 < 200

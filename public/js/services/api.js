@@ -25,6 +25,7 @@ angular.module('zdrojak.service').factory('api', ['$resource', function($resourc
   api.product = $resource(url + 'products/:id', {}, {
     homepage: {method:'GET', isArray:true},
     index: {method:'GET'},
+    create: {method: 'POST'},
     show: {method:'GET'},
     update: {method: 'POST'}
   });

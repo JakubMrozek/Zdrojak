@@ -322,6 +322,24 @@ var apiary = [
     "description": "",
     "resources": [
       {
+        "description": "Vložení nového produktu do databáze.",
+        "method": "POST",
+        "url": "/products",
+        "request": {
+          "headers": {},
+          "body": ""
+        },
+        "responses": [
+          {
+            "status": 201,
+            "headers": {
+              "Content-Type": "application/json"
+            },
+            "body": "{\n    \"id\": \"1234567\"\n}"
+          }
+        ]
+      },
+      {
         "description": "Seznam produktů pro úvodní stránku.",
         "method": "GET",
         "url": "/products?homepage=true",
