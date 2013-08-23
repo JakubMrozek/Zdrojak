@@ -426,21 +426,22 @@ GET /products/{id}
 "code": "AZ007",
 "perex": "Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.",     
 "text": "<p>Cras justo odio, dapibus ac facilisis in, egestas eget quam.</p><p>Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>",
+"status": true,
 "photos": [
   {"src":"/img/350x300.gif","width":350,"heigth":300},
   {"src":"/img/350x300.gif","width":350,"heigth":300}
 ],
 "parameters": [
-  {"name": "Operační systém", "values": ["iOS"]},
-  {"name": "Barva", "values": ["černá", "bílá"]},
-  {"name": "Digitální fotoaparát", "values": ["ano"]},
-  {"name": "Rozličení fotoaparátu", "values": ["8 Mpx"]},
-  {"name": "Pohotovostní doba", "values": ["225 hodin"]},
-  {"name": "MP3", "values": ["ano"]},
-  {"name": "FM rádio", "values": ["ne"]},
-  {"name": "HD video", "values": ["ano"]},
-  {"name": "Rozměry", "values": ["115,2 x 58,6 x 9,3 mm"]},
-  {"name": "Hmotnost", "values": ["137 g"]}
+  {"id": 12345, "name": "Operační systém", "values": ["iOS"]},
+  {"id": 12346, "name": "Barva", "values": ["černá", "bílá"]},
+  {"id": 12347, "name": "Digitální fotoaparát", "values": ["ano"]},
+  {"id": 12348, "name": "Rozlišení fotoaparátu", "values": ["8 Mpx"]},
+  {"id": 12349, "name": "Pohotovostní doba", "values": ["225 hodin"]},
+  {"id": 12350, "name": "MP3", "values": ["ano"]},
+  {"id": 12351, "name": "FM rádio", "values": ["ne"]},
+  {"id": 12352, "name": "HD video", "values": ["ano"]},
+  {"id": 12353, "name": "Rozměry", "values": ["115,2 x 58,6 x 9,3 mm"]},
+  {"id": 12354, "name": "Hmotnost", "values": ["137 g"]}
 ],
 "variants": [
   {"name": "Černá barva"},
@@ -603,6 +604,51 @@ GET /parameters
     },
     {
         "id": 12346,
+        "name": "Barva",
+        "type": "codebook",
+        "values": ["Bílá", "Černá"]
+    },
+    {
+        "id": 12347,
+        "name": "Digitální fotoaparát",
+        "type": "codebook",
+        "values": ["ano", "ne"]
+    },
+    {
+        "id": 12348,
+        "name": "Rozlišení fotoaparátu",
+        "type": "value"
+    },
+    {
+        "id": 12349,
+        "name": "pohotovostní doba",
+        "type": "value"
+    },
+    {
+        "id": 12350,
+        "name": "MP3",
+        "type": "codebook",
+        "values": ["ano", "ne"]
+    },
+    {
+        "id": 12351,
+        "name": "FM rádio",
+        "type": "codebook",
+        "values": ["ano", "ne"]
+    },
+    {
+        "id": 12352,
+        "name": "HD video",
+        "type": "codebook",
+        "values": ["ano", "ne"]
+    },
+    {
+        "id": 12353,
+        "name": "Rozměry",
+        "type": "value"
+    },
+    {
+        "id": 12354,
         "name": "Hmotnost",
         "type": "value"
     }

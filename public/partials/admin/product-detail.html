@@ -26,16 +26,45 @@
           <th>DPH</th>
           <td><inline model='product.dph' action='update'></inline>%</td>
         </tr>
+        <tr>
+          <th>Dostupnost</th>
+          <td>
+            <label><input ng-change="update()" type="radio" ng-model="product.availability" value="skladem"> Skladem</label> 
+            <label><input ng-change="update()" type="radio" ng-model="product.availability" value="vprodáno"> Vyprodáno</label>
+          </td>
+        </tr>
+        <tr>
+          <th>Stav</th>
+          <td>
+            <label><input ng-change="update()" type="checkbox" ng-model="product.status"> Aktivní (zákazník může zboží koupit)</label>
+          </td>
+        </tr>
       </tbody>
     </table>
 
     <hr>
+
+    <h3>Další parametry</h3>
     
     <table class="table table-striped">
+
       <tr ng-repeat="parameter in product.parameters">
         <th> {{parameter.name}} </th>
-        <td> <inline model="parameter.values | join: ' / '" action='update'></inline> </td>
+        <td> 
+          <div ng-show="parameter.type == 'value'">
+            <inline model="parameter.values | join" action='update'></inline>
+          </div>
+          <div ng-show="parameter.type == 'codebook'">
+            <ul class="unstyled">
+              <li ng-repeat="(value, key) in parameter.values"> 
+                <label><input type="checkbox" ng-model="parameter.values[value]" ng-change="update()"> {{value}}</label>
+              </li>
+            </ul>
+          </div>
+        </td>
       </tr>
+
+
     </table>
 
 
@@ -57,5 +86,7 @@
     </div>
   </div>
 </div>
+
+<hr>
 
 <p><a class="btn" ng-click="remove()">Smazat</a></p>
