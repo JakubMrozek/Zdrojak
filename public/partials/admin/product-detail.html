@@ -34,7 +34,7 @@
     <table class="table table-striped">
       <tr ng-repeat="parameter in product.parameters">
         <th> {{parameter.name}} </th>
-        <td> {{parameter.values | join: ' / '}} </td>
+        <td> <inline model="parameter.values | join: ' / '" action='update'></inline> </td>
       </tr>
     </table>
 
