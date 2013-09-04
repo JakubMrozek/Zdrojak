@@ -251,7 +251,7 @@ var apiary = [
         },
         "responses": [
           {
-            "status": 401,
+            "status": 200,
             "headers": {
               "Content-Type": "application/json"
             },
