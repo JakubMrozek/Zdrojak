@@ -7,7 +7,7 @@ Demo e-shop pro Zdrojak.cz (http://jakubmrozek.github.com/Zdrojak/)
 
 
 --
-Stranky 
+Stranky
 --
 
 
@@ -63,53 +63,53 @@ GET /categories?url={url}
 < 200
 < Content-Type: application/json
 {
-    "name": "iPhone", 
-    "url": "iphone", 
-    "children": [], 
+    "name": "iPhone",
+    "url": "iphone",
+    "children": [],
     "minPrice": 1000,
     "maxPrice": 23000,
     "params": [
         {
-            "name": "Funkce", 
-            "code": "funkce", 
+            "name": "Funkce",
+            "code": "funkce",
             "values": [
-                {"code": "wifi", "value": "WiFi"}, 
-                {"code": "bluetooth", "value": "BlueTooth"}, 
-                {"code": "dual-sim", "value": "Dual SIM"}, 
-                {"code": "gps", "value": "GPS"}, 
+                {"code": "wifi", "value": "WiFi"},
+                {"code": "bluetooth", "value": "BlueTooth"},
+                {"code": "dual-sim", "value": "Dual SIM"},
+                {"code": "gps", "value": "GPS"},
                 {"code": "fm-radio", "value": "FM radio"}
             ]
         },
         {
-            "name": "Operační paměť", 
-            "code": "operacni-pamet", 
+            "name": "Operační paměť",
+            "code": "operacni-pamet",
             "values": [
-                {"code": "256", "value": "256 MB"}, 
-                {"code": "512", "value": "512 MB"}, 
-                {"code": "1024", "value": "1024 MB"}, 
-                {"code": "2048", "value": "2048 MB"}, 
+                {"code": "256", "value": "256 MB"},
+                {"code": "512", "value": "512 MB"},
+                {"code": "1024", "value": "1024 MB"},
+                {"code": "2048", "value": "2048 MB"},
                 {"code": "4096", "value": "4096 MB"}
             ]
          },
          {
-            "name": "Uložiště", 
-            "code": "uloziste", 
+            "name": "Uložiště",
+            "code": "uloziste",
             "values": [
-                {"code": "0-2", "value": "0-2 GB"}, 
-                {"code": "2-10", "value": "2-10 GB"}, 
-                {"code": "10-50", "value": "10-50 GB"}, 
-                {"code": "50-100", "value": "50-100 GB"}, 
+                {"code": "0-2", "value": "0-2 GB"},
+                {"code": "2-10", "value": "2-10 GB"},
+                {"code": "10-50", "value": "10-50 GB"},
+                {"code": "50-100", "value": "50-100 GB"},
                 {"code": "100-512", "value": "100-512 GB"}
             ]
         },
         {
-            "name": "Paměťová karta", 
-            "code": "pametova-karta", 
+            "name": "Paměťová karta",
+            "code": "pametova-karta",
             "values": [
-                {"code": "sdhc", "value": "SDHC"}, 
-                {"code": "micro-sd", "value": "Micro SD"}, 
-                {"code": "micro-sdxc", "value": "Micro SDXC"}, 
-                {"code": "sdxc", "value": "SDXC"}, 
+                {"code": "sdhc", "value": "SDHC"},
+                {"code": "micro-sd", "value": "Micro SD"},
+                {"code": "micro-sdxc", "value": "Micro SDXC"},
+                {"code": "sdxc", "value": "SDXC"},
                 {"code": "micro-sdhc", "value": "Micro SDHC"}
             ]
         }
@@ -157,9 +157,19 @@ GET /users/{id}
 < Content-Type: application/json
 {
     "id": 12345,
-    "name": "Jakub Mrozek", 
+    "name": "Jakub Mrozek",
     "email": "jakub.mrozek@gmail.com"
 }
+
+
+
+Vraceni authTokenu pro daneho uzivatele
+POST /users/0
+< 200
+{
+    "authToken": "d8dd64d0m5sjkd64dkzs876dk"
+}
+
 
 
 Vytvoření nového správce.
@@ -187,7 +197,7 @@ Objednávky
 
 Výběr všech objednávek z databáze.
 GET /orders?filter={filter}&limit={limit}&offset={offset}&order={order}&query={query}
-< 200
+< 401
 < Content-Type: application/json
 {"count":50,
 "orders":[
@@ -387,7 +397,7 @@ GET /products?url={url}
 "name": "iPhone 4 32GB",
 "url": "iphone-4-32gb",
 "code": "AZ007",
-"perex": "Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.",     
+"perex": "Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.",
 "text": "<p>Cras justo odio, dapibus ac facilisis in, egestas eget quam.</p><p>Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>",
 "photos": [
   {"src":"/img/350x300.gif","width":350,"heigth":300},
@@ -424,7 +434,7 @@ GET /products/{id}
 "name": "iPhone 4 32GB",
 "url": "iphone-4-32gb",
 "code": "AZ007",
-"perex": "Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.",     
+"perex": "Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.",
 "text": "<p>Cras justo odio, dapibus ac facilisis in, egestas eget quam.</p><p>Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>",
 "status": true,
 "photos": [

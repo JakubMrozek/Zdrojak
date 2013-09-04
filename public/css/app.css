@@ -1,13 +1,13 @@
-.product-card-content { 
+.product-card-content {
   margin: 0 0 20px 5px !important;
 }
 
 .product-parameters-th {
-  width: 200px;    
+  width: 200px;
 }
 
 #nav-basket-price {
-  color: white;    
+  color: white;
 }
 
 #category-controls {
@@ -15,23 +15,23 @@
 }
 
 .link-self {
-  text-align: center;    
+  text-align: center;
 }
 
 .status-pending {
-  background-color: rgb(239, 250, 255); 
+  background-color: rgb(239, 250, 255);
 }
 
 .status-completed {
-  background-color: rgb(240, 250, 236);  
+  background-color: rgb(240, 250, 236);
 }
 
 .status-cancelled {
-  background-color: rgb(250, 247, 233);  
+  background-color: rgb(250, 247, 233);
 }
 
 .status-1 {
-  background-color: rgb(240, 250, 236); 
+  background-color: rgb(240, 250, 236);
 }
 
 .order-number {
@@ -65,9 +65,9 @@
 }
 
 #trash {
-  padding: 5px; 
-  border: 1px solid gray; 
-  width: 100px; 
+  padding: 5px;
+  border: 1px solid gray;
+  width: 100px;
   text-align: center;
 }
 
@@ -81,6 +81,31 @@
 }
 
 .editor-window {
-  background: white; 
+  background: white;
   border: 1px solid black;
+}
+
+ .form-signin {
+  max-width: 300px;
+  padding: 19px 29px 29px;
+  margin: 20px auto 20px;
+  background-color: #fff;
+  border: 1px solid #e5e5e5;
+  -webkit-border-radius: 5px;
+     -moz-border-radius: 5px;
+          border-radius: 5px;
+  -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+     -moz-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+          box-shadow: 0 1px 2px rgba(0,0,0,.05);
+}
+.form-signin .form-signin-heading,
+.form-signin .checkbox {
+  margin-bottom: 10px;
+}
+.form-signin input[type="text"],
+.form-signin input[type="password"] {
+  font-size: 16px;
+  height: auto;
+  margin-bottom: 15px;
+  padding: 7px 9px;
 }
