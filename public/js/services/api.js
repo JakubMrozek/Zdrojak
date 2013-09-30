@@ -57,7 +57,9 @@ angular.module('zdrojak.service').factory('api', ['$resource', function($resourc
     create: {method: 'POST'},
     update: {method: 'PUT'},
     remove: {method: 'DELETE'},
-    auth: {method: 'POST', params: {id: 0}}
+    auth: {method: 'POST', params: {id: 0}},
+    login: {method: 'POST', params: {id: 'login'}},
+    logout: {method: 'POST', params: {id: 'logout'}}
   });
 
   //API parametry

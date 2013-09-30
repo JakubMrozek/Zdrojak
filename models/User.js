@@ -18,15 +18,26 @@ var fields = {
   password: {
     type: String,
     required: true
+  },
+  hashStorage: {
+    type: String,
+    required: true
+  },
+  hashCookie: {
+    type: String,
+    required: true
   }
 };
 
 var UserSchema = new Schema(fields);
 
-
 UserSchema.pre('validate', function(next){
   next();
 });
 
-module.exports = mongoose.model('Page', PageSchema);
+UserSchema.statics.findForLogin = function(email, password, cb) {
+  this.findOne({email: email, password: password}, cb);
+};
+
+module.exports = mongoose.model('User', UserSchema);
 

@@ -16,6 +16,10 @@ Auth.prototype.setToken = function(token) {
   this.tokenStorage.setItem(Auth.TOKEN, token);
 };
 
+Auth.prototype.removeToken = function() {
+  this.tokenStorage.removeItem(Auth.TOKEN);
+};
+
 Auth.prototype.initHeaders = function() {
   var token = this.getToken();
   if (!token) return false;
@@ -57,7 +61,7 @@ Auth.prototype.login = function(email, password, successCb, errorCb) {
 
   var auth = this;
 
-  this.api.user.auth(credentials, function(res){
+  this.api.user.login(credentials, function(res){
     if (res.authToken) {
       auth.setToken(res.authToken);
       auth.setHeader(res.authToken);
@@ -68,4 +72,11 @@ Auth.prototype.login = function(email, password, successCb, errorCb) {
       errorCb(res);
     }
   });
+};
+
+Auth.prototype.logout = function(cb) {
+  cb = cb || function() {};
+  this.removeToken();
+  this.notifier.notifyRequired();
+  cb();
 };

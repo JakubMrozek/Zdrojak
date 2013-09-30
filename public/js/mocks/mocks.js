@@ -1,7 +1,7 @@
 
-/* 
+/*
  * Simulace dotazu na api pomoci Apiary
- * 
+ *
  * http://www.zdrojak.cz/clanky/angularjs-direktivy-a-testovani/
  */
 
@@ -35,4 +35,7 @@ angular.module('zdrojak.mock').run(function($httpBackend) {
 
   //nechat projit pozadavky na sablony
   $httpBackend.whenGET(/^\/partials\//).passThrough();
+
+  //TODO nechat projit nektere requesty, vyresi Mockapito
+  $httpBackend.whenPOST(new RegExp('/api/v1/users/login')).passThrough();
 });
