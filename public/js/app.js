@@ -40,17 +40,17 @@ module.config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/potvrzeni', {templateUrl: '/partials/summary.html', controller: 'SummaryCtrl'});
 
   //admin
-  $routeProvider.when('/admin', {templateUrl: '/partials/admin/orders.html', controller: 'OrdersCtrl', menuItem: 'orders', reloadOnSearch: false});
-  $routeProvider.when('/admin/login', {templateUrl: '/partials/admin/login.html', controller: 'LoginCtrl', menuItem: 'login'});
-  $routeProvider.when('/admin/orders/:number', {templateUrl: '/partials/admin/order-detail.html', controller: 'OrderDetailCtrl', menuItem: 'orders'});
-  $routeProvider.when('/admin/products', {templateUrl: '/partials/admin/products.html', controller: 'ProductsCtrl', menuItem: 'products', reloadOnSearch: false});
-  $routeProvider.when('/admin/add-product', {templateUrl: '/partials/admin/product-add.html', controller: 'ProductAddCtrl', menuItem: 'products'});
-  $routeProvider.when('/admin/products/:id', {templateUrl: '/partials/admin/product-detail.html', controller: 'ProductDetailCtrl', menuItem: 'products'});
-  $routeProvider.when('/admin/users', {templateUrl: '/partials/admin/users.html', controller: 'UsersCtrl', menuItem: 'users'});
-  $routeProvider.when('/admin/categories', {templateUrl: '/partials/admin/categories.html', controller: 'CategoriesCtrl', menuItem: 'categories'});
-  $routeProvider.when('/admin/parameters', {templateUrl: '/partials/admin/parameters.html', controller: 'ParametersCtrl', menuItem: 'parameters'});
-  $routeProvider.when('/admin/add-parameter', {templateUrl: '/partials/admin/parameter-add.html', controller: 'ParameterAddCtrl', menuItem: 'parameters'});
-  $routeProvider.when('/admin/parameters/:id', {templateUrl: '/partials/admin/parameter.html', controller: 'ParameterDetailCtrl', menuItem: 'parameters'});
+  $routeProvider.when('/admin', {templateUrl: '/partials/admin/orders.html', controller: 'OrdersCtrl', menuItem: 'orders', reloadOnSearch: false, resolve: ['access']});
+  $routeProvider.when('/admin/login', {templateUrl: '/partials/admin/login.html', controller: 'LoginCtrl', menuItem: 'login', resolve: ['access']});
+  $routeProvider.when('/admin/orders/:number', {templateUrl: '/partials/admin/order-detail.html', controller: 'OrderDetailCtrl', menuItem: 'orders', resolve: ['access']});
+  $routeProvider.when('/admin/products', {templateUrl: '/partials/admin/products.html', controller: 'ProductsCtrl', menuItem: 'products', reloadOnSearch: false, resolve: ['access']});
+  $routeProvider.when('/admin/add-product', {templateUrl: '/partials/admin/product-add.html', controller: 'ProductAddCtrl', menuItem: 'products', resolve: ['access']});
+  $routeProvider.when('/admin/products/:id', {templateUrl: '/partials/admin/product-detail.html', controller: 'ProductDetailCtrl', menuItem: 'products', resolve: ['access']});
+  $routeProvider.when('/admin/users', {templateUrl: '/partials/admin/users.html', controller: 'UsersCtrl', menuItem: 'users', resolve: ['access']});
+  $routeProvider.when('/admin/categories', {templateUrl: '/partials/admin/categories.html', controller: 'CategoriesCtrl', menuItem: 'categories', resolve: ['access']});
+  $routeProvider.when('/admin/parameters', {templateUrl: '/partials/admin/parameters.html', controller: 'ParametersCtrl', menuItem: 'parameters', resolve: ['access']});
+  $routeProvider.when('/admin/add-parameter', {templateUrl: '/partials/admin/parameter-add.html', controller: 'ParameterAddCtrl', menuItem: 'parameters', resolve: ['access']});
+  $routeProvider.when('/admin/parameters/:id', {templateUrl: '/partials/admin/parameter.html', controller: 'ParameterDetailCtrl', menuItem: 'parameters', resolve: ['access']});
   $routeProvider.otherwise({redirectTo: '/'});
 }]);
 

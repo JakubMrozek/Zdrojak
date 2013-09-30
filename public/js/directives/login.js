@@ -1,4 +1,4 @@
-angular.module('zdrojak.directive').directive('login', ['authNotifier', function(authNotifier){
+angular.module('zdrojak.directive').directive('login', ['$rootScope', 'authNotifier', function($rootScope, authNotifier){
 
   var config = {
     restrict: 'E',
@@ -8,13 +8,20 @@ angular.module('zdrojak.directive').directive('login', ['authNotifier', function
     controller: 'LoginCtrl',
     link: function(scope, element) {
 
-      authNotifier.onRequired(scope, function(){
+      var onRequired = function() {
         scope.mode = true;
-      });
+      };
 
-      authNotifier.onConfirmed(scope, function(){
+      var onConfirmed = function() {
         scope.mode = false;
-      });
+      };
+
+      if ($rootScope.authLoginRequired) {
+        onRequired();
+      }
+
+      authNotifier.onRequired(scope, onRequired);
+      authNotifier.onConfirmed(scope, onConfirmed);
 
     }
   };

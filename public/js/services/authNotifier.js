@@ -12,10 +12,12 @@ angular.module('zdrojak.service').factory('authNotifier', ['$rootScope', functio
 
   AuthNotifier.prototype.notifyRequired = function() {
     $rootScope.$broadcast('auth:loginRequired');
+    $rootScope.authLoginRequired = true;
   };
 
   AuthNotifier.prototype.notifyConfirmed = function() {
     $rootScope.$broadcast('auth:loginConfirmed');
+    $rootScope.authLoginRequired = false;
   };
 
   return new AuthNotifier();

@@ -10,7 +10,7 @@
 
   <div class="container">
 
-    <div id="container-body">
+    <div id="container-body" ng-hide="authLoginRequired" ng-cloak>
 
        <div class="navbar">
         <div class="navbar-inner" ng-controller="MenuAdminCtrl">
@@ -96,6 +96,7 @@
 
   <!-- services -->
   <script src="/js/services/api.js"></script>
+  <script src="/js/services/access.js"></script>
   <script src="/js/services/availability.js"></script>
   <script src="/js/services/basket.js"></script>
   <script src="/js/services/error401.js"></script>
