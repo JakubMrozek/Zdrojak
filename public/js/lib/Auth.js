@@ -27,7 +27,7 @@ Auth.prototype.initHeaders = function() {
 };
 
 Auth.prototype.setHeader = function(token) {
-  this.$http.defaults.headers.common.Authorization = 'Basic ' + token;
+  this.$http.defaults.headers.common['X-Authorization'] = token;
 };
 
 Auth.prototype.clearHeader = function() {
@@ -78,5 +78,5 @@ Auth.prototype.logout = function(cb) {
   cb = cb || function() {};
   this.removeToken();
   this.notifier.notifyRequired();
-  cb();
+  this.api.user.logout(cb);
 };

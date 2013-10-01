@@ -138,7 +138,7 @@ var apiary = [
       {
         "description": "Seznam všech správců.",
         "method": "GET",
-        "url": "/users",
+        "url": "*/users",
         "request": {
           "headers": {},
           "body": ""

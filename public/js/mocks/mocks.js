@@ -38,4 +38,6 @@ angular.module('zdrojak.mock').run(function($httpBackend) {
 
   //TODO nechat projit nektere requesty, vyresi Mockapito
   $httpBackend.whenPOST(new RegExp('/api/v1/users/login')).passThrough();
+  $httpBackend.whenPOST(new RegExp('/api/v1/users/logout')).passThrough();
+  $httpBackend.whenGET(new RegExp('/api/v1/users')).passThrough();
 });
