@@ -14,7 +14,9 @@
     "async": "0.2.x",
     "ejs": "0.8.x",
     "grunt-karma": "~0.4.5",
-    "bower": "~1.2.7"
+    "bower": "~1.2.7",
+    "mongoose-password-pbkdf2": "~0.2.0",
+    "mongoose-hash": "~0.2.0"
   },
   "devDependencies": {
     "mocha": "1.6.x",

@@ -6,6 +6,7 @@
 var express = require('express');
 var resource = require('express-resource');
 var config = require('./config');
+var access = require('./middleware/access');
 var app = express();
 
 /**
@@ -28,16 +29,7 @@ var UserController = require('./controllers/UserController');
 
 app.resource('pages', PageController, {base: '/api/v1/'});
 
-var access = function(req, res, next) {
-  var hashStorage = req.get('x-authorization');
-  var hashCookie = req.cookies.authToken;
-  //neexistuje hashStorage nebo hashCookie, neprihlasen
-  res.send(401);
-  res.end();
-};
-
-
-app.get('/api/v1/users', access, UserController.index);
+app.get('/api/v1/users', access(), UserController.index);
 app.post('/api/v1/users/login', UserController.login);
 app.post('/api/v1/users/logout', UserController.logout);
 

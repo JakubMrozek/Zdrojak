@@ -4,6 +4,7 @@
  */
 
 var User = require(process.cwd() + '/models/User');
+var Auth = require(process.cwd() + '/lib/Auth');
 
 
 /**
@@ -32,20 +33,7 @@ exports.index = function(req, res, next) {
  */
 
 exports.login = function(req, res, next){
-  User.findForLogin(req.body.email, req.body.password, function(err, doc){
-    if (err) return next(err);
-    if (!doc) return res.send({});
-    var maxAge = 3 * 24 * 60 * 60 * 1000;
-
-    res.cookie('authToken', doc.hashCookie, {
-      maxAge: maxAge,
-      httpOnly: true /*, secure: true*/
-    });
-
-    res.send({
-      authToken: doc.hashStorage
-    });
-  });
+  Auth.login(req, res, next);
 };
 
 
@@ -58,6 +46,5 @@ exports.login = function(req, res, next){
  */
 
 exports.logout = function(req, res, next){
-  res.clearCookie('authToken');
-  res.end();
+  Auth.logout(req, res, next);
 };

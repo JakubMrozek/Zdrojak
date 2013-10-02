@@ -5,6 +5,7 @@
 
 var express = require('express');
 var mongoose = require('mongoose');
+var Auth = require('./lib/Auth');
 
 /**
  * Konfigurace pro ruzna prostredi.
@@ -13,8 +14,10 @@ var mongoose = require('mongoose');
  */
 
 exports.configure = function(app) {
-  var saltCookie  = '5GiNxOayeGDEIImNyzsEDspRJLhaIAZsG9vMqnjlXnTgX2ELzk';
-  var saltStorage = 'Kjl6LVkXE2XTw3TE84lP5sebXkNPwAOb6Y9ess7ua2MQim6Wv1';
+  Auth.setCookieSalt('5GiNxOayeGDEIImNyzsEDspRJLhaIAZsG9vMqnjlXnTgX2ELzk');
+  Auth.setStorageSalt('Kjl6LVkXE2XTw3TE84lP5sebXkNPwAOb6Y9ess7ua2MQim6Wv1');
+  Auth.setPasswordSalt('nT.31_F!8z.Q[ of^$PEmWSddddY&cG%n#L|]}');
+  Auth.setModel(require('./models/User'));
 
   app.configure(function(){
     app.engine('.html', require('ejs').__express);
@@ -22,7 +25,7 @@ exports.configure = function(app) {
     app.set('views', __dirname + '/views');
     app.use(express.bodyParser());
     app.use(express.methodOverride());
-    app.use(express.cookieParser(saltCookie));
+    app.use(express.cookieParser());
     app.use(express.static(process.cwd() + '/public'));
     app.use(express.favicon());
     app.use(require('./middleware/http406')());

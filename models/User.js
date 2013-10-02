@@ -5,6 +5,9 @@
 
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
+var createPassword = require('mongoose-password-pbkdf2');
+var generateHash = require('mongoose-hash');
+var Auth = require(process.cwd() + '/lib/Auth');
 
 /**
  * Schema kolekce.
@@ -19,25 +22,34 @@ var fields = {
     type: String,
     required: true
   },
-  hashStorage: {
+  storageHash: {
     type: String,
     required: true
   },
-  hashCookie: {
+  cookieHash: {
     type: String,
     required: true
-  }
+  },
 };
 
 var UserSchema = new Schema(fields);
 
-UserSchema.pre('validate', function(next){
-  next();
+UserSchema.plugin(createPassword, {
+  field: 'password',
+  salt: Auth.passwordSalt,
+  iterations: 1000,
+  keylen: 64
 });
 
-UserSchema.statics.findForLogin = function(email, password, cb) {
-  this.findOne({email: email, password: password}, cb);
-};
+UserSchema.plugin(generateHash, {
+  field: 'storageHash',
+  size: 64
+});
+
+UserSchema.plugin(generateHash, {
+  field: 'cookieHash',
+  size: 64
+});
 
 module.exports = mongoose.model('User', UserSchema);
 
