@@ -30,8 +30,9 @@ var UserController = require('./controllers/UserController');
 app.resource('pages', PageController, {base: '/api/v1/'});
 
 app.get('/api/v1/users', access(), UserController.index);
-app.post('/api/v1/users/login', UserController.login);
-app.post('/api/v1/users/logout', UserController.logout);
+
+app.post('/api/v1/users/login', require('./lib/auth/login')());
+app.post('/api/v1/users/logout', require('./lib/auth/logout')());
 
 
 /**

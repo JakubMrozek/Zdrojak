@@ -5,7 +5,7 @@
 
 var express = require('express');
 var mongoose = require('mongoose');
-var Auth = require('./lib/Auth');
+var authConfig = require('./lib/auth/config');
 
 /**
  * Konfigurace pro ruzna prostredi.
@@ -14,10 +14,18 @@ var Auth = require('./lib/Auth');
  */
 
 exports.configure = function(app) {
-  Auth.setCookieSalt('5GiNxOayeGDEIImNyzsEDspRJLhaIAZsG9vMqnjlXnTgX2ELzk');
-  Auth.setStorageSalt('Kjl6LVkXE2XTw3TE84lP5sebXkNPwAOb6Y9ess7ua2MQim6Wv1');
-  Auth.setPasswordSalt('nT.31_F!8z.Q[ of^$PEmWSddddY&cG%n#L|]}');
-  Auth.setModel(require('./models/User'));
+  authConfig.set({
+    'cookieSalt': '5GiNxOayeGDEIImNyzsEDspRJLhaIAZsG9vMqnjlXnTgX2ELzk',
+    'storageSalt': 'Kjl6LVkXE2XTw3TE84lP5sebXkNPwAOb6Y9ess7ua2MQim6Wv1',
+    'passwordSalt': 'nT.31_F!8z.Q[ of^$PEmWSddddY&cG%n#L|]}',
+    'passwordIterations': 1000,
+    'passwordKeylen': 64,
+    'tokenName': 'authToken',
+    'httpHeader': 'X-Authorization',
+    'cookieMaxAge': 3 * 24 * 60 * 60 * 1000 //3 days
+  });
+
+  authConfig.setModel(require('./models/User'));
 
   app.configure(function(){
     app.engine('.html', require('ejs').__express);
