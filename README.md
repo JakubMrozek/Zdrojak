@@ -29,7 +29,7 @@ Seriál E-shop pomocí moderních technologií
 15. dil
 =======
 * Článek: http://www.zdrojak.cz/clanky/autentizace-v-singe-page-aplikacich-serverova-cast/
-* Demo: ***
+* Demo: http://polar-harbor-7606.herokuapp.com/admin
 
 14. dil
 =======
