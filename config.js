@@ -22,8 +22,8 @@ exports.configure = function(app) {
     'passwordIterations': 1000,
     'cookieKeylen': 64,
     'passwordKeylen': 64,
+    'randomBytesSize': 64,
     'tokenName': 'authToken',
-    'cookieUserName': 'user',
     'httpHeader': 'X-Authorization',
     'maxAge': 3 * 24 * 60 * 60 * 1000 //3 days
   });

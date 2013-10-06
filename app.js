@@ -6,7 +6,7 @@
 var express = require('express');
 var resource = require('express-resource');
 var config = require('./config');
-var access = require('./middleware/access');
+var access = require('./lib/auth/middleware/access');
 var app = express();
 
 /**
