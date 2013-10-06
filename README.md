@@ -26,6 +26,20 @@ bower install
 Seriál E-shop pomocí moderních technologií
 ==========================================
 
+15. dil
+=======
+* Článek: http://www.zdrojak.cz/clanky/autentizace-v-singe-page-aplikacich-serverova-cast/
+* Demo: ***
+
+14. dil
+=======
+* Článek: http://www.zdrojak.cz/clanky/autentizace-v-singe-page-aplikacich/
+
+13. dil
+=======
+* Článek: http://www.zdrojak.cz/clanky/tvorba-moderniho-e-shopu-rich-text-editing-a-dokonceni-administrace/
+* Demo: http://polar-harbor-7606.herokuapp.com/admin
+
 12. dil
 =======
 * Článek: http://www.zdrojak.cz/clanky/tvorba-moderniho-e-shopu-zpracovani-chyb/
@@ -70,7 +84,7 @@ Seriál E-shop pomocí moderních technologií
 
 3. díl
 ======
-* Článek: http://www.zdrojak.cz/clanky/tvorba-uzivatelske-casti-eshopu/ 
+* Článek: http://www.zdrojak.cz/clanky/tvorba-uzivatelske-casti-eshopu/
 * Demo: http://secure-spire-1773.herokuapp.com/
 
 2. díl
@@ -126,7 +140,7 @@ Seriál Node.js: S JavaScriptem na server
 5. díl
 ======
 * Článek: http://www.zdrojak.cz/clanky/javascript-na-serveru-zaciname-programovat-e-shop/
-* Demo: http://afternoon-eyrie-1430.herokuapp.com/ 
+* Demo: http://afternoon-eyrie-1430.herokuapp.com/
 
 4. díl
 ======

@@ -1,6 +1,6 @@
 <form ng-show="mode" class="form-signin" ng-submit="login()">
   <h2>Přihlašování</h2>
-  <messages></messages>
+  <p class="alert alert-danger" ng-show="errors">Zadané přihlašovací údaje jsou chybné.</p>
   <input ng-model="email" type="email" class="input-block-level" placeholder="E-mail" autofocus required>
   <input ng-model="password" type="password" class="input-block-level" placeholder="Heslo" required>
   <input class="btn btn-large btn-primary" value="Přihlásit se!" type="submit">

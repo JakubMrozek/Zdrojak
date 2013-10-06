@@ -22,6 +22,11 @@ var fields = {
     type: String,
     required: true
   },
+  tokenMaxAge: {
+    type: Number,
+    required: true,
+    default: config.options.maxAge
+  },
   cookieTokenSalt: {
     type: String,
     required: true

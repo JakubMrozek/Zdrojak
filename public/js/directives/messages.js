@@ -12,10 +12,11 @@ angular.module('zdrojak.directive').directive('messages', function(){
     template: template,
     replace: true,
     link: function(scope, element) {
+
       scope.$on('messages:add', function(event, messages){
         scope.messages = messages;
       });
-      
+
       scope.$on('messages:reset', function(){
         scope.messages = [];
       });

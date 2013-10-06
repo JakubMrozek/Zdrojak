@@ -25,7 +25,7 @@ exports.configure = function(app) {
     'randomBytesSize': 64,
     'tokenName': 'authToken',
     'httpHeader': 'X-Authorization',
-    'maxAge': 3 * 24 * 60 * 60 * 1000 //3 days
+    'maxAge': 3 * 24 * 60 * 60 //3 days
   });
 
   authConfig.setModel(require('./models/User'));

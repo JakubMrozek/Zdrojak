@@ -16,16 +16,6 @@ var app = express();
 config.configure(app);
 config.connect(app);
 
-/*
-var User = require('./models/User');
-var user = new User();
-user.name = 'Jakub'
-user.email = '5@gmail.com'
-user.password = '123';
-user.save();
-*/
-
-
 
 /**
  * Inicializace vsech controlleru.
@@ -39,9 +29,6 @@ var UserController = require('./controllers/UserController');
  */
 
 app.resource('pages', PageController, {base: '/api/v1/'});
-
-app.get('/api/v1/users', access(), UserController.index);
-
 app.post('/api/v1/users/login', require('./lib/auth/login')());
 app.post('/api/v1/users/logout', require('./lib/auth/logout')());
 
