@@ -15,16 +15,17 @@ var authConfig = require('./lib/auth/config');
 
 exports.configure = function(app) {
   authConfig.set({
-    'salt1': '5GiNxOayeGDEIImNyzsEDspRJLhaIAZsG9vMqnjlXnTgX2ELzk',
-    'salt2': 'Kjl6LVkXE2XTw3TE84lP5sebXkNPwAOb6Y9ess7ua2MQim6Wv1',
-    'salt3': 'nT.31_F!8z.Q[ of^$PEmWSddddY&cG%n#L|]}',
-    'passwordIterations1': 1000,
-    'passwordIterations3': 1000,
-    'passwordKeylen1': 64,
-    'passwordKeylen3': 64,
+    'systemCookieSalt': '5GiNxOayeGDEIImNyzsEDspRJLhaIAZsG9vMqnjlXnTgX2ELzk',
+    'systemStorageSalt': 'Kjl6LVkXE2XTw3TE84lP5sebXkNPwAOb6Y9ess7ua2MQim6Wv1',
+    'systemPasswordSalt': 'nT.31_F!8z.Q[ of^$PEmWSddddY&cG%n#L|]}',
+    'cookieIterations': 1000,
+    'passwordIterations': 1000,
+    'cookieKeylen': 64,
+    'passwordKeylen': 64,
     'tokenName': 'authToken',
+    'cookieUserName': 'user',
     'httpHeader': 'X-Authorization',
-    'cookieMaxAge': 3 * 24 * 60 * 60 * 1000 //3 days
+    'maxAge': 3 * 24 * 60 * 60 * 1000 //3 days
   });
 
   authConfig.setModel(require('./models/User'));

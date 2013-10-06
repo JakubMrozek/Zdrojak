@@ -16,13 +16,15 @@ var app = express();
 config.configure(app);
 config.connect(app);
 
-
+/*
 var User = require('./models/User');
 var user = new User();
 user.name = 'Jakub'
-user.email = 'jakub.mrozek@gmail.com'
-user.password = 'sdfsdfdfs';
+user.email = '5@gmail.com'
+user.password = '123';
 user.save();
+*/
+
 
 
 /**

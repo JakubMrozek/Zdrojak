@@ -7,7 +7,7 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var generateHash = require('mongoose-hash');
 var config = require(process.cwd() + '/lib/auth/config');
-var password = require(process.cwd() + '/lib/plugins/password');
+var password = require(process.cwd() + '/lib/auth/plugins/password');
 
 /**
  * Schema kolekce.
@@ -22,15 +22,15 @@ var fields = {
     type: String,
     required: true
   },
-  salt1: {
+  cookieTokenSalt: {
     type: String,
     required: true
   },
-  salt2: {
+  storageTokenSalt: {
     type: String,
     required: true
   },
-  salt3: {
+  passwordSalt: {
     type: String,
     required: true
   },
@@ -43,17 +43,17 @@ var fields = {
 var UserSchema = new Schema(fields);
 
 UserSchema.plugin(generateHash, {
-  field: 'salt1',
+  field: 'cookieTokenSalt',
   size: 64
 });
 
 UserSchema.plugin(generateHash, {
-  field: 'salt2',
+  field: 'storageTokenSalt',
   size: 64
 });
 
 UserSchema.plugin(generateHash, {
-  field: 'salt3',
+  field: 'passwordSalt',
   size: 64
 });
 
